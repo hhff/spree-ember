@@ -6,6 +6,9 @@ sudo: false
 env:
   - TEST_DIR=frontend
 
+before_install:
+  - cd $TEST_DIR
+
 install:
   - npm install -g bower
   - npm install
