@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-frontend",
+  "name": "frontend",
   "version": "0.0.0",
   "private": true,
   "directories": {
@@ -17,9 +17,6 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "ember-cli-spree-core": "git://github.com/hhff/ember-cli-spree-core.git"
-  },
   "devDependencies": {
     "body-parser": "^1.2.0",
     "broccoli-asset-rev": "0.3.0",
@@ -36,7 +33,7 @@
     "ember-cli-simple-auth": "^0.6.7",
     "ember-cli-simple-auth-devise": "^0.6.7",
     "ember-cli-simple-auth-testing": "^0.6.7",
-    "ember-cli-spree-core": "*",
+    "ember-cli-spree-core": "git://github.com/hhff/ember-cli-spree-core.git",
     "ember-data": "1.0.0-beta.10",
     "express": "^4.8.5",
     "glob": "^4.0.5"
