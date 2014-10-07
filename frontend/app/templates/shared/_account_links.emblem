@@ -1,0 +1,8 @@
+if session.isAuthenticated
+  li
+    = link-to 'users.show' | My Account
+  li
+    a{action 'invalidateSession'} href="" Logout
+else
+  li
+    = link-to 'users.login' | Login

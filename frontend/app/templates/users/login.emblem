@@ -1,0 +1,23 @@
+#existing-customer
+  h6 Login as Existing Customer
+
+  div
+    form#new_spree_user.new_spree_user{action 'authenticate' on='submit'} accept-charset="UTF-8" method="post"
+      #password-credentials
+        p
+          label for="spree_user_emal" Email
+          br
+          / TODO classes etc here
+          = input value=identification
+        p
+          label for="spree_user_password" Password
+          br
+          = input value=password
+
+        / TODO Wire up remember me
+
+        p
+          button.button.primary type="submit" Login
+
+        | or
+        h6 Other links here

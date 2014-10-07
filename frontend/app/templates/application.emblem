@@ -1,0 +1,7 @@
+.container
+  = partial "shared/header"
+
+  #wrapper.row
+
+    #content.sixteen.columns
+      = outlet

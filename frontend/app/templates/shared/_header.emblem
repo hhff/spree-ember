@@ -1,0 +1,6 @@
+header#header.row
+  figure#logo.columns.six
+    a href="/"
+      img alt="Spree 50" src="images/logo/spree_50.png"
+
+  = partial "shared/nav_bar"

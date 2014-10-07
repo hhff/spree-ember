@@ -1,0 +1,32 @@
+div data-hook="homepage_products"
+  ul#products.inline.product-listing
+    each product in model.products
+      / todo - interpolate product id properly
+      li.columns.three data-hook="products_list_item" id="product_#{product.id}"
+        .product-image
+          a
+            img src="{{unbound spree-host product.images.firstObject.smallUrl}}"
+        a.info
+          = product.name
+        span.price.selling $5.00
+
+
+/ <div data-hook="homepage_products">
+/   <ul id="products" class="inline product-listing" data-hook>
+/   {{#each product in model.products}}
+
+/     <li id="product_"#{product.id} class="columns three" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+/       <div class="product-image">
+/         {{#link-to 'products.show' product}}
+/           <img src="{{unbound product.images.firstObject.smallUrl}}" />
+/         {{/link-to}}
+/       </div>
+/       {{#link-to 'products.show' product classNames="info"}}
+/         {{product.name}}
+/       {{/link-to}}
+/       <span class="price selling" itemprop="price">$50.00</span>
+/     </li>
+
+/   {{/each}}
+/   </ul>
+/ </div>
