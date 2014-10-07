@@ -13,7 +13,8 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
-    "ember-simple-auth": "0.6.7"
+    "ember-simple-auth": "0.6.7",
+    "pretender": "0.1.0"
   },
   "devDependencies": {
     "fontawesome": "~4.2.0"
