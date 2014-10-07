@@ -1,0 +1,12 @@
+---
+language: node_js
+
+sudo: false
+
+env:
+  - TEST_DIR=frontend
+
+install:
+  - npm install -g bower
+  - npm install
+  - bower install
