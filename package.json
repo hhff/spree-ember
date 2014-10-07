@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "ember-cli-spree-frontend",
   "version": "0.0.0",
   "private": true,
   "directories": {
@@ -33,6 +33,7 @@
     "ember-cli-simple-auth": "^0.6.7",
     "ember-cli-simple-auth-devise": "^0.6.7",
     "ember-cli-simple-auth-testing": "^0.6.7",
+    "ember-cli-spree-core": "*",
     "ember-data": "1.0.0-beta.10",
     "express": "^4.8.5",
     "glob": "^4.0.5"
