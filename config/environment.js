@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'frontend',
+    modulePrefix: 'ember-cli-spree-frontend',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
