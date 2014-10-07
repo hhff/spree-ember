@@ -7,6 +7,7 @@ node_js:
 
 env:
   - TEST_DIR=frontend
+  - TEST_DIR=core
 
 before_install:
   - cd $TEST_DIR
