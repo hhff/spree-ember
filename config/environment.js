@@ -35,6 +35,17 @@ module.exports = function(environment) {
     };
 
     ENV.spreeApiHost = 'http://localhost:3000'
+
+    ENV['simple-auth'] = {
+      authorizer: 'simple-auth-authorizer:devise',
+      authenticationRoute: 'users.login',
+      crossOriginWhitelist: [ENV.spreeApiHost]
+    }
+
+    ENV['simple-auth-devise'] = {
+      serverTokenEndpoint: ENV.spreeApiHost+'/api/ams/users/token'
+    }
+
   }
 
   if (environment === 'test') {
