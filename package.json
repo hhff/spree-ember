@@ -1,5 +1,6 @@
 {
   "name": "ember-cli-spree-core",
+  "private": true,
   "version": "0.0.0",
   "directories": {
     "doc": "doc",
