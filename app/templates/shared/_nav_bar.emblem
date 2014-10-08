@@ -1,5 +1,0 @@
-nav#top-nav-bar.columns.ten
-  ul#nav-bar.inline
-    = partial 'shared/account_links'
-    li#search-bar
-      = partial 'shared/search'
