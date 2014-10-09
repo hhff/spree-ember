@@ -1,23 +1,27 @@
 `import DS from "ember-data"`
 
 class User extends DS.Model
-  authentication_token: DS.attr 'string'
-  created_at: DS.attr 'string'
-  current_sign_in_at: DS.attr 'string'
+  authenticationToken: DS.attr 'string'
+  createdAt: DS.attr 'string'
+  currentSignInAt: DS.attr 'string'
   email: DS.attr 'string'
-  failed_attempts: DS.attr 'number'
-  last_request_at: DS.attr 'string'
-  locked_at: DS.attr 'string'
+  failedAttempts: DS.attr 'number'
+  lastRequestAt: DS.attr 'string'
+  lockedAt: DS.attr 'string'
   login: DS.attr 'string'
-  perishable_token: DS.attr 'string'
-  persistence_token: DS.attr 'string'
-  remember_created_at: DS.attr 'string'
-  remember_token: DS.attr 'string'
-  reset_password_sent_at: DS.attr 'string'
-  reset_password_token: DS.attr 'string'
-  sign_in_count: DS.attr 'number'
+  perishableToken: DS.attr 'string'
+  persistenceToken: DS.attr 'string'
+  rememberCreated_at: DS.attr 'string'
+  rememberToken: DS.attr 'string'
+  resetPasswordSentAt: DS.attr 'string'
+  resetPasswordToken: DS.attr 'string'
+  signInCount: DS.attr 'number'
   spreeApiKey: DS.attr 'string'
-  unlock_token: DS.attr 'string'
-  updated_at: DS.attr 'string'
+  unlockToken: DS.attr 'string'
+  updatedAt: DS.attr 'string'
+
+  # These never come down from the server.
+  password: DS.attr 'string'
+  passwordConfirmation: DS.attr 'string'
 
 `export default User`
