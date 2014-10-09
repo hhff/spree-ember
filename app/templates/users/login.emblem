@@ -1,4 +1,5 @@
 #existing-customer
+  / TODO i18n
   h6 Login as Existing Customer
 
   div
@@ -8,16 +9,16 @@
           label for="spree_user_emal" Email
           br
           / TODO classes etc here
-          = input value=identification
+          = input value=identification type="email"
         p
           label for="spree_user_password" Password
           br
-          = input value=password
+          = input value=password type="password"
 
         / TODO Wire up remember me
-
         p
           button.button.primary type="submit" Login
 
         | or
-        h6 Other links here
+        = link-to 'users.new' | Create a new account
+        / TODO Forgot Password? (copy)

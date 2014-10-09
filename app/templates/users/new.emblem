@@ -1,0 +1,27 @@
+#new-customer
+  / TODO i18n
+  h6 New Customer
+
+  div
+    form#new_spree_user.new_spree_user{action 'createUser' this on='submit'} accept-charset="UTF-8" method="post"
+      #password-credentials
+        p
+          label for="spree_user_emal" Email
+          br
+          / TODO classes etc here
+          = input value=model.email type="email"
+        p
+          label for="spree_user_password" Password
+          br
+          = input value=model.password type="password"
+
+        p
+          label for="spree_user_password_confirmation" Password Confirmation
+          br
+          = input value=model.passwordConfirmation type="password"
+
+        p
+          button.button.primary type="submit" Create
+
+        | or
+        = link-to 'users.login' | Login as Existing Customer
