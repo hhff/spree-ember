@@ -10,5 +10,6 @@ Router.map ->
     @route 'show'
     @route 'login'
     @route 'edit'
+    @route 'new'
 
 `export default Router`
