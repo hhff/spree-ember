@@ -36,11 +36,14 @@ Or run tests with:
 
 ### Overview
 
+[Roadmap is here.](https://huboard.com/hhff/spree_ember)
+
 Spree Ember consists of the following packages:
 
 * core (Ember CLI Addon)
 * frontend (Ember CLI App)
-* backend (coming soon)
+* backend (coming soon - Ember CLI App)
+* gateway (coming soon - Ember CLI Addon)
 
 ### Working on Core
 
