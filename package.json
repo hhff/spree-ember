@@ -24,6 +24,7 @@
     "broccoli-ember-script": "^0.1.1",
     "broccoli-emblem-compiler": "^0.3.18",
     "broccoli-sass": "^0.2.2",
+    "connect-restreamer": "^1.0.0",
     "ember-cli": "0.1.1",
     "ember-cli-content-security-policy": "0.2.0",
     "ember-cli-ic-ajax": "0.1.1",

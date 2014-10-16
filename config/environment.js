@@ -59,6 +59,16 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
 
+    ENV.spreeApiHost = 'http://localhost:4200'
+
+    ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'font-src': "'self' http://fonts.gstatic.com",
+    'connect-src': "'self' http://localhost:3000/",
+    'img-src': "'self' http://localhost:3000/",
+    'style-src': "'self' http://fonts.googleapis.com/"
+    };
+
     ENV['simple-auth'] = {
       store: 'simple-auth-session-store:ephemeral'
     }
