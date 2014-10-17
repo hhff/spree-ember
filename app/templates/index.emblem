@@ -4,9 +4,9 @@ div data-hook="homepage_products"
       / todo - interpolate product id properly
       li.columns.three data-hook="products_list_item" id="product_#{product.id}"
         .product-image
-          a
+          = link-to 'products.show' product
             img src="{{unbound spree-host product.images.firstObject.smallUrl}}"
-        a.info
+        = link-to .info 'products.show' product
           = product.name
         span.price.selling $5.00
 

@@ -13,7 +13,7 @@
   },
   "repository": "https://github.com/stefanpenner/ember-cli",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.11.0"
   },
   "author": "",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "ember-cli-simple-auth-devise": "^0.6.7",
     "ember-cli-simple-auth-testing": "^0.6.7",
     "ember-cli-spree-core": "git://github.com/hhff/ember-cli-spree-core.git",
-    "ember-data": "1.0.0-beta.10",
+    "ember-data": "1.0.0-beta.11",
     "express": "^4.8.5",
     "glob": "^4.0.5"
   }
