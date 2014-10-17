@@ -12,6 +12,7 @@ class UsersNewontroller extends Ember.Controller
             -> console.log 'user created but NOT authenticated'
           )
         (error) ->
+          debugger
           console.log 'failz'
       )
 

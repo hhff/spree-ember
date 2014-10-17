@@ -59,8 +59,6 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
 
-    ENV.spreeApiHost = 'http://localhost:4200'
-
     ENV.contentSecurityPolicy = {
     'default-src': "'none'",
     'font-src': "'self' http://fonts.gstatic.com",
@@ -70,7 +68,12 @@ module.exports = function(environment) {
     };
 
     ENV['simple-auth'] = {
-      store: 'simple-auth-session-store:ephemeral'
+      store: 'simple-auth-session-store:ephemeral',
+      authorizer: 'simple-auth-authorizer:devise'
+    }
+
+    ENV['simple-auth-devise'] = {
+      serverTokenEndpoint: '/api/ams/users/token'
     }
   }
 
