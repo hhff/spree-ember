@@ -1,0 +1,81 @@
+div data-hook="product_show" itemtype="http://schema.org/Product"
+
+  .columns.six.alpha data-hook="product_left_part"
+    .row data-hook="product_left_part_wrap"
+      #product-images data-hook="product_images"
+
+        #main-image
+          img src="{{unbound spree-host model.images.firstObject.productUrl}}"
+
+        / TODO - Thumbnails
+
+        div data-hook="product_properties"
+          h6 render partial here
+
+
+
+
+/ <div data-hook="product_show" itemscope itemtype="http://schema.org/Product">
+
+/   <div class="columns six alpha" data-hook="product_left_part">
+/     <div class="row" data-hook="product_left_part_wrap">
+
+/       <div id="product-images" data-hook="product_images">
+
+/         <div id="main-image" data-hook>
+/           <img src="{{unbound model.images.firstObject.productUrl}}" />
+/         </div>
+
+/         <!-- TODO
+/         <div id="thumbnails" data-hook>
+/           <%= render :partial => 'thumbnails' %>
+/         </div>
+/         -->
+
+/       </div>
+
+
+/       <div data-hook="product_properties">
+/         {{partial 'products/properties'}}
+/       </div>
+
+/       <!-- TODO
+/       <div data-hook="promotions">
+/         <%= render :partial => 'promotions' %>
+/       </div>
+/       -->
+
+
+/     </div>
+/   </div>
+
+/   <div class="columns ten omega" data-hook="product_right_part">
+/     <div class="row" data-hook="product_right_part_wrap">
+
+/       <div id="product-description" data-hook="product_description">
+
+/         <h1 class="product-title" itemprop="name">{{model.name}}</h1>
+
+/         <div itemprop="description" data-hook="description">
+/           {{#if model.description}}
+/             {{model.description}}
+/           {{else}}
+/             <!-- TODO i18n -->
+/             This product has no description
+/           {{/if}}
+/         </div>
+
+/         <div id="cart-form" data-hook="cart_form">
+/           {{partial 'products/cart_form'}}
+/         </div>
+
+/       </div>
+
+/       <!-- TODO
+/       <%= render :partial => 'taxons' %>
+/       -->
+
+/     </div>
+/   </div>
+
+/ </div>
