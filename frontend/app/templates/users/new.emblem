@@ -9,16 +9,16 @@
           label for="spree_user_emal" Email
           br
           / TODO classes etc here
-          = input value=model.email type="email"
+          = input value=model.email type="email" class="test-email"
         p
           label for="spree_user_password" Password
           br
-          = input value=model.password type="password"
+          = input value=model.password type="password" class="test-password"
 
         p
           label for="spree_user_password_confirmation" Password Confirmation
           br
-          = input value=model.passwordConfirmation type="password"
+          = input value=model.passwordConfirmation type="password" class="test-password-confirmation"
 
         p
           button.button.primary type="submit" Create
