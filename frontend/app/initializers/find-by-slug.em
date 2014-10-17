@@ -6,15 +6,15 @@ Initializer =
     DS.Store.reopen
 
       findBySlug: (type, slug, preload) ->
-        Ember.assert("You need to pass a type to the store's findBySlug method", arguments.length >= 1);
-        Ember.assert("You need to pass a slug to the store's findBySlug method", arguments.length >= 2);
+        Ember.assert "You need to pass a type to the store's findBySlug method", arguments.length >= 1
+        Ember.assert "You need to pass a slug to the store's findBySlug method", arguments.length >= 2
 
         store      = @
         type       = @modelFor type
         adapter    = @adapterFor type
-        promise    = adapter.find store, type, slug, null
         serializer = @serializerFor type
-        label      = "DS: Handle Adapter#findBySlug of #{type} with slug: #{slug}"
+
+        promise    = adapter.find store, type, slug, null
 
         promise.then(
           (adapterPayload) ->
