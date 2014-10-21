@@ -4,4 +4,5 @@
   #wrapper.row
 
     #content.sixteen.columns
+      = view 'flash-outlet' class="flash"
       = outlet

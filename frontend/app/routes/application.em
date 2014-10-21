@@ -3,6 +3,8 @@
 class ApplicationRoute extends Ember.Route with ApplicationRouteMixin
   actions:
     sessionAuthenticationFailed: (error) ->
-      debugger
+      @flash.pushFlash 'Invalid email or password.',
+        type: 'error'
+        isNagging: true
 
 `export default ApplicationRoute`
