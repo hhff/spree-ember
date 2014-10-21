@@ -1,0 +1,7 @@
+h6 variant information here
+
+
+.add-to-cart
+  / Todo i18n
+  = input class="title" id="quantity" min=1 name="quantity" type="number" value=quantity
+  button#add-to-cart-button.large.primary{action 'addToCart' model} type="submit" Add to Cart
