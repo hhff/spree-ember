@@ -4,6 +4,8 @@ Initializer =
   name: 'initialize-spree-global'
   after: 'customize-simple-auth'
   initialize: (container, application) ->
-    console.log 'init!'
+
+    application.register 'spree:main', Spree, instantiate: true, singleton: true
+    application.inject 'controller', 'spree', 'spree:main'
 
 `export default Initializer`
