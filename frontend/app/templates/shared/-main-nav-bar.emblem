@@ -1,0 +1,11 @@
+nav.columns.sixteen
+  ul#main-nav-bar.inline
+    li#home-link
+      = link-to 'index' | Home
+    li#link-to-cart
+      if Spree.currentOrder
+        = link-to .cart-info.empty 'cart' | Cart: (Empty)
+      else
+        = link-to .cart-info.full 'cart'
+          | Cart: (2) &nbsp;
+          span.amount $500.00
