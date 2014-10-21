@@ -4,3 +4,4 @@ header#header.row
       img alt="Spree 50" src="images/logo/spree_50.png"
 
   = partial "shared/nav-bar"
+  = partial "shared/main-nav-bar"
