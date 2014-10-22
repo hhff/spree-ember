@@ -3,10 +3,14 @@ class ProductsShowController extends Ember.Controller
 
   actions:
     addToCart: ->
-      order = @store.createRecord 'order'
-      order.save().then(
-        (order) =>
-          debugger
-      )
+
+      variant = @model.variantsIncludingMaster.firstObject
+
+      newLineItem = @store.createRecord 'lineItem',
+        quantity: 1
+        variant: variant
+
+      newLineItem.save()
+
 
 `export default ProductsShowController`
