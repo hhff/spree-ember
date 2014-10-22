@@ -32,3 +32,4 @@ div data-hook="product_show" itemtype="http://schema.org/Product"
           = partial "products/cart-form"
 
         h6 taxons partial here
+        = spree.currentOrder

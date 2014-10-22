@@ -3,9 +3,12 @@ nav.columns.sixteen
     li#home-link
       = link-to 'index' | Home
     li#link-to-cart
-      if Spree.currentOrder
-        = link-to .cart-info.empty 'cart' | Cart: (Empty)
+      if spree.currentOrder
+        if spree.currentOrder.empty
+          = link-to .cart-info.empty 'cart' | Cart: (Empty)
+        else
+          = link-to .cart-info.full 'cart'
+            | Cart: (#{spree.currentOrder.itemCount}) &nbsp;
+            span.amount= spree.currentOrder.total
       else
-        = link-to .cart-info.full 'cart'
-          | Cart: (2) &nbsp;
-          span.amount $500.00
+        = link-to .cart-info.empty 'cart' | Cart: (Empty)
