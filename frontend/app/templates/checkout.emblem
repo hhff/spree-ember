@@ -1,4 +1,4 @@
-if model.hasEmail
+if showCheckoutSteps
   #checkout
     .row data-hook="checkout_header"
       / todo i18n

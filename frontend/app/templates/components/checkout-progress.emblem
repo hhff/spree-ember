@@ -1,4 +1,4 @@
-ol.progress-steps id="checkout-step-#{orderState}"
+ol.progress-steps
   each step in stepObjects
     li
       span= step.name

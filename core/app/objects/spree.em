@@ -65,7 +65,7 @@ class Spree extends Ember.Object with Ember.Evented
       @trigger 'spreeOrderCanNotAdvance'
 
   saveCurrentOrder: ->
-    @currentOrder.save().then(
+    @currentOrder.content.save().then(
       (order) =>
         debugger
       (error) =>
