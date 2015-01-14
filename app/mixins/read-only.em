@@ -1,5 +1,6 @@
 mixin ReadOnly
   serialize: (record, options) ->
+
     json = @_super.apply(this, arguments)
 
     record.eachAttribute (name, meta) =>
