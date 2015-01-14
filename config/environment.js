@@ -27,23 +27,29 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV.contentSecurityPolicy = {
-    'default-src': "'none'",
-    'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': "'self' http://localhost:3000/",
-    'img-src': "'self' http://localhost:3000/",
-    'style-src': "'self' http://fonts.googleapis.com/"
+      'default-src': "'none'",
+      'font-src': "'self' http://fonts.gstatic.com",
+      'connect-src': "'self' http://localhost:3000/",
+      'img-src': "'self' http://localhost:3000/",
+      'style-src': "'self' http://fonts.googleapis.com/"
     };
 
-    ENV.spreeApiHost = 'http://localhost:3000'
+    ENV.spreeConfig = {
+      apiHost: 'http://localhost:3000',
+      requiresState: true,
+      companyAddress: true,
+      requiresPhone: true,
+      alternativePhone: true
+    }
 
     ENV['simple-auth'] = {
       authorizer: 'simple-auth-authorizer:devise',
       authenticationRoute: 'users.login',
-      crossOriginWhitelist: [ENV.spreeApiHost]
+      crossOriginWhitelist: [ENV.spreeConfig.apiHost]
     }
 
     ENV['simple-auth-devise'] = {
-      serverTokenEndpoint: ENV.spreeApiHost+'/api/ams/users/token'
+      serverTokenEndpoint: ENV.spreeConfig.apiHost+'/api/ams/users/token'
     }
 
   }
@@ -51,7 +57,7 @@ module.exports = function(environment) {
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
-    ENV.locationType = 'auto';
+    ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -60,11 +66,11 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
 
     ENV.contentSecurityPolicy = {
-    'default-src': "'none'",
-    'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': "'self' http://localhost:3000/",
-    'img-src': "'self' http://localhost:3000/",
-    'style-src': "'self' http://fonts.googleapis.com/"
+      'default-src': "'none'",
+      'font-src': "'self' http://fonts.gstatic.com",
+      'connect-src': "'self' http://localhost:3000/",
+      'img-src': "'self' http://localhost:3000/",
+      'style-src': "'self' http://fonts.googleapis.com/"
     };
 
     ENV['simple-auth'] = {
