@@ -7,6 +7,8 @@ var app = new EmberApp();
 app.import('vendor/stylesheets/normalize.css');
 app.import('vendor/stylesheets/skeleton.css');
 
+app.import('vendor/javascripts/each_indexed.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //

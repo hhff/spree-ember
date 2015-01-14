@@ -1,0 +1,71 @@
+.inner data-hook="#{addressKind}_inner"
+
+  p.field id="#{addressPrefix}firstname"
+    label First Name
+    span.required *
+    br
+    = input class="required" type="text" value=address.firstname
+
+  p.field id="#{addressPrefix}lastname"
+    label Last Name
+    span.required *
+    br
+    = input class="required" type="text" value=address.lastname
+
+  if companyAddress
+    p.field id="#{addressPrefix}company"
+      label Company
+      br
+      = input type="text" value=address.company
+
+  p.field id="#{addressPrefix}address1"
+    label Street Address
+    span.required *
+    br
+    = input class="required" type="text" value=address.address1
+
+  p.field id="#{addressPrefix}address2"
+    label Street Address (contd)
+    br
+    = input type="text" value=address.address2
+
+  p.field id="#{addressPrefix}city"
+    label City
+    span.required *
+    br
+    = input class="required" type="text" value=address.city
+
+  p.field id="#{addressPrefix}country"
+    label Country
+    span.required *
+    br
+    span id="#{addressPrefix}country-selection"
+      = view Ember.Select content=countries class="required" optionLabelPath="content.name" value=address.country prompt="Select a Country"
+
+  if address.country.statesRequired
+    label State
+    span.required *
+    br
+    if address.country.hasStates
+      = view Ember.Select content=address.country.states class="required" optionLabelPath="content.name" value=address.state prompt="Select a State"
+    else
+      = input class="required" type="text" value=address.stateName
+
+  p.field id="#{addressPrefix}zipcode"
+    label Zip
+    span.required *
+    br
+    = input class="required" type="text" value=address.zipcode
+
+  if requiresPhone
+    p.field id="#{addressPrefix}phone"
+      label Phone
+      span.required *
+      br
+      = input class="required" type="text" value=address.phone
+
+  if alternativePhone
+    p.field id="#{addressPrefix}altphone"
+      label Alternative Phone
+      br
+      = input type="text" value=address.alternativePhone

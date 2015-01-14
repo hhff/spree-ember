@@ -1,0 +1,28 @@
+div data-hook="cart_container"
+
+  / Todo i18n
+  h1 Shopping Cart
+
+  if model
+    if model.empty
+      div data-hook="empty_cart"
+        / Todo i18n
+        p Your Cart is Empty
+        p
+          = link-to .button.continue 'index' | Continue Shopping
+    else
+      div data-hook="outside_cart_form"
+        form#update-cart.edit_order{action 'updateOrder' on='submit'} accept-charset="UTF-8"
+          div data-hook="inside_cart_form"
+            = partial "cart/form"
+
+          .links.columns.sixteen.alpha.omega data-hook="cart_buttons"
+            | Coupon Code
+
+            button#checkout-link.button.checkout.primary{action 'advanceOrderState' this target="spree"} Checkout
+  else
+    div data-hook="empty_cart"
+      / Todo i18n
+      p Your Cart is Empty
+      p
+        = link-to .button.continue 'index' | Continue Shopping

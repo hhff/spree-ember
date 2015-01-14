@@ -1,0 +1,29 @@
+.columns.alpha.six data-hook="billing_fieldset_wrapper"
+  fieldset#billing
+    / todo i18n
+    legend align="center" Billing Address
+    = address-form address=billAddress addressKind="billing" countries=countries
+
+.columns.omega.six data-hook="shipping_fieldset_wrapper"
+  fieldset#shipping
+    / todo i18n
+    legend align="center" Shipping Address
+    p.field.checkbox data-hook="use_billing"
+      / todo Clicking label should check box
+      = input type="checkbox" checked=useBillingAsShipping id="order_use_billing"
+      label#use_billing for="order_use_billing" Use Billing Address
+    if showShippingForm
+      = address-form address=shipAddress addressKind="shipping" countries=countries
+
+hr.clear
+
+.form-buttons data-hook="buttons"
+  / todo i18n
+  button.button.continue.primary{action 'saveAndContinue'} Save and Continue
+
+  if session.currentUser
+    span data-hook="save_user_address"
+      | &nbsp; &nbsp;
+      = input type="checkbox" checked=persistOrderAddress id="save_user_address"
+      / todo i18n
+      label for="save_user_address" Save My Address

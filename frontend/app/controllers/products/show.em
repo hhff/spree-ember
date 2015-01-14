@@ -4,13 +4,37 @@ class ProductsShowController extends Ember.Controller
   actions:
     addToCart: ->
 
-      variant = @model.variantsIncludingMaster.firstObject
+      # todo source from PDP
+      lineItem = @store.createRecord 'lineItem',
+        quantity: @quantity
+        variant: @model.variantsIncludingMaster.firstObject
 
-      newLineItem = @store.createRecord 'lineItem',
-        quantity: 1
-        variant: variant
-
-      newLineItem.save()
-
+      if @spree.currentOrder
+        lineItem.save().then(
+          (lineItem) =>
+            @flash.pushFlash 'Item Added to Cart!',
+              type: 'success'
+          (error) =>
+            @flash.pushFlash error,
+              type: 'error'
+        )
+      else
+        @store.createRecord('order').save().then(
+          (order) =>
+            @spree.persist
+              guestToken: order.guestToken
+              orderId: order.id
+            lineItem.save().then(
+              (lineItem) =>
+                @flash.pushFlash 'Item Added to Cart!',
+                  type: 'success'
+              (error) =>
+                @flash.pushFlash error,
+                  type: 'error'
+            )
+          (error) =>
+            @flash.pushFlash error,
+              type: 'error'
+        )
 
 `export default ProductsShowController`

@@ -2,7 +2,7 @@ div data-hook="homepage_products"
   ul#products.inline.product-listing
     each product in model.products
       / todo - interpolate product id properly
-      li.columns.three data-hook="products_list_item" id="product_#{product.id}"
+      li.columns.three data-hook="products_list_item"
         .product-image
           = link-to 'products.show' product
             img src="{{unbound spree-host product.images.firstObject.smallUrl}}"

@@ -10,8 +10,3 @@ document.write('<div id="ember-testing-container"><div id="ember-testing"></div>
 QUnit.config.urlConfig.push({ id: 'nocontainer', label: 'Hide container'});
 var containerVisibility = QUnit.urlParams.nocontainer ? 'hidden' : 'visible';
 document.getElementById('ember-testing-container').style.visibility = containerVisibility;
-
-
-this.exists = function (selector) {
-  return !!find(selector).length;
-};

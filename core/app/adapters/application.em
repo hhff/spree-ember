@@ -8,7 +8,7 @@ if config.environment is 'test'
 else
   class ApplicationAdapter extends DS.ActiveModelAdapter
     namespace: 'api/ams'
-    host: config.spreeApiHost
+    host: config.spreeConfig.apiHost
 
     +computed spree.guestToken spree.orderId
     headers: ->

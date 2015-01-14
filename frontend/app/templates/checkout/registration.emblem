@@ -1,0 +1,41 @@
+/ todo i18n
+h1 Registration
+#registration
+  #account.columns.alpha.eight
+    #existing-customer
+      h6 Login as Existing Customer
+      div data-hook="login"
+        form{action 'loginUser' on="submit"} accept-charset="UTF-8" class="new_spree_user" id="new_spree_user"
+
+          #password-credentials
+            p
+              label for="spree_user_email" Email
+              br
+              = input autofocus="autofocus" class="title" id="spree_user_email" name="spree_user[email]" tabindex="1" type="email"
+
+            p
+              label for="spree_user_password" Password
+              br
+              = input class="title" id="spree_user_password" name="spree_user[password]" tabindex="2" type="password"
+
+            p todo Remember Me
+
+            p
+              = input class="button primary" name="commit" tabindex="4" type="submit" value="Login"
+
+        | or &nbsp;
+        = link-to 'users.new' | Create a new account
+        | |
+        h6 todo Forgot Password?
+
+  #guest_checkout.columns.omega.eight
+    h6 Checkout as a Guest
+    form#checkout_form_registration.edit_order{action 'continueAsGuest' on="submit"} accept-charset="UTF-8"
+
+      p
+        label for="order_email" Email
+        br
+        = input class="title" id="order_email" name="order[email]" type="email" value=guestEmail
+
+      p
+        button.button.primary type="submit" Continue
