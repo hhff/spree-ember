@@ -12,6 +12,7 @@ class CheckoutAddressController extends Ember.Controller
 
       @model.save().then(
         (order) =>
+          debugger
           @spree.advanceOrderState()
         (error) =>
           debugger

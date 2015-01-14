@@ -6,6 +6,6 @@ class CheckoutRegistrationController extends Ember.Controller with LoginControll
   actions:
     continueAsGuest: ->
       @spree.currentOrder.email = @guestEmail
-      # @spree.saveCurrentOrder()
+      @spree.saveCurrentOrder()
 
 `export default CheckoutRegistrationController`

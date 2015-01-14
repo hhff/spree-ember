@@ -1,5 +1,7 @@
 class CheckoutRoute extends Ember.Route
 
+  showCheckoutSteps: true
+
   model: ->
     @spree.currentOrder
 
