@@ -1,6 +1,7 @@
+`import SpreeRouteSetup from 'ember-cli-spree-frontend/mixins/route-setup'`
 `import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin'`
 
-class ApplicationRoute extends Ember.Route with ApplicationRouteMixin
+class ApplicationRoute extends Ember.Route with ApplicationRouteMixin, SpreeRouteSetup
   init: ->
     @spree.on 'spreeOrderDidAdvance', =>
       @transitionTo 'checkout'
@@ -21,6 +22,10 @@ class ApplicationRoute extends Ember.Route with ApplicationRouteMixin
       # Ensure we're on the correct route, show
       # a message, else transition to checkout
       @transitionTo 'checkout'
+
+  model: ->
+    Ember.RSVP.hash
+      taxonomies: @store.find 'taxonomy'
 
   actions:
     sessionAuthenticationFailed: (error) ->

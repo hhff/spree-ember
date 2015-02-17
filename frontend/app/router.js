@@ -28,6 +28,10 @@ Router.map(function() {
     this.route('payment');
   });
 
+  this.resource("taxons", { path: '/t' }, function() {
+    this.route("show", { path: '/:permalink' });
+  });
+
 });
 
 export default Router;

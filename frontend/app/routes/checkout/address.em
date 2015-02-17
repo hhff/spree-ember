@@ -1,4 +1,6 @@
-class CheckoutAddressRoute extends Ember.Route
+`import SpreeRouteSetup from 'ember-cli-spree-frontend/mixins/route-setup'`
+
+class CheckoutAddressRoute extends Ember.Route with SpreeRouteSetup
 
   setupController: (controller, model) ->
     super controller, model

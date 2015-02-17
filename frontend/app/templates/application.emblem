@@ -3,6 +3,16 @@
 
   #wrapper.row
 
-    #content.sixteen.columns
+    if spree.frontend.taxonBreadcrumbs
+      = taxonomy-breadcrumbs taxonBreadcrumbs=spree.frontend.taxonBreadcrumbs
+
+    if spree.frontend.sidebarPartial
+      aside#sidebar.columns.four
+        div data-hook="homepage_sidebar_navigation"
+          = partial spree.frontend.sidebarPartial
+
+    #content.columns class={spree.frontend.sidebarPartial:twelve:sixteen spree.frontend.sidebarPartial:omega}
       = view 'flash-outlet' class="flash"
       = outlet
+
+  = partial "shared/footer"

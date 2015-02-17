@@ -1,7 +1,13 @@
-class IndexRoute extends Ember.Route
+`import SpreeRouteSetup from 'ember-cli-spree-frontend/mixins/route-setup'`
+`import PaginatedRouteMixin from 'ember-cli-pagination/remote/route-mixin'`
 
-  model: ->
-    Ember.RSVP.hash
-      products: @store.find 'product'
+class IndexRoute extends Ember.Route with SpreeRouteSetup, PaginatedRouteMixin
+
+  perPage: 12
+  model: (params) ->
+    @findPaged 'product', params
+
+  spreeFrontend:
+    sidebarPartial: "shared/taxonomies"
 
 `export default IndexRoute`

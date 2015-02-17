@@ -6,6 +6,8 @@ class Spree extends Ember.Object with Ember.Evented
   orderToken: null
   orderId: null
 
+  frontend: Ember.Object.create()
+
   init: ->
     @restore @localStorageData()
 
