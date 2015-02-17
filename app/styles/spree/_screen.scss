@@ -385,6 +385,11 @@ nav#taxonomies {
   font-weight: bold;
   margin-bottom: 10px;
 
+  &.inactive {
+    padding: 0;
+    margin: 0;
+  }
+
   &.notice {
     background-color: $link_text_color;
   }

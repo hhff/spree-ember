@@ -41,6 +41,18 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 Specify what it takes to deploy your app.
 
+### Updating Ember CLI
+
+Follow instructions, wipe package JSON, then:
+
+ember install:npm broccoli-emblem-compiler
+ember install:npm broccoli-ember-script
+ember install:npm broccoli-sass
+ember install:addon ember-cli-simple-auth
+ember install:addon ember-cli-simple-auth-devise
+ember install:addon ember-cli-simple-auth-testing
+
+
 ## Further Reading / Useful Links
 
 * ember: http://emberjs.com/

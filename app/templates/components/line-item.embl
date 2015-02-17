@@ -1,0 +1,40 @@
+td.cart-item-image data-hook="cart_item_image"
+  if lineItem.variant.images.length
+    = link-to 'index'
+      img src="{{unbound spree-host lineItem.variant.images.firstObject.smallUrl}}"
+  else
+    = link-to 'index'
+      h6 missing
+
+td.cart-item-description data-hook="cart_item_description"
+  h4
+    = link-to 'index'
+      = lineItem.variant.name
+  = lineItem.variant.optionsText
+
+  if lineItem.insufficientStock
+    span.out-of-stock
+      / todo i18n
+      | Out of Stock &nbsp;&nbsp;
+      br
+
+  span.line-item-description data-hook="line_item_description"
+    if lineItem.variant.description
+      = lineItem.variant.description
+    else
+      / todo i18n
+      | This product has no description
+
+
+td.cart-item-price data-hook="cart_item_price"
+  = lineItem.singleDisplayAmount
+
+td.cart-item-quantity data-hook="cart_item_quantity"
+  = input class="line_item_quantity" size="5" min="1" name="quantity" type="number" value=lineItem.quantity
+
+td.cart-item-total data-hook="cart_item_total"
+  = lineItem.total
+
+td.cart-item-delete data-hook="cart_item_delete"
+  #delete_line_item.delete{action 'deleteLineItem'}
+    img alt="Delete" src="/assets/icons/delete.png"

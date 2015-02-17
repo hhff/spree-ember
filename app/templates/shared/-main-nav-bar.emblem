@@ -9,6 +9,6 @@ nav.columns.sixteen
         else
           = link-to .cart-info.full 'cart'
             | Cart: (#{spree.currentOrder.itemCount}) &nbsp;
-            span.amount= spree.currentOrder.total
+            span.amount $#{spree.currentOrder.total}
       else
         = link-to .cart-info.empty 'cart' | Cart: (Empty)

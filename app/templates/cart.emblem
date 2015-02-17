@@ -16,10 +16,21 @@ div data-hook="cart_container"
           div data-hook="inside_cart_form"
             = partial "cart/form"
 
-          .links.columns.sixteen.alpha.omega data-hook="cart_buttons"
-            | Coupon Code
+            .links.columns.sixteen.alpha.omega data-hook="cart_buttons"
+              = input id="order_coupon_code" placeholder="Coupon code" size="10" type="text"
 
-            button#checkout-link.button.checkout.primary{action 'advanceOrderState' this target="spree"} Checkout
+              button#update-button.primary name="button" type="submit" Update
+              button#checkout-link.button.checkout.primary{action 'advanceOrderState' this target="spree"} Checkout
+
+      div#empty-cart
+        form
+          p#clear_cart_link
+            input.button.gray name="commit" type="submit" value="Empty Cart"
+            | or
+            = link-to 'index' class="continue button gray"
+              | Continue shopping
+
+
   else
     div data-hook="empty_cart"
       / Todo i18n

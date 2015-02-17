@@ -1,0 +1,6 @@
+.product-image
+  = link-to 'products.show' product
+    img src="{{unbound spree-host product.images.firstObject.smallUrl}}"
+= link-to .info 'products.show' product
+  = product.name
+span.price.selling= product.displayPrice
