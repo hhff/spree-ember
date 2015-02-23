@@ -9,7 +9,9 @@ export default DS.Model.extend({
   state:     DS.attr('string'),
 
   // Relationships
-  order:         DS.belongsTo('order'),
-  stockLocation: DS.belongsTo('stockLocation'),
-  shippingRates: DS.hasMany('shippingRate')
+  order:                DS.belongsTo('order'),
+  stockLocation:        DS.belongsTo('stockLocation'),
+  shippingRates:        DS.hasMany('shippingRate'),
+  selectedShippingRate: DS.belongsTo('shippingRate'),
+  lineItems:            DS.hasMany('lineItem')
 });
