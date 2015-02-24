@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Storable from 'ember-cli-spree-core/mixins/storable';
-import Checkouts from 'ember-cli-spree-core/mixins/checkouts';
 
 /**
   The Spree Service is the central place a Spree Ember developer will interact
@@ -16,7 +15,7 @@ import Checkouts from 'ember-cli-spree-core/mixins/checkouts';
   @uses Ember.Evented, Storable
 */
 
-export default Ember.Object.extend(Ember.Evented, Storable, Checkouts, {
+export default Ember.Object.extend(Ember.Evented, Storable, {
   /**
     The Local Storage key we use to Restore and Persist data across browser refreshes.
 

@@ -22,19 +22,6 @@ export default Ember.Mixin.create({
   localStorageKey: 'storable',
 
   /**
-    Overrides the `init` method for the object.  HWhen an object is initialized,
-    it will automatically request data from `localStorage` and set those key value
-    pairs on the object.
-
-    @method init
-    @return {Boolean} Will always resolve to `true`.
-  */
-  init: function() {
-    this._super.apply(this, arguments);
-    return this.restore(this._getLocalStorageData());
-  },
-
-  /**
     Persists an object to Local Storage.
 
     @method persist
@@ -43,20 +30,32 @@ export default Ember.Mixin.create({
   */
   persist: function(data) {
     var key = this.get('localStorageKey');
-    this.restore(data);
+    this._setOnHost(data);
     var stringifiedData = JSON.stringify(data || {});
     localStorage.setItem(key, stringifiedData);
     return true;
   },
 
   /**
-    Sets key value pairs on the Host object.
+    Sets key value pairs on the Host object from Local Storage.
 
     @method restore
+    @return {Boolean} Will always resolve to `true`.
+  */
+  restore: function() {
+    return this._setOnHost(this._fetchLocalStorageData());
+    return true;
+  },
+
+  /**
+    Sets key value pairs on the Host object.
+
+    @method _setOnHost
+    @private
     @param {Object} data A Javascript Object to set on the Ember Object.
     @return {Boolean} Will always resolve to `true`.
   */
-  restore: function(data) {
+  _setOnHost: function(data) {
     for (var key in data) {
       this.set(key, data[key]);
     }
@@ -64,13 +63,13 @@ export default Ember.Mixin.create({
   },
 
   /**
-    Returns an object of Key Value pairs from local storage.
+    Returns a Parsed Object from the Local Storage Key.
 
-    @method restore
+    @method _fetchLocalStorageData
     @private
     @return {Object} An object of Key Value pairs from local storage.
   */
-  _getLocalStorageData: function() {
+  _fetchLocalStorageData: function() {
     var data   = localStorage.getItem(this.get('localStorageKey'));
     var parsed = JSON.parse(data || "{}");
     return parsed;
