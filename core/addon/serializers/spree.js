@@ -1,7 +1,8 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.ActiveModelSerializer.extend({
-  serialize: function(record, options) {
+  serialize: function(record) {
     var payload = this._super.apply(this, arguments);
     record.eachAttribute(function(name, meta) {
       if (!meta.options.persistToServer) {

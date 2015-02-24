@@ -44,8 +44,8 @@ export default Ember.Mixin.create({
   persist: function(data) {
     var key = this.get('localStorageKey');
     this.restore(data);
-    var data = JSON.stringify(data || {})
-    localStorage.setItem(key, data);
+    var stringifiedData = JSON.stringify(data || {});
+    localStorage.setItem(key, stringifiedData);
     return true;
   },
 

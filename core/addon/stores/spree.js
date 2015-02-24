@@ -2,10 +2,10 @@ import DS from 'ember-data';
 
 export default DS.Store.extend({
   adapter: '-spree',
-  adapterFor: function(type) {
+  adapterFor: function() {
     return this.container.lookup('adapter:-spree');
   },
-  serializerFor: function(type) {
+  serializerFor: function() {
     return this.container.lookup('serializer:-spree');
   }
 });
