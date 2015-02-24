@@ -1,10 +1,5 @@
 import Ember from 'ember';
 
-// Spree Events:
-
-// spree.didUpdateCurrentOrder
-// spree.orderStateDidChange
-
 /**
   Provides Current Order and Checkout Functionality to the Spree service.
 
@@ -33,6 +28,13 @@ export default Ember.Mixin.create({
 
     @event didCreateNewOrder
     @param {Object} order The newly created order object
+  */
+
+  /**
+    Triggered whenever the Current Order changes State.
+
+    @event orderStateDidChange
+    @param {String} order A string representing the new state.
   */
 
 
@@ -73,13 +75,13 @@ export default Ember.Mixin.create({
     var _this   = this;
     var orderId = this.get('orderId');
     if (orderId) {
-      var promise = this.store.find('order', orderId)
+      var promise = this.store.find('order', orderId);
       promise.catch(function(error) {
         _this.persist({
           guestToken: null,
           orderId: null
         });
-      })
+      });
       return promise;
     } else {
       return null;
@@ -109,7 +111,7 @@ export default Ember.Mixin.create({
         _this.trigger('serverError', error);
         return error;
       }
-    )
+    );
   },
 
   /**
@@ -181,77 +183,66 @@ export default Ember.Mixin.create({
     );
   },
 
+  /**
+    Will attempt to advance the state of the checkout user's Current Order.
 
-
-
-
-
-
-
-
-
-
-
-  updateCurrentOrder: function(attemptAdvance) {
-    var _this = this;
-    if (this.get('currentOrder')) {
-      var currentOrderPromise = this.get('currentOrder');
-
-      return currentOrderPromise.then(
-        function(currentOrder) {
-          return currentOrder.save().then(
-            function(updatedCurrentOrder) {
-              _this.trigger('didUpdateCurrentOrder', updatedCurrentOrder);
-              if (attemptAdvance) {
-                return _this._attemptOrderStateAdvance(updatedCurrentOrder);
-              } else {
-                return updatedCurrentOrder;
-              }
-            }
-          )
-        },
-        function(error) {
-          _this.trigger('serverError', error);
-          return error;
-        }
-      )
-    } else {
-      return Ember.RSVP.Promise(function(resolve, reject){
-        reject("No Current Order to Update.");
-      });
-    }
-  },
-
-  _attemptOrderStateAdvance: function(order) {
+    @method _createNewOrder
+    @private
+    @return {Ember.RSVP.Promise} A promise that resolves to the newly updated
+    Spree Order.
+  */
+  advanceOrderState: function() {
     var _this = this;
 
-    // TODO Spree should have its own adapter & store
-    var originalState = order.get('state');
-    var adapter       = this.get('container').lookup('adapter:application');
-    var nextURL       = adapter.buildURL('checkout', order.get('id'))+"/next.json"
-
-    // TODO - Client side validation
-    if (order.get('canAdvance')) {
-      return adapter.ajax(nextURL, 'PUT').then(
-        function(orderPayload) {
-          _this.store.pushPayload(orderPayload);
-          var newState = orderPayload.order.state;
-          if (newState !== originalState) {
-            _this.trigger('orderStateDidChange', newState);
-          }
-          return _this.store.find('order', orderPayload.order.id);
-        },
-        function(error) {
-          _this.trigger('serverError', error);
-          return error;
-        }
-      )
-    } else {
-      return Ember.RSVP.Promise(function(resolve, reject){
-        reject("Spree: Order can not advance.");
-      });
-    }
+    return this.get('currentOrder').then(
+      function(currentOrder) {
+        return _this._checkoutsRequest(currentOrder, true);
+      },
+      function(error) {
+        _this.trigger('serverError', error);
+        return error;
+      }
+    )
   },
+
+  _checkoutsRequest: function(order, attemptNext) {
+    var _this             = this;
+    var next              = attemptNext || false;
+    var orderId           = order.get('id');
+    var initialOrderState = order.get('state');
+    var adapter           = this.get('container').lookup('adapter:-spree');
+    var orderData         = adapter.serialize(order);
+
+    if (attemptNext) {
+      var url = adapter.buildURL('checkout', orderId)+"/next.json";
+    } else {
+      var url = adapter.buildURL('checkout', orderId);
+    }
+
+    return adapter.ajax(url, 'PUT', { data: { order: orderData }}).then(
+      function(orderPayload) {
+        _this.store.pushPayload('order', orderPayload);
+        var newState = orderPayload.order.state;
+        if (newState !== initialOrderState) {
+          _this.trigger('orderStateDidChange', newState);
+        }
+        return _this.store.find('order', orderPayload.order.id);
+      },
+      function(error) {
+        _this.trigger('serverError', error);
+        return error;
+      }
+    );
+  },
+
+
+
+
+
+
+
+
+
 
   updateShipments: function(order) {
     var _this = this;
@@ -337,30 +328,6 @@ export default Ember.Mixin.create({
         return error;
       }
     )
-  },
-
-  confirmOrder: function(order) {
-    var _this = this;
-
-    // TODO Spree should have its own adapter & store
-    var originalState = order.get('state');
-    var adapter       = this.get('container').lookup('adapter:application');
-    var updateURL     = adapter.buildURL('checkout', order.get('id'))+".json"
-    var nextURL       = adapter.buildURL('checkout', order.get('id'))+"/next.json"
-
-    return adapter.ajax(nextURL, 'PUT').then(
-      function(orderPayload) {
-        _this.store.pushPayload(orderPayload);
-        var newState = orderPayload.order.state;
-        if (newState !== originalState) {
-          _this.trigger('orderStateDidChange', newState);
-        }
-        return _this.store.find('order', orderPayload.order.id);
-      },
-      function(error) {
-        _this.trigger('serverError', error);
-        return error;
-      }
-    )
   }
+
 });
