@@ -1,4 +1,4 @@
-# Spree-core
+# Ember-cli-spree-core
 
 This README outlines the details of collaborating on this Ember addon.
 
