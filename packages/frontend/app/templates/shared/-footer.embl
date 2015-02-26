@@ -1,6 +1,0 @@
-footer#footer.sixteen.columns
-  #footer-left.columns.alpha.eight
-    p
-      | Powered by&nbsp;
-      a href="http://spreecommerce.com/" Spree
-  #footer-right.columns.omega.eight

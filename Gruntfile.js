@@ -1,18 +1,27 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    folder_list : {
+      options : {
+        files:  false,
+        folders: true
+      },
+      files : {
+        'tmp/fixtures.json': ['packages/**']
+      }
+    },
     shell: {
       makeSite: {
         command: "rm -rf docs/site; mkdir docs/site"
       },
       makeDocs: {
         command: function (packageName) {
-          return ['cd '+packageName, 'ember ember-cli-yuidoc'].join('&&');
+          return ['cd packages/'+packageName, 'ember ember-cli-yuidoc'].join('&&');
         }
       },
       copyDocs: {
         command: function (packageName) {
-          return 'cp -r '+packageName+'/docs docs/site/'+packageName;
+          return 'cp -r packages/'+packageName+'/docs docs/site/'+packageName;
         }
       },
       copyAssets: {
@@ -41,15 +50,19 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-dom-munger');
 
   grunt.registerTask('default', 'Log some stuff.', function() {
-    grunt.log.write('Logging some stuff...').ok();
+
+    var packageNames = [];
+    grunt.file.expand('packages/*').forEach(function(path) {
+      packageNames.push(path.split('/')[1]);
+    });
 
     grunt.task.run('shell:makeSite');
 
-    ["checkouts", "core"].forEach(function(packageName) {
+    packageNames.forEach(function(packageName) {
       grunt.task.run('shell:makeDocs:'+packageName);
     });
 
-    ["checkouts", "core"].forEach(function(packageName) {
+    packageNames.forEach(function(packageName) {
       grunt.task.run('shell:copyDocs:'+packageName);
     });
 

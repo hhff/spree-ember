@@ -1,4 +1,0 @@
-form
-  = view "select" aria-label="Taxon" id="taxon" name="taxon" content=taxonomies optionLabelPath="content.name" prompt="All departments"
-  = input id="keywords" name="keywords" placeholder="Search" type="search"
-  = input type="submit" value="Search"
