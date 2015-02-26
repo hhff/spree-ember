@@ -1,0 +1,1 @@
+/Users/hhff/dev/Ember/spree_ember/frontend/app/initializers/find-by-slug.em

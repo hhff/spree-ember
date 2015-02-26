@@ -1,0 +1,1 @@
+/Users/hhff/dev/Ember/spree_ember/frontend/tmp/tree_merger-tmp_dest_dir-vr0Bo0nD.tmp/initializers/simple-auth-devise.js
