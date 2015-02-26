@@ -1,0 +1,35 @@
+div data-hook="product_show" itemtype="http://schema.org/Product"
+
+  .columns.six.alpha data-hook="product_left_part"
+    .row data-hook="product_left_part_wrap"
+      #product-images data-hook="product_images"
+
+        #main-image
+          img src="{{unbound spree-host model.images.firstObject.productUrl}}"
+
+        #thumbnails
+          h6 thumbnails partial here
+
+        div data-hook="product_properties"
+          h6 product properties partial here
+
+        div data-hook="promotions"
+          h6 promotions partial here
+
+  .columns.ten.omega data-hook="product_right_part"
+    .row data-hook="product_right_part_wrap"
+      #product-description data-hook="product_description"
+        h1.product-title itemprop="name"= model.name
+
+        div itemprop="description" data-hook="description"
+          if model.description
+            = model.description
+          else
+            / Todo i18n
+            | This product has no description
+
+        #cart-form data-hook="cart_form"
+          = partial "products/cart-form"
+
+        h6 taxons partial here
+        = spree.currentOrder

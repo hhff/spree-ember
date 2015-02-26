@@ -1,0 +1,29 @@
+button#checkout-link.button.checkout.primary{action 'advanceOrderState' target="spree"} Advance
+
+
+.columns.alpha.twelve data-hook="checkout_form_wrapper"
+  form#checkout_form_delivery.edit_order{action 'advanceOrderState' target="spree"} accept-charset="UTF-8"
+    fieldset#shipping_method
+      legend align="center" Delivery
+
+      .inner
+        #methods
+          .shipment
+            h3.stock-location
+              | package from
+              / TODO stock location?
+              strong.stock-location-name data-hook="stock-location-name" default
+
+            table.stock-contents data-hook="stock-contents"
+              colgroup
+                col style="width: 10%;"
+                col style="width: 60%;"
+                col style="width: 10%;"
+                col style="width: 20%;"
+
+              thead
+                tr
+                  th h
+                  th align="left" Item
+                  th Qtu
+                  th Price

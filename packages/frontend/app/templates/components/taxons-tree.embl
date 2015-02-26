@@ -1,0 +1,5 @@
+ul.taxons-list
+  each taxon in taxonomy.taxonsExcludingRoot
+    li
+      = link-to 'taxons.show' taxon
+        = taxon.name

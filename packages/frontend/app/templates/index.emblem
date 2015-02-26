@@ -1,0 +1,6 @@
+div data-hook="homepage_products"
+  ul#products.inline.product-listing
+    eachIndexed product in model
+      = individual-product product=product cycleIndex=index
+
+  = page-numbers content=content

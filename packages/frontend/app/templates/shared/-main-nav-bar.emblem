@@ -1,0 +1,14 @@
+nav.columns.sixteen
+  ul#main-nav-bar.inline
+    li#home-link
+      = link-to 'index' | Home
+    li#link-to-cart
+      if spree.currentOrder
+        if spree.currentOrder.empty
+          = link-to .cart-info.empty 'cart' | Cart: (Empty)
+        else
+          = link-to .cart-info.full 'cart'
+            | Cart: (#{spree.currentOrder.itemCount}) &nbsp;
+            span.amount $#{spree.currentOrder.total}
+      else
+        = link-to .cart-info.empty 'cart' | Cart: (Empty)

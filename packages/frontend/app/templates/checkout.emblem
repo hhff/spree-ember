@@ -1,0 +1,18 @@
+if showCheckoutSteps
+  #checkout
+    .row data-hook="checkout_header"
+      / todo i18n
+      h1.columns.three.alpha data-hook="checkout_title" Checkout
+      .columns.thirteen.omega data-hook="checkout_progress"
+        = checkout-progress checkoutSteps=spree.currentOrder.checkoutSteps orderState=spree.currentOrder.state
+
+    .row data-hook="checkout_content"
+      / todo if Confirm add class .alpha.omega.sixteen instead of .alpha.twelve
+      .columns.alpha data-hook="checkout_form_wrapper" class={ model.notConfirm:twelve:sixteen model.notConfirm::omega }
+        = outlet
+
+      if model.notConfirm
+        #checkout-summary.columns.omega.four data-hook="checkout_summary_box"
+          h6 render partial summary
+else
+  = outlet
