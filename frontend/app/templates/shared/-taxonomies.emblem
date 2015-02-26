@@ -1,4 +1,0 @@
-nav#taxonomies.sidebar-item
-  each taxonomy in taxonomies
-    h6.taxonomy-root Shop by #{taxonomy.name}
-    = taxons-tree taxonomy=taxonomy
