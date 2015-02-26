@@ -5,7 +5,7 @@ import Ember from 'ember';
   value pairs to Local Storage.
 
   @class Storable
-  @namespace Spree Ember
+  @namespace SpreeEmber
   @module ember-cli-spree-core/mixins/storable
   @extends Ember.Mixin
 */

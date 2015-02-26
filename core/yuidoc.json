@@ -1,0 +1,15 @@
+{
+  "name": "ember-cli-spree-core",
+  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.0",
+  "options": {
+    "paths": [
+      "app",
+      "addon"
+    ],
+    "themedir": "../docs/theme",
+    "helpers" : [ "../docs/theme/helpers/helpers.js" ],
+    "exclude": "vendor",
+    "outdir": "docs"
+  }
+}

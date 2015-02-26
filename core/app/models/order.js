@@ -6,7 +6,7 @@ export default DS.Model.extend({
   adjustmentTotal:       DS.attr('number'),
   approvedAt:            DS.attr('date'),
   channel:               DS.attr('string'),
-  checkoutSteps:         DS.attr('array'),
+  checkoutSteps:         DS.attr('raw'),
   completedAt:           DS.attr('date'),
   confirmationDelivered: DS.attr('boolean'),
   consideredRisky:       DS.attr('boolean'),
