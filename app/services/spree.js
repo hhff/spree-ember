@@ -2,17 +2,18 @@ import Ember from 'ember';
 import Storable from 'ember-cli-spree-core/mixins/storable';
 
 /**
-  The Spree Service is the central place a Spree Ember developer will interact
-  with Spree, via Spree Ember.  The core object is responsible for persisting data
-  to Local Storage, communicating with your Spree backend, Acting as a Registry
-  for other Spree Ember packages, and Acting as an Event Bus for your application
-  Frontend, and providing a seperate Store.
+  The Spree service is the central place a Spree Ember developer will interact
+  with Spree, via Spree Ember.  The core object is injected into the host application's
+  routes & controllers, and is responsible for persisting data to Local Storage,
+  communicating with your Spree backend, Acting as a Registry for other Spree Ember
+  packages, and Acting as an Event Bus for your application Frontend, and providing
+  a seperate Store.
 
   @class Spree
-  @namespace Spree Ember
+  @namespace SpreeEmber
   @module ember-cli-spree-core/services/spree
   @extends Ember.Object
-  @uses Ember.Evented, Storable
+  @uses Ember.Evented, SpreeEmber.Storable, SpreeEmber.Store
 */
 
 export default Ember.Object.extend(Ember.Evented, Storable, {
@@ -21,13 +22,12 @@ export default Ember.Object.extend(Ember.Evented, Storable, {
 
     @property localStorageKey
     @type String
-    @for Storable
     @default "spree_ember"
   */
   localStorageKey: 'spree_ember',
 
   /**
-    A copy of the "spree" entry in the application Config.
+    A copy of the "spree" entry in the Host Application environment config.
 
     @property config
     @type Object
@@ -36,7 +36,7 @@ export default Ember.Object.extend(Ember.Evented, Storable, {
   config: {},
 
   /**
-    A copy of the host application's current environment.
+    A copy of the Host Application's current environment name.
 
     @property environment
     @type Object
