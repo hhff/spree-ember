@@ -9,6 +9,16 @@ export default DS.ActiveModelSerializer.extend({
         delete payload[Ember.String.underscore(name)];
       }
     }, this);
+    record.eachRelationship(function(name, meta) {
+      if (!meta.options.persistToServer) {
+        if (meta.kind === "belongsTo") {
+          delete payload[Ember.String.underscore(name)+"_id"];
+        } else if (meta.kind === "hasMany") {
+          delete payload[Ember.String.underscore(name)+"_ids"];
+        }
+      }
+    }, this);
+    payload.id = record.id;
     return payload;
   }
 });

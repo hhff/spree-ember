@@ -18,9 +18,10 @@ export function initialize(container, application) {
   /* Inject the Spree Service into the Spree Adapter */
   application.inject('adapter:-spree', 'spree', 'service:spree');
 
-  /* Inject the Spree Service into Routes and Controllers */
+  /* Inject the Spree Service into Routes & Components */
   application.inject('route', 'spree', 'service:spree');
   application.inject('controller', 'spree', 'service:spree');
+  application.inject('component', 'spree', 'service:spree');
 
   /* Copy Environment and Spree Configuration to Spree Service */
   var SpreeService = container.lookup('service:spree');

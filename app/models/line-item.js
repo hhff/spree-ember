@@ -11,5 +11,5 @@ export default DS.Model.extend({
 
   // Relationships
   order:   DS.belongsTo('order'),
-  variant: DS.belongsTo('variant')
+  variant: DS.belongsTo('variant', { persistToServer: true })
 });

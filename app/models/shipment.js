@@ -12,6 +12,6 @@ export default DS.Model.extend({
   order:                DS.belongsTo('order'),
   stockLocation:        DS.belongsTo('stockLocation'),
   shippingRates:        DS.hasMany('shippingRate'),
-  selectedShippingRate: DS.belongsTo('shippingRate'),
+  selectedShippingRate: DS.belongsTo('shippingRate', { persistToServer: true }),
   lineItems:            DS.hasMany('lineItem')
 });

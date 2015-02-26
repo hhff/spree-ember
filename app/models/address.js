@@ -14,6 +14,6 @@ export default DS.Model.extend({
   company:          DS.attr('string', { persistToServer: true }),
 
   // Relationships
-  state:   DS.belongsTo('state'),
-  country: DS.belongsTo('country')
+  state:   DS.belongsTo('state', { persistToServer: true }),
+  country: DS.belongsTo('country', { persistToServer: true })
 });
