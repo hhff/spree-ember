@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{htmlTitle}}</title>
+  <link rel="stylesheet" href="{{yuiGridsUrl}}">
+  <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+
+  <link rel="stylesheet" href="{{projectAssets}}/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="{{projectAssets}}/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{projectAssets}}/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="{{projectAssets}}/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="version">
+      Version {{projectVersion}}
+    </div>
+
+    <div class="links">
+      <a>Documentation</a> | <a><img src="{{projectAssets}}/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <img class="logo" src="{{projectAssets}}/img/logo.svg"/>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="row">
+      <h1 id="main-package-name">{{projectName}}</h1>
+      <div class="small-12 large-3 columns">
+        {{>sidebar}}
+      </div>
+      <div class="small-12 large-9 columns">
+        {{>layout_content}}
+      </div>
+    </div>
+  </div>
+
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="{{projectAssets}}/vendor/foundation/js/foundation.min.js"></script>
+
+<script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script>$(document).foundation();</script>
+
+</body>
+</html>

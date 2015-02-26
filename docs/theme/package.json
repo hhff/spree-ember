@@ -1,0 +1,19 @@
+{
+  "name": "spree-ember-yuidoc",
+  "version": "1.0.4",
+  "description": "A Yui Doc theme for Spree Ember.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kevinlacotaco/yuidoc-bootstrap-theme.git"
+  },
+  "keywords": [
+    "yuidoc",
+    "bootstrap"
+  ],
+  "author": "Hugh Francis",
+  "bugs": {
+    "url": "https://github.com/kevinlacotaco/yuidoc-bootstrap-theme/issues"
+  },
+  "homepage": "https://github.com/kevinlacotaco/yuidoc-bootstrap-theme",
+  "license": "MIT"
+}
