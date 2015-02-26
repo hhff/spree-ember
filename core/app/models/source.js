@@ -1,11 +1,11 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  number:            DS.attr('string'),
-  month:             DS.attr('number'),
-  year:              DS.attr('number'),
-  verificationValue: DS.attr('number'),
-  name:              DS.attr('string'),
+  number:            DS.attr('string', { persistToServer: true }),
+  month:             DS.attr('number', { persistToServer: true }),
+  year:              DS.attr('number', { persistToServer: true }),
+  verificationValue: DS.attr('number', { persistToServer: true }),
+  name:              DS.attr('string', { persistToServer: true }),
   ccType:            DS.attr('string'),
   lastDigits:        DS.attr('string'),
 
