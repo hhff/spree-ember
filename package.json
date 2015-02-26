@@ -1,6 +1,6 @@
 {
   "name": "spree-ember",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-dom-munger": "^3.4.0",
