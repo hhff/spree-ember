@@ -1,0 +1,12 @@
+{
+    "project": {
+        "name": "ember-cli-spree-frontend",
+        "description": "The default blueprint for ember-cli addons.",
+        "version": "0.0.0"
+    },
+    "files": {},
+    "modules": {},
+    "classes": {},
+    "classitems": [],
+    "warnings": []
+}
