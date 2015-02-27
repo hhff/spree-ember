@@ -1,6 +1,9 @@
 # Spree Ember
 [![Build Status](https://travis-ci.org/hhff/spree_ember.svg?branch=master)](https://travis-ci.org/hhff/spree_ember)
 
+![Alt text](./docs/theme/assets/img/logo.svg?raw=true "Optional Title")
+
+
 This project is under constant development!  It is far from finished.
 
 This project rebuilds Spree Commerce's Frontend in EmberJS.  It uses Ember CLI and Spree AMS.
