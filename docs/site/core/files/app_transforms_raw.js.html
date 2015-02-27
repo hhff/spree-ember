@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>app/transforms/raw.js - ember-cli-spree-core</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="version">
+      Version 0.0.1-beta.1
+    </div>
+
+    <div class="links">
+      <a href="http://spree-ember.io">Documentation</a> | <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <img class="logo" src="../assets/img/logo.svg"/>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="row">
+      <h1 id="main-package-name">ember-cli-spree-core</h1>
+      <div class="small-12 large-3 columns">
+        <div id="sidepanel-classes" class="panel">
+          <h3>Classes</h3>
+          <ul class="side-nav">
+              <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+              <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
+              <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
+              <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
+              <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
+              <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+          </ul>
+        </div>
+        
+        <div class="panel">
+          <h3>Packages</h3>
+          <ul class="side-nav">
+            <li><a>Core</a></li>
+            <li><a>Checkouts</a></li>
+            <li><a>Frontend</a></li>
+          </ul>
+        </div>
+        
+        <div class="panel">
+          <h3>Gems</h3>
+          <ul class="side-nav">
+            <li><a href="https://github.com/hhff/spree_ams">Spree AMS</a></li>
+          </ul>
+        </div>      </div>
+      <div class="small-12 large-9 columns">
+        <div class="page-header">
+            <h1>app/transforms/raw.js <small>File</small></h1>
+        </div>
+        
+        <div class="file">
+            <pre class="prettyprint linenums">
+        import DS from &#x27;ember-data&#x27;;
+        /**
+          A simple &#x60;DS&#x60; transform for accepting raw server output and leaving as is.  Currently
+          the only use case is for accepting Spree&#x27;s Order Checkout Steps as a raw array of
+          strings.
+        
+          @class RawTransform
+          @namespace SpreeEmber
+          @module ember-cli-spree-core/transforms/array
+          @extends DS.Transform
+        */
+        export default DS.Transform.extend({
+        
+          /**
+            Return raw output.
+            @method deserialize
+          */
+          deserialize: function(serialized) {
+            return serialized;
+          },
+        
+          /**
+            Don&#x27;t serialize raw input.
+            @method serialize
+          */
+          serialize: function(deserialized) {
+            return deserialized;
+          }
+        });
+            </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script>$(document).foundation();</script>
+
+</body>
+</html>
