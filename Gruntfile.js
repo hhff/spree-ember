@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  var gettingStarted = grunt.file.read('docs/getting-started.html');
 
   grunt.initConfig({
     folder_list : {
@@ -36,9 +37,10 @@ module.exports = function(grunt) {
       }
     },
     dom_munger: {
-      your_target: {
+      index: {
         options: {
-          remove: ['#sidepanel-classes', '#main-package-name']
+          remove: ['#sidepanel-classes', '#main-package-name', '#docs-main'],
+          append: {selector:'div#apidocs',html: gettingStarted}
         },
         src: 'docs/site/index.html'
       }
@@ -49,7 +51,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-dom-munger');
 
-  grunt.registerTask('default', 'Log some stuff.', function() {
+  grunt.registerTask('default', 'Generate Docs!', function() {
 
     var packageNames = [];
     grunt.file.expand('packages/*').forEach(function(path) {
@@ -70,7 +72,7 @@ module.exports = function(grunt) {
 
     grunt.task.run('shell:copyIndex');
 
-    grunt.task.run('dom_munger:your_target');
+    grunt.task.run('dom_munger:index');
 
 
   });
