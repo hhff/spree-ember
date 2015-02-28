@@ -1,36 +1,34 @@
-# Spree Ember
-[![Build Status](https://travis-ci.org/hhff/spree_ember.svg?branch=master)](https://travis-ci.org/hhff/spree_ember)
+![Alt text](https://rawgit.com/hhff/spree-ember/master/docs/theme/assets/img/logo.svg)
 
-This project is under constant development!  It is far from finished.
+---
 
-This project rebuilds Spree Commerce's Frontend in EmberJS.  It uses Ember CLI and Spree AMS.
+[![Build Status](https://travis-ci.org/hhff/spree-ember.svg?branch=master)](https://travis-ci.org/hhff/spree-ember)
+[![Join the chat at https://gitter.im/hhff/spree-ember](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hhff/spree-ember?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Prerequisites
+An Ember Ecosystem for [Spree Commerce](https://github.com/spree/spree).
 
-Spree Ember assumes the following:
+### Quickstart
 
-* You have a rails server running Spree.
-* That server has [Spree AMS](https://github.com/hhff/spree_ams) installed.
-* That server is running on port 3000.
+```
+rails _4.1.8_ new my-backend
+spree install my-backend --branch “2-3-stable” -A
+cd my-backend
+```
+Add `gem 'spree_ams', github: 'hhff/spree_ams', branch: '2-3-stable'` to your Gemfile.
 
-## Installation
+```
+bundle install
+rails server
+```
 
-Quick start:
+### Meanwhile, in a Second Terminal
 
-    npm install -g ember-cli
-    cd frontend
-    npm install -g bower
-    npm install
-    bower install
-
-Then run a server with:
-
-    ember server
-
-Or run tests with:
-
-    ember test
-
+```
+ember new my-store
+cd my-store
+ember install:addon spree-ember
+ember server
+```
 
 ## Contributing
 
