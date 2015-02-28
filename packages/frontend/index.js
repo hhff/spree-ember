@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-spree-frontend'
+  name: 'ember-cli-spree-frontend',
+
+  isDevelopingAddon: function() {
+    return true;
+  }
 };

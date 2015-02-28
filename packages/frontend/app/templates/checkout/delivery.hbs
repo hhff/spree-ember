@@ -1,0 +1,11 @@
+<form>
+  <fieldset>
+    <legend>Shipments</legend>
+
+    {{#each shipment in spree.currentOrder.shipments}}
+      {{spree-shipment shipment=shipment}}
+    {{/each}}
+  </fieldset>
+</form>
+
+<button {{action 'transitionCheckoutState'}}>Continue</button>

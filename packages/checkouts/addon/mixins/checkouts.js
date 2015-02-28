@@ -87,6 +87,17 @@ export default Ember.Mixin.create({
 
     @property currentOrder
     @type DS.Model
+    @default true
+  */
+  shipToBilling: true,
+
+  /**
+    A reference to the Current Order.  It is only set twice in this code,
+    once on Application initialization (in the case it was persisted), and once
+    when a new order is created through the internal method `_createNewOrder`.
+
+    @property currentOrder
+    @type DS.Model
     @default null
   */
   currentOrder: null,
@@ -149,33 +160,33 @@ export default Ember.Mixin.create({
         attempting to contact the server. (ie "payment" -> "address")
       */
       if (transitionEvent !== "startup" && !previousState) {
-        if (transitionEvent === "transitionToComplete") {
-          this._advanceOrderState().then(
-            function(response) {
-              Ember.run.once(_this, _this._handlePendingTransition, {
-                response: response,
-                toState: toState
-              });
-            },
-            function(error) {
-              _this.transition.cancel();
-              return error
-            }
-          )
-        } else {
-          this._updateOrderData().then(
-            function(response) {
-              Ember.run.once(_this, _this._handlePendingTransition, {
-                response: response,
-                toState: toState
-              });
-            },
-            function(error) {
-              _this.transition.cancel();
-              return error
-            }
-          )
-        }
+        // if (transitionEvent === "transitionToCompletex") {
+        //   this._advanceOrderState().then(
+        //     function(response) {
+        //       Ember.run.once(_this, _this._handlePendingTransition, {
+        //         response: response,
+        //         toState: toState
+        //       });
+        //     },
+        //     function(error) {
+        //       _this.transition.cancel();
+        //       return error
+        //     }
+        //   )
+        // } else {
+        this._updateOrderData().then(
+          function(response) {
+            Ember.run.once(_this, _this._handlePendingTransition, {
+              response: response,
+              toState: toState
+            });
+          },
+          function(error) {
+            _this.transition.cancel();
+            return error
+          }
+        )
+        // }
         return StateMachine.ASYNC;
       }
     },
@@ -183,7 +194,7 @@ export default Ember.Mixin.create({
     onenteraddress: function() {
       var billAddress = this.get('currentOrder.billAddress');
       if (!billAddress) {
-        var billAddress = this.store.createRecord('address', { firstname: "State", lastname: "Machine" });
+        var billAddress = this.store.createRecord('address');
         this.set('currentOrder.billAddress', billAddress);
       }
     },
@@ -211,7 +222,7 @@ export default Ember.Mixin.create({
     onenterconfirm: function() {},
     onleaveconfirm: function() {},
     onentercomplete: function() {
-      this.trigger('currentOrderDidComplete');
+      this.trigger('currentOrderDidComplete', this.get('currentOrder'));
     },
     onleavecomplete: function() {}
   },
@@ -329,7 +340,7 @@ export default Ember.Mixin.create({
       if (this.current === "cart") {
         nextStateName = allStates[0];
       } else if (this.current === "complete") {
-        debugger;
+        throw new Error("Spree Ember: Can't transition order past 'Complete' state.");
       } else {
         nextStateName = allStates[allStates.indexOf(this.current) + 1];
       }
@@ -374,7 +385,6 @@ export default Ember.Mixin.create({
   _dataObjectForOrderUpdate: function(order, adapter, currentState) {
     var data = {
       order: adapter.serialize(order),
-      payment_source: {},
       state: currentState
     }
 
@@ -400,9 +410,10 @@ export default Ember.Mixin.create({
         break;
       case "payment":
         var payment = order.get('payments.firstObject');
-        if (payment && payment.get('source')) {
+        if (payment && payment.get('source.isDirty')) {
+          data['payment_source'] = {};
           data.order['payments_attributes'] = [{payment_method_id: payment.get('paymentMethod.id')}];
-          data.payment_source = adapter.serialize(payment.get('source'));
+          data.payment_source[payment.get('paymentMethod.id')] = adapter.serialize(payment.get('source'));
         }
         break;
     }
@@ -542,7 +553,7 @@ export default Ember.Mixin.create({
         _this.trigger('serverError', error);
         return error;
       }
-    )
+    );
   },
 
   /**
@@ -560,12 +571,12 @@ export default Ember.Mixin.create({
     return this.store.createRecord('order').save().then(
       function(newOrder) {
         _this.set('currentOrder', newOrder);
-        _this._setupStateMachineForOrder(newOrder);
         _this.persist({
           guestToken: newOrder.get('guestToken'),
           orderId:    newOrder.get('id')
-        })
+        });
         _this.trigger('didCreateNewOrder', newOrder);
+        _this._setupStateMachineForOrder(newOrder);
         return newOrder;
       },
       function(error) {
@@ -573,6 +584,43 @@ export default Ember.Mixin.create({
         return error;
       }
     );
+  },
+
+  /**
+    Clears the current order and any reference to it.
+
+    @method clearCurrentOrder
+    @return {Boolean} Always returns `true`.
+  */
+  clearCurrentOrder: function() {
+    this.persist({
+      guestToken: null,
+      orderId: null
+    });
+    this.set('currentOrder', null);
+    return true;
+  },
+
+  /**
+    A place for overridable checkout redirect logic.
+
+    @method _createNewOrder
+    @private
+    @return {Ember.RSVP.Promise} A promise that resolves to the newly created
+    Spree Order.
+  */
+  redirect: function(route) {
+    var currentOrder = this.get('currentOrder');
+    if (currentOrder) {
+      var state = currentOrder.get('state');
+      if (state === "cart") {
+        this.transitionCheckoutState();
+      } else {
+        route.transitionTo("checkout."+state);
+      }
+    } else {
+      route.transitionTo('products.index');
+    }
   }
 
 });

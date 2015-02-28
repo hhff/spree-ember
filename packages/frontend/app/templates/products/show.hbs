@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="small-4 columns">
+    {{spree-images images=selectedVariant.images}}
+    {{spree-properties properties=model.productProperties}}
+  </div>
+  <div class="small-8 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>{{model.name}}</h1>
+        <hr>
+        {{#if selectedVariant.description}}
+          <h6>{{selectedVariant.description}}</h6>
+        {{else}}
+          <h6>No Description</h6>
+        {{/if}}
+      </div>
+      {{#if model.variants.length}}
+        <div class="small-12 columns left">
+          <h3>Variants</h3>
+          {{view "select" content=model.variants optionLabelPath="content.optionsText" selection=selectedVariant}}
+        </div>
+      {{/if}}
+      <div class="small-12 columns left">
+        <h3>Price</h3>
+        <h4>{{selectedVariant.displayPrice}}</h4>
+        <button {{action 'addToCart'}}>Add To Cart</button>
+      </div>
+    </div>
+
+  </div>
+</div>

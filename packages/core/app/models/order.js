@@ -56,6 +56,13 @@ export default DS.Model.extend({
 
   isConfirm: Ember.computed('state', function() {
     return this.get('state') === "confirm";
-  })
+  }),
 
+  isComplete: Ember.computed('state', function() {
+    return this.get('state') === "complete";
+  }),
+
+  activePayment: Ember.computed('payments', function() {
+    return this.get('payments.lastObject');
+  })
 });

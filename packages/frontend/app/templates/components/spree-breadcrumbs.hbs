@@ -1,0 +1,7 @@
+<ul class="breadcrumbs">
+  {{#each step in steps}}
+    <li {{bind-attr class=step.className}}>
+      <a {{action 'clickedCrumb' step.name}}>{{step.name}}</a>
+    </li>
+  {{/each}}
+</ul>

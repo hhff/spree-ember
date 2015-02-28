@@ -52,5 +52,35 @@ export default DS.Store.extend({
   */
   serializerFor: function() {
     return this.container.lookup('serializer:-spree');
+  },
+
+  /**
+    Find a model by it's `slug` attribute.
+
+    @method findBySlug
+    @param String type A model type
+    @param String slug The model's slug
+    @return {SpreeEmber.Adapter} The Spree Ember Adapater.
+  */
+  findBySlug: function(type, slug) {
+    Ember.assert("You need to pass a type to the store's findBySlug method", arguments.length >= 1);
+    Ember.assert("You need to pass a slug to the store's findBySlug method", arguments.length >= 2);
+
+    var store      = this;
+    type           = this.modelFor(type);
+    var adapter    = this.adapterFor(type);
+    var serializer = this.serializerFor(type);
+
+    var promise = adapter.find(store, type, slug, null);
+
+    return promise.then(
+      function(adapterPayload) {
+        var payload = serializer.extract(store, type, adapterPayload, slug, 'find');
+        return store.push(type, payload);
+      },
+      function(error) {
+        throw Error(error);
+      }
+    );
   }
 });

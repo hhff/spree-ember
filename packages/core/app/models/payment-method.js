@@ -6,8 +6,8 @@ export default DS.Model.extend({
   methodType:   DS.attr('string'),
 
   // Computed
-  isGateway: Ember.computed('methodType', function() {
+  isCheck: Ember.computed('methodType', function() {
     var methodType = this.get('methodType');
-    return methodType === "gateway" || "stripe";
+    return methodType === "check";
   })
 });

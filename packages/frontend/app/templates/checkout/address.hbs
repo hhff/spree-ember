@@ -1,0 +1,34 @@
+<form>
+  <fieldset>
+    <legend>Address</legend>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>Email</h4>
+        {{input value=spree.currentOrder.email}}
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>Billing Address</h4>
+        {{spree-address address=spree.currentOrder.billAddress countries=spree.countries}}
+        {{input type="checkbox" checked=spree.shipToBilling}} <label>Ship to this address?</label>
+      </div>
+    </div>
+
+    {{#unless spree.shipToBilling}}
+      <div class="row">
+        <div class="small-12 columns">
+          <h4>Shipping Address</h4>
+            {{spree-address address=spree.currentOrder.billAddress countries=spree.countries}}
+          <hr>
+        </div>
+      </div>
+    {{/unless}}
+
+  </fieldset>
+</form>
+
+<button {{action 'transitionCheckoutState'}}>Continue</button>

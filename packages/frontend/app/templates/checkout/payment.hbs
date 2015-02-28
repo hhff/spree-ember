@@ -1,0 +1,16 @@
+<form>
+  <fieldset>
+    <legend>Payment</legend>
+    {{view "select" content=spree.currentOrder.availablePaymentMethods optionLabelPath="content.description" selection=spree.currentOrder.activePayment.paymentMethod}}
+
+    {{#if spree.currentOrder.activePayment.paymentMethod.isCheck}}
+      <h6>Are you crazy?  Who actually pays by check?</h6>
+      <h6>I guess you should mail it somewhere... I dunno its my first day here?</h6>
+    {{else}}
+      {{spree-source source=spree.currentOrder.activePayment.source}}
+    {{/if}}
+
+  </fieldset>
+</form>
+
+<button {{action 'transitionCheckoutState'}}>Continue</button>

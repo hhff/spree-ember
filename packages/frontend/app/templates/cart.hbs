@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Cart</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    {{#if spree.currentOrder.lineItems.length}}
+      {{spree-lineitems lineItems=spree.currentOrder.lineItems}}
+      {{spree-details order=spree.currentOrder}}
+      {{#link-to 'products.index'}}
+        <button>Keep Shopping</button>
+      {{/link-to}}
+      {{#link-to 'checkout.redirect'}}
+        <button>Checkout</button>
+      {{/link-to}}
+    {{else}}
+      <h1>Your cart is empty.</h1>
+      {{#link-to 'products.index'}}
+        <button>Keep Shopping</button>
+      {{/link-to}}
+    {{/if}}
+  </div>
+</div>

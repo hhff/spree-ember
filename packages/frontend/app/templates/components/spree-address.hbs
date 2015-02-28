@@ -1,0 +1,30 @@
+<label>First Name</label>
+{{input value=address.firstname}}
+
+<label>Last Name</label>
+{{input value=address.lastname}}
+
+<label>Address</label>
+{{input value=address.address1}}
+
+<label>Address 2</label>
+{{input value=address.address2}}
+
+<label>City</label>
+{{input value=address.city}}
+
+<label>Zip</label>
+{{input value=address.zipcode}}
+
+<label>Country</label>
+{{view "select" content=countries optionLabelPath="content.name" selection=address.country prompt="Select a Country"}}
+
+<label>State</label>
+{{#if address.country.states.length}}
+  {{view "select" content=address.country.states optionLabelPath="content.name" selection=address.state prompt="Select a State"}}
+{{else}}
+  {{input value=address.stateName}}
+{{/if}}
+
+<label>Phone</label>
+{{input value=address.phone}}
