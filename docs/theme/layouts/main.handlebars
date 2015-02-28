@@ -23,18 +23,22 @@
     </div>
 
     <div class="links">
-      <a href="{{spree-ember-docs-url}}">Documentation</a> | <a href="{{github-spree-ember}}"><img src="{{projectAssets}}/img/github-120px.png"/> Github</a>
+      <a href="{{spree-ember-docs-url}}/packages.html">Documentation</a> | <a href="{{github-spree-ember}}"><img src="{{projectAssets}}/img/github-120px.png"/> Github</a>
     </div>
     <div class="info">
-      <img class="logo" src="{{projectAssets}}/img/logo.svg"/>
+      <a href="{{spree-ember-docs-url}}">
+        <img class="logo" src="{{projectAssets}}/img/logo.svg"/>
+      </a>
       <h5>An Ember Ecosystem</h5>
       <h5>For Spree Commerce</h5>
     </div>
   </header>
 
-  <section class="container">
-    <div class="row">
-      <h1 id="main-package-name">{{projectName}}</h1>
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3>{{projectName}}</h1>
+    </div>
+    <div class="row" id="docs-content">
       <div class="small-12 large-3 columns">
         {{>sidebar}}
       </div>
@@ -53,8 +57,8 @@
 <script src="{{projectAssets}}/vendor/foundation/js/foundation.min.js"></script>
 
 <script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
-<script>prettyPrint();</script>
 <script>$(document).foundation();</script>
+<script>prettyPrint();</script>
 
 </body>
 </html>

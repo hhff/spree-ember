@@ -501,6 +501,29 @@
             "module": "ember-cli-spree-core/stores/spree"
         },
         {
+            "file": "addon/stores/spree.js",
+            "line": 57,
+            "description": "Find a model by it's `slug` attribute.",
+            "itemtype": "method",
+            "name": "findBySlug",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "type A model type"
+                },
+                {
+                    "name": "String",
+                    "description": "slug The model's slug"
+                }
+            ],
+            "return": {
+                "description": "The Spree Ember Adapater.",
+                "type": "SpreeEmber.Adapter"
+            },
+            "class": "SpreeEmber.Store",
+            "module": "ember-cli-spree-core/stores/spree"
+        },
+        {
             "file": "app/services/spree.js",
             "line": 20,
             "description": "The Local Storage key we use to Restore and Persist data across browser refreshes.",

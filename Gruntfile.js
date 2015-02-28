@@ -37,10 +37,17 @@ module.exports = function(grunt) {
       }
     },
     dom_munger: {
+      packages: {
+        options: {
+          remove: ['#sidepanel-classes', '#main-package-name', '#docs-main']
+        },
+        src: 'docs/site/index.html',
+        dest: 'docs/site/packages.html'
+      },
       index: {
         options: {
-          remove: ['#sidepanel-classes', '#main-package-name', '#docs-main'],
-          append: {selector:'div#apidocs',html: gettingStarted}
+          remove: ['section#main'],
+          append: {selector:'body',html:gettingStarted},
         },
         src: 'docs/site/index.html'
       }
@@ -71,6 +78,8 @@ module.exports = function(grunt) {
     grunt.task.run('shell:copyAssets');
 
     grunt.task.run('shell:copyIndex');
+
+    grunt.task.run('dom_munger:packages');
 
     grunt.task.run('dom_munger:index');
 

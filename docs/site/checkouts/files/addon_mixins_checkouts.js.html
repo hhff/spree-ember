@@ -23,18 +23,22 @@
     </div>
 
     <div class="links">
-      <a href="http://spree-ember.com">Documentation</a> | <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+      <a href="http://spree-ember.com/packages.html">Documentation</a> | <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
     </div>
     <div class="info">
-      <img class="logo" src="../assets/img/logo.svg"/>
+      <a href="http://spree-ember.com">
+        <img class="logo" src="../assets/img/logo.svg"/>
+      </a>
       <h5>An Ember Ecosystem</h5>
       <h5>For Spree Commerce</h5>
     </div>
   </header>
 
-  <section class="container">
-    <div class="row">
-      <h1 id="main-package-name">ember-cli-spree-checkouts</h1>
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3>ember-cli-spree-checkouts</h1>
+    </div>
+    <div class="row" id="docs-content">
       <div class="small-12 large-3 columns">
         <div id="sidepanel-classes" class="panel">
           <h3>Classes</h3>
@@ -154,6 +158,17 @@
         
             @property currentOrder
             @type DS.Model
+            @default true
+          */
+          shipToBilling: true,
+        
+          /**
+            A reference to the Current Order.  It is only set twice in this code,
+            once on Application initialization (in the case it was persisted), and once
+            when a new order is created through the internal method &#x60;_createNewOrder&#x60;.
+        
+            @property currentOrder
+            @type DS.Model
             @default null
           */
           currentOrder: null,
@@ -216,33 +231,33 @@
                 attempting to contact the server. (ie &quot;payment&quot; -&gt; &quot;address&quot;)
               */
               if (transitionEvent !== &quot;startup&quot; &amp;&amp; !previousState) {
-                if (transitionEvent === &quot;transitionToComplete&quot;) {
-                  this._advanceOrderState().then(
-                    function(response) {
-                      Ember.run.once(_this, _this._handlePendingTransition, {
-                        response: response,
-                        toState: toState
-                      });
-                    },
-                    function(error) {
-                      _this.transition.cancel();
-                      return error
-                    }
-                  )
-                } else {
-                  this._updateOrderData().then(
-                    function(response) {
-                      Ember.run.once(_this, _this._handlePendingTransition, {
-                        response: response,
-                        toState: toState
-                      });
-                    },
-                    function(error) {
-                      _this.transition.cancel();
-                      return error
-                    }
-                  )
-                }
+                // if (transitionEvent === &quot;transitionToCompletex&quot;) {
+                //   this._advanceOrderState().then(
+                //     function(response) {
+                //       Ember.run.once(_this, _this._handlePendingTransition, {
+                //         response: response,
+                //         toState: toState
+                //       });
+                //     },
+                //     function(error) {
+                //       _this.transition.cancel();
+                //       return error
+                //     }
+                //   )
+                // } else {
+                this._updateOrderData().then(
+                  function(response) {
+                    Ember.run.once(_this, _this._handlePendingTransition, {
+                      response: response,
+                      toState: toState
+                    });
+                  },
+                  function(error) {
+                    _this.transition.cancel();
+                    return error
+                  }
+                )
+                // }
                 return StateMachine.ASYNC;
               }
             },
@@ -250,7 +265,7 @@
             onenteraddress: function() {
               var billAddress = this.get(&#x27;currentOrder.billAddress&#x27;);
               if (!billAddress) {
-                var billAddress = this.store.createRecord(&#x27;address&#x27;, { firstname: &quot;State&quot;, lastname: &quot;Machine&quot; });
+                var billAddress = this.store.createRecord(&#x27;address&#x27;);
                 this.set(&#x27;currentOrder.billAddress&#x27;, billAddress);
               }
             },
@@ -278,7 +293,7 @@
             onenterconfirm: function() {},
             onleaveconfirm: function() {},
             onentercomplete: function() {
-              this.trigger(&#x27;currentOrderDidComplete&#x27;);
+              this.trigger(&#x27;currentOrderDidComplete&#x27;, this.get(&#x27;currentOrder&#x27;));
             },
             onleavecomplete: function() {}
           },
@@ -396,7 +411,7 @@
               if (this.current === &quot;cart&quot;) {
                 nextStateName = allStates[0];
               } else if (this.current === &quot;complete&quot;) {
-                debugger;
+                throw new Error(&quot;Spree Ember: Can&#x27;t transition order past &#x27;Complete&#x27; state.&quot;);
               } else {
                 nextStateName = allStates[allStates.indexOf(this.current) + 1];
               }
@@ -441,7 +456,6 @@
           _dataObjectForOrderUpdate: function(order, adapter, currentState) {
             var data = {
               order: adapter.serialize(order),
-              payment_source: {},
               state: currentState
             }
         
@@ -467,9 +481,10 @@
                 break;
               case &quot;payment&quot;:
                 var payment = order.get(&#x27;payments.firstObject&#x27;);
-                if (payment &amp;&amp; payment.get(&#x27;source&#x27;)) {
+                if (payment &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
+                  data[&#x27;payment_source&#x27;] = {};
                   data.order[&#x27;payments_attributes&#x27;] = [{payment_method_id: payment.get(&#x27;paymentMethod.id&#x27;)}];
-                  data.payment_source = adapter.serialize(payment.get(&#x27;source&#x27;));
+                  data.payment_source[payment.get(&#x27;paymentMethod.id&#x27;)] = adapter.serialize(payment.get(&#x27;source&#x27;));
                 }
                 break;
             }
@@ -609,7 +624,7 @@
                 _this.trigger(&#x27;serverError&#x27;, error);
                 return error;
               }
-            )
+            );
           },
         
           /**
@@ -627,12 +642,12 @@
             return this.store.createRecord(&#x27;order&#x27;).save().then(
               function(newOrder) {
                 _this.set(&#x27;currentOrder&#x27;, newOrder);
-                _this._setupStateMachineForOrder(newOrder);
                 _this.persist({
                   guestToken: newOrder.get(&#x27;guestToken&#x27;),
                   orderId:    newOrder.get(&#x27;id&#x27;)
-                })
+                });
                 _this.trigger(&#x27;didCreateNewOrder&#x27;, newOrder);
+                _this._setupStateMachineForOrder(newOrder);
                 return newOrder;
               },
               function(error) {
@@ -640,6 +655,43 @@
                 return error;
               }
             );
+          },
+        
+          /**
+            Clears the current order and any reference to it.
+        
+            @method clearCurrentOrder
+            @return {Boolean} Always returns &#x60;true&#x60;.
+          */
+          clearCurrentOrder: function() {
+            this.persist({
+              guestToken: null,
+              orderId: null
+            });
+            this.set(&#x27;currentOrder&#x27;, null);
+            return true;
+          },
+        
+          /**
+            A place for overridable checkout redirect logic.
+        
+            @method _createNewOrder
+            @private
+            @return {Ember.RSVP.Promise} A promise that resolves to the newly created
+            Spree Order.
+          */
+          redirect: function(route) {
+            var currentOrder = this.get(&#x27;currentOrder&#x27;);
+            if (currentOrder) {
+              var state = currentOrder.get(&#x27;state&#x27;);
+              if (state === &quot;cart&quot;) {
+                this.transitionCheckoutState();
+              } else {
+                route.transitionTo(&quot;checkout.&quot;+state);
+              }
+            } else {
+              route.transitionTo(&#x27;products.index&#x27;);
+            }
           }
         
         });
@@ -659,8 +711,8 @@
 <script src="../assets/vendor/foundation/js/foundation.min.js"></script>
 
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script>prettyPrint();</script>
 <script>$(document).foundation();</script>
+<script>prettyPrint();</script>
 
 </body>
 </html>

@@ -57,8 +57,17 @@ header .links a {
 }
 
 
-section {
-  padding-top: 1.875rem;
+#main-package-name {
+  padding: 1.875rem;
+  background-color: whitesmoke;
+}
+
+#docs-content {
+  margin-top: 1.875rem;
+}
+
+#main-package-name h3 {
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6, label {
