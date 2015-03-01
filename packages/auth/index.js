@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-spree-auth'
+  name: 'ember-cli-spree-auth',
+
+  isDevelopingAddon: function() {
+    return true;
+  }
 };

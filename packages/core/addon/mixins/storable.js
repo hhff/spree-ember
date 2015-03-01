@@ -44,7 +44,6 @@ export default Ember.Mixin.create({
   */
   restore: function() {
     return this._setOnHost(this._fetchLocalStorageData());
-    return true;
   },
 
   /**

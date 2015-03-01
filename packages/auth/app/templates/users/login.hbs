@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="small-12 medium-4 medium-offset-4 columns">
+    <form>
+      <fieldset>
+        <legend>Login</legend>
+        {{input placeholder="Email"}}
+        {{input placeholder="Password" type="Password"}}
+        <button class="expand" {{action 'authenticateSession'}}>Continue</button>
+        {{#link-to 'users.new'}}Or create a new account.{{/link-to}}
+      </fieldset>
+    </form>
+  </div>
+</div>

@@ -1,23 +1,23 @@
 import Ember from 'ember';
-import { initialize } from 'ember-cli-spree-core/initializers/initialize-spree-global';
+import { initialize } from '../../../initializers/ember-cli-spree-auth';
+import { module, test } from 'qunit';
 
 var container, application;
 
-module('InitializeSpreeGlobalInitializer', {
-  setup: function() {
+module('EmberCliSpreeAuthInitializer', {
+  beforeEach: function() {
     Ember.run(function() {
-      container = new Ember.Container();
       application = Ember.Application.create();
+      container = application.__container__;
       application.deferReadiness();
     });
   }
 });
 
 // Replace this with your real tests.
-test('it works', function() {
+test('it works', function(assert) {
   initialize(container, application);
 
   // you would normally confirm the results of the initializer here
-  ok(true);
+  assert.ok(true);
 });
-

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 /**
@@ -10,7 +11,7 @@ import DS from 'ember-data';
   @class Store
   @namespace SpreeEmber
   @module ember-cli-spree-core/stores/spree
-  @uses SpreeEmber.Adapter, SpreeEmber.Serializer
+  @uses SpreeEmber.Adapter, SpreeEmber.Serializer, Ember.Evented
   @extends DS.Store
 */
 export default DS.Store.extend({

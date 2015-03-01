@@ -3,13 +3,13 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('serializer:application', 'ApplicationSerializer', {
+moduleFor('serializer:spree', 'SpreeSerializer', {
   // Specify the other units that are required for this test.
   // needs: ['serializer:foo']
 });
 
 // Replace this with your real tests.
-test('it exists', function() {
+test('it exists', function(assert) {
   var serializer = this.subject();
-  ok(serializer);
+  assert.ok(serializer);
 });

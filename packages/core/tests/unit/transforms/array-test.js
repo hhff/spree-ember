@@ -3,13 +3,13 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('transform:array', 'ArrayTransform', {
+moduleFor('transform:raw', 'RawTransform', {
   // Specify the other units that are required for this test.
   // needs: ['serializer:foo']
 });
 
 // Replace this with your real tests.
-test('it exists', function() {
+test('it exists', function(assert) {
   var transform = this.subject();
-  ok(transform);
+  assert.ok(transform);
 });
