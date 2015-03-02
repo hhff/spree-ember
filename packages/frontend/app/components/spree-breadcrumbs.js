@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   action: 'transitionCheckoutState',
 
   steps: Ember.computed('checkoutSteps', 'checkoutState', function() {
-    var checkoutSteps = this.get('checkoutSteps');
+    var checkoutSteps = this.get('checkoutSteps') || Ember.A();
     var checkoutState = this.get('checkoutState');
     var stepObjects   = Ember.A();
 

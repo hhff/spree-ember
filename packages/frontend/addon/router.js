@@ -3,7 +3,7 @@ export default function(router, mountPoint) {
   var mountPath = "/";
 
   if (mountPoint) {
-    if (!(typeof mountPoint === "string")) {
+    if (typeof mountPoint !== "string") {
       throw new Error("SpreeRouter Mount Point must be a string");
     }
     if (mountPoint.charAt(0) !== "/") {
