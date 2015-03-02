@@ -9,6 +9,7 @@ env:
   - TEST_DIR=packages/frontend
   - TEST_DIR=packages/core
   - TEST_DIR=packages/checkouts
+  - TEST_DIR=packages/auth
 
 before_install:
   - cd $TEST_DIR
