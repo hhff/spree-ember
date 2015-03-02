@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import CheckoutsMixin from '../../../mixins/checkouts';
+import CheckoutsMixin from 'ember-cli-spree-checkouts/mixins/checkouts';
 import { module, test } from 'qunit';
 
 module('CheckoutsMixin');

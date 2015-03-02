@@ -1,3 +1,5 @@
+/* globals StateMachine */
+
 import Ember from 'ember';
 
 /**
@@ -59,7 +61,7 @@ export default Ember.Mixin.create({
 
     var orderId = this.get('orderId');
     if (orderId) {
-      application.deferReadiness()
+      application.deferReadiness();
       this.store.find('order', orderId).then(
         function(currentOrder) {
           _this.set('currentOrder', currentOrder);
@@ -183,10 +185,9 @@ export default Ember.Mixin.create({
           },
           function(error) {
             _this.transition.cancel();
-            return error
+            return error;
           }
-        )
-        // }
+        );
         return StateMachine.ASYNC;
       }
     },
@@ -194,12 +195,11 @@ export default Ember.Mixin.create({
     onenteraddress: function() {
       var billAddress = this.get('currentOrder.billAddress');
       if (!billAddress) {
-        var billAddress = this.store.createRecord('address');
-        this.set('currentOrder.billAddress', billAddress);
+        var newBillAddress = this.store.createRecord('address');
+        this.set('currentOrder.billAddress', newBillAddress);
       }
     },
     onleaveaddress: function() {
-      var _this = this;
       var shipAddress = this.get('currentOrder.shipAddress');
       var billAddress = this.get('currentOrder.billAddress');
       if (!shipAddress) {
@@ -229,7 +229,6 @@ export default Ember.Mixin.create({
 
   _handlePendingTransition: function(args) {
     var response       = args.response;
-    var completedState = args.completedState;
     var toState        = args.toState;
 
     if (response.errors) {
@@ -272,7 +271,7 @@ export default Ember.Mixin.create({
               _this.transition();
             }
           },
-          function(error) {
+          function() {
             /*
               This will only ever call if the AJAX request from _advanceOrderState
               fails.  It's error will be handled there, so we just cancel the
@@ -280,7 +279,7 @@ export default Ember.Mixin.create({
             */
             _this.transition.cancel();
           }
-        )
+        );
       } else {
         /*
           The response's state is not the attempted state, nor is it the same
@@ -365,7 +364,6 @@ export default Ember.Mixin.create({
     var _this             = this;
     var order             = this.get('currentOrder');
     var orderId           = order.get('id');
-    var initialOrderState = order.get('state');
     var adapter           = this.get('container').lookup('adapter:-spree');
     var url               = adapter.buildURL('checkout', orderId);
     var data              = this._dataObjectForOrderUpdate(order, adapter, this.current);
@@ -386,7 +384,7 @@ export default Ember.Mixin.create({
     var data = {
       order: adapter.serialize(order),
       state: currentState
-    }
+    };
 
     switch(currentState) {
       case "address":
