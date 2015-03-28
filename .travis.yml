@@ -2,8 +2,9 @@
 language: node_js
 sudo: false
 node_js:
+  - "0.12"
   - "0.11"
-  - "0.10"
+  - "iojs"
 
 env:
   - TEST_DIR=packages/frontend
@@ -12,7 +13,7 @@ env:
   - TEST_DIR=packages/auth
 
 before_install:
-  - ./dev_setup.rb
+  - ./bootstrap.rb
   - cd $TEST_DIR
 
 install:
