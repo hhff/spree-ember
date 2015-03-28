@@ -12,6 +12,7 @@ env:
   - TEST_DIR=packages/auth
 
 before_install:
+  - ./dev_setup.rb
   - cd $TEST_DIR
 
 install:
