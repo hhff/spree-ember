@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-spree-frontend",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A fully functional frontend starting point for a Spree Ember Application.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/hhff/spree-ember.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Hugh Francis",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
