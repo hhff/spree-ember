@@ -8,9 +8,8 @@ module.exports = {
     return true;
   },
 
-  included: function(app, parentAddon) {
-    var target = (parentAddon || app);
-    this._super.included(target);
-    target.import('vendor/state-machine.min.js');
+  included: function(app) {
+    this._super.included(app);
+    app.import('vendor/state-machine.min.js');
   }
 };
