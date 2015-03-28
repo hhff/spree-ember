@@ -1,6 +1,10 @@
 {
   "name": "spree-ember",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.0",
+  "description": "An Ember Ecosystem for Spree Commerce.",
+  "repository": "https://github.com/hhff/spree-ember.git",
+  "author": "Hugh Francis",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-dom-munger": "^3.4.0",
