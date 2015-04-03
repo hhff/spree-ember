@@ -12,6 +12,10 @@ export default function(router, mountPoint) {
     mountPath = mountPoint;
   }
 
+  router.resource('taxonomies', { path: mountPath+'/taxonomies' },function() {
+    this.route('index', { path: '/' });
+  });
+
   router.resource('products', { path: mountPath+'/products' },function() {
     this.route('index', { path: '/' });
     this.route('show', { path: '/:slug' });
