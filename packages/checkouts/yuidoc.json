@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-spree-checkouts",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Checkout functionality for a Spree Ember Application.",
   "version": "0.0.0",
   "options": {
     "paths": [

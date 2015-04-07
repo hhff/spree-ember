@@ -20,13 +20,17 @@ header .info {
   text-align: center;
 }
 
+header.homepage {
+  height: 100vh;
+}
+
 header img.logo {
   width: 250px;
   margin-bottom: 1.875rem;
 }
 
 header h5 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 0.85rem;
@@ -34,17 +38,15 @@ header h5 {
 }
 
 header .links {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
   padding: 0.9375rem;
   position: fixed;
   right: 0;
-}
-
-header .version {
-  font-family: 'Montserrat', sans-serif;
-  padding: 0.9375rem;
-  position: fixed;
-  left: 0;
+  font-weight: 700;
+  z-index: 1;
 }
 
 header .links img {
@@ -56,6 +58,9 @@ header .links a {
   color: #000;
 }
 
+header .links a:hover {
+  border-bottom: 2px solid black;
+}
 
 #main-package-name {
   padding: 1.875rem;
@@ -70,15 +75,25 @@ header .links a {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, label {
-  font-family: 'Montserrat', sans-serif;
+h1, h2, h3, h4, h5, label {
+  font-family: 'Cabin', sans-serif;
   margin-bottom: 0.9375rem;
+  margin-top: 0;
 }
 
-p {
-  font-family: 'Open Sans', sans-serif;
+h6, p {
+  font-family: 'Source Sans Pro', sans-serif;
   margin-bottom: 0.9375rem;
+  line-height: 1.8;
 }
+
+ul {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/*ul li {
+  padding: 0.275rem 0;
+}*/
 
 a {
   color: #659CEF;
@@ -93,7 +108,7 @@ label {
 }
 
 .tabs .tab-title>a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cabin', sans-serif;
 }
 
 .tabs .tab-title.active>a {
@@ -101,14 +116,25 @@ label {
   color: white;
 }
 
+.side-nav {
+  padding: 0;
+}
+
+.side-nav li {
+  margin: 0;
+  font-size: 12px;
+}
+
 .side-nav li a:not(.button) {
   color: #659CEF;
-  padding: 0.5rem 0;
-  font-family: 'Open Sans', sans-serif;
+  padding: 0.5rem 0.5rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-transform: capitalize;
 }
 
 .side-nav li a:not(.button):hover {
-  color: #659CEF;
+  color: white;
+  background-color: #659CEF;
 }
 
 ul {
@@ -121,18 +147,36 @@ ul {
 }
 
 .uses {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .panel {
-  margin-bottom: 1.875rem !important;
   border: none;
   background-color: whitesmoke;
 }
 
+.panel pre {
+  background-color: white;
+}
+
+.switch.private-toggle {
+  margin-bottom: 14px;
+}
+
+.switch.private-toggle h6 {
+  display: inline-block;
+  left: 58px;
+  top: -6px;
+  position: absolute;
+}
+
+.switch input:checked+label {
+  background-color: #659CEF;
+}
+
 .flag.private {
   color: #FF7878;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cabin', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   display: block;
@@ -140,6 +184,19 @@ ul {
 
 .item .name {
   display: inline-block;
+}
+
+.private {
+  display: none;
+}
+
+ul.tabs {
+  display: flex;
+}
+
+ul.tabs li.tab-title {
+  flex-grow: 1;
+  text-align: center;
 }
 
 /*Method Specific*/
@@ -169,7 +226,7 @@ ul.args-list li.arg:last-of-type::after {
 
 .type {
   color: #03c03c;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cabin', sans-serif;
 }
 
 .returns-description p {

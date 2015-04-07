@@ -1,8 +1,8 @@
 {
     "project": {
         "name": "ember-cli-spree-frontend",
-        "description": "The default blueprint for ember-cli addons.",
-        "version": "0.0.1-beta.1"
+        "description": "A fully functional frontend starting point for a Spree Ember Application.",
+        "version": "0.0.0.8a3647d6"
     },
     "files": {},
     "modules": {},

@@ -31,6 +31,7 @@
     "ember-cli-simple-auth-devise": "0.7.3",
     "ember-cli-spree-core": "*",
     "ember-cli-uglify": "1.0.1",
+    "ember-cli-yuidoc": "0.6.2",
     "ember-data": "1.0.0-beta.16",
     "ember-export-application-global": "^1.0.2"
   },

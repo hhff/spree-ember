@@ -1,8 +1,8 @@
 {
     "project": {
         "name": "ember-cli-spree-core",
-        "description": "The default blueprint for ember-cli addons.",
-        "version": "0.0.1-beta.1"
+        "description": "Core data infrastructure for a Spree Ember Application.",
+        "version": "0.0.0.8a3647d6"
     },
     "files": {
         "addon/adapters/spree.js": {
@@ -113,7 +113,7 @@
             "tag": "module",
             "file": "addon/mixins/storable.js",
             "line": 3,
-            "description": "Storable bolts onto an Ember Object and provides functionality for persisting key\nvalue pairs to Local Storage."
+            "description": "Storable bolts onto an Ember Object and provides functionality for persisting\nkey value pairs to Local Storage."
         },
         "ember-cli-spree-core/serializers/spree": {
             "name": "ember-cli-spree-core/serializers/spree",
@@ -142,7 +142,7 @@
             },
             "tag": "module",
             "file": "addon/stores/spree.js",
-            "line": 3,
+            "line": 4,
             "description": "The Spree Store is what connects the Spree Serializer & Adapter.  It's injected\nin the `spree` service, so that we can effectively isolate Spree Ember's data from\nthe Host Application's regular Store, Adapter & Serializer.  This is useful\nfor Rails Applications that have Spree added, but have regular endpoints that\ndon't hit the Spree endpoint."
         },
         "ember-cli-spree-core/services/spree": {
@@ -209,7 +209,7 @@
             "namespace": "SpreeEmber",
             "file": "addon/mixins/storable.js",
             "line": 3,
-            "description": "Storable bolts onto an Ember Object and provides functionality for persisting key\nvalue pairs to Local Storage.",
+            "description": "Storable bolts onto an Ember Object and provides functionality for persisting\nkey value pairs to Local Storage.",
             "extends": "Ember.Mixin"
         },
         "SpreeEmber.Serializer": {
@@ -243,11 +243,12 @@
             "module": "ember-cli-spree-core/stores/spree",
             "namespace": "SpreeEmber",
             "file": "addon/stores/spree.js",
-            "line": 3,
+            "line": 4,
             "description": "The Spree Store is what connects the Spree Serializer & Adapter.  It's injected\nin the `spree` service, so that we can effectively isolate Spree Ember's data from\nthe Host Application's regular Store, Adapter & Serializer.  This is useful\nfor Rails Applications that have Spree added, but have regular endpoints that\ndon't hit the Spree endpoint.",
             "uses": [
                 "SpreeEmber.Adapter",
-                "SpreeEmber.Serializer"
+                "SpreeEmber.Serializer",
+                "Ember.Evented"
             ],
             "extends": "DS.Store"
         },
@@ -351,7 +352,7 @@
         {
             "file": "addon/mixins/storable.js",
             "line": 14,
-            "description": "The Local Storage key we use to Restore and Persist data across browser refreshes.",
+            "description": "The Local Storage key we use to Restore and Persist data across browser\nrefreshes.",
             "itemtype": "property",
             "name": "localStorageKey",
             "type": "String",
@@ -362,8 +363,11 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 24,
+            "line": 26,
             "description": "Persists an object to Local Storage.",
+            "example": [
+                "\n```javascript\nthis.spree.persist({\n  \"favoriteColor\": \"red\"\n});\n```"
+            ],
             "itemtype": "method",
             "name": "persist",
             "params": [
@@ -382,8 +386,11 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 39,
-            "description": "Sets key value pairs on the Host object from Local Storage.",
+            "line": 49,
+            "description": "Sets key value pairs on the Host object from Local Storage.  Usually called\nin intitalizers for Spree Ember addons.",
+            "example": [
+                "\n```javascript\nthis.spree.restore()\n```"
+            ],
             "itemtype": "method",
             "name": "restore",
             "return": {
@@ -395,7 +402,7 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 50,
+            "line": 65,
             "description": "Sets key value pairs on the Host object.",
             "itemtype": "method",
             "name": "_setOnHost",
@@ -417,7 +424,7 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 65,
+            "line": 80,
             "description": "Returns a Parsed Object from the Local Storage Key.",
             "itemtype": "method",
             "name": "_fetchLocalStorageData",
@@ -452,7 +459,7 @@
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 17,
+            "line": 18,
             "description": "The container lookup name for the Spree adapter.",
             "itemtype": "property",
             "name": "adapter",
@@ -464,7 +471,7 @@
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 27,
+            "line": 28,
             "description": "The container lookup name for the default Spree serializer.",
             "itemtype": "property",
             "name": "defaultSerializer",
@@ -476,7 +483,7 @@
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 37,
+            "line": 38,
             "description": "Always returns the Spree Adapter.",
             "itemtype": "method",
             "name": "adapterFor",
@@ -489,7 +496,7 @@
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 47,
+            "line": 48,
             "description": "Always returns the Spree Serializer.",
             "itemtype": "method",
             "name": "serializerFor",
@@ -502,18 +509,23 @@
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 57,
+            "line": 58,
             "description": "Find a model by it's `slug` attribute.",
+            "example": [
+                "\n```javascript\n// Products Show Route\n\nimport Ember from 'ember';\n\nexport default Ember.Route.extend({\n  model: function(params) {\n    return this.spree.store.findBySlug('product', params.slug);\n  }\n});\n```"
+            ],
             "itemtype": "method",
             "name": "findBySlug",
             "params": [
                 {
-                    "name": "String",
-                    "description": "type A model type"
+                    "name": "type",
+                    "description": "A model type",
+                    "type": "String"
                 },
                 {
-                    "name": "String",
-                    "description": "slug The model's slug"
+                    "name": "slug",
+                    "description": "The model's slug",
+                    "type": "String"
                 }
             ],
             "return": {

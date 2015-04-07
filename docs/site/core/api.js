@@ -25,7 +25,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "ember-cli-spree-core/mixins/storable",
             "name": "ember-cli-spree-core_mixins_storable",
-            "description": "Storable bolts onto an Ember Object and provides functionality for persisting key\nvalue pairs to Local Storage."
+            "description": "Storable bolts onto an Ember Object and provides functionality for persisting\nkey value pairs to Local Storage."
         },
         {
             "displayName": "ember-cli-spree-core/serializers/spree",

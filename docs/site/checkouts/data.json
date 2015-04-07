@@ -1,8 +1,8 @@
 {
     "project": {
         "name": "ember-cli-spree-checkouts",
-        "description": "The default blueprint for ember-cli addons.",
-        "version": "0.0.1-beta.1"
+        "description": "Checkout functionality for a Spree Ember Application.",
+        "version": "0.0.0.8a3647d6"
     },
     "files": {
         "addon/mixins/checkouts.js": {
@@ -30,7 +30,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "addon/mixins/checkouts.js",
-            "line": 3,
+            "line": 5,
             "description": "Provides Current Order and Checkout Functionality to the Spree service."
         }
     },
@@ -46,7 +46,7 @@
             "module": "ember-cli-spree-core/mixins/checkouts",
             "namespace": "Spree Ember",
             "file": "addon/mixins/checkouts.js",
-            "line": 3,
+            "line": 5,
             "description": "Provides Current Order and Checkout Functionality to the Spree service.",
             "extends": "Ember.Mixin"
         }
@@ -54,7 +54,7 @@
     "classitems": [
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 12,
+            "line": 14,
             "description": "Triggered whenever a Spree Server request fails.",
             "itemtype": "event",
             "name": "serverError",
@@ -70,7 +70,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 19,
+            "line": 21,
             "description": "Triggered whenever a Line Item is created or updated.",
             "itemtype": "event",
             "name": "didAddToCart",
@@ -86,7 +86,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 26,
+            "line": 28,
             "description": "Triggered whenever a new Order is created for the checkout user.",
             "itemtype": "event",
             "name": "didCreateNewOrder",
@@ -102,7 +102,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 33,
+            "line": 35,
             "description": "Triggered whenever the Current Order changes State.",
             "itemtype": "event",
             "name": "checkoutStateDidChange",
@@ -118,7 +118,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 40,
+            "line": 42,
             "description": "Triggered whenever the Current Order reached it's \"Complete\" State.",
             "itemtype": "event",
             "name": "currentOrderDidComplete",
@@ -134,7 +134,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 47,
+            "line": 49,
             "description": "A method called in the `ember-cli-spree-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
             "itemtype": "method",
             "name": "initCheckouts",
@@ -154,7 +154,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 83,
+            "line": 85,
             "description": "A reference to the Current Order.  It is only set twice in this code,\nonce on Application initialization (in the case it was persisted), and once\nwhen a new order is created through the internal method `_createNewOrder`.",
             "itemtype": "property",
             "name": "currentOrder",
@@ -165,7 +165,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 94,
+            "line": 96,
             "description": "A reference to the Current Order.  It is only set twice in this code,\nonce on Application initialization (in the case it was persisted), and once\nwhen a new order is created through the internal method `_createNewOrder`.",
             "itemtype": "property",
             "name": "currentOrder",
@@ -176,7 +176,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 105,
+            "line": 107,
             "description": "Adds state machine functionality to the Spree service.",
             "itemtype": "method",
             "name": "_setupStateMachineForOrder",
@@ -198,7 +198,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 121,
+            "line": 123,
             "description": "An overrideable Array representing the possible states of the order, and it's\npossible transitions.  This should be informed by the Spree backend. The default\nvalues will work with Spree's default checkout steps.",
             "itemtype": "property",
             "name": "eventsForOrderStateMachine",
@@ -209,7 +209,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 139,
+            "line": 141,
             "description": "An overrideable Object for binding callbacks to state changes in the Current\nSpree Order.  `this` in these callbacks represents the Current Order object.",
             "itemtype": "property",
             "name": "callbacksForOrderStateMachine",
@@ -220,7 +220,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 323,
+            "line": 322,
             "description": "If a state name is passed to this method, the state machine will attempt to\ntransition directly to that state.  If not, we will attempt to transition\nto the next state in the checkout flow.",
             "itemtype": "method",
             "name": "transitionCheckoutState",
@@ -240,7 +240,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 354,
+            "line": 353,
             "description": "This method will send data to Spree's Checkouts API in the format it expects.\nIt will also automatically transition the order to a certain state if it has\nenough information to satisfy Spree's Order State Machine.",
             "itemtype": "method",
             "name": "_updateOrderData",
@@ -255,7 +255,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 424,
+            "line": 422,
             "description": "This method will attempt to force the Order's state to the next State.  It's\nnecessary for the \"confirm\" -> \"complete\" transition for Spree, and also useful\nfor triggering validation errors, when it's not clear why an order won't advance\nto the next state.",
             "itemtype": "method",
             "name": "_advanceOrderState",
@@ -270,7 +270,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 454,
+            "line": 452,
             "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `ember-cli-spree-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
             "itemtype": "property",
             "name": "guestToken",
@@ -282,7 +282,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 466,
+            "line": 464,
             "description": "The user's Current Order number, persisted to local storage via\n`ember-cli-spree-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
             "itemtype": "property",
             "name": "orderId",
@@ -294,7 +294,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 478,
+            "line": 476,
             "description": "A computed property that returns all of the countries (and states) set up in\nSpree's backend.",
             "itemtype": "method",
             "name": "countries",
@@ -308,7 +308,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 491,
+            "line": 489,
             "description": "Adds a lineItem to the currentOrder. If there is no Current Order,\nSpree Ember will request a new order from the server, and set it as the\nCurrent Order on the Spree service.",
             "itemtype": "method",
             "name": "addToCart",
@@ -333,7 +333,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 520,
+            "line": 518,
             "description": "An internal method for saving Line Items.  If it is called for a variant that\nis already in the current order, it will add to the corresponding Line Item's\nquantity, otherwise it will create a new Line Item for that variant.",
             "itemtype": "method",
             "name": "_saveLineItem",
@@ -365,7 +365,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 559,
+            "line": 557,
             "description": "Will attempt to create a new Order for the checkout user, and save the `orderId`\nand `guestToken` to the Spree service, so that it will persist across page\nrefreshes.  It will also initiate the state machine for the current order.",
             "itemtype": "method",
             "name": "_createNewOrder",
@@ -380,7 +380,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 589,
+            "line": 587,
             "description": "Clears the current order and any reference to it.",
             "itemtype": "method",
             "name": "clearCurrentOrder",
@@ -393,7 +393,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 604,
+            "line": 602,
             "description": "A place for overridable checkout redirect logic.",
             "itemtype": "method",
             "name": "_createNewOrder",
