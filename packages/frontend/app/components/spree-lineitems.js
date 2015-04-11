@@ -1,12 +1,3 @@
-import Ember from 'ember';
+import spreeLineitems from 'ember-cli-spree-frontend/components/spree-lineitems';
 
-export default Ember.Component.extend({
-  action: 'deleteLineItem',
-
-  actions: {
-    deleteLineItem: function(lineItem) {
-      this.sendAction('action', lineItem);
-      return false;
-    }
-  }
-});
+export default spreeLineitems;

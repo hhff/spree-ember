@@ -1,4 +1,3 @@
-import Ember from 'ember';
+import spreeAddress from 'ember-cli-spree-frontend/components/spree-address';
 
-export default Ember.Component.extend({
-});
+export default spreeAddress;
