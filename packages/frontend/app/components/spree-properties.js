@@ -1,4 +1,3 @@
-import Ember from 'ember';
+import spreeProperties from 'ember-cli-spree-frontend/components/spree-properties';
 
-export default Ember.Component.extend({
-});
+export default spreeProperties;

@@ -1,4 +1,3 @@
-import Ember from 'ember';
+import spreeShipment from 'ember-cli-spree-frontend/components/spree-shipment';
 
-export default Ember.Component.extend({
-});
+export default spreeShipment;

@@ -1,4 +1,3 @@
-import Ember from 'ember';
+import spreeDetails from 'ember-cli-spree-frontend/components/spree-details';
 
-export default Ember.Component.extend({
-});
+export default spreeDetails;
