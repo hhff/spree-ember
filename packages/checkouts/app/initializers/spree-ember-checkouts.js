@@ -4,6 +4,7 @@ export function initialize(container, application) {
   var SpreeService = container.lookup('service:spree');
   Checkouts.apply(SpreeService);
   SpreeService.initCheckouts(application);
+  console.log("Spree Ember Checkouts: Initialized");
 }
 
 export default {

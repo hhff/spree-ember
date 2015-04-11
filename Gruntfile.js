@@ -159,13 +159,13 @@ module.exports = function(grunt) {
           dest: 'docs/site/core/index.html'
         }]
       },
-      frontend: {
+      main: {
         options: {
           layout: 'docs/site/frontend/index.html'
         },
         files: [{
           src: ['packages/frontend/README.md'],
-          dest: 'docs/site/frontend/index.html'
+          dest: 'docs/site/main/index.html'
         }]
       }
     }

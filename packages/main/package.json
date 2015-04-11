@@ -29,16 +29,16 @@
     "ember-cli-uglify": "1.0.1",
     "ember-cli-yuidoc": "0.6.2",
     "ember-data": "1.0.0-beta.16",
-    "ember-export-application-global": "^1.0.2",
-    "spree-ember-checkouts": "*",
-    "spree-ember-core": "*"
+    "ember-export-application-global": "^1.0.2"
   },
   "keywords": [
     "ember-addon"
   ],
   "dependencies": {
     "ember-cli-babel": "^4.0.0",
-    "ember-cli-htmlbars": "0.7.6"
+    "ember-cli-htmlbars": "0.7.6",
+    "spree-ember-core": "*",
+    "spree-ember-checkouts": "*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
