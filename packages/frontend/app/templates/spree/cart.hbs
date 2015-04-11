@@ -9,15 +9,15 @@
     {{#if spree.currentOrder.lineItems.length}}
       {{spree-lineitems lineItems=spree.currentOrder.lineItems}}
       {{spree-details order=spree.currentOrder}}
-      {{#link-to 'products.index'}}
+      {{#link-to 'spree.products.index'}}
         <button>Keep Shopping</button>
       {{/link-to}}
-      {{#link-to 'checkout.redirect'}}
+      {{#link-to 'spree.checkout.redirect'}}
         <button>Checkout</button>
       {{/link-to}}
     {{else}}
       <h1>Your cart is empty.</h1>
-      {{#link-to 'products.index'}}
+      {{#link-to 'spree.products.index'}}
         <button>Keep Shopping</button>
       {{/link-to}}
     {{/if}}

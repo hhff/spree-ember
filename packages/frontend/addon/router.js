@@ -1,33 +1,30 @@
-export default function(router, mountPoint) {
+export default function(router, options) {
 
-  var mountPath = "/";
+  options = options || {};
+  
+  var mountPath    = options['mountPath']    || '/spree';
+  var cartPath     = options['cartPath']     || 'cart';
+  var productsPath = options['productsPath'] || 'products';
+  var checkoutPath = options['checkoutPath'] || 'checkout';
 
-  if (mountPoint) {
-    if (typeof mountPoint !== "string") {
-      throw new Error("SpreeRouter Mount Point must be a string");
-    }
-    if (mountPoint.charAt(0) !== "/") {
-      throw new Error('SpreeRouter Mount Point must begin with "/"');
-    }
-    mountPath = mountPoint;
-  }
+  router.resource('spree', { path: mountPath }, function() {
+    router.route('spree.cart', { path: mountPath + '/' + cartPath });
+    
+    router.resource('spree.products', { path: mountPath + '/' + productsPath },function() {
+      this.route('index', { path: '/' });
+      this.route('show', { path: '/:slug' });
+    });
 
-  router.resource('products', { path: mountPath+'/products' },function() {
-    this.route('index', { path: '/' });
-    this.route('show', { path: '/:slug' });
+    router.resource('spree.checkout', { path: mountPath + '/' + checkoutPath },function() {
+      this.route('redirect', { path: '/' });
+      this.route('registration');
+      this.route('cart');
+      this.route('address');
+      this.route('delivery');
+      this.route('payment');
+      this.route('confirm');
+      this.route('complete');
+    });
   });
-
-  router.resource('checkout', { path: mountPath+'/checkout' },function() {
-    this.route('redirect', { path: '/' });
-    this.route('registration');
-    this.route('cart');
-    this.route('address');
-    this.route('delivery');
-    this.route('payment');
-    this.route('confirm');
-    this.route('complete');
-  });
-
-  router.route('cart', { path: mountPath+'/cart' });
 
 }

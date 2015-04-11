@@ -614,10 +614,10 @@ export default Ember.Mixin.create({
       if (state === "cart") {
         this.transitionCheckoutState();
       } else {
-        route.transitionTo("checkout."+state);
+        route.transitionTo("spree.checkout."+state);
       }
     } else {
-      route.transitionTo('products.index');
+      route.transitionTo('spree.products.index');
     }
   }
 
