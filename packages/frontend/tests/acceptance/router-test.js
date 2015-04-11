@@ -1,13 +1,13 @@
 import Ember from 'ember';
-import { 
-  module, 
-  test 
+import {
+  module,
+  test
 } from 'qunit';
 import startApp from '../helpers/start-app';
 
 var application;
 
-module('Acceptance: Walkthrough', {
+module('Acceptance: Router', {
   beforeEach: function() {
     application = startApp();
   },

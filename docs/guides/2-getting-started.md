@@ -29,7 +29,7 @@ Spree Ember is broken up into seperate Ember CLI Addons, but unless you know
 what you're doing, you're best off installing the Frontend package.
 
 ```bash
-ember install:addon ember-cli-spree-frontend
+ember install spree-ember
 ```
 
 Now, you'll need to tell Ember where to put the standard Spree routes.
@@ -41,14 +41,19 @@ import Ember from 'ember';
 import config from './config/environment';
 
 // This line imports the Spree Router.
-import SpreeRouter from 'ember-cli-spree-frontend/router';
+import spreeRouter from 'ember-cli-spree-frontend/router';
 
 var Router = Ember.Router.extend({
   location: config.locationType
 });
 
 Router.map(function() {
-  SpreeRouter(this);
+  spreeRouter(this, {
+    mountPath:    '/spree',
+    cartPath:     'cart',
+    productsPath: 'products',
+    checkoutPath: 'checkout'
+  });
 });
 
 export default Router;
@@ -57,5 +62,4 @@ export default Router;
 Now start up the `ember server`, and you should now see the Spree Ember welcome 
 page!
 
-#### **Next you'll want to 
-[Configure Spree](http://spree-ember.com/3-configuring-spree.html).**
+#### **Next you'll want to [Configure Spree](http://spree-ember.com/3-configuring-spree.html).**

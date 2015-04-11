@@ -677,10 +677,10 @@ export default Ember.Mixin.create({
       if (state === &quot;cart&quot;) {
         this.transitionCheckoutState();
       } else {
-        route.transitionTo(&quot;checkout.&quot;+state);
+        route.transitionTo(&quot;spree.checkout.&quot;+state);
       }
     } else {
-      route.transitionTo(&#x27;products.index&#x27;);
+      route.transitionTo(&#x27;spree.products.index&#x27;);
     }
   }
 
