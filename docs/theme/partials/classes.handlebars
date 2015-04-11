@@ -91,8 +91,14 @@
     {{#if methods}}
       <div class="content" id="methods">
         <h2>Methods</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-methods" type="checkbox">
+          <label for="show-private-methods"></label>
+          <h6>Show Private Methods</h2>
+        </div>
+
         {{#methods}}
-          {{>method}}
+{{>method}}
         {{/methods}}
       </div>
     {{/if}}
@@ -101,6 +107,12 @@
     {{#if properties}}
       <div id="properties" class="content">
         <h2>Properties</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-properties" type="checkbox">
+          <label for="show-private-properties"></label>
+          <h6>Show Private Properties</h2>
+        </div>
+
         {{#properties}}
           {{>props}}
         {{/properties}}
@@ -111,6 +123,12 @@
     {{#if attrs}}
       <div id="attrs" class="content">
         <h2>Attributes</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-attributes" type="checkbox">
+          <label for="show-private-attributes"></label>
+          <h6>Show Private Attributes</h2>
+        </div>
+
         {{#attrs}}
           {{>attrs}}
         {{/attrs}}
@@ -120,6 +138,12 @@
     {{#if events}}
       <div id="events" class="content">
         <h2>Events</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-events" type="checkbox">
+          <label for="show-private-events"></label>
+          <h6>Show Private Events</h2>
+        </div>
+
         {{#events}}
           {{>events}}
         {{/events}}

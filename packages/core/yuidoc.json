@@ -1,11 +1,11 @@
 {
   "name": "ember-cli-spree-core",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Core data infrastructure for a Spree Ember Application.",
   "version": "0.0.0",
   "options": {
     "paths": [
-      "app",
-      "addon"
+      "addon",
+      "app"
     ],
     "themedir": "../../docs/theme",
     "helpers" : [ "../../docs/theme/helpers/helpers.js" ],

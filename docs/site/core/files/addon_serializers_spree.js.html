@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>addon/serializers/spree.js - ember-cli-spree-core</title>
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
   <link rel="stylesheet" href="">
-  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+  <link rel="stylesheet" href="../assets/vendor/prism/prism.css">
 
   <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
   <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
 
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../assets/css/spree-ember.css">
 
@@ -18,12 +22,10 @@
 
 <body>
   <header>
-    <div class="version">
-      Version 0.0.1-beta.1
-    </div>
-
     <div class="links">
-      <a href="http://spree-ember.com/packages.html">Documentation</a> | <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+      <a href="http://spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
     </div>
     <div class="info">
       <a href="http://spree-ember.com">
@@ -36,106 +38,122 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3>ember-cli-spree-core</h1>
+      <h3>ember-cli-spree-core</h3>
     </div>
     <div class="row" id="docs-content">
-      <div class="small-12 large-3 columns">
-        <div id="sidepanel-classes" class="panel">
-          <h3>Classes</h3>
-          <ul class="side-nav">
-              <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
-              <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-              <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-              <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-              <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-              <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
-          </ul>
-        </div>
-        
-        <div class="panel">
-          <h3>Packages</h3>
-          <ul class="side-nav">
-            <li><a href="http://spree-ember.com/core/index.html">Core</a></li>
-            <li><a href="http://spree-ember.com/checkouts/index.html">Checkouts</a></li>
-            <li><a href="http://spree-ember.com/frontend/index.html">Frontend</a></li>
-          </ul>
-        </div>
-        
-        <div class="panel">
-          <h3>Gems</h3>
-          <ul class="side-nav">
-            <li><a href="https://github.com/hhff/spree_ams">Spree AMS</a></li>
-          </ul>
-        </div>      </div>
-      <div class="small-12 large-9 columns">
-        <div class="page-header">
-            <h1>addon/serializers/spree.js <small>File</small></h1>
-        </div>
-        
-        <div class="file">
-            <pre class="prettyprint linenums">
-        import Ember from &#x27;ember&#x27;;
-        import DS from &#x27;ember-data&#x27;;
-        
-        /**
-          The Spree Serializer is based on the &#x60;DS.ActiveModelSerializer&#x60;, but implements
-          a stricter &#x60;serialize&#x60; method.
-        
-          @class Serializer
-          @namespace SpreeEmber
-          @module ember-cli-spree-core/serializers/spree
-          @extends DS.ActiveModelSerializer
-        */
-        export default DS.ActiveModelSerializer.extend({
-          /**
-            Serializes a record for sending to the Spree server.  Here, we extend the
-            default behaviour of &#x60;DS.ActiveModelSerializer#serialize&#x60; to ensure that we
-            only persist attributes &amp; relationships that have &#x60;persistToServer: true&#x60; in
-            the model definition.  We also add the &#x60;id&#x60; to the payload, as we&#x27;re often
-            sending nested models to the server.
-        
-            @method serialize
-            @param {DS.Model} record A model to serialize.
-            @return {Object} A JSON object representing the record.
-          */
-          serialize: function(record) {
-            var payload = this._super.apply(this, arguments);
-            record.eachAttribute(function(name, meta) {
-              if (!meta.options.persistToServer) {
-                delete payload[Ember.String.underscore(name)];
-              }
-            }, this);
-            record.eachRelationship(function(name, meta) {
-              if (!meta.options.persistToServer) {
-                if (meta.kind === &quot;belongsTo&quot;) {
-                  delete payload[Ember.String.underscore(name)+&quot;_id&quot;];
-                } else if (meta.kind === &quot;hasMany&quot;) {
-                  delete payload[Ember.String.underscore(name)+&quot;_ids&quot;];
-                }
-              }
-            }, this);
-            payload.id = record.id;
-            return payload;
-          }
-        });
-        
-            </pre>
-        </div>
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
+    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
+    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
+    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
+    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+</ul>
+
+<hr>
+<h3>API</h3>
+<hr>
+<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/frontend/index.html">frontend</a></li></ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns">
+<div class="page-header">
+    <h3>addon/serializers/spree.js <small>File</small></h3>
+</div>
+
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
+import DS from &#x27;ember-data&#x27;;
+
+/**
+  The Spree Serializer is based on the &#x60;DS.ActiveModelSerializer&#x60;, but implements
+  a stricter &#x60;serialize&#x60; method.
+
+  @class Serializer
+  @namespace SpreeEmber
+  @module ember-cli-spree-core/serializers/spree
+  @extends DS.ActiveModelSerializer
+*/
+export default DS.ActiveModelSerializer.extend({
+  /**
+    Serializes a record for sending to the Spree server.  Here, we extend the
+    default behaviour of &#x60;DS.ActiveModelSerializer#serialize&#x60; to ensure that we
+    only persist attributes &amp; relationships that have &#x60;persistToServer: true&#x60; in
+    the model definition.  We also add the &#x60;id&#x60; to the payload, as we&#x27;re often
+    sending nested models to the server.
+
+    @method serialize
+    @param {DS.Model} record A model to serialize.
+    @return {Object} A JSON object representing the record.
+  */
+  serialize: function(record) {
+    var payload = this._super.apply(this, arguments);
+    record.eachAttribute(function(name, meta) {
+      if (!meta.options.persistToServer) {
+        delete payload[Ember.String.underscore(name)];
+      }
+    }, this);
+    record.eachRelationship(function(name, meta) {
+      if (!meta.options.persistToServer) {
+        if (meta.kind === &quot;belongsTo&quot;) {
+          delete payload[Ember.String.underscore(name)+&quot;_id&quot;];
+        } else if (meta.kind === &quot;hasMany&quot;) {
+          delete payload[Ember.String.underscore(name)+&quot;_ids&quot;];
+        }
+      }
+    }, this);
+    payload.id = record.id;
+    return payload;
+  }
+});
+
+</code>
+</pre>
+</div>
       </div>
     </div>
   </div>
 
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
 <script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
-<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
 <script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
 <script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
 <script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
 
 <script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="../assets/vendor/prism/prism.js"></script>
 
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>$(document).foundation();</script>
-<script>prettyPrint();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
 
 </body>
 </html>

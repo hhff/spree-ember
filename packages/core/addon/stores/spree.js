@@ -58,9 +58,22 @@ export default DS.Store.extend({
   /**
     Find a model by it's `slug` attribute.
 
+    @example
+    ```javascript
+    // Products Show Route
+
+    import Ember from 'ember';
+
+    export default Ember.Route.extend({
+      model: function(params) {
+        return this.spree.store.findBySlug('product', params.slug);
+      }
+    });
+    ```
+
     @method findBySlug
-    @param String type A model type
-    @param String slug The model's slug
+    @param {String} type A model type
+    @param {String} slug The model's slug
     @return {SpreeEmber.Adapter} The Spree Ember Adapater.
   */
   findBySlug: function(type, slug) {
