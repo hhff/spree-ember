@@ -10,7 +10,7 @@ import DS from 'ember-data';
 
   @class Store
   @namespace SpreeEmber
-  @module ember-cli-spree-core/stores/spree
+  @module spree-ember-core/stores/spree
   @uses SpreeEmber.Adapter, SpreeEmber.Serializer, Ember.Evented
   @extends DS.Store
 */
@@ -61,7 +61,6 @@ export default DS.Store.extend({
     @example
     ```javascript
     // Products Show Route
-
     import Ember from 'ember';
 
     export default Ember.Route.extend({

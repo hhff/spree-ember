@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'spree-ember-auth'
+  name: 'spree-ember'
 };

@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-core",
+  "name": "spree-ember-core",
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.10.0",

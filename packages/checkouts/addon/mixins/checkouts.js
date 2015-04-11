@@ -7,7 +7,7 @@ import Ember from 'ember';
 
   @class Checkouts
   @namespace Spree Ember
-  @module ember-cli-spree-core/mixins/checkouts
+  @module spree-ember-core/mixins/checkouts
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
@@ -47,7 +47,7 @@ export default Ember.Mixin.create({
   */
 
   /**
-    A method called in the `ember-cli-spree-checkouts` initializer after the
+    A method called in the `spree-ember-checkouts` initializer after the
     `Checkouts` mixin is applied to the Spree service, to initialize functionality
     in this mixin.
 
@@ -451,7 +451,7 @@ export default Ember.Mixin.create({
 
   /**
     The token used to Authenticate the current user against the current order.  Persisted
-    to local storage via `ember-cli-spree-core/mixins/storable`.  This property is
+    to local storage via `spree-ember-core/mixins/storable`.  This property is
     sent to the Spree server via the header `X-Spree-Order-Token`.
 
     @property guestToken
@@ -463,7 +463,7 @@ export default Ember.Mixin.create({
 
   /**
     The user's Current Order number, persisted to local storage via
-    `ember-cli-spree-core/mixins/storable`.  This property is sent to the Spree
+    `spree-ember-core/mixins/storable`.  This property is sent to the Spree
     server via the header `X-Spree-Order-Id`.
 
     @property orderId

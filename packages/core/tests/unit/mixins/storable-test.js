@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import StorableMixin from 'ember-cli-spree-core/mixins/storable';
+import StorableMixin from 'spree-ember-core/mixins/storable';
 import { module, test } from 'qunit';
 
 module('StorableMixin');

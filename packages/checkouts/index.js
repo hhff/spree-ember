@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-spree-checkouts',
+  name: 'spree-ember-checkouts',
 
   isDevelopingAddon: function() {
     return true;

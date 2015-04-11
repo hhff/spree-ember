@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import SpreeSerializer from 'ember-cli-spree-core/serializers/spree';
+import SpreeSerializer from 'spree-ember-core/serializers/spree';
 
 /**
   The Spree Adapter is responsible for communicating with your Spree store.  It
@@ -8,7 +8,7 @@ import SpreeSerializer from 'ember-cli-spree-core/serializers/spree';
 
   @class Adapter
   @namespace SpreeEmber
-  @module ember-cli-spree-core/adapters/spree
+  @module spree-ember-core/adapters/spree
   @extends DS.ActiveModelAdapter
   @uses SpreeEmber.Serializer
 */

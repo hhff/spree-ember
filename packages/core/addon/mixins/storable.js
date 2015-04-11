@@ -6,7 +6,7 @@ import Ember from 'ember';
 
   @class Storable
   @namespace SpreeEmber
-  @module ember-cli-spree-core/mixins/storable
+  @module spree-ember-core/mixins/storable
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
@@ -49,7 +49,7 @@ export default Ember.Mixin.create({
   /**
     Sets key value pairs on the Host object from Local Storage.  Usually called
     in intitalizers for Spree Ember addons.
-    
+
     @example
     ```javascript
     this.spree.restore()

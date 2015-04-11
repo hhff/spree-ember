@@ -7,7 +7,7 @@ import DS from 'ember-data';
 
   @class Serializer
   @namespace SpreeEmber
-  @module ember-cli-spree-core/serializers/spree
+  @module spree-ember-core/serializers/spree
   @extends DS.ActiveModelSerializer
 */
 export default DS.ActiveModelSerializer.extend({
