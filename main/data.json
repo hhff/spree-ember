@@ -1,0 +1,12 @@
+{
+    "project": {
+        "name": "spree-ember",
+        "description": "A fully functional frontend starting point for a Spree Ember Application.",
+        "version": "0.0.0.13caad5e"
+    },
+    "files": {},
+    "modules": {},
+    "classes": {},
+    "classitems": [],
+    "warnings": []
+}
