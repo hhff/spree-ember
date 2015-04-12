@@ -48,29 +48,44 @@
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
-<h1 id="spree-ember">spree-ember</h1>
-<p>This README outlines the details of collaborating on this Ember addon.</p>
+<h1 id="spree-ember-storefront">Spree Ember Storefront</h1>
+<p>The Spree Ember Storefront is a collection of routes, templates and components
+that work out of the box with the <a href="http://github.com/spree/spree">Spree</a> rails 
+engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<p>It uses:</p>
+<ul>
+<li><a href="https://github.com/hhff/spree-ember/tree/master/packages/core">Spree Ember Core</a></li>
+<li><a href="https://github.com/hhff/spree-ember/tree/master/packages/checkouts">Spree Ember Checkouts</a></li>
+<li><a href="https://github.com/artificialio/ember-cli-foundation-sass">Ember CLI Foundation Sass</a></li>
+</ul>
 <h2 id="installation">Installation</h2>
-<ul>
-<li><code>git clone</code> this repository</li>
-<li><code>npm install</code></li>
-<li><code>bower install</code></li>
-</ul>
-<h2 id="running">Running</h2>
-<ul>
-<li><code>ember server</code></li>
-<li>Visit your app at <a href="http://localhost:4200">http://localhost:4200</a>.</li>
-</ul>
-<h2 id="running-tests">Running Tests</h2>
-<ul>
-<li><code>ember test</code></li>
-<li><code>ember test --server</code></li>
-</ul>
-<h2 id="building">Building</h2>
-<ul>
-<li><code>ember build</code></li>
-</ul>
-<p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
+<pre><code class="lang-bash">ember install spree-ember-storefront
+</code></pre>
+<p>Now, you&#39;ll need to tell Ember where to put the standard Spree routes.</p>
+<p>In <code>router.js</code>:</p>
+<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
+import config from &#39;./config/environment&#39;;
+
+// This line imports the Spree Router.
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this, {
+    mountPath:    &#39;/spree&#39;,
+    cartPath:     &#39;cart&#39;,
+    productsPath: &#39;products&#39;,
+    checkoutPath: &#39;checkout&#39;
+  });
+});
+
+export default Router;
+</code></pre>
+<p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://spree-ember.com/</a>.
+For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
       </div>
     </div>
   </div>
