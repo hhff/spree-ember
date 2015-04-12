@@ -48,7 +48,7 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns"><h1 id="getting-started">Getting Started</h1>
 <p><strong>Note:</strong> You won&#39;t see any Spree data until you 
-<a href="http://spree-ember.com/3-configuring-spree.html">Configure Spree</a> - you&#39;ll do 
+<a href="./3-configuring-spree.html">Configure Spree</a> - you&#39;ll do 
 that next.</p>
 <h3 id="ember-cli">Ember CLI</h3>
 <hr>
@@ -56,8 +56,8 @@ that next.</p>
 <a href="http://www.ember-cli.com/#getting-started">Getting Started with Ember CLI</a> for 
 instructions.</p>
 <p>Once installed, you&#39;ll want to spin up a new Ember application.</p>
-<pre><code class="lang-bash">ember new my-spree-frontend
-cd my-spree-frontend
+<pre><code class="lang-bash">ember new frontend
+cd frontend
 ember server
 </code></pre>
 <p>Now open up your browser, and navigate to <code>localhost:4200</code>, and you you should 
@@ -65,8 +65,8 @@ see the default Ember welcome page!</p>
 <h3 id="installing-spree-ember">Installing Spree Ember</h3>
 <hr>
 <p>Spree Ember is broken up into seperate Ember CLI Addons, but unless you know 
-what you&#39;re doing, you&#39;re best off installing the Frontend package.</p>
-<pre><code class="lang-bash">ember install spree-ember
+what you&#39;re doing, you&#39;re best off installing the Storefront package.</p>
+<pre><code class="lang-bash">ember install spree-ember-storefront
 </code></pre>
 <p>Now, you&#39;ll need to tell Ember where to put the standard Spree routes.</p>
 <p>In <code>router.js</code>:</p>
@@ -74,7 +74,7 @@ what you&#39;re doing, you&#39;re best off installing the Frontend package.</p>
 import config from &#39;./config/environment&#39;;
 
 // This line imports the Spree Router.
-import spreeRouter from &#39;ember-cli-spree-frontend/router&#39;;
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
 
 var Router = Ember.Router.extend({
   location: config.locationType
@@ -93,7 +93,7 @@ export default Router;
 </code></pre>
 <p>Now start up the <code>ember server</code>, and you should now see the Spree Ember welcome 
 page!</p>
-<h4 id="-next-you-ll-want-to-configure-spree-http-spree-ember-com-3-configuring-spree-html-"><strong>Next you&#39;ll want to <a href="http://spree-ember.com/3-configuring-spree.html">Configure Spree</a>.</strong></h4>
+<h4 id="-next-you-ll-want-to-configure-spree-3-configuring-spree-html-"><strong>Next you&#39;ll want to <a href="./3-configuring-spree.html">Configure Spree</a>.</strong></h4>
 </div>
     </div>
   
