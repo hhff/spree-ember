@@ -13,11 +13,13 @@ This will install Ember Simple Auth into your Spree Ember application, and add
 some convenince methods to your global `spree` object.
 
 ### Creating & Authenticating Users
+***
 
-The `spree-ember-auth` package adds an Ember Simple Auth Authenticator and
-Authorizer to the host application's registry.  It then sets these up to work
-nicely with local storage.  Finally, it adds some useful methods, routes and
-templates for managing Spree users and their sessions on the frontend.
+The `spree-ember-auth` package adds an [Ember Simple Auth](https://github.com/simplabs/ember-cli-simple-auth)
+Authenticator and Authorizer to the host application's registry.  It then sets 
+these up to work nicely with local storage.  Finally, it adds some useful 
+methods, routes and templates for managing Spree users and their sessions on the 
+frontend.
 
 ```javascript
 // A contrived example.
@@ -36,7 +38,7 @@ var _this = this;
 newCustomer.save().then(
   function(newCustomer) {
     // You probably don't want to nest callbacks...
-    _this.spree.authenticateUser(email, password).then(
+    _this.session.authenticate(email, password).then(
       function() {
         // Now, all requests will contain an Authorization Header for Spree.
         alert("Session Authenticated and Persisted to Local Storage!");
@@ -47,5 +49,4 @@ newCustomer.save().then(
 
 ```
 
-#### **Ready to deploy?  Checkout the
-[deployment section.](http://spree-ember.com/8-deployment.html).**
+#### **Ready to deploy? Checkout the [deployment section](./8-deployment.html).**

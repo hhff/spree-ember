@@ -8,6 +8,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-dom-munger": "^3.4.0",
+    "grunt-gh-pages": "^0.10.0",
     "grunt-md2html": "^0.2.1",
     "grunt-shell": "^1.1.2"
   }

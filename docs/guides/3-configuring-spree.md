@@ -28,6 +28,7 @@ rails server
 Then navigate to `localhost:3000/admin` and login as the newly created admin 
 user (defaults: `spree@example.com`, `spree123`).
 
+TODO:
 - Changes
 - Other changes
 - Changes TBD
@@ -46,5 +47,4 @@ namespace to Spree's default API routes, that respond as per the
 Install the version that corresponds to your Spree version, and follow the
 instructions to get it up and running.
 
-#### **Nice!  Now you're ready to start 
-[developing your Spree Ember store](http://spree-ember.com/4-development.html)!**
+#### **Nice!  Now you're ready to start [developing your Spree Ember store](./4-development.html)!**

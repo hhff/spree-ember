@@ -20,7 +20,6 @@ application should be successfully pulling data from your Rails server.
 
 Head to `/products`, and you should see this:
 
-PIC TO COME
+TODO: PIC TO COME
 
-#### **You're probably going to want to make some 
-[customizations](http://spree-ember.com/4-customization.html) now, right?**
+#### **You're probably going to want to make some [customizations](./5-customization.html) now, right?**

@@ -1,5 +1,6 @@
 {
   "name": "spree-ember-core",
+  "shortName": "core",
   "description": "Core data infrastructure for a Spree Ember Application.",
   "version": "0.0.0",
   "options": {

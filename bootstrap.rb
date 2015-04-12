@@ -29,7 +29,7 @@ system "npm link"
 Dir.chdir spree_ember
 
 # Setup Main Package Dependencies
-Dir.chdir "./packages/main"
+Dir.chdir "./packages/storefront"
 system "npm link spree-ember-core"
 system "npm link spree-ember-checkouts"
 system "ember install"
