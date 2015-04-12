@@ -2,7 +2,7 @@
     "project": {
         "name": "spree-ember-core",
         "description": "Core data infrastructure for a Spree Ember Application.",
-        "version": "0.0.0.13caad5e"
+        "version": "0.0.0.3e0b8e5f"
     },
     "files": {
         "addon/adapters/spree.js": {
