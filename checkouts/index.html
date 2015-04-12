@@ -50,27 +50,46 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-checkouts">Spree Ember Checkouts</h1>
-<p>This README outlines the details of collaborating on this Ember addon.</p>
+<p>The Spree Ember Checkouts uses the <a href="https://github.com/jakesgordon/javascript-state-machine">Javascript State Machine</a>
+to add Spree Current Order management and State Machine transitions to the Spree
+service.  By providing a standard interface to trigger Spree order transitions,
+an API driven checkout process is greatly simplified. </p>
+<p>This interface is designed to work out the box with the <a href="http://github.com/spree/spree">Spree</a> 
+rails engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<p>It uses:</p>
+<ul>
+<li><a href="http://www.spree-ember.com/core/index.html">Spree Ember Core</a></li>
+<li><a href="https://github.com/jakesgordon/javascript-state-machine">Javascript State Machine</a></li>
+</ul>
 <h2 id="installation">Installation</h2>
-<ul>
-<li><code>git clone</code> this repository</li>
-<li><code>npm install</code></li>
-<li><code>bower install</code></li>
-</ul>
-<h2 id="running">Running</h2>
-<ul>
-<li><code>ember server</code></li>
-<li>Visit your app at <a href="http://localhost:4200">http://localhost:4200</a>.</li>
-</ul>
-<h2 id="running-tests">Running Tests</h2>
-<ul>
-<li><code>ember test</code></li>
-<li><code>ember test --server</code></li>
-</ul>
-<h2 id="building">Building</h2>
-<ul>
-<li><code>ember build</code></li>
-</ul>
+<pre><code class="lang-bash">ember install spree-ember-checkouts
+</code></pre>
+<h2 id="current-order-management-transitions">Current Order Management &amp; Transitions</h2>
+<pre><code class="lang-javascript">this.spree.get(&#39;currentOrder.state&#39;);
+// &quot;cart&quot;
+
+this.spree.transitionCheckoutState().then(
+  function(currentOrder) {
+    currentOrder.get(&#39;state&#39;);
+    // &quot;delivery&quot;
+  }
+);
+
+this.spree.transitionCheckoutState(&quot;complete&quot;).catch(function(spreeError){
+  alert(&quot;Could not transition&quot;);
+  return spreeError;
+});
+</code></pre>
+<h3 id="customizing-the-frontend-state-machine">Customizing the Frontend State Machine</h3>
+<p>The <code>spree-ember-checkouts</code> addon provides a single file where it defines the
+checkout state machine events and callbacks.</p>
+<p>Copy it into your host application:</p>
+<pre><code class="lang-bash">ember generate spree-ember-checkouts-flow
+</code></pre>
+<p>This will install a file at <code>your-app/app/spree/checkout-flow.js</code></p>
+<p>Modify this file to work with any customizations you&#39;ve made to your Spree
+backend.</p>
+<p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
       </div>
     </div>

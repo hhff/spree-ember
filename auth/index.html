@@ -49,27 +49,46 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-auth">Spree Ember Auth</h1>
-<p>This README outlines the details of collaborating on this Ember addon.</p>
+<p>The Spree Ember Auth is a wrapper on <a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>,
+that provides a custom Spree <code>Authorizer</code> and <code>Authenticator</code> that work out of 
+the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine via 
+<a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<p>It uses:</p>
+<ul>
+<li><a href="http://www.spree-ember.com/core/index.html">Spree Ember Core</a></li>
+<li><a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a></li>
+</ul>
 <h2 id="installation">Installation</h2>
-<ul>
-<li><code>git clone</code> this repository</li>
-<li><code>npm install</code></li>
-<li><code>bower install</code></li>
-</ul>
-<h2 id="running">Running</h2>
-<ul>
-<li><code>ember server</code></li>
-<li>Visit your app at <a href="http://localhost:4200">http://localhost:4200</a>.</li>
-</ul>
-<h2 id="running-tests">Running Tests</h2>
-<ul>
-<li><code>ember test</code></li>
-<li><code>ember test --server</code></li>
-</ul>
-<h2 id="building">Building</h2>
-<ul>
-<li><code>ember build</code></li>
-</ul>
+<pre><code class="lang-bash">ember install spree-ember-auth
+</code></pre>
+<h3 id="creating-and-authenticating-users">Creating and Authenticating Users</h3>
+<p>The Spree Store and User model is provided by <code>spree-ember-core</code>.</p>
+<pre><code class="lang-javascript">// A contrived example.
+
+var email    = &quot;me@hughfrancis.me&quot;;
+var password = &quot;SpreeEmber123&quot;;
+
+var newCustomer = this.spree.store.createRecord(&quot;user&quot;, {
+  email:    email, 
+  password: password,
+  passwordConfirmation: password
+});
+
+var _this = this;
+
+newCustomer.save().then(
+  function(newCustomer) {
+    // You probably don&#39;t want to nest callbacks...
+    _this.session.authenticate(email, password).then(
+      function() {
+        // Now, all requests will contain an Authorization Header for Spree.
+        alert(&quot;Session Authenticated and Persisted to Local Storage!&quot;);
+      }
+    )
+  }
+);
+</code></pre>
+<p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
       </div>
     </div>

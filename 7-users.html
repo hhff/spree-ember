@@ -76,7 +76,7 @@ var _this = this;
 newCustomer.save().then(
   function(newCustomer) {
     // You probably don&#39;t want to nest callbacks...
-    _this.spree.authenticateUser(email, password).then(
+    _this.session.authenticate(email, password).then(
       function() {
         // Now, all requests will contain an Authorization Header for Spree.
         alert(&quot;Session Authenticated and Persisted to Local Storage!&quot;);
