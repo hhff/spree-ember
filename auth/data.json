@@ -1,6 +1,7 @@
 {
     "project": {
         "name": "spree-ember-auth",
+        "shortName": "auth",
         "description": "The default blueprint for ember-cli addons.",
         "version": "0.0.0.043b42fd"
     },
