@@ -1,2 +1,5 @@
 .DS_Store
 node_modules
+docs
+Gruntfile.js
+package.json
