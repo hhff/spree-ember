@@ -55,28 +55,48 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-core">Spree Ember Core</h1>
-<p>This README outlines the details of collaborating on this Ember addon.</p>
+<p>Spree Ember Core is the core dependency of all other Spree Ember addons.  It
+provides the <code>spree</code> service, which has a seperate <code>store</code> to the host
+application.</p>
+<p>This store uses a custom <code>serializer</code> and <code>adapter</code> that are
+designed to work tightly with the <a href="http://github.com/spree/spree">Spree</a> rails 
+engine, via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<p>This addon also adds the following models:</p>
+<ul>
+<li>Address</li>
+<li>Address</li>
+<li>Country</li>
+<li>Image</li>
+<li>Line Item</li>
+<li>Order</li>
+<li>Payment Method</li>
+<li>Payment</li>
+<li>Product Propert</li>
+<li>Product</li>
+<li>Shipment</li>
+<li>Shipping Category</li>
+<li>Shipping Method</li>
+<li>Shipping Rate</li>
+<li>Source</li>
+<li>State</li>
+<li>Stock Location</li>
+<li>Taxon</li>
+<li>Taxonomy</li>
+<li>User</li>
+<li>Variant</li>
+<li>Zone</li>
+</ul>
+<p>Finally, this addon handles the UI State Persistance using browser local
+storage. </p>
 <h2 id="installation">Installation</h2>
 <ul>
-<li><code>git clone</code> this repository</li>
-<li><code>npm install</code></li>
-<li><code>bower install</code></li>
-</ul>
-<h2 id="running">Running</h2>
-<ul>
-<li><code>ember server</code></li>
-<li>Visit your app at <a href="http://localhost:4200">http://localhost:4200</a>.</li>
-</ul>
-<h2 id="running-tests">Running Tests</h2>
-<ul>
-<li><code>ember test</code></li>
-<li><code>ember test --server</code></li>
-</ul>
-<h2 id="building">Building</h2>
-<ul>
-<li><code>ember build</code></li>
+<li><code>ember install spree-ember-core</code></li>
 </ul>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
+<h2 id="spree-ember">Spree Ember</h2>
+<p>If you&#39;re just getting started, it&#39;s recommended that you checkout the Spree
+Ember Storefront addon.  It&#39;s the quickest way to get up and running with Spree
+Ember.</p>
       </div>
     </div>
   </div>
