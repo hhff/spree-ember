@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
   var packageNames = [];
-  var currentPackage = "yolo";
   var guides = [];
 
   // Grunt Tasks
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-dom-munger');
   grunt.loadNpmTasks('grunt-md2html');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.initConfig({
     folder_list : {
@@ -57,6 +57,11 @@ module.exports = function(grunt) {
         command: function () {
           return 'rm docs/site/guide-template.html';
         }
+      },
+      createCname: {
+        command: function() {
+          return 'touch docs/site/CNAME; echo "www.spree-ember.com" > docs/site/CNAME;';
+        }
       }
     },
     dom_munger: {
@@ -67,7 +72,7 @@ module.exports = function(grunt) {
           callback: function($){
             $('#main-package-name h3').text('Packages');
             packageNames.forEach(function(packageName) {
-              $("#docs-content").append("<a class='small-12 columns panel' href='http://spree-ember.com/"+packageName+"/index.html'><h3>ember-cli-spree-"+packageName+"</h3></a>");
+              $("#docs-content").append("<a class='small-12 columns panel' href='./"+packageName+"/index.html'><h3>spree-ember-"+packageName+"</h3></a>");
             })
           }
         },
@@ -80,20 +85,10 @@ module.exports = function(grunt) {
           remove: ['section#main'],
           callback: function($){
             $('header').addClass('homepage');
+            $('header .info').append('<iframe src="https://ghbtns.com/github-btn.html?user=hhff&amp;repo=spree-ember&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="120px" height="30px" style="margin-top:20px;"></iframe>');
           }
         },
         src: 'docs/site/index.html'
-      },
-      sidebarTemplate: {
-        options: {
-          callback: function($) {
-            $("ul#all-packages").empty();
-            packageNames.forEach(function(packageName) {
-              $("ul#all-packages").append("<li><a href='http://spree-ember.com/"+packageName+"/index.html'>"+packageName+"</a></li>");
-            })
-          }
-        },
-        src: 'docs/theme/partials/sidebar.handlebars'
       },
       guideTemplate: {
         options: {
@@ -107,7 +102,7 @@ module.exports = function(grunt) {
               if (prettyName.length > 1) {
                 prettyName = prettyName.join(" ");
               }
-              $("#sidebar-content ul").first().append("<li><a href='http://spree-ember.com/"+guideName+".html'>"+prettyName+"</a></li>");
+              $("#sidebar-content ul").first().append("<li><a href='./"+guideName+".html'>"+prettyName+"</a></li>");
             });
 
             $('#main-package-name h3').text('Guides');
@@ -159,15 +154,21 @@ module.exports = function(grunt) {
           dest: 'docs/site/core/index.html'
         }]
       },
-      main: {
+      storefront: {
         options: {
-          layout: 'docs/site/frontend/index.html'
+          layout: 'docs/site/storefront/index.html'
         },
         files: [{
-          src: ['packages/frontend/README.md'],
-          dest: 'docs/site/main/index.html'
+          src: ['packages/storefront/README.md'],
+          dest: 'docs/site/storefront/index.html'
         }]
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'docs/site'
+      },
+      src: ['**/*']
     }
   });
 
@@ -182,9 +183,6 @@ module.exports = function(grunt) {
     grunt.file.expand('packages/*').forEach(function(path) {
       packageNames.push(path.split('/')[1]);
     });
-
-    // Setup API Section in Sidebar
-    grunt.task.run('dom_munger:sidebarTemplate');
 
     packageNames.forEach(function(packageName) {
       grunt.task.run('shell:makeDocs:'+packageName);
@@ -210,5 +208,8 @@ module.exports = function(grunt) {
     // Create Guide Files
     grunt.task.run('md2html:guides');
     grunt.task.run('shell:deleteGuidesTemplate');
+    grunt.task.run('shell:createCname');
+
+    grunt.task.run('gh-pages');
   });
 };

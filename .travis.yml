@@ -7,10 +7,18 @@ node_js:
   - "iojs"
 
 env:
-  - TEST_DIR=packages/main
+  - TEST_DIR=packages/storefront
   - TEST_DIR=packages/core
   - TEST_DIR=packages/checkouts
   - TEST_DIR=packages/auth
+
+notifications:
+  webhooks:
+    urls:
+      - "https://webhooks.gitter.im/e/4d364f1c84110116fb5e"
+    on_success: always
+    on_failure: always
+    on_start: false
 
 before_install:
   - ./bootstrap.rb

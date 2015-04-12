@@ -1,5 +1,8 @@
 # Overview
 
+[![Build Status](https://travis-ci.org/hhff/spree-ember.svg?branch=master)](https://travis-ci.org/hhff/spree-ember)
+[![Join the chat at https://gitter.im/hhff/spree-ember](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hhff/spree-ember?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Spree Ember is collection of Ember CLI addons for building ambitious eCommerce 
 websites.  The goal of the project is to establish a shared solution to common 
 eCommerce problems, and build on each other's work to provide stability.
@@ -24,7 +27,7 @@ standard solutions for:
 - Client Side Validation (coming soon)
 - Flexible SEO (coming soon)
 
-### Ok, but why Spree?
+### Ok, but why [Spree](http://github.com/spree/spree)?
 ***
 
 Spree's first commit was in 2008, making it three years older than Node 1.0 
@@ -39,8 +42,8 @@ Ember.
 ***
 
 Please help!  There's tons to do.  To get a dev environment going, see 
-[CONTRIBUTING.md]() on Github.
+[CONTRIBUTING.md](https://github.com/hhff/spree-ember/blob/master/CONTRIBUTING.md) 
+on Github.
 
-#### **Get started with Spree Ember 
-[over here](http://spree-ember.com/2-getting-started.html).**
+#### **Get started with Spree Ember [over here](./2-getting-started.html).**
 
