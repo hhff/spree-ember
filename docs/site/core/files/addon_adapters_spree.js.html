@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../assets/vendor/prism/prism.css">
+
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="links">
+      <a href="http://spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <a href="http://spree-ember.com">
+        <img class="logo" src="../assets/img/logo.svg"/>
+      </a>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3>spree-ember-core</h3>
+    </div>
+    <div class="row" id="docs-content">
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
+    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
+    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
+    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
+    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+</ul>
+
+<hr>
+<h3>API</h3>
+<hr>
+<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/main/index.html">main</a></li></ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns">
+<div class="page-header">
+    <h3>addon/adapters/spree.js <small>File</small></h3>
+</div>
+
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
+import DS from &#x27;ember-data&#x27;;
+import SpreeSerializer from &#x27;spree-ember-core/serializers/spree&#x27;;
+
+/**
+  The Spree Adapter is responsible for communicating with your Spree store.  It
+  assumes your server has the &#x60;spree_ams&#x60; gem installed.
+
+  @class Adapter
+  @namespace SpreeEmber
+  @module spree-ember-core/adapters/spree
+  @extends DS.ActiveModelAdapter
+  @uses SpreeEmber.Serializer
+*/
+
+export default DS.ActiveModelAdapter.extend({
+  /**
+    The container lookup name for the default Spree serializer.
+
+    @property defaultSerializer
+    @type String
+    @readOnly
+    @default &#x27;-spree&#x27;
+  */
+  defaultSerializer: &#x27;-spree&#x27;,
+
+  /**
+    A reference to the Spree serializer.
+
+    @property serializer
+    @type SpreeEmber.Serializer
+    @readOnly
+    @default SpreeEmber.Serializer
+  */
+  serializer: SpreeSerializer.create(),
+
+  /**
+    A computed property for the server namespace.  If it&#x27;s not set in the Host
+    Application&#x27;s spree configuration by &#x60;spree.apiNamespace&#x60;, it will default to
+    &#x60;api/ams&#x60;, to work out of the box with the &#x60;spree_ams&#x60; Gem.
+
+    @property namespace
+    @type String
+    @readOnly
+    @default &#x27;api/ams&#x27;
+  */
+  namespace: Ember.computed(&#x27;spree.config.apiNamespace&#x27;, function() {
+    var namespace = this.get(&#x27;spree.config.namespace&#x27;);
+    return namespace || &#x27;api/ams&#x27;;
+  }),
+
+
+  /**
+    A computed property for the server host.  If it&#x27;s not set in the Host Application&#x27;s
+    spree configuration by &#x60;spree.apiHost&#x60;, it will default to &#x27;http://localhost:3000&#x27;
+    in all environments aside from test, where it will default to &#x60;null&#x60; (to satisfy
+    Pretender).
+
+    @property host
+    @type String
+    @readOnly
+    @default &#x27;http://localhost:3000&#x27;
+  */
+  host: Ember.computed(&#x27;spree.config.apiHost&#x27;, function() {
+    var host = this.get(&#x27;spree.config.apiHost&#x27;);
+    if (host) {
+      return host;
+    } else {
+      var environment = this.get(&#x27;spree.environment&#x27;);
+      if (environment === &quot;test&quot;) {
+        host = null;
+      } else {
+        host = &#x27;http://localhost:3000&#x27;;
+      }
+      return host;
+    }
+  }),
+
+  /**
+    A computed property for the adapter headers.  We use these headers to authenticate
+    the user against the order we&#x27;re trying to modify.  The &#x60;spree_ams&#x60; gem will
+    look for these, and do the work here.
+
+    @property headers
+    @type String
+    @readOnly
+    @default {}
+  */
+  headers: Ember.computed(&#x27;spree.guestToken&#x27;, &#x27;spree.orderId&#x27;, function() {
+    var guestToken = this.spree.get(&#x27;guestToken&#x27;);
+    var orderId    = this.spree.get(&#x27;orderId&#x27;);
+
+    if (guestToken &amp;&amp; orderId) {
+      return {
+        &quot;X-Spree-Order-Token&quot;: guestToken,
+        &quot;X-Spree-Order-Id&quot;:    orderId
+      };
+    } else {
+      return {};
+    }
+  })
+});
+</code>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
+<script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="../assets/vendor/prism/prism.js"></script>
+
+<script>$(document).foundation();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
+
+</body>
+</html>
