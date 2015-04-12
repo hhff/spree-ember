@@ -2,7 +2,7 @@
     "project": {
         "name": "spree-ember-checkouts",
         "description": "Checkout functionality for a Spree Ember Application.",
-        "version": "0.0.0.3e0b8e5f"
+        "version": "0.0.0.043b42fd"
     },
     "files": {
         "addon/mixins/checkouts.js": {

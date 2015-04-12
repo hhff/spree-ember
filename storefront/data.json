@@ -1,7 +1,7 @@
 {
     "project": {
-        "name": "spree-ember-auth",
-        "description": "The default blueprint for ember-cli addons.",
+        "name": "spree-ember-storefront",
+        "description": "A fully functional frontend starting point for a Spree Ember storefront.",
         "version": "0.0.0.043b42fd"
     },
     "files": {},
