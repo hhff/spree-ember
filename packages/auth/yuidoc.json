@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-auth",
+  "name": "spree-ember-auth",
   "description": "The default blueprint for ember-cli addons.",
   "version": "0.0.0",
   "options": {

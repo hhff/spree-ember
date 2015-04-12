@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-auth",
+  "name": "spree-ember-auth",
   "version": "0.0.0",
   "description": "Authentication for a Spree Ember Application.",
   "directories": {
@@ -29,7 +29,7 @@
     "ember-cli-qunit": "0.3.9",
     "ember-cli-simple-auth": "0.7.3",
     "ember-cli-simple-auth-devise": "0.7.3",
-    "ember-cli-spree-core": "*",
+    "spree-ember-core": "*",
     "ember-cli-uglify": "1.0.1",
     "ember-cli-yuidoc": "0.6.2",
     "ember-data": "1.0.0-beta.16",

@@ -1,14 +1,14 @@
 {
     "project": {
-        "name": "ember-cli-spree-checkouts",
+        "name": "spree-ember-checkouts",
         "description": "Checkout functionality for a Spree Ember Application.",
-        "version": "0.0.0.85e8ab12"
+        "version": "0.0.0.650984e8"
     },
     "files": {
         "addon/mixins/checkouts.js": {
             "name": "addon/mixins/checkouts.js",
             "modules": {
-                "ember-cli-spree-core/mixins/checkouts": 1
+                "spree-ember-core/mixins/checkouts": 1
             },
             "classes": {
                 "Spree Ember.Checkouts": 1
@@ -20,8 +20,8 @@
         }
     },
     "modules": {
-        "ember-cli-spree-core/mixins/checkouts": {
-            "name": "ember-cli-spree-core/mixins/checkouts",
+        "spree-ember-core/mixins/checkouts": {
+            "name": "spree-ember-core/mixins/checkouts",
             "submodules": {},
             "classes": {
                 "Spree Ember.Checkouts": 1
@@ -43,7 +43,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "ember-cli-spree-core/mixins/checkouts",
+            "module": "spree-ember-core/mixins/checkouts",
             "namespace": "Spree Ember",
             "file": "addon/mixins/checkouts.js",
             "line": 5,
@@ -66,7 +66,7 @@
                 }
             ],
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -82,7 +82,7 @@
                 }
             ],
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -98,7 +98,7 @@
                 }
             ],
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -114,7 +114,7 @@
                 }
             ],
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -130,12 +130,12 @@
                 }
             ],
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
             "line": 49,
-            "description": "A method called in the `ember-cli-spree-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
+            "description": "A method called in the `spree-ember-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
             "itemtype": "method",
             "name": "initCheckouts",
             "params": [
@@ -150,7 +150,7 @@
                 "type": "Boolean"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -161,7 +161,7 @@
             "type": "DS.Model",
             "default": "true",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -172,7 +172,7 @@
             "type": "DS.Model",
             "default": "null",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -194,7 +194,7 @@
                 "type": "StateMachine"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -205,7 +205,7 @@
             "type": "Array",
             "default": "Array",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -216,7 +216,7 @@
             "type": "Object",
             "default": "Object",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -236,7 +236,7 @@
                 "type": "Function"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -251,7 +251,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -266,31 +266,31 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
             "line": 452,
-            "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `ember-cli-spree-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
+            "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `spree-ember-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
             "itemtype": "property",
             "name": "guestToken",
             "type": "String",
             "readonly": "",
             "default": "null",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
             "line": 464,
-            "description": "The user's Current Order number, persisted to local storage via\n`ember-cli-spree-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
+            "description": "The user's Current Order number, persisted to local storage via\n`spree-ember-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
             "itemtype": "property",
             "name": "orderId",
             "type": "String",
             "readonly": "",
             "default": "null",
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -304,7 +304,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -329,7 +329,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -361,7 +361,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -376,7 +376,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -389,7 +389,7 @@
                 "type": "Boolean"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
@@ -404,7 +404,7 @@
                 "type": "Ember.RSVP.Promise"
             },
             "class": "Spree Ember.Checkouts",
-            "module": "ember-cli-spree-core/mixins/checkouts"
+            "module": "spree-ember-core/mixins/checkouts"
         }
     ],
     "warnings": []

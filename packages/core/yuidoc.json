@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-core",
+  "name": "spree-ember-core",
   "description": "Core data infrastructure for a Spree Ember Application.",
   "version": "0.0.0",
   "options": {

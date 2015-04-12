@@ -16,22 +16,22 @@ Dir.chdir spree_ember
 
 # Setup Checkouts Dependencies
 Dir.chdir "./packages/checkouts"
-system "npm link ember-cli-spree-core"
+system "npm link spree-ember-core"
 system "ember install"
 system "npm link"
 Dir.chdir spree_ember
 
 # Setup Auth Dependencies
 Dir.chdir "./packages/auth"
-system "npm link ember-cli-spree-core"
+system "npm link spree-ember-core"
 system "ember install"
 system "npm link"
 Dir.chdir spree_ember
 
-# Setup Frontend Dependencies
-Dir.chdir "./packages/frontend"
-system "npm link ember-cli-spree-core"
-system "npm link ember-cli-spree-checkouts"
+# Setup Main Package Dependencies
+Dir.chdir "./packages/main"
+system "npm link spree-ember-core"
+system "npm link spree-ember-checkouts"
 system "ember install"
 system "npm link"
 Dir.chdir spree_ember

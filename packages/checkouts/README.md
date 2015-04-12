@@ -1,4 +1,4 @@
-# Ember-cli-spree-checkouts
+# Spree Ember Checkouts
 
 This README outlines the details of collaborating on this Ember addon.
 

@@ -38,7 +38,7 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3>ember-cli-spree-core</h3>
+      <h3>spree-ember-core</h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
@@ -56,7 +56,7 @@
 <hr>
 <h3>API</h3>
 <hr>
-<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/frontend/index.html">frontend</a></li></ul>
+<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/main/index.html">main</a></li></ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
@@ -84,7 +84,7 @@
 
 
 <!--
-            Module: <a href="../modules/ember-cli-spree-core_services_spree.html">ember-cli-spree-core/services/spree</a>
+            Module: <a href="../modules/spree-ember-core_services_spree.html">spree-ember-core/services/spree</a>
  -->
 
 
@@ -329,8 +329,8 @@ a seperate Store.</p>
 
     <div class="example">
       <div class="example-content">
-        <p>&lt;p&gt;&lt;pre class="code prettyprint"&gt;&lt;code class="language-javascript"&gt;// Products Show Route&lt;/p&gt;
-&lt;p&gt;import Ember from 'ember';&lt;/p&gt;
+        <p>&lt;p&gt;&lt;pre class="code prettyprint"&gt;&lt;code class="language-javascript"&gt;// Products Show Route
+import Ember from 'ember';&lt;/p&gt;
 &lt;p&gt;export default Ember.Route.extend({
 model: function(params) {
 return this.spree.store.findBySlug('product', params.slug);

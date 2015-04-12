@@ -38,7 +38,7 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3>ember-cli-spree-checkouts</h3>
+      <h3>spree-ember-checkouts</h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
@@ -51,7 +51,7 @@
 <hr>
 <h3>API</h3>
 <hr>
-<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/frontend/index.html">frontend</a></li></ul>
+<ul class="side-nav" id="all-packages"><li><a href="http://spree-ember.com/auth/index.html">auth</a></li><li><a href="http://spree-ember.com/checkouts/index.html">checkouts</a></li><li><a href="http://spree-ember.com/core/index.html">core</a></li><li><a href="http://spree-ember.com/main/index.html">main</a></li></ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
@@ -70,7 +70,7 @@ import Ember from &#x27;ember&#x27;;
 
   @class Checkouts
   @namespace Spree Ember
-  @module ember-cli-spree-core/mixins/checkouts
+  @module spree-ember-core/mixins/checkouts
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
@@ -110,7 +110,7 @@ export default Ember.Mixin.create({
   */
 
   /**
-    A method called in the &#x60;ember-cli-spree-checkouts&#x60; initializer after the
+    A method called in the &#x60;spree-ember-checkouts&#x60; initializer after the
     &#x60;Checkouts&#x60; mixin is applied to the Spree service, to initialize functionality
     in this mixin.
 
@@ -514,7 +514,7 @@ export default Ember.Mixin.create({
 
   /**
     The token used to Authenticate the current user against the current order.  Persisted
-    to local storage via &#x60;ember-cli-spree-core/mixins/storable&#x60;.  This property is
+    to local storage via &#x60;spree-ember-core/mixins/storable&#x60;.  This property is
     sent to the Spree server via the header &#x60;X-Spree-Order-Token&#x60;.
 
     @property guestToken
@@ -526,7 +526,7 @@ export default Ember.Mixin.create({
 
   /**
     The user&#x27;s Current Order number, persisted to local storage via
-    &#x60;ember-cli-spree-core/mixins/storable&#x60;.  This property is sent to the Spree
+    &#x60;spree-ember-core/mixins/storable&#x60;.  This property is sent to the Spree
     server via the header &#x60;X-Spree-Order-Id&#x60;.
 
     @property orderId

@@ -1,3 +1,3 @@
-import SpreeAdapter from 'ember-cli-spree-core/adapters/spree';
+import SpreeAdapter from 'spree-ember-core/adapters/spree';
 
 export default SpreeAdapter;

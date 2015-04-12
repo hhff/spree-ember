@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-checkouts",
+  "name": "spree-ember-checkouts",
   "description": "Checkout functionality for a Spree Ember Application.",
   "version": "0.0.0",
   "options": {

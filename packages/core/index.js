@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-spree-core'
+  name: 'spree-ember-core'
 };

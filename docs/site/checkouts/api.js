@@ -4,12 +4,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "Spree Ember.Checkouts"
     ],
     "modules": [
-        "ember-cli-spree-core_mixins_checkouts"
+        "spree-ember-core_mixins_checkouts"
     ],
     "allModules": [
         {
-            "displayName": "ember-cli-spree-core/mixins/checkouts",
-            "name": "ember-cli-spree-core_mixins_checkouts",
+            "displayName": "spree-ember-core/mixins/checkouts",
+            "name": "spree-ember-core_mixins_checkouts",
             "description": "Provides Current Order and Checkout Functionality to the Spree service."
         }
     ]

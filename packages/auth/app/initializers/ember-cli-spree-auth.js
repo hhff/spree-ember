@@ -41,8 +41,8 @@ export function initialize(container, application) {
 }
 
 export default {
-  name: 'ember-cli-spree-auth',
+  name: 'spree-ember-auth',
   before: 'simple-auth',
-  after: 'ember-cli-spree-core',
+  after: 'spree-ember-core',
   initialize: initialize
 };

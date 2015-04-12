@@ -1,4 +1,4 @@
-# Ember-cli-spree-auth
+# Spree Ember Auth
 
 This README outlines the details of collaborating on this Ember addon.
 
