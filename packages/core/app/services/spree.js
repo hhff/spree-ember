@@ -22,9 +22,9 @@ export default Ember.Object.extend(Ember.Evented, Storable, {
 
     @property localStorageKey
     @type String
-    @default "spree_ember"
+    @default "spree-ember"
   */
-  localStorageKey: 'spree_ember',
+  localStorageKey: 'spree-ember',
 
   /**
     A copy of the "spree" entry in the Host Application environment config.

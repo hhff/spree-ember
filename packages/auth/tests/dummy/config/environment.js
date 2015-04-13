@@ -37,6 +37,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    
+    ENV['spreeEmber'] = {
+      apiHost: 'http://testing.spree-ember.com'
+    },
+    ENV['simple-auth'] = {
+      crossOriginWhitelist: ['*']
+    }
   }
 
   if (environment === 'production') {

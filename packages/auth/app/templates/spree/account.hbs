@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="small-12 columns">
+    <form {{action 'updateCurrentUser' on='submit'}}>
+      <fieldset>
+        <legend>Account</legend>
+        {{input placeholder="Email" value=session.currentUser.email}}
+        <button class="expand" type="submit">Update</button>
+        <button class="expand" {{action 'invalidate' target=session}}>Sign Out</button>
+      </fieldset>
+    </form>
+  </div>
+</div>

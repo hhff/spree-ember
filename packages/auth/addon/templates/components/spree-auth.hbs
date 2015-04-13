@@ -1,0 +1,20 @@
+<form {{action 'submit' on='submit'}}>
+  <fieldset>
+    {{#if isSignup}}
+      <legend>Sign Up</legend>
+    {{else}}
+      <legend>Sign In</legend>
+    {{/if}}
+    {{input placeholder="Email" value=identification}}
+    {{input placeholder="Password" type="Password" value=password}}
+    {{#if isSignup}}
+      {{input placeholder="Password Confirmation" type="Password" value=passwordConfirmation}}
+    {{/if}}
+    <button type="submit" class="expand">Continue</button>
+    {{#if isSignup}}
+      {{#link-to 'spree.signin'}}Or sign in here.{{/link-to}}
+    {{else}}
+      {{#link-to 'spree.signup'}}Or create a new account.{{/link-to}}
+    {{/if}}
+  </fieldset>
+</form>
