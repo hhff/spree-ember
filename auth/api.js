@@ -1,6 +1,12 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
-    "classes": [],
+    "classes": [
+        "Authenticator",
+        "Authorizer",
+        "Router",
+        "SpreeAuth",
+        "UserRouteActions"
+    ],
     "modules": [],
     "allModules": []
 } };

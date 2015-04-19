@@ -54,7 +54,42 @@ application:</p>
 <pre><code class="lang-bash">ember install spree-ember-auth
 </code></pre>
 <p>This will install Ember Simple Auth into your Spree Ember application, and add
-some convenince methods to your global <code>spree</code> object.</p>
+some useful files to your application.</p>
+<h3 id="setup">Setup</h3>
+<p>Now you&#39;ll need to tell your router about the new Spree Auth routes:</p>
+<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
+import config from &#39;./config/environment&#39;;
+
+// This line imports the Spree Router.
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
+
+// This line import the Spree Auth Router.
+import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this, {
+    mountPath:    &#39;/spree&#39;,
+    cartPath:     &#39;cart&#39;,
+    productsPath: &#39;products&#39;,
+    checkoutPath: &#39;checkout&#39;
+  });
+
+  // You&#39;ll get an error if your Mount Path is different to your Spree Router,
+  // these need to match.
+  spreeAuthRouter(this, {
+    mountPath:   &#39;/spree&#39;,
+    signinPath:  &#39;login&#39;,
+    signupPath:  &#39;new&#39;,
+    accountPath: &#39;profile&#39;
+  });
+});
+
+export default Router;
+</code></pre>
 <h3 id="creating-authenticating-users">Creating &amp; Authenticating Users</h3>
 <hr>
 <p>The <code>spree-ember-auth</code> package adds an <a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>

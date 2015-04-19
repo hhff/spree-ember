@@ -38,119 +38,96 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3><a href="http://www.spree-ember.com/core/index.html">spree-ember-core</a></h3>
+      <h3><a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth</a></h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Authenticator.html">Authenticator</a></li>
+    <li><a href="../classes/Authorizer.html">Authorizer</a></li>
+    <li><a href="../classes/Router.html">Router</a></li>
+    <li><a href="../classes/SpreeAuth.html">SpreeAuth</a></li>
+    <li><a href="../classes/UserRouteActions.html">UserRouteActions</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
-    <h3>addon/adapters/spree.js <small>File</small></h3>
+    <h3>addon/components/spree-auth.js <small>File</small></h3>
 </div>
 
 <div class="file">
 <pre class="language-javascript">
 <code class="language-javascript">
 import Ember from &#x27;ember&#x27;;
-import DS from &#x27;ember-data&#x27;;
-
+import layout from &#x27;../templates/components/spree-auth&#x27;;
 /**
-  The Spree Adapter is responsible for communicating with your Spree store.  It
-  assumes your server has the &#x60;spree_ams&#x60; gem installed.
+  A simple Fieldset that doubles as a Signin &amp; Signup form.  Sends action:
+  &#x60;authenticateUser&#x60; or &#x60;createAndAuthenticateUser&#x60; depending on whether
+  &#x60;isSignup&#x60; is set to &#x60;true&#x60; or &#x60;false&#x60;.
 
-  @class Adapter
-  @namespace SpreeEmber
-  @module spree-ember-core/adapters/spree
-  @extends DS.ActiveModelAdapter
-  @uses SpreeEmber.Serializer
+  @class SpreeAuth
+  @extends Ember.Component
 */
-
-export default DS.ActiveModelAdapter.extend({
+export default Ember.Component.extend({
   /**
-    The container lookup name for the default Spree serializer.
-
-    @property defaultSerializer
+    The layout file used for the component.  To override, run:
+    &#x60;&#x60;&#x60;
+    ember g spree-auth-component
+    &#x60;&#x60;&#x60;
+    
+    This will install the default layout file at: &#x60;app/templates/components/spree-auth&#x60;.
+    
+    @property layout
     @type String
-    @readOnly
-    @default &#x27;-spree&#x27;
   */
-  defaultSerializer: &#x27;-spree&#x27;,
-
+  layout: layout,
   /**
-    A computed property for the server namespace.  If it&#x27;s not set in the Host
-    Application&#x27;s spree configuration by &#x60;spree.apiNamespace&#x60;, it will default to
-    &#x60;api/ams&#x60;, to work out of the box with the &#x60;spree_ams&#x60; Gem.
-
-    @property namespace
-    @type String
-    @readOnly
-    @default &#x27;api/ams&#x27;
+    The mode of the component. 
+    
+    @property isSignup
+    @type Boolean
+    @default false
   */
-  namespace: Ember.computed(&#x27;spree.config.apiNamespace&#x27;, function() {
-    var namespace = this.get(&#x27;spree.config.namespace&#x27;);
-    return namespace || &#x27;api/ams&#x27;;
-  }),
-
-
+  isSignup: false,
   /**
-    A computed property for the server host.  If it&#x27;s not set in the Host Application&#x27;s
-    spree configuration by &#x60;spree.apiHost&#x60;, it will default to &#x27;http://localhost:3000&#x27;
-    in all environments aside from test, where it will default to &#x60;null&#x60; (to satisfy
-    Pretender).
-
-    @property host
+    The action that is sent when &#x60;isSignup&#x60; is &#x60;false&#x60;.  This is caught by the action
+    defined in the &#x60;spree-auth-user-route-mixin&#x60;.
+    
+    @property authAction
     @type String
-    @readOnly
-    @default &#x27;http://localhost:3000&#x27;
+    @default &#x27;authenticateUser&#x27;
   */
-  host: Ember.computed(&#x27;spree.config.apiHost&#x27;, function() {
-    var host = this.get(&#x27;spree.config.apiHost&#x27;);
-    if (host) {
-      return host;
-    } else {
-      var environment = this.get(&#x27;spree.environment&#x27;);
-      if (environment === &quot;test&quot;) {
-        host = null;
-      } else {
-        host = &#x27;http://localhost:3000&#x27;;
-      }
-      return host;
+  authAction: &#x27;authenticateUser&#x27;,
+  /**
+    The action that is sent when &#x60;isSignup&#x60; is &#x60;true&#x60;.  This is caught by the action
+    defined in the &#x60;spree-auth-user-route-mixin&#x60;.
+    
+    @property createAction
+    @type String
+    @default &#x27;createAndAuthenticateUser&#x27;
+  */
+  createAction: &#x27;createAndAuthenticateUser&#x27;,
+  identification: null,
+  password: null,
+  passwordConfirmation: null,
+
+  actions: {
+    submit: function() {
+      var identification       = this.get(&#x27;identification&#x27;);
+      var password             = this.get(&#x27;password&#x27;);
+      var passwordConfirmation = this.get(&#x27;passwordConfirmation&#x27;);
+
+      var action = this.get(&#x27;isSignup&#x27;) ? &#x27;createAction&#x27; : &#x27;authAction&#x27;;
+      
+      this.sendAction(action, {
+        identification: identification,
+        password: password,
+        passwordConfirmation: passwordConfirmation
+      });
     }
-  }),
-
-  /**
-    A computed property for the adapter headers.  We use these headers to authenticate
-    the user against the order we&#x27;re trying to modify.  The &#x60;spree_ams&#x60; gem will
-    look for these, and do the work here.
-
-    @property headers
-    @type String
-    @readOnly
-    @default {}
-  */
-  headers: Ember.computed(&#x27;spree.guestToken&#x27;, &#x27;spree.orderId&#x27;, function() {
-    var guestToken = this.spree.get(&#x27;guestToken&#x27;);
-    var orderId    = this.spree.get(&#x27;orderId&#x27;);
-
-    if (guestToken &amp;&amp; orderId) {
-      return {
-        &quot;X-Spree-Order-Token&quot;: guestToken,
-        &quot;X-Spree-Order-Id&quot;:    orderId
-      };
-    } else {
-      return { };
-    }
-  })
+  }
 });
 
 </code>

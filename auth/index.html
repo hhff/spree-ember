@@ -45,6 +45,11 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
+    <li><a href="./classes/Authenticator.html">Authenticator</a></li>
+    <li><a href="./classes/Authorizer.html">Authorizer</a></li>
+    <li><a href="./classes/Router.html">Router</a></li>
+    <li><a href="./classes/SpreeAuth.html">SpreeAuth</a></li>
+    <li><a href="./classes/UserRouteActions.html">UserRouteActions</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -63,6 +68,41 @@ the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine 
 </code></pre>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
+<h3 id="setup">Setup</h3>
+<p>Now you&#39;ll need to tell your router about the new Spree Auth routes:</p>
+<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
+import config from &#39;./config/environment&#39;;
+
+// This line imports the Spree Router.
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
+
+// This line import the Spree Auth Router.
+import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this, {
+    mountPath:    &#39;/spree&#39;,
+    cartPath:     &#39;cart&#39;,
+    productsPath: &#39;products&#39;,
+    checkoutPath: &#39;checkout&#39;
+  });
+
+  // You&#39;ll get an error if your Mount Path is different to your Spree Router,
+  // these need to match.
+  spreeAuthRouter(this, {
+    mountPath:   &#39;/spree&#39;,
+    signinPath:  &#39;login&#39;,
+    signupPath:  &#39;new&#39;,
+    accountPath: &#39;profile&#39;
+  });
+});
+
+export default Router;
+</code></pre>
 <h3 id="creating-and-authenticating-users">Creating and Authenticating Users</h3>
 <p>The Spree Store and User model is provided by <code>spree-ember-core</code>.</p>
 <pre><code class="lang-javascript">// A contrived example.

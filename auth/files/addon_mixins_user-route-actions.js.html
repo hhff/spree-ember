@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../assets/vendor/prism/prism.css">
+
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="links">
+      <a href="http://www.spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://www.spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <a href="http://www.spree-ember.com">
+        <img class="logo" src="../assets/img/logo.svg"/>
+      </a>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3><a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth</a></h3>
+    </div>
+    <div class="row" id="docs-content">
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+    <li><a href="../classes/Authenticator.html">Authenticator</a></li>
+    <li><a href="../classes/Authorizer.html">Authorizer</a></li>
+    <li><a href="../classes/Router.html">Router</a></li>
+    <li><a href="../classes/SpreeAuth.html">SpreeAuth</a></li>
+    <li><a href="../classes/UserRouteActions.html">UserRouteActions</a></li>
+</ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns">
+<div class="page-header">
+    <h3>addon/mixins/user-route-actions.js <small>File</small></h3>
+</div>
+
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
+/**
+  A mixin for providing utility methods to routes associated with User behaviour.
+  These are grouped together in the case the ambitious developers want to glob this
+  behaviour together into a single route, for a highly interactive experience.
+
+  **Important:** The &#x60;spree-ember-auth&#x60; install generator will attempt to overwrite your application
+  route.  If you opt out of this, or you&#x27;re defining it in a pod instead, you&#x27;ll
+  need to ensure that you&#x27;re mixing Simple Auth&#x27;s Application Route Mixin into your
+  application route.
+
+  &#x60;&#x60;&#x60;js
+  import ApplicationRouteMixin from &#x27;simple-auth/mixins/application-route-mixin&#x27;;
+  &#x60;&#x60;&#x60;
+
+  This is essentially a thin wrapper on Ember Simple Auth.  If you&#x27;d like to
+  modify behaviour or catch events relating to Authentication, please refer to
+  the [Simple Auth Documentnation](http://ember-simple-auth.com/ember-simple-auth-api-docs.html)
+
+  @class UserRouteActions
+  @extends Ember.Mixin
+*/
+
+export default Ember.Mixin.create({
+  /**
+    Triggered on the &#x60;spree&#x60; service whenever a user is successfully created 
+    through the &#x60;createAndAuthenticateUser&#x60; call.
+
+    @event didCreateUser
+    @param {DS.Model} newUser The newly created user model. 
+  */
+
+  /**
+    Triggered on the &#x60;spree&#x60; service whenever the &#x60;createAndAuthenticateUser&#x60;
+    call fails to create a new user.
+
+    @event userCreateFailed
+    @param {Error} error The server error. 
+  */
+
+  /**
+    Triggered on the &#x60;spree&#x60; service whenever the &#x60;updateCurrentUser&#x60;
+    call updates the current user successfully.
+
+    @event didUpdateCurrentUser
+    @param {DS.Model} currentUser The newly updated Current User. 
+  */
+
+  /**
+    Triggered on the &#x60;spree&#x60; service whenever the &#x60;updateCurrentUser&#x60;
+    call updates the current user successfully.
+
+    @event currentUserUpdateFailed 
+    @param {Error} error The server error. 
+  */
+  actions: {
+    /**
+      The &#x60;authenticateUser&#x60; call simply wraps the &#x60;session#authenticate&#x60; method
+      provided by Ember Simple Auth.
+
+      @method authenticateUser
+      @param {Object} params A javascript object with identification, password, 
+      and password confirmation (optional).
+      @return {Ember.RSVP.Promise} A promise that resolves successfully on a
+      successful authentication.
+    */
+    authenticateUser: function(params) {
+      return this.get(&#x27;session&#x27;).authenticate(&#x27;simple-auth-authenticator:spree&#x27;, params);
+    },
+    /**
+      The &#x60;createAndAuthenticateUser&#x60; method attempts to create a new Spree User,
+      and when successful, triggers the &#x60;authenticateUser&#x60; action.
+      
+      @method createAndAuthenticateUser
+      @param {Object} params A javascript object with identification, password, 
+      and password confirmation (optional).
+      @return {Ember.RSVP.Promise} A promise that resolves successfully on a
+      successful create then authenticate.
+    */
+    createAndAuthenticateUser: function(params) {
+      var _this   = this;
+      var newUser = this.spree.store.createRecord(&#x27;user&#x27;, { 
+        email: params.identification,
+        password: params.password,
+        passwordConfirmation: params.passwordConfirmation
+      });
+      
+      return newUser.save().then(
+        function(newUser) {
+          _this.spree.trigger(&#x27;didCreateUser&#x27;, newUser);
+          return _this.send(&#x27;authenticateUser&#x27;, params);
+        },
+        function(error) {
+          _this.spree.trigger(&#x27;userCreateFailed&#x27;, error);
+          _this.spree.trigger(&#x27;serverError&#x27;, error);
+          return error;
+        }
+      );
+    },
+    /**
+      The &#x60;updateCurrentUser&#x60; method attempts to save/update the current Spree user.
+      It expects that changes to the &#x60;session.currentUser&#x60; model have been made
+      in place, and doesn&#x27;t take any arguments.
+      
+      @method createAndAuthenticateUser
+      @return {Ember.RSVP.Promise} A promise that resolves to the &#x60;currentUser&#x60;
+      when successful.
+    */
+    updateCurrentUser: function() {
+      var _this = this;
+      return this.get(&#x27;session.currentUser&#x27;).save().then(
+        function(currentUser) {
+          _this.spree.trigger(&#x27;didUpdateCurrentUser&#x27;, currentUser);
+          return currentUser;
+        },
+        function(error) {
+          _this.spree.trigger(&#x27;currentUserUpdateFailed&#x27;, error);
+          _this.spree.trigger(&#x27;serverError&#x27;, error);
+          return error;
+        }
+      );
+    }
+  }
+});
+
+</code>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
+<script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="../assets/vendor/prism/prism.js"></script>
+
+<script>$(document).foundation();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
+
+</body>
+</html>

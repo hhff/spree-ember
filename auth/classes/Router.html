@@ -38,58 +38,95 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3><a href="http://www.spree-ember.com/core/index.html">spree-ember-core</a></h3>
+      <h3><a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth</a></h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Authenticator.html">Authenticator</a></li>
+    <li><a href="../classes/Authorizer.html">Authorizer</a></li>
+    <li><a href="../classes/Router.html">Router</a></li>
+    <li><a href="../classes/SpreeAuth.html">SpreeAuth</a></li>
+    <li><a href="../classes/UserRouteActions.html">UserRouteActions</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
-<div class="page-header">
-    <h1>spree-ember-core_adapters_spree <small>Module</small></h1>
+<div class="class-definition panel">
+  <div class="page-header">
+    <h3>Router <small>Class</small></h3>
+  </div>
+
+  <div class="well well-small">
+
+
+      <div class="foundat">
+        <p>Defined in: <a href="../files/addon_router.js.html#l1"><code>addon&#x2F;router.js:1</code></a></p>
+      </div>
+
+
+<!--
+ -->
+
+
+  </div>
+
+
+  <div class="well well-small">
+    <p>The Spree Auth router is designed to be imported by a host application's Router
+to setup the default routes required for Spree Auth.</p>
+<p><strong>Note:</strong> If you're setting a Mount Point, it must be the same as the
+Mount Point set for the <code>spree-ember-storefront</code> router.</p>
+<p>In <code>router.js</code>:</p>
+<pre class="code prettyprint"><code class="language-javascript">import Ember from 'ember';
+import config from './config/environment';
+
+import spreeRouter from 'spree-ember-storefront/router';
+import spreeAuthRouter from 'spree-ember-auth/router';
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this, {
+    mountPath:    '/spree',
+    cartPath:     'cart',
+    productsPath: 'products',
+    checkoutPath: 'checkout'
+  });
+
+  // You'll get an error if your Mount Path is different to your Spree Router,
+  // these need to match.
+  spreeAuthRouter(this, {
+    mountPath:   '/spree',
+    signinPath:  'login',
+    signupPath:  'new',
+    accountPath: 'profile'
+  });
+});
+
+export default Router;
+</code></pre>
+
+  </div>
+
 </div>
 
-<div class="clearfix well well-small">
-
-
-        <div class="foundat">
-            Defined in: <a href="../files/addon_adapters_spree.js.html#l4"><code>addon&#x2F;adapters&#x2F;spree.js:4</code></a>
-        </div>
-
+<div class="panel">
+  <ul class="tabs" data-tab>
+  </ul>
 </div>
 
-
-<div class="moduledesc well well-small">
-    <p>The Spree Adapter is responsible for communicating with your Spree store.  It
-assumes your server has the <code>spree_ams</code> gem installed.</p>
-
-</div>
+<div class="">
+  <div class="tabs-content">
 
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
 
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/SpreeEmber.Adapter.html">
-                        SpreeEmber.Adapter
-                    </a>
-                </li>
-            </ul>
-    </div>
 
-    <div class="yui3-u-1-2">
-    </div>
+
+  </div>
 </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
         "name": "spree-ember-storefront",
         "shortName": "storefront",
         "description": "A fully functional frontend starting point for a Spree Ember storefront.",
-        "version": "0.0.0.211a59f1"
+        "version": "0.0.0.34c76441"
     },
     "files": {},
     "modules": {},

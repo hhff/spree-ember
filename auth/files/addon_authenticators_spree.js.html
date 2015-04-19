@@ -38,119 +38,79 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3><a href="http://www.spree-ember.com/core/index.html">spree-ember-core</a></h3>
+      <h3><a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth</a></h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Authenticator.html">Authenticator</a></li>
+    <li><a href="../classes/Authorizer.html">Authorizer</a></li>
+    <li><a href="../classes/Router.html">Router</a></li>
+    <li><a href="../classes/SpreeAuth.html">SpreeAuth</a></li>
+    <li><a href="../classes/UserRouteActions.html">UserRouteActions</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
-    <h3>addon/adapters/spree.js <small>File</small></h3>
+    <h3>addon/authenticators/spree.js <small>File</small></h3>
 </div>
 
 <div class="file">
 <pre class="language-javascript">
 <code class="language-javascript">
-import Ember from &#x27;ember&#x27;;
-import DS from &#x27;ember-data&#x27;;
-
+import DeviseAuthenticator from &#x27;simple-auth-devise/authenticators/devise&#x27;;
 /**
-  The Spree Adapter is responsible for communicating with your Spree store.  It
-  assumes your server has the &#x60;spree_ams&#x60; gem installed.
+  The Spree Authenticator is responsible for Authenticating users against  your 
+  Spree store.  It assumes your server has the &#x60;spree_ams&#x60; gem installed.  The Spree
+  Auth initializer with dynamically create and set the Server Token Endpoint from
+  the Spree Core Adapter.
 
-  @class Adapter
-  @namespace SpreeEmber
-  @module spree-ember-core/adapters/spree
-  @extends DS.ActiveModelAdapter
-  @uses SpreeEmber.Serializer
+  @class Authenticator
+  @extends SimpleAuthDevise.Authenticator
 */
-
-export default DS.ActiveModelAdapter.extend({
+export default DeviseAuthenticator.extend({
   /**
-    The container lookup name for the default Spree serializer.
+    The endpoint where the Authenticator will attempt to Authenticate Users.  This
+    is set dynamically by the &#x60;spree-ember-auth&#x60; initializer, by building a URL
+    from the &#x60;spree-ember-core&#x60; adapter.
+
+    @property serverTokenEndpoint
+    @type String
+    @readOnly
+    @default &#x27;http://localhost:3000/api/ams/users/token&#x27;
+  */ 
+  serverTokenEndpoint: &#x27;http://localhost:3000/api/ams/users/token&#x27;,
+  /**
+    The Rails Resource that we&#x27;re authenticating.  When using Spree&#x27;s 
+    &#x60;spree-auth-devise&#x60;, this is simply &#x60;user&#x60;.
 
     @property defaultSerializer
     @type String
     @readOnly
     @default &#x27;-spree&#x27;
   */
-  defaultSerializer: &#x27;-spree&#x27;,
-
+  resourceName: &#x27;user&#x27;,
   /**
-    A computed property for the server namespace.  If it&#x27;s not set in the Host
-    Application&#x27;s spree configuration by &#x60;spree.apiNamespace&#x60;, it will default to
-    &#x60;api/ams&#x60;, to work out of the box with the &#x60;spree_ams&#x60; Gem.
+    The name of the unique key returned by the server on a successful authentication.
 
-    @property namespace
+    @property tokenAttributeName
     @type String
     @readOnly
-    @default &#x27;api/ams&#x27;
+    @default &#x27;token&#x27;
   */
-  namespace: Ember.computed(&#x27;spree.config.apiNamespace&#x27;, function() {
-    var namespace = this.get(&#x27;spree.config.namespace&#x27;);
-    return namespace || &#x27;api/ams&#x27;;
-  }),
-
-
+  tokenAttributeName: &#x27;token&#x27;,
   /**
-    A computed property for the server host.  If it&#x27;s not set in the Host Application&#x27;s
-    spree configuration by &#x60;spree.apiHost&#x60;, it will default to &#x27;http://localhost:3000&#x27;
-    in all environments aside from test, where it will default to &#x60;null&#x60; (to satisfy
-    Pretender).
+    The name of the identification attribute of the user.  By default in Spree, 
+    this is email.
 
-    @property host
+    @property indentificationAttributeName
     @type String
     @readOnly
-    @default &#x27;http://localhost:3000&#x27;
+    @default &#x27;email&#x27;
   */
-  host: Ember.computed(&#x27;spree.config.apiHost&#x27;, function() {
-    var host = this.get(&#x27;spree.config.apiHost&#x27;);
-    if (host) {
-      return host;
-    } else {
-      var environment = this.get(&#x27;spree.environment&#x27;);
-      if (environment === &quot;test&quot;) {
-        host = null;
-      } else {
-        host = &#x27;http://localhost:3000&#x27;;
-      }
-      return host;
-    }
-  }),
-
-  /**
-    A computed property for the adapter headers.  We use these headers to authenticate
-    the user against the order we&#x27;re trying to modify.  The &#x60;spree_ams&#x60; gem will
-    look for these, and do the work here.
-
-    @property headers
-    @type String
-    @readOnly
-    @default {}
-  */
-  headers: Ember.computed(&#x27;spree.guestToken&#x27;, &#x27;spree.orderId&#x27;, function() {
-    var guestToken = this.spree.get(&#x27;guestToken&#x27;);
-    var orderId    = this.spree.get(&#x27;orderId&#x27;);
-
-    if (guestToken &amp;&amp; orderId) {
-      return {
-        &quot;X-Spree-Order-Token&quot;: guestToken,
-        &quot;X-Spree-Order-Id&quot;:    orderId
-      };
-    } else {
-      return { };
-    }
-  })
+  identificationAttributeName: &#x27;email&#x27;
 });
 
 </code>
