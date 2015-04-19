@@ -54,6 +54,8 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-auth">Spree Ember Auth</h1>
+<p><a href="https://travis-ci.org/hhff/spree-ember"><img src="https://travis-ci.org/hhff/spree-ember.svg?branch=master" alt="Build Status"></a>
+<a href="https://gitter.im/hhff/spree-ember?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/hhff/spree-ember"></a></p>
 <p>The Spree Ember Auth is a wrapper on <a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>,
 that provides a custom Spree <code>Authorizer</code> and <code>Authenticator</code> that work out of 
 the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine via 
@@ -66,6 +68,12 @@ the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine 
 <h2 id="installation">Installation</h2>
 <pre><code class="lang-bash">ember install spree-ember-auth
 </code></pre>
+<p>This will run the <code>spree-ember-auth</code> generator, which does a few key things:</p>
+<ul>
+<li>Adds Ember CLI Simple Auth to your host application</li>
+<li>Installs user related routes at <code>app/routes/spree</code></li>
+<li>Installs user related route templates at <code>app/templates/spree</code></li>
+</ul>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
 <h3 id="setup">Setup</h3>
@@ -73,10 +81,26 @@ the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine 
 <pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
 import config from &#39;./config/environment&#39;;
 
-// This line imports the Spree Router.
 import spreeRouter from &#39;spree-ember-storefront/router&#39;;
+import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
 
-// This line import the Spree Auth Router.
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this);
+  spreeAuthRouter(this);
+});
+
+export default Router;
+</code></pre>
+<p>You can also have finer control over the route names in the same way as
+<code>spree-ember-storefront</code>:</p>
+<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
+import config from &#39;./config/environment&#39;;
+
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
 import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
 
 var Router = Ember.Router.extend({
@@ -86,50 +110,30 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   spreeRouter(this, {
     mountPath:    &#39;/spree&#39;,
-    cartPath:     &#39;cart&#39;,
-    productsPath: &#39;products&#39;,
-    checkoutPath: &#39;checkout&#39;
+    cartPath:     &#39;basket&#39;,
+    productsPath: &#39;items&#39;,
+    checkoutPath: &#39;pay&#39;
   });
 
-  // You&#39;ll get an error if your Mount Path is different to your Spree Router,
-  // these need to match.
   spreeAuthRouter(this, {
     mountPath:   &#39;/spree&#39;,
     signinPath:  &#39;login&#39;,
-    signupPath:  &#39;new&#39;,
+    signupPath:  &#39;new-user&#39;,
     accountPath: &#39;profile&#39;
   });
 });
 
 export default Router;
 </code></pre>
-<h3 id="creating-and-authenticating-users">Creating and Authenticating Users</h3>
-<p>The Spree Store and User model is provided by <code>spree-ember-core</code>.</p>
-<pre><code class="lang-javascript">// A contrived example.
-
-var email    = &quot;me@hughfrancis.me&quot;;
-var password = &quot;SpreeEmber123&quot;;
-
-var newCustomer = this.spree.store.createRecord(&quot;user&quot;, {
-  email:    email, 
-  password: password,
-  passwordConfirmation: password
-});
-
-var _this = this;
-
-newCustomer.save().then(
-  function(newCustomer) {
-    // You probably don&#39;t want to nest callbacks...
-    _this.session.authenticate(email, password).then(
-      function() {
-        // Now, all requests will contain an Authorization Header for Spree.
-        alert(&quot;Session Authenticated and Persisted to Local Storage!&quot;);
-      }
-    )
-  }
-);
+<p><strong>Please Note</strong>: Your <code>mountPath</code> must match your <code>spree-ember-storefront</code>
+<code>mountPath</code>.</p>
+<h3 id="overriding-the-signin-signup-component">Overriding the Signin / Signup Component</h3>
+<p>You can override the appearance and behaviour of the <code>{{spree-auth}}</code> component
+by running the generator:</p>
+<pre><code class="lang-bash">ember g spree-ember-auth-component
 </code></pre>
+<p>This will install a template file at <code>app/templates/components/spree-auth</code> and a
+component file at <code>app/components/spree-auth</code>.</p>
       </div>
     </div>
   </div>
