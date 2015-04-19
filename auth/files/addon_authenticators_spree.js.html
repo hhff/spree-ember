@@ -86,10 +86,10 @@ export default DeviseAuthenticator.extend({
     The Rails Resource that we&#x27;re authenticating.  When using Spree&#x27;s 
     &#x60;spree-auth-devise&#x60;, this is simply &#x60;user&#x60;.
 
-    @property defaultSerializer
+    @property resourceName
     @type String
     @readOnly
-    @default &#x27;-spree&#x27;
+    @default &#x27;user&#x27;
   */
   resourceName: &#x27;user&#x27;,
   /**

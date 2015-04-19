@@ -90,7 +90,7 @@
             "extension_for": [],
             "file": "addon/components/spree-auth.js",
             "line": 3,
-            "description": "A simple Fieldset that doubles as a Signin & Signup form.  Sends action:\n`authenticateUser` or `createAndAuthenticateUser` depending on whether\n`isSignup` is set to `true` or `false`.",
+            "description": "A simple Fieldset that doubles as a Signin & Signup form.  Sends action:\n`authenticateUser` or `createAndAuthenticateUser` depending on whether\n`isSignup` is set to `true` or `false`.\n\n**To Override:** You'll need to run the generator:\n\n```bash\nember g spree-ember-auth-component\n```\n\nThis will install a layout file at: `app/templates/components/spree-auth`, and\na component file at `app/components/spree-auth`, ready to be extended.",
             "extends": "Ember.Component"
         },
         "UserRouteActions": {
@@ -136,10 +136,10 @@
             "line": 23,
             "description": "The Rails Resource that we're authenticating.  When using Spree's \n`spree-auth-devise`, this is simply `user`.",
             "itemtype": "property",
-            "name": "defaultSerializer",
+            "name": "resourceName",
             "type": "String",
             "readonly": "",
-            "default": "'-spree'",
+            "default": "'user'",
             "class": "Authenticator"
         },
         {
@@ -177,7 +177,7 @@
         {
             "file": "addon/authorizers/spree.js",
             "line": 20,
-            "description": "Authorizes an XHR request by sending the `X-Spree-Token` header when the \n`session` is Authenticated.\n\n```\nX-Spree-Token: <Current User's Spree API Key>\n```",
+            "description": "Authorizes an XHR request by sending the `X-Spree-Token` header when the \n`session` is Authenticated.",
             "itemtype": "method",
             "name": "authorize",
             "params": [
@@ -191,16 +191,7 @@
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 12,
-            "description": "The layout file used for the component.  To override, run:\n```\nember g spree-auth-component\n```\n\nThis will install the default layout file at: `app/templates/components/spree-auth`.",
-            "itemtype": "property",
-            "name": "layout",
-            "type": "String",
-            "class": "SpreeAuth"
-        },
-        {
-            "file": "addon/components/spree-auth.js",
-            "line": 24,
+            "line": 22,
             "description": "The mode of the component.",
             "itemtype": "property",
             "name": "isSignup",
@@ -210,7 +201,7 @@
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 32,
+            "line": 30,
             "description": "The action that is sent when `isSignup` is `false`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "authAction",
@@ -220,7 +211,7 @@
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 41,
+            "line": 39,
             "description": "The action that is sent when `isSignup` is `true`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "createAction",

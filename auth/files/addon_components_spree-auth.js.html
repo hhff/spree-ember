@@ -67,21 +67,19 @@ import layout from &#x27;../templates/components/spree-auth&#x27;;
   &#x60;authenticateUser&#x60; or &#x60;createAndAuthenticateUser&#x60; depending on whether
   &#x60;isSignup&#x60; is set to &#x60;true&#x60; or &#x60;false&#x60;.
 
+  **To Override:** You&#x27;ll need to run the generator:
+
+  &#x60;&#x60;&#x60;bash
+  ember g spree-ember-auth-component
+  &#x60;&#x60;&#x60;
+
+  This will install a layout file at: &#x60;app/templates/components/spree-auth&#x60;, and
+  a component file at &#x60;app/components/spree-auth&#x60;, ready to be extended.
+
   @class SpreeAuth
   @extends Ember.Component
 */
 export default Ember.Component.extend({
-  /**
-    The layout file used for the component.  To override, run:
-    &#x60;&#x60;&#x60;
-    ember g spree-auth-component
-    &#x60;&#x60;&#x60;
-    
-    This will install the default layout file at: &#x60;app/templates/components/spree-auth&#x60;.
-    
-    @property layout
-    @type String
-  */
   layout: layout,
   /**
     The mode of the component. 
