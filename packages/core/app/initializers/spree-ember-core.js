@@ -1,12 +1,9 @@
-import ApplicationConfig from '../config/environment';
+import ENV from '../config/environment';
 import SpreeSerializer from 'spree-ember-core/serializers/spree';
 import SpreeAdapter from 'spree-ember-core/adapters/spree';
 import SpreeStore from 'spree-ember-core/stores/spree';
 
 export function initialize(container, application) {
-  /* Set Serializer's Container */
-  SpreeSerializer.reopen({container: container});
-
   /* Register Spree Utilities with the Container */
   container.register('serializer:-spree', SpreeSerializer);
   container.register('adapter:-spree', SpreeAdapter);
@@ -25,10 +22,8 @@ export function initialize(container, application) {
 
   /* Copy Environment and Spree Configuration to Spree Service */
   var SpreeService = container.lookup('service:spree');
-  SpreeService.set('environment', ApplicationConfig.environment);
-  SpreeService.set('config', ApplicationConfig.Spree || {});
-
-  console.log("Spree Ember Core: Initialized");
+  SpreeService.set('environment', ENV.environment);
+  SpreeService.set('config', ENV['spreeEmber'] || {});
 }
 
 export default {

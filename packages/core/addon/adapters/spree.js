@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import SpreeSerializer from 'spree-ember-core/serializers/spree';
 
 /**
   The Spree Adapter is responsible for communicating with your Spree store.  It
@@ -23,16 +22,6 @@ export default DS.ActiveModelAdapter.extend({
     @default '-spree'
   */
   defaultSerializer: '-spree',
-
-  /**
-    A reference to the Spree serializer.
-
-    @property serializer
-    @type SpreeEmber.Serializer
-    @readOnly
-    @default SpreeEmber.Serializer
-  */
-  serializer: SpreeSerializer.create(),
 
   /**
     A computed property for the server namespace.  If it's not set in the Host
@@ -96,7 +85,7 @@ export default DS.ActiveModelAdapter.extend({
         "X-Spree-Order-Id":    orderId
       };
     } else {
-      return {};
+      return { };
     }
   })
 });
