@@ -17,10 +17,6 @@ export default Ember.Route.extend({
     this.spree.off('checkoutStateDidChange');
   },
 
-  redirect: function() {
-    this.spree.redirect(this);
-  },
-
   actions: {
     transitionCheckoutState: function(state) {
       this.spree.transitionCheckoutState(state);

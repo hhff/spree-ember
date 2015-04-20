@@ -6,6 +6,8 @@ export default function(router, options) {
   var cartPath     = options['cartPath']     || 'cart';
   var productsPath = options['productsPath'] || 'products';
   var checkoutPath = options['checkoutPath'] || 'checkout';
+  
+  var checkoutRoutes = options['checkoutRoutes'] || ['address', 'delivery', 'payment', 'confirm', 'complete'];
 
   router.resource('spree', { path: mountPath }, function() {
     router.route('spree.cart', { path: mountPath + '/' + cartPath });
@@ -16,14 +18,10 @@ export default function(router, options) {
     });
 
     router.resource('spree.checkout', { path: mountPath + '/' + checkoutPath },function() {
-      this.route('redirect', { path: '/' });
-      this.route('registration');
-      this.route('cart');
-      this.route('address');
-      this.route('delivery');
-      this.route('payment');
-      this.route('confirm');
-      this.route('complete');
+      var _this = this;
+      checkoutRoutes.forEach(function(routeName) {
+        _this.route(routeName);
+      });
     });
   });
 

@@ -8,6 +8,9 @@ This store uses a custom `serializer` and `adapter` that are
 designed to work tightly with the [Spree](http://github.com/spree/spree) rails 
 engine, via [Spree AMS](http://github.com/hhff/spree_ams).
 
+**Note:** This Package is included with `spree-ember-storefront`.  If you're
+using that, there's no need to install this seperately.
+
 This addon also adds the following models:
 * Address
 * Address

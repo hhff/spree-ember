@@ -12,9 +12,10 @@
       {{#link-to 'spree.products.index'}}
         <button>Keep Shopping</button>
       {{/link-to}}
-      {{#link-to 'spree.checkout.redirect'}}
+      {{#link-to 'spree.checkout.index'}}
         <button>Checkout</button>
       {{/link-to}}
+      <button {{action 'serializeCurrentOrder' target='spree'}}>Test Order Serializer</button>
     {{else}}
       <h1>Your cart is empty.</h1>
       {{#link-to 'spree.products.index'}}
