@@ -268,11 +268,12 @@ export default Ember.Mixin.create({
     will.  Therefore, we only use this method inside of the State Machine
     callback, so we can handle the Client Side state machine appropriately.
 
-    @method saveCurrentOrder
+    @method _saveCurrentOrder
+    @private
     @return {Ember.RSVP.Promise} A promise that resolves to either a successful
     server response (that may contain errors in the payload), or an AJAX error.
   */
-  saveCurrentOrder: function() {
+  _saveCurrentOrder: function() {
     var _this    = this;
     var order    = this.get(&#x27;currentOrder&#x27;);
     var orderId  = order.get(&#x27;id&#x27;);
@@ -297,11 +298,12 @@ export default Ember.Mixin.create({
     useful for triggering server validation errors, when it&#x27;s not clear why an 
     order won&#x27;t advance to the next state.
 
-    @method advanceCurrentOrder 
+    @method _advanceCurrentOrder 
+    @private
     @return {Ember.RSVP.Promise} A promise that resolves to either a successful
     server response (that may contain errors in the payload), or an AJAX error.
   */
-  advanceCurrentOrder: function() {
+  _advanceCurrentOrder: function() {
     var _this   = this;
     var order   = this.get(&#x27;currentOrder&#x27;);
     var orderId = order.get(&#x27;id&#x27;);
@@ -336,6 +338,7 @@ export default Ember.Mixin.create({
   addToCart: function(variant, quantity) {
     var _this        = this;
     var currentOrder = this.get(&#x27;currentOrder&#x27;);
+    quantity = quantity || 1;
 
     if (currentOrder) {
       return _this._saveLineItem(variant, quantity, currentOrder);

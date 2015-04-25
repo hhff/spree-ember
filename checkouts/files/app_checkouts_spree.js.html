@@ -98,7 +98,7 @@ export var orderStateCallbacks = {
       attempting to contact the server. (ie &quot;payment&quot; -&gt; &quot;address&quot;)
     */
     if (transitionEvent !== &quot;startup&quot; &amp;&amp; !previousState) {
-      this.saveCurrentOrder().then(
+      this._saveCurrentOrder().then(
         function(response) {
           Ember.run.once(_this, _this.resolvePendingTransition, {
             response: response,
@@ -169,7 +169,7 @@ export var resolvePendingTransition = function(args) {
         to show the user.
       */
       var _this = this;
-      this.advanceCurrentOrder().then(
+      this._advanceCurrentOrder().then(
         function(response) {
           if (response.errors) {
             /*

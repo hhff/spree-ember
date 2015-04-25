@@ -301,7 +301,9 @@
             "line": 203,
             "description": "Saves the Current Order via the Spree API `checkouts` endpoint.  This method\nfirst serializes the order in a format that the endpoint expects, and hits\nthat endpoint.\n\nIf the server determines that the Order can transition to another state, it\nwill.  Therefore, we only use this method inside of the State Machine\ncallback, so we can handle the Client Side state machine appropriately.",
             "itemtype": "method",
-            "name": "saveCurrentOrder",
+            "name": "_saveCurrentOrder",
+            "access": "private",
+            "tagname": "",
             "return": {
                 "description": "A promise that resolves to either a successful\nserver response (that may contain errors in the payload), or an AJAX error.",
                 "type": "Ember.RSVP.Promise"
@@ -310,10 +312,12 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 236,
+            "line": 237,
             "description": "This method will attempt to force the Order's state to the next State.  It's\nuseful for triggering server validation errors, when it's not clear why an \norder won't advance to the next state.",
             "itemtype": "method",
-            "name": "advanceCurrentOrder",
+            "name": "_advanceCurrentOrder",
+            "access": "private",
+            "tagname": "",
             "return": {
                 "description": "A promise that resolves to either a successful\nserver response (that may contain errors in the payload), or an AJAX error.",
                 "type": "Ember.RSVP.Promise"
@@ -322,7 +326,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 267,
+            "line": 269,
             "description": "Adds a lineItem to the currentOrder. If there is no Current Order,\nSpree Ember will request a new order from the server, and set it as the\nCurrent Order on the Spree service.",
             "itemtype": "method",
             "name": "addToCart",
@@ -346,7 +350,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 296,
+            "line": 299,
             "description": "An internal method for saving Line Items.  If it is called for a variant that\nis already in the current order, it will add to the corresponding Line Item's\nquantity, otherwise it will create a new Line Item for that variant.",
             "itemtype": "method",
             "name": "_saveLineItem",
@@ -377,7 +381,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 335,
+            "line": 338,
             "description": "Will attempt to create a new Order for the checkout user, and save the `orderId`\nand `guestToken` to the Spree service, so that it will persist across page\nrefreshes.  It will also initiate the state machine for the current order.",
             "itemtype": "method",
             "name": "_createNewOrder",
@@ -391,7 +395,7 @@
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 366,
+            "line": 369,
             "description": "Clears the current order and any reference to it.",
             "itemtype": "method",
             "name": "clearCurrentOrder",

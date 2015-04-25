@@ -102,6 +102,56 @@ therefore all functionality described here is available like so:</p>
           <h6>Show Private Methods</h2>
         </div>
 
+<div id="method__advanceCurrentOrder" class="method panel item private">
+  <h3 class="name"><code>_advanceCurrentOrder</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l237"><code>addon&#x2F;mixins&#x2F;checkouts.js:237</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>This method will attempt to force the Order's state to the next State.  It's
+useful for triggering server validation errors, when it's not clear why an
+order won't advance to the next state.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>A promise that resolves to either a successful
+server response (that may contain errors in the payload), or an AJAX error.</p>
+
+          </div>
+      </div>
+</div>
 <div id="method__createNewOrder" class="method panel item private">
   <h3 class="name"><code>_createNewOrder</code></h3>
 
@@ -124,7 +174,7 @@ therefore all functionality described here is available like so:</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l335"><code>addon&#x2F;mixins&#x2F;checkouts.js:335</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l338"><code>addon&#x2F;mixins&#x2F;checkouts.js:338</code></a>
     </p>
 
 
@@ -148,6 +198,59 @@ refreshes.  It will also initiate the state machine for the current order.</p>
                       <span class="type">Ember.RSVP.Promise</span>:
                   <p>A promise that resolves to the newly created
 Spree Order.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method__saveCurrentOrder" class="method panel item private">
+  <h3 class="name"><code>_saveCurrentOrder</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l203"><code>addon&#x2F;mixins&#x2F;checkouts.js:203</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Saves the Current Order via the Spree API <code>checkouts</code> endpoint.  This method
+first serializes the order in a format that the endpoint expects, and hits
+that endpoint.</p>
+<p>If the server determines that the Order can transition to another state, it
+will.  Therefore, we only use this method inside of the State Machine
+callback, so we can handle the Client Side state machine appropriately.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>A promise that resolves to either a successful
+server response (that may contain errors in the payload), or an AJAX error.</p>
 
           </div>
       </div>
@@ -187,7 +290,7 @@ Spree Order.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l296"><code>addon&#x2F;mixins&#x2F;checkouts.js:296</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l299"><code>addon&#x2F;mixins&#x2F;checkouts.js:299</code></a>
     </p>
 
 
@@ -356,7 +459,7 @@ updated <code>lineItem</code> object.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l267"><code>addon&#x2F;mixins&#x2F;checkouts.js:267</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l269"><code>addon&#x2F;mixins&#x2F;checkouts.js:269</code></a>
     </p>
 
 
@@ -411,55 +514,6 @@ Current Order on the Spree service.</p>
           </div>
       </div>
 </div>
-<div id="method_advanceCurrentOrder" class="method panel item">
-  <h3 class="name"><code>advanceCurrentOrder</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l236"><code>addon&#x2F;mixins&#x2F;checkouts.js:236</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>This method will attempt to force the Order's state to the next State.  It's
-useful for triggering server validation errors, when it's not clear why an
-order won't advance to the next state.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to either a successful
-server response (that may contain errors in the payload), or an AJAX error.</p>
-
-          </div>
-      </div>
-</div>
 <div id="method_clearCurrentOrder" class="method panel item">
   <h3 class="name"><code>clearCurrentOrder</code></h3>
 
@@ -481,7 +535,7 @@ server response (that may contain errors in the payload), or an AJAX error.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l366"><code>addon&#x2F;mixins&#x2F;checkouts.js:366</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l369"><code>addon&#x2F;mixins&#x2F;checkouts.js:369</code></a>
     </p>
 
 
@@ -574,58 +628,6 @@ in this mixin.</p>
           <div class="returns-description">
                       <span class="type">Boolean</span>:
                   <p>Always resolves to <code>true</code>.</p>
-
-          </div>
-      </div>
-</div>
-<div id="method_saveCurrentOrder" class="method panel item">
-  <h3 class="name"><code>saveCurrentOrder</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l203"><code>addon&#x2F;mixins&#x2F;checkouts.js:203</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Saves the Current Order via the Spree API <code>checkouts</code> endpoint.  This method
-first serializes the order in a format that the endpoint expects, and hits
-that endpoint.</p>
-<p>If the server determines that the Order can transition to another state, it
-will.  Therefore, we only use this method inside of the State Machine
-callback, so we can handle the Client Side state machine appropriately.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to either a successful
-server response (that may contain errors in the payload), or an AJAX error.</p>
 
           </div>
       </div>
