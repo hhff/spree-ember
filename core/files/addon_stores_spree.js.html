@@ -109,13 +109,18 @@ export default DS.Store.extend({
   },
 
   /**
-    Always returns the Spree Serializer.
+    Attempts to find a registered serializer for the type, but in the case it doesn&#x27;t
+    find one, it will return the default Spree serializer.
 
     @method serializerFor
-    @return {SpreeEmber.Serializer} The Spree Ember Serializer.
+    @return {Serializer} A serializer.
   */
-  serializerFor: function() {
-    return this.container.lookup(&#x27;serializer:-spree&#x27;);
+  serializerFor: function(type) {
+    if (type !== &#x27;application&#x27;) {
+      type = this.modelFor(type);
+    }
+
+    return this.lookupSerializer(type.typeKey) || this.lookupSerializer(&#x27;spree&#x27;);
   },
 
   /**

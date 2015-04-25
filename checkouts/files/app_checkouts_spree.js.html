@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../assets/vendor/prism/prism.css">
+
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="links">
+      <a href="http://www.spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://www.spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <a href="http://www.spree-ember.com">
+        <img class="logo" src="../assets/img/logo.svg"/>
+      </a>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3><a href="http://www.spree-ember.com/checkouts/index.html">spree-ember-checkouts</a></h3>
+    </div>
+    <div class="row" id="docs-content">
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
+</ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns">
+<div class="page-header">
+    <h3>app/checkouts/spree.js <small>File</small></h3>
+</div>
+
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+/**
+  An overrideable Array representing the possible states of the order, and it&#x27;s
+  possible transitions.  This should be informed by the Spree backend. The default
+  values will work with Spree&#x27;s default checkout steps.
+
+  @property orderStateEvents 
+  @type Array
+  @default Array
+*/
+export var orderStateEvents = [
+  { name: &#x27;transitionToCart&#x27;,     from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;cart&#x27; },
+  { name: &#x27;transitionToAddress&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;address&#x27; },
+  { name: &#x27;transitionToDelivery&#x27;, from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;delivery&#x27; },
+  { name: &#x27;transitionToPayment&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;payment&#x27; },
+  { name: &#x27;transitionToConfirm&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;confirm&#x27; },
+  { name: &#x27;transitionToComplete&#x27;, from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;complete&#x27; }
+];
+
+/**
+  An overrideable Object for binding callbacks to state changes in the Current
+  Spree Order.  &#x60;this&#x60; in these callbacks represents the Current Order object.
+
+  @property orderStateCallbacks
+  @type Object
+  @default Object
+*/
+export var orderStateCallbacks = {
+  onenterstate: function() {
+    this.trigger(&#x27;checkoutStateDidChange&#x27;, this.current);
+  },
+  onleavestate: function(transitionEvent, fromState, toState) {
+    var _this          = this;
+    var currentOrder   = this.get(&#x27;currentOrder&#x27;);
+    var allStates      = currentOrder.get(&#x27;checkoutSteps&#x27;);
+    var previousState  = allStates.indexOf(this.current) &gt; allStates.indexOf(toState);
+    /*
+      If the State Machine is starting up, or the checkout user is trying to
+      transition to a previous state, we can simply allow the transition without
+      attempting to contact the server. (ie &quot;payment&quot; -&gt; &quot;address&quot;)
+    */
+    if (transitionEvent !== &quot;startup&quot; &amp;&amp; !previousState) {
+      this.saveCurrentOrder().then(
+        function(response) {
+          Ember.run.once(_this, _this.resolvePendingTransition, {
+            response: response,
+            toState: toState
+          });
+        },
+        function(error) {
+          _this.transition.cancel();
+          return error;
+        }
+      );
+      return StateMachine.ASYNC;
+    }
+  },
+  onenteraddress: function() {
+    var shipAddress = this.get(&#x27;currentOrder.shipAddress&#x27;);
+    if (!shipAddress) {
+      var newShipAddress = this.store.createRecord(&#x27;address&#x27;);
+      this.set(&#x27;currentOrder.shipAddress&#x27;, newShipAddress);
+    }
+  },
+  onenterpayment: function() {
+    var payments = this.get(&#x27;currentOrder.payments&#x27;);
+    if (Ember.isEmpty(payments)) {
+      var payment = this.store.createRecord(&#x27;payment&#x27;);
+      var source  = this.store.createRecord(&#x27;source&#x27;);
+      payment.set(&#x27;paymentMethod&#x27;, this.get(&#x27;currentOrder.availablePaymentMethods.firstObject&#x27;));
+      payment.set(&#x27;source&#x27;, source);
+      payments.pushObject(payment);
+    }
+  },
+  onentercomplete: function() {
+    this.trigger(&#x27;currentOrderDidComplete&#x27;, this.get(&#x27;currentOrder&#x27;));
+  }
+};
+
+/**
+  An overrideable Function for resolving a pending State Machine transition, 
+  called after successful &#x60;saveCurrentOrder&#x60; call. 
+
+  @property resolvePendingTransition
+  @type Function 
+  @default Function 
+*/
+export var resolvePendingTransition = function(args) {
+  var response = args.response;
+  var toState  = args.toState;
+
+  if (response.errors) {
+    /*
+      Response returned with errors, so we have to cancel the transition,
+      most likely this is due to a validation error.  The &#x60;saveCurrentOrder&#x60;
+      call will trigger the serverError event, so we don&#x27;t have to handle
+      it here.
+    */
+    this.transition.cancel();
+  } else {
+    if (response.get(&#x27;state&#x27;) === toState) {
+      /*
+        Response returned successfully and has the State we&#x27;re attempting to
+        transition to, so all is good.
+      */
+      this.transition();
+    } else if (response.get(&#x27;state&#x27;) === this.current) {
+      /*
+        Call returned successful but was the same as the initial state, so we
+        attempt to force the order state to advance so we get an explicit error
+        to show the user.
+      */
+      var _this = this;
+      this.advanceCurrentOrder().then(
+        function(response) {
+          if (response.errors) {
+            /*
+              The advanceCurrentOrder call will handle triggering the serverError
+              event, so here we just cancel the transition.
+            */
+            _this.transition.cancel();
+          } else {
+            /*
+              This should theoretically never call, but in the case
+              that /next.json doesn&#x27;t return an errors payload, we can
+              assume the order did change state, and continue with the
+              transition.
+            */
+            _this.transition();
+          }
+        },
+        function() {
+          /*
+            This will only ever call if the AJAX request from advanceCurrentOrder 
+            fails.  It&#x27;s error will be handled there, so we just cancel the
+            transition here.
+          */
+          _this.transition.cancel();
+        }
+      );
+    } else {
+      /*
+        The response&#x27;s state is not the attempted state, nor is it the same
+        state the as the State Machine currently.  We therefore check if the
+        state we&#x27;re attempting to get it has already been completed by the
+        server (ie, we&#x27;re going from &quot;address&quot; -&gt; &quot;delivery&quot; but the order is
+        in &quot;payment&quot;).
+
+        If this is not the case, we can assume that:
+        - The response is not in the attempted state.
+        - The response is not in the same state.
+        - The attempted State is not completed by the order
+
+        This means the response is in a state that is either:
+        - A previously completed state that has become incomplete and needs to
+        be redone, or
+        - A new state entirely that has been inserted by the server.  Spree does this
+        by inserting a confirmation step when Spree::Order.confirmation_required?
+        is false, but the Spree Gateway supports payment profiles.
+
+        Regardless, in this case we need to cancel the transition, and retrigger
+        it dynamically.
+      */
+      var currentOrder   = response;
+      var allStates      = currentOrder.get(&#x27;checkoutSteps&#x27;);
+      var completedState = allStates.indexOf(currentOrder.get(&#x27;state&#x27;)) &gt; allStates.indexOf(toState);
+
+      if (completedState) {
+        this.transition();
+      } else {
+        this.transition.cancel();
+        this.transitionCheckoutState();
+      }
+    }
+  }
+};
+
+</code>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
+<script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="../assets/vendor/prism/prism.js"></script>
+
+<script>$(document).foundation();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
+
+</body>
+</html>

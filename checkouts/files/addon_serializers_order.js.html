@@ -38,92 +38,82 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3><a href="http://www.spree-ember.com/core/index.html">spree-ember-core</a></h3>
+      <h3><a href="http://www.spree-ember.com/checkouts/index.html">spree-ember-checkouts</a></h3>
     </div>
     <div class="row" id="docs-content">
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
-    <h3>app/services/spree.js <small>File</small></h3>
+    <h3>addon/serializers/order.js <small>File</small></h3>
 </div>
 
 <div class="file">
 <pre class="language-javascript">
 <code class="language-javascript">
-import Ember from &#x27;ember&#x27;;
-import Storable from &#x27;spree-ember-core/mixins/storable&#x27;;
-
+import SpreeSerializer from &#x27;spree-ember-core/serializers/spree&#x27;;
 /**
-  The Spree service is the central place a Spree Ember developer will interact
-  with Spree, via Spree Ember.  The core object is injected into the host application&#x27;s
-  routes &amp; controllers, and is responsible for persisting data to Local Storage,
-  communicating with your Spree backend, Acting as a Registry for other Spree Ember
-  packages, and Acting as an Event Bus for your application Frontend, and providing
-  a seperate Store.
+  The Order Serializer converts the Order model into a JSON payload as dictated 
+  by Spree&#x27;s &quot;Checkouts&quot; endpoint.  The payload is dependant on the state of the 
+  order.
 
-  @class Spree
-  @namespace SpreeEmber
-  @module spree-ember-core/services/spree
-  @extends Ember.Object
-  @uses Ember.Evented, SpreeEmber.Storable, SpreeEmber.Store
+  @class OrderSerializer
+  @extends SpreeSerializer
 */
-
-export default Ember.Object.extend(Ember.Evented, Storable, {
+export default SpreeSerializer.extend({
   /**
-    The Local Storage key we use to Restore and Persist data across browser refreshes.
+    Serializes the Order into a format the Spree Checkouts endpoint expects.
 
-    @property localStorageKey
-    @type String
-    @default &quot;spree-ember&quot;
+    @method serialize
+    @param {snapshot} snapshot A snapshot of the order model for serialization.
   */
-  
-  localStorageKey: &#x27;spree-ember&#x27;,
-  /**
-    A computed property that returns all of the countries (and states) set up in
-    Spree&#x27;s backend.
+  serialize: function(snapshot) {
+    var order      = snapshot.record;
+    var orderState = order.get(&#x27;state&#x27;);
 
-    @property countries
-    @type Computed
-    @return {Ember.RSVP.Promise} Returns a promise that resolves to all of the
-    countries saved in the Spree backend.
-  */
-  countries: Ember.computed(function() {
-    return this.store.find(&#x27;country&#x27;);
-  }),
+    var data = {
+      order: this._super.apply(this, arguments),
+      state: orderState
+    };
 
-  /**
-    A copy of the &quot;spree&quot; entry in the Host Application environment config.
-
-    @property config
-    @type Object
-    @default {}
-  */
-  config: {},
-
-  /**
-    A copy of the Host Application&#x27;s current environment name.
-
-    @property environment
-    @type Object
-    @default &#x27;development&#x27;
-  */
-  environment: &#x27;development&#x27;
+    switch(orderState) {
+      case &quot;address&quot;:
+        var billAddress = order.get(&#x27;billAddress&#x27;);
+        if (billAddress) {
+          data.order[&#x27;bill_address_attributes&#x27;] = billAddress.serialize();
+        }
+        var shipAddress = order.get(&#x27;shipAddress&#x27;);
+        if (shipAddress) {
+          data.order[&#x27;ship_address_attributes&#x27;] = shipAddress.serialize();
+        }
+        break;
+      case &quot;delivery&quot;:
+        var shipments = order.get(&#x27;shipments&#x27;);
+        if (shipments) {
+          data.order[&#x27;shipments_attributes&#x27;] = {};
+          shipments.forEach(function(shipment, index) {
+            data.order.shipments_attributes[index] = shipment.serialize();
+          });
+        }
+        break;
+      case &quot;payment&quot;:
+        var payment = order.get(&#x27;payments.firstObject&#x27;);
+        if (payment &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
+          data[&#x27;payment_source&#x27;] = {};
+          data.order[&#x27;payments_attributes&#x27;] = [{payment_method_id: payment.get(&#x27;paymentMethod.id&#x27;)}];
+          data.payment_source[payment.get(&#x27;paymentMethod.id&#x27;)] = payment.get(&#x27;source&#x27;).serialize();
+        }
+        break;
+    }
+    return data;
+  }
 });
-
-
-
-
 
 </code>
 </pre>

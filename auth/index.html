@@ -71,9 +71,19 @@ the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine 
 <p>This will run the <code>spree-ember-auth</code> generator, which does a few key things:</p>
 <ul>
 <li>Adds Ember CLI Simple Auth to your host application</li>
-<li>Installs user related routes at <code>app/routes/spree</code></li>
-<li>Installs user related route templates at <code>app/templates/spree</code></li>
+<li>Installs user related routes at <code>app/routes/spree/*</code></li>
+<li>Installs user related route templates at <code>app/templates/spree/*</code></li>
+<li>Attempts to install an application route file at <code>app/routes/application.js</code></li>
 </ul>
+<p><strong>Important:</strong> If you opted to not override your application route, or you&#39;re
+using an application setup that will ignore the generated <code>application.js</code> such
+as the Pod structure, you&#39;ll need to manually import the Ember Simple Auth
+application route mixin, like so:</p>
+<pre><code class="lang-js">import ApplicationRouteMixin from &#39;simple-auth/mixins/application-route-mixin&#39;;
+
+export default Ember.Route.extend(ApplicationRouteMixin);
+</code></pre>
+<p>It&#39;s recommended that you study the <a href="http://ember-simple-auth.com/ember-simple-auth-api-docs.html">Ember Simple Auth Documentation</a>.</p>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
 <h3 id="setup">Setup</h3>
