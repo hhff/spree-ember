@@ -148,10 +148,11 @@ export default Ember.Mixin.create({
     in this mixin.
 
     @method initCheckouts
+    @private
     @param {Ember.Application} application A reference to the initializing Application.
     @return {Boolean} Always resolves to &#x60;true&#x60;.
   */
-  initCheckouts: function(application, stateMachineParams) {
+  _initCheckouts: function(application, stateMachineParams) {
     this.setProperties(stateMachineParams);
     
     this.restore();
