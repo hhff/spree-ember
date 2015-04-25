@@ -1,10 +1,18 @@
 import Checkouts from 'spree-ember-checkouts/mixins/checkouts';
+import { 
+  orderStateEvents, 
+  orderStateCallbacks,
+  resolvePendingTransition
+} from '../checkouts/spree';
 
 export function initialize(container, application) {
   var SpreeService = container.lookup('service:spree');
   Checkouts.apply(SpreeService);
-  SpreeService.initCheckouts(application);
-  console.log("Spree Ember Checkouts: Initialized");
+  SpreeService._initCheckouts(application, {
+    orderStateEvents:         orderStateEvents,
+    orderStateCallbacks:      orderStateCallbacks,
+    resolvePendingTransition: resolvePendingTransition
+  });
 }
 
 export default {
