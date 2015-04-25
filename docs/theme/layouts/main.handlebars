@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{{htmlTitle}}</title>
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
   <link rel="stylesheet" href="{{yuiGridsUrl}}">
-  <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+  <link rel="stylesheet" href="{{projectAssets}}/vendor/prism/prism.css">
 
   <link rel="stylesheet" href="{{projectAssets}}/vendor/foundation/css/normalize.css">
   <link rel="stylesheet" href="{{projectAssets}}/vendor/foundation/css/foundation.min.css">
 
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{projectAssets}}/css/spree-ember.css">
 
@@ -18,12 +22,10 @@
 
 <body>
   <header>
-    <div class="version">
-      Version {{projectVersion}}
-    </div>
-
     <div class="links">
-      <a href="{{spree-ember-docs-url}}/packages.html">Documentation</a> | <a href="{{github-spree-ember}}"><img src="{{projectAssets}}/img/github-120px.png"/> Github</a>
+      <a href="{{spree-ember-docs-url}}/1-overview.html" id="guides-link">Guides</a> -
+      <a href="{{spree-ember-docs-url}}/packages.html">API</a> -
+      <a href="{{github-spree-ember}}"><img src="{{projectAssets}}/img/github-120px.png"/> Github</a>
     </div>
     <div class="info">
       <a href="{{spree-ember-docs-url}}">
@@ -36,29 +38,54 @@
 
   <section class="container" id="main">
     <div class="text-center" id="main-package-name">
-      <h3>{{projectName}}</h1>
+      <h3><a href="{{spree-ember-docs-url}}/{{projectShortName}}/index.html">{{projectName}}</a></h3>
     </div>
     <div class="row" id="docs-content">
-      <div class="small-12 large-3 columns">
-        {{>sidebar}}
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+{{>sidebar}}
       </div>
-      <div class="small-12 large-9 columns">
-        {{>layout_content}}
+      <div id="main-content" class="small-12 large-9 columns">
+{{>layout_content}}
       </div>
     </div>
   </div>
 
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
 <script src="{{projectAssets}}/vendor/foundation/js/vendor/fastclick.js"></script>
-<script src="{{projectAssets}}/vendor/foundation/js/vendor/jquery.cookie.js"></script>
 <script src="{{projectAssets}}/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="{{projectAssets}}/vendor/foundation/js/vendor/jquery.cookie.js"></script>
 <script src="{{projectAssets}}/vendor/foundation/js/vendor/modernizr.js"></script>
 <script src="{{projectAssets}}/vendor/foundation/js/vendor/placeholder.js"></script>
 
 <script src="{{projectAssets}}/vendor/foundation/js/foundation.min.js"></script>
+<script src="{{projectAssets}}/vendor/prism/prism.js"></script>
 
-<script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
 <script>$(document).foundation();</script>
-<script>prettyPrint();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
 
 </body>
 </html>

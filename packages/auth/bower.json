@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-auth",
+  "name": "spree-ember-auth",
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.10.0",
@@ -12,6 +12,6 @@
     "ember-qunit": "0.2.8",
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
-    "ember-simple-auth": "0.7.3"
+    "ember-simple-auth": "0.8.0-beta.1"
   }
 }

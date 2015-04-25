@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Storable from 'ember-cli-spree-core/mixins/storable';
+import Storable from 'spree-ember-core/mixins/storable';
 
 /**
   The Spree service is the central place a Spree Ember developer will interact
@@ -11,7 +11,7 @@ import Storable from 'ember-cli-spree-core/mixins/storable';
 
   @class Spree
   @namespace SpreeEmber
-  @module ember-cli-spree-core/services/spree
+  @module spree-ember-core/services/spree
   @extends Ember.Object
   @uses Ember.Evented, SpreeEmber.Storable, SpreeEmber.Store
 */
@@ -22,9 +22,9 @@ export default Ember.Object.extend(Ember.Evented, Storable, {
 
     @property localStorageKey
     @type String
-    @default "spree_ember"
+    @default "spree-ember"
   */
-  localStorageKey: 'spree_ember',
+  localStorageKey: 'spree-ember',
 
   /**
     A copy of the "spree" entry in the Host Application environment config.

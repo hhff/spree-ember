@@ -1,0 +1,32 @@
+<nav class="top-bar">
+  <section class="top-bar-section">
+    <ul>
+      <li>
+        {{#link-to 'spree.index'}}
+          Spree Ember
+        {{/link-to}}
+      </li>
+    </ul>
+    <ul class="right">
+      {{#if session}}
+        <li>
+          {{#if session.isAuthenticated}}
+            {{#link-to 'spree.account'}}Account{{/link-to}}
+          {{else}}
+            {{#link-to 'spree.signin'}}Login{{/link-to}}
+          {{/if}}
+        </li>
+      {{/if}}
+      <li>
+        {{#link-to 'spree.cart'}}
+          Cart: &nbsp;
+          {{#if spree.currentOrder}}
+            {{spree.currentOrder.itemCount}}
+          {{else}}
+             0
+          {{/if}}
+        {{/link-to}}
+      </li>
+    </ul>
+  </section>
+</nav>

@@ -6,7 +6,7 @@ import DS from 'ember-data';
 
   @class RawTransform
   @namespace SpreeEmber
-  @module ember-cli-spree-core/transforms/array
+  @module spree-ember-core/transforms/array
   @extends DS.Transform
 */
 export default DS.Transform.extend({

@@ -1,3 +1,3 @@
-import SpreeSerializer from 'ember-cli-spree-core/serializers/spree';
+import SpreeSerializer from 'spree-ember-core/serializers/spree';
 
 export default SpreeSerializer;

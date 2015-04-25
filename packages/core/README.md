@@ -1,25 +1,52 @@
-# Ember-cli-spree-core
+# Spree Ember Core
 
-This README outlines the details of collaborating on this Ember addon.
+Spree Ember Core is the core dependency of all other Spree Ember addons.  It
+provides the `spree` service, which has a seperate `store` to the host
+application.
+
+This store uses a custom `serializer` and `adapter` that are
+designed to work tightly with the [Spree](http://github.com/spree/spree) rails 
+engine, via [Spree AMS](http://github.com/hhff/spree_ams).
+
+This addon also adds the following models:
+* Address
+* Address
+* Country
+* Image
+* Line Item
+* Order
+* Payment Method
+* Payment
+* Product Propert
+* Product
+* Shipment
+* Shipping Category
+* Shipping Method
+* Shipping Rate
+* Source
+* State
+* Stock Location
+* Taxon
+* Taxonomy
+* User
+* Variant
+* Zone
+
+Finally, this addon handles the UI State Persistance using browser local
+storage. 
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```bash
+ember install spree-ember-core
+```
 
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
+For full Spree Ember documentation, visit [http://www.spree-ember.com/](http://www.spree-ember.com).
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## Spree Ember
+
+If you're just getting started, it's recommended that you checkout the Spree
+Ember Storefront addon.  It's the quickest way to get up and running with Spree
+Ember.

@@ -1,18 +1,19 @@
 import Ember from 'ember';
 
 /**
-  Storable bolts onto an Ember Object and provides functionality for persisting key
-  value pairs to Local Storage.
+  Storable bolts onto an Ember Object and provides functionality for persisting
+  key value pairs to Local Storage.
 
   @class Storable
   @namespace SpreeEmber
-  @module ember-cli-spree-core/mixins/storable
+  @module spree-ember-core/mixins/storable
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
 
   /**
-    The Local Storage key we use to Restore and Persist data across browser refreshes.
+    The Local Storage key we use to Restore and Persist data across browser
+    refreshes.
 
     @property localStorageKey
     @type String
@@ -21,12 +22,21 @@ export default Ember.Mixin.create({
   */
   localStorageKey: 'storable',
 
+
   /**
     Persists an object to Local Storage.
+
+    @example
+    ```javascript
+    this.spree.persist({
+      "favoriteColor": "red"
+    });
+    ```
 
     @method persist
     @param {Object} data A Javascript Object to persist to Local Storage.
     @return {Boolean} Will always resolve to `true`.
+
   */
   persist: function(data) {
     var key = this.get('localStorageKey');
@@ -37,7 +47,13 @@ export default Ember.Mixin.create({
   },
 
   /**
-    Sets key value pairs on the Host object from Local Storage.
+    Sets key value pairs on the Host object from Local Storage.  Usually called
+    in intitalizers for Spree Ember addons.
+
+    @example
+    ```javascript
+    this.spree.restore()
+    ```
 
     @method restore
     @return {Boolean} Will always resolve to `true`.

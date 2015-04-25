@@ -1,24 +1,7 @@
-<div id="sidepanel-classes" class="panel">
-  <h3>Classes</h3>
-  <ul class="side-nav">
-    {{#publicClasses classes}}
-      <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
-    {{/publicClasses}}
-  </ul>
-</div>
-
-<div class="panel">
-  <h3>Packages</h3>
-  <ul class="side-nav">
-    <li><a href="{{spree-ember-docs-url}}/core/index.html">Core</a></li>
-    <li><a href="{{spree-ember-docs-url}}/checkouts/index.html">Checkouts</a></li>
-    <li><a href="{{spree-ember-docs-url}}/frontend/index.html">Frontend</a></li>
-  </ul>
-</div>
-
-<div class="panel">
-  <h3>Gems</h3>
-  <ul class="side-nav">
-    <li><a href="{{github-spree_ams}}">Spree AMS</a></li>
-  </ul>
-</div>
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+  {{#publicClasses classes}}
+    <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
+  {{/publicClasses}}
+</ul>

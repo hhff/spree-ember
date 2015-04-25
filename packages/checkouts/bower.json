@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-spree-checkouts",
+  "name": "spree-ember-checkouts",
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.10.0",

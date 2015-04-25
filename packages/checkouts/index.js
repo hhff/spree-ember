@@ -2,14 +2,11 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-spree-checkouts',
-
-  isDevelopingAddon: function() {
-    return true;
-  },
+  name: 'spree-ember-checkouts',
 
   included: function(app) {
     this._super.included(app);
     app.import('vendor/state-machine.min.js');
+    app.import('vendor/register-checkouts.js');
   }
 };
