@@ -83,7 +83,7 @@ export default Ember.Mixin.create({
     Triggered whenever a Line Item is created or updated.
 
     @event didAddToCart
-    @param {Object} lineItem The newly updated lineItem object
+    @param {DS.Model} lineItem The newly updated lineItem object
   */
 
   /**
@@ -97,7 +97,7 @@ export default Ember.Mixin.create({
     Triggered whenever a new Order is created for the checkout user.
 
     @event didCreateNewOrder
-    @param {Object} order The newly created order object
+    @param {DS.Model} order The newly created order object
   */
 
   /**
@@ -117,13 +117,13 @@ export default Ember.Mixin.create({
     Triggered whenever the Current Order changes State.
 
     @event checkoutStateDidChange
-    @param {String} order A string representing the new state.
+    @param {DS.Model} order The Current Order.
   */
 
   /**
     Triggered when the &#x60;advanceCurrentOrder&#x60; call succeeds.
 
-    @event advanceCurrentOrderFailed 
+    @event didAdvanceCurrentOrder
     @param {Ember.RSVP.Promise} currentOrderPromise A promise that resolves to 
     the Current Order
   */
@@ -139,7 +139,7 @@ export default Ember.Mixin.create({
     Triggered whenever the Current Order reached it&#x27;s &quot;Complete&quot; State.
 
     @event currentOrderDidComplete
-    @param {String} order A string representing the new state.
+    @param {DS.Model} order The Current Order.
   */
 
   /**
@@ -147,7 +147,7 @@ export default Ember.Mixin.create({
     &#x60;Checkouts&#x60; mixin is applied to the Spree service, to initialize functionality
     in this mixin.
 
-    @method initCheckouts
+    @method _initCheckouts
     @private
     @param {Ember.Application} application A reference to the initializing Application.
     @return {Boolean} Always resolves to &#x60;true&#x60;.

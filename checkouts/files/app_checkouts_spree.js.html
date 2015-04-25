@@ -85,7 +85,7 @@ export var orderStateEvents = [
 */
 export var orderStateCallbacks = {
   onenterstate: function() {
-    this.trigger(&#x27;checkoutStateDidChange&#x27;, this.current);
+    this.trigger(&#x27;checkoutStateDidChange&#x27;, this.get(&#x27;currentOrder&#x27;));
   },
   onleavestate: function(transitionEvent, fromState, toState) {
     var _this          = this;

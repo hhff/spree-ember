@@ -87,7 +87,7 @@
                 {
                     "name": "lineItem",
                     "description": "The newly updated lineItem object",
-                    "type": "Object"
+                    "type": "DS.Model"
                 }
             ],
             "class": "CheckoutsMixin"
@@ -117,7 +117,7 @@
                 {
                     "name": "order",
                     "description": "The newly created order object",
-                    "type": "Object"
+                    "type": "DS.Model"
                 }
             ],
             "class": "CheckoutsMixin"
@@ -154,8 +154,8 @@
             "params": [
                 {
                     "name": "order",
-                    "description": "A string representing the new state.",
-                    "type": "String"
+                    "description": "The Current Order.",
+                    "type": "DS.Model"
                 }
             ],
             "class": "CheckoutsMixin"
@@ -165,7 +165,7 @@
             "line": 64,
             "description": "Triggered when the `advanceCurrentOrder` call succeeds.",
             "itemtype": "event",
-            "name": "advanceCurrentOrderFailed",
+            "name": "didAdvanceCurrentOrder",
             "params": [
                 {
                     "name": "currentOrderPromise",
@@ -199,8 +199,8 @@
             "params": [
                 {
                     "name": "order",
-                    "description": "A string representing the new state.",
-                    "type": "String"
+                    "description": "The Current Order.",
+                    "type": "DS.Model"
                 }
             ],
             "class": "CheckoutsMixin"
@@ -210,7 +210,7 @@
             "line": 86,
             "description": "A method called in the `spree-ember-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
             "itemtype": "method",
-            "name": "initCheckouts",
+            "name": "_initCheckouts",
             "access": "private",
             "tagname": "",
             "params": [
