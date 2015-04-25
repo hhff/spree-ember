@@ -87,20 +87,7 @@ export default Ember.Object.extend(Ember.Evented, Storable, {
     @type String
     @default &quot;spree-ember&quot;
   */
-  
   localStorageKey: &#x27;spree-ember&#x27;,
-  /**
-    A computed property that returns all of the countries (and states) set up in
-    Spree&#x27;s backend.
-
-    @property countries
-    @type Computed
-    @return {Ember.RSVP.Promise} Returns a promise that resolves to all of the
-    countries saved in the Spree backend.
-  */
-  countries: Ember.computed(function() {
-    return this.store.find(&#x27;country&#x27;);
-  }),
 
   /**
     A copy of the &quot;spree&quot; entry in the Host Application environment config.

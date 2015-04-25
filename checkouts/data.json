@@ -3,69 +3,60 @@
         "name": "spree-ember-checkouts",
         "shortName": "checkouts",
         "description": "Checkout functionality for a Spree Ember Application.",
-        "version": "0.0.0.7280245b"
+        "version": "0.0.0.0ab97b67"
     },
     "files": {
         "addon/mixins/checkouts.js": {
             "name": "addon/mixins/checkouts.js",
-            "modules": {},
+            "modules": {
+                "spree-ember-core/mixins/checkouts": 1
+            },
             "classes": {
-                "CheckoutsMixin": 1
+                "Spree Ember.Checkouts": 1
             },
             "fors": {},
-            "namespaces": {}
-        },
-        "addon/serializers/order.js": {
-            "name": "addon/serializers/order.js",
-            "modules": {},
-            "classes": {
-                "OrderSerializer": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "app/checkouts/spree.js": {
-            "name": "app/checkouts/spree.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Spree Ember": 1
+            }
         }
     },
-    "modules": {},
-    "classes": {
-        "CheckoutsMixin": {
-            "name": "CheckoutsMixin",
-            "shortname": "CheckoutsMixin",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
+    "modules": {
+        "spree-ember-core/mixins/checkouts": {
+            "name": "spree-ember-core/mixins/checkouts",
+            "submodules": {},
+            "classes": {
+                "Spree Ember.Checkouts": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
             "file": "addon/mixins/checkouts.js",
-            "line": 3,
-            "description": "Provides Current Order and Checkout Functionality to the Spree service.  This\nmixin is applied to the Spree service when spree-ember-checkouts initializes,\ntherefore all functionality described here is available like so:\n\n```javascript\nthis.spree.addToCart(variantModel, 5);\n```",
-            "extends": "Ember.Mixin"
-        },
-        "OrderSerializer": {
-            "name": "OrderSerializer",
-            "shortname": "OrderSerializer",
+            "line": 5,
+            "description": "Provides Current Order and Checkout Functionality to the Spree service."
+        }
+    },
+    "classes": {
+        "Spree Ember.Checkouts": {
+            "name": "Spree Ember.Checkouts",
+            "shortname": "Spree Ember.Checkouts",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "addon/serializers/order.js",
-            "line": 2,
-            "description": "The Order Serializer converts the Order model into a JSON payload as dictated \nby Spree's \"Checkouts\" endpoint.  The payload is dependant on the state of the \norder.",
-            "extends": "SpreeSerializer"
+            "module": "spree-ember-core/mixins/checkouts",
+            "namespace": "Spree Ember",
+            "file": "addon/mixins/checkouts.js",
+            "line": 5,
+            "description": "Provides Current Order and Checkout Functionality to the Spree service.",
+            "extends": "Ember.Mixin"
         }
     },
     "classitems": [
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 16,
-            "description": "A generic event triggered whenever a Spree Server request fails.",
+            "line": 14,
+            "description": "Triggered whenever a Spree Server request fails.",
             "itemtype": "event",
             "name": "serverError",
             "params": [
@@ -75,11 +66,12 @@
                     "type": "Object"
                 }
             ],
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 23,
+            "line": 21,
             "description": "Triggered whenever a Line Item is created or updated.",
             "itemtype": "event",
             "name": "didAddToCart",
@@ -87,29 +79,15 @@
                 {
                     "name": "lineItem",
                     "description": "The newly updated lineItem object",
-                    "type": "DS.Model"
+                    "type": "Object"
                 }
             ],
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 30,
-            "description": "Triggered whenever a Line Item is created or updated.",
-            "itemtype": "event",
-            "name": "addToCartFailed",
-            "params": [
-                {
-                    "name": "error",
-                    "description": "The returned Server Error.",
-                    "type": "Error"
-                }
-            ],
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 37,
+            "line": 28,
             "description": "Triggered whenever a new Order is created for the checkout user.",
             "itemtype": "event",
             "name": "didCreateNewOrder",
@@ -117,102 +95,50 @@
                 {
                     "name": "order",
                     "description": "The newly created order object",
-                    "type": "DS.Model"
-                }
-            ],
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 44,
-            "description": "Triggered whenever a new Order is created for the checkout user.",
-            "itemtype": "event",
-            "name": "newOrderCreateFailed",
-            "params": [
-                {
-                    "name": "error",
-                    "description": "The returned Server Error.",
                     "type": "Object"
                 }
             ],
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 51,
-            "description": "Triggered whenever a new Order is created for the checkout user.",
-            "itemtype": "event",
-            "name": "didClearCurrentOrder",
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 57,
+            "line": 35,
             "description": "Triggered whenever the Current Order changes State.",
             "itemtype": "event",
             "name": "checkoutStateDidChange",
             "params": [
                 {
                     "name": "order",
-                    "description": "The Current Order.",
-                    "type": "DS.Model"
+                    "description": "A string representing the new state.",
+                    "type": "String"
                 }
             ],
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 64,
-            "description": "Triggered when the `advanceCurrentOrder` call succeeds.",
-            "itemtype": "event",
-            "name": "didAdvanceCurrentOrder",
-            "params": [
-                {
-                    "name": "currentOrderPromise",
-                    "description": "A promise that resolves to \nthe Current Order",
-                    "type": "Ember.RSVP.Promise"
-                }
-            ],
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 72,
-            "description": "Triggered when the `advanceCurrentOrder` call fails.",
-            "itemtype": "event",
-            "name": "advanceCurrentOrderFailed",
-            "params": [
-                {
-                    "name": "error",
-                    "description": "The returned Server Error.",
-                    "type": "Error"
-                }
-            ],
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 79,
+            "line": 42,
             "description": "Triggered whenever the Current Order reached it's \"Complete\" State.",
             "itemtype": "event",
             "name": "currentOrderDidComplete",
             "params": [
                 {
                     "name": "order",
-                    "description": "The Current Order.",
-                    "type": "DS.Model"
+                    "description": "A string representing the new state.",
+                    "type": "String"
                 }
             ],
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 86,
+            "line": 49,
             "description": "A method called in the `spree-ember-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
             "itemtype": "method",
-            "name": "_initCheckouts",
-            "access": "private",
-            "tagname": "",
+            "name": "initCheckouts",
             "params": [
                 {
                     "name": "application",
@@ -224,43 +150,34 @@
                 "description": "Always resolves to `true`.",
                 "type": "Boolean"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 125,
-            "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `spree-ember-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
+            "line": 85,
+            "description": "A reference to the Current Order.  It is only set twice in this code,\nonce on Application initialization (in the case it was persisted), and once\nwhen a new order is created through the internal method `_createNewOrder`.",
             "itemtype": "property",
-            "name": "guestToken",
-            "type": "String",
-            "readonly": "",
-            "default": "null",
-            "class": "CheckoutsMixin"
+            "name": "currentOrder",
+            "type": "DS.Model",
+            "default": "true",
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 137,
-            "description": "The user's Current Order number, persisted to local storage via\n`spree-ember-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
-            "itemtype": "property",
-            "name": "orderId",
-            "type": "String",
-            "readonly": "",
-            "default": "null",
-            "class": "CheckoutsMixin"
-        },
-        {
-            "file": "addon/mixins/checkouts.js",
-            "line": 149,
+            "line": 96,
             "description": "A reference to the Current Order.  It is only set twice in this code,\nonce on Application initialization (in the case it was persisted), and once\nwhen a new order is created through the internal method `_createNewOrder`.",
             "itemtype": "property",
             "name": "currentOrder",
             "type": "DS.Model",
             "default": "null",
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 160,
+            "line": 107,
             "description": "Adds state machine functionality to the Spree service.",
             "itemtype": "method",
             "name": "_setupStateMachineForOrder",
@@ -277,11 +194,34 @@
                 "description": "Returns the newly instantiated StateMachine instance.",
                 "type": "StateMachine"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 176,
+            "line": 123,
+            "description": "An overrideable Array representing the possible states of the order, and it's\npossible transitions.  This should be informed by the Spree backend. The default\nvalues will work with Spree's default checkout steps.",
+            "itemtype": "property",
+            "name": "eventsForOrderStateMachine",
+            "type": "Array",
+            "default": "Array",
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
+        },
+        {
+            "file": "addon/mixins/checkouts.js",
+            "line": 141,
+            "description": "An overrideable Object for binding callbacks to state changes in the Current\nSpree Order.  `this` in these callbacks represents the Current Order object.",
+            "itemtype": "property",
+            "name": "callbacksForOrderStateMachine",
+            "type": "Object",
+            "default": "Object",
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
+        },
+        {
+            "file": "addon/mixins/checkouts.js",
+            "line": 322,
             "description": "If a state name is passed to this method, the state machine will attempt to\ntransition directly to that state.  If not, we will attempt to transition\nto the next state in the checkout flow.",
             "itemtype": "method",
             "name": "transitionCheckoutState",
@@ -293,42 +233,83 @@
                 }
             ],
             "return": {
-                "description": "A function that calls the State Machine's transition, and\nthen resolves to StateMachine.ASYNC (see app/checkouts/spree.js)",
+                "description": "A dynamically created IIFE corresponding to a State\nMachine event name.  See `eventsForOrderStateMachine`.",
                 "type": "Function"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 204,
-            "description": "Saves the Current Order via the Spree API `checkouts` endpoint.  This method\nfirst serializes the order in a format that the endpoint expects, and hits\nthat endpoint.\n\nIf the server determines that the Order can transition to another state, it\nwill.  Therefore, we only use this method inside of the State Machine\ncallback, so we can handle the Client Side state machine appropriately.",
+            "line": 353,
+            "description": "This method will send data to Spree's Checkouts API in the format it expects.\nIt will also automatically transition the order to a certain state if it has\nenough information to satisfy Spree's Order State Machine.",
             "itemtype": "method",
-            "name": "_saveCurrentOrder",
+            "name": "_updateOrderData",
             "access": "private",
             "tagname": "",
             "return": {
                 "description": "A promise that resolves to either a successful\nserver response (that may contain errors in the payload), or an AJAX error.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 238,
-            "description": "This method will attempt to force the Order's state to the next State.  It's\nuseful for triggering server validation errors, when it's not clear why an \norder won't advance to the next state.",
+            "line": 422,
+            "description": "This method will attempt to force the Order's state to the next State.  It's\nnecessary for the \"confirm\" -> \"complete\" transition for Spree, and also useful\nfor triggering validation errors, when it's not clear why an order won't advance\nto the next state.",
             "itemtype": "method",
-            "name": "_advanceCurrentOrder",
+            "name": "_advanceOrderState",
             "access": "private",
             "tagname": "",
             "return": {
                 "description": "A promise that resolves to either a successful\nserver response (that may contain errors in the payload), or an AJAX error.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 270,
+            "line": 452,
+            "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `spree-ember-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
+            "itemtype": "property",
+            "name": "guestToken",
+            "type": "String",
+            "readonly": "",
+            "default": "null",
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
+        },
+        {
+            "file": "addon/mixins/checkouts.js",
+            "line": 464,
+            "description": "The user's Current Order number, persisted to local storage via\n`spree-ember-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
+            "itemtype": "property",
+            "name": "orderId",
+            "type": "String",
+            "readonly": "",
+            "default": "null",
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
+        },
+        {
+            "file": "addon/mixins/checkouts.js",
+            "line": 476,
+            "description": "A computed property that returns all of the countries (and states) set up in\nSpree's backend.",
+            "itemtype": "method",
+            "name": "countries",
+            "type": "Computed",
+            "return": {
+                "description": "Returns a promise that resolves to all of the\ncountries saved in the Spree backend.",
+                "type": "Ember.RSVP.Promise"
+            },
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
+        },
+        {
+            "file": "addon/mixins/checkouts.js",
+            "line": 489,
             "description": "Adds a lineItem to the currentOrder. If there is no Current Order,\nSpree Ember will request a new order from the server, and set it as the\nCurrent Order on the Spree service.",
             "itemtype": "method",
             "name": "addToCart",
@@ -336,7 +317,7 @@
                 {
                     "name": "variant",
                     "description": "A class of the variant model",
-                    "type": "DS.Model"
+                    "type": "Ember.Object"
                 },
                 {
                     "name": "quantity",
@@ -348,11 +329,12 @@
                 "description": "A promise that resolves to the newly saved Line Item.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 300,
+            "line": 518,
             "description": "An internal method for saving Line Items.  If it is called for a variant that\nis already in the current order, it will add to the corresponding Line Item's\nquantity, otherwise it will create a new Line Item for that variant.",
             "itemtype": "method",
             "name": "_saveLineItem",
@@ -379,11 +361,12 @@
                 "description": "A promise that resolves to the newly created or\nupdated `lineItem` object.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 339,
+            "line": 557,
             "description": "Will attempt to create a new Order for the checkout user, and save the `orderId`\nand `guestToken` to the Spree service, so that it will persist across page\nrefreshes.  It will also initiate the state machine for the current order.",
             "itemtype": "method",
             "name": "_createNewOrder",
@@ -393,11 +376,12 @@
                 "description": "A promise that resolves to the newly created\nSpree Order.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
             "file": "addon/mixins/checkouts.js",
-            "line": 370,
+            "line": 587,
             "description": "Clears the current order and any reference to it.",
             "itemtype": "method",
             "name": "clearCurrentOrder",
@@ -405,52 +389,23 @@
                 "description": "Always returns `true`.",
                 "type": "Boolean"
             },
-            "class": "CheckoutsMixin"
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         },
         {
-            "file": "addon/serializers/order.js",
-            "line": 11,
-            "description": "Serializes the Order into a format the Spree Checkouts endpoint expects.",
+            "file": "addon/mixins/checkouts.js",
+            "line": 602,
+            "description": "A place for overridable checkout redirect logic.",
             "itemtype": "method",
-            "name": "serialize",
-            "params": [
-                {
-                    "name": "snapshot",
-                    "description": "A snapshot of the order model for serialization.",
-                    "type": "Snapshot"
-                }
-            ],
-            "class": "OrderSerializer"
-        },
-        {
-            "file": "app/checkouts/spree.js",
-            "line": 1,
-            "description": "An overrideable Array representing the possible states of the order, and it's\npossible transitions.  This should be informed by the Spree backend. The default\nvalues will work with Spree's default checkout steps.",
-            "itemtype": "property",
-            "name": "orderStateEvents",
-            "type": "Array",
-            "default": "Array",
-            "class": ""
-        },
-        {
-            "file": "app/checkouts/spree.js",
-            "line": 19,
-            "description": "An overrideable Object for binding callbacks to state changes in the Current\nSpree Order.  `this` in these callbacks represents the Current Order object.",
-            "itemtype": "property",
-            "name": "orderStateCallbacks",
-            "type": "Object",
-            "default": "Object",
-            "class": ""
-        },
-        {
-            "file": "app/checkouts/spree.js",
-            "line": 79,
-            "description": "An overrideable Function for resolving a pending State Machine transition, \ncalled after successful `saveCurrentOrder` call.",
-            "itemtype": "property",
-            "name": "resolvePendingTransition",
-            "type": "Function",
-            "default": "Function",
-            "class": ""
+            "name": "_createNewOrder",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "A promise that resolves to the newly created\nSpree Order.",
+                "type": "Ember.RSVP.Promise"
+            },
+            "class": "Spree Ember.Checkouts",
+            "module": "spree-ember-core/mixins/checkouts"
         }
     ],
     "warnings": []

@@ -45,8 +45,7 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
-    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
+    <li><a href="../classes/Spree Ember.Checkouts.html">Spree Ember.Checkouts</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -58,22 +57,20 @@
 <pre class="language-javascript">
 <code class="language-javascript">
 /* globals StateMachine */
+
 import Ember from &#x27;ember&#x27;;
+
 /**
-  Provides Current Order and Checkout Functionality to the Spree service.  This
-  mixin is applied to the Spree service when spree-ember-checkouts initializes,
-  therefore all functionality described here is available like so:
+  Provides Current Order and Checkout Functionality to the Spree service.
 
-  &#x60;&#x60;&#x60;javascript
-  this.spree.addToCart(variantModel, 5);
-  &#x60;&#x60;&#x60;
-
-  @class CheckoutsMixin
+  @class Checkouts
+  @namespace Spree Ember
+  @module spree-ember-core/mixins/checkouts
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
   /**
-    A generic event triggered whenever a Spree Server request fails.
+    Triggered whenever a Spree Server request fails.
 
     @event serverError
     @param {Object} error The error object returned from the Spree Server.
@@ -83,63 +80,28 @@ export default Ember.Mixin.create({
     Triggered whenever a Line Item is created or updated.
 
     @event didAddToCart
-    @param {DS.Model} lineItem The newly updated lineItem object
-  */
-
-  /**
-    Triggered whenever a Line Item is created or updated.
-
-    @event addToCartFailed
-    @param {Error} error The returned Server Error.  
+    @param {Object} lineItem The newly updated lineItem object
   */
 
   /**
     Triggered whenever a new Order is created for the checkout user.
 
     @event didCreateNewOrder
-    @param {DS.Model} order The newly created order object
-  */
-
-  /**
-    Triggered whenever a new Order is created for the checkout user.
-
-    @event newOrderCreateFailed
-    @param {Object} error The returned Server Error.
-  */
-  
-  /**
-    Triggered whenever a new Order is created for the checkout user.
-
-    @event didClearCurrentOrder
+    @param {Object} order The newly created order object
   */
 
   /**
     Triggered whenever the Current Order changes State.
 
     @event checkoutStateDidChange
-    @param {DS.Model} order The Current Order.
-  */
-
-  /**
-    Triggered when the &#x60;advanceCurrentOrder&#x60; call succeeds.
-
-    @event didAdvanceCurrentOrder
-    @param {Ember.RSVP.Promise} currentOrderPromise A promise that resolves to 
-    the Current Order
-  */
-
-  /**
-    Triggered when the &#x60;advanceCurrentOrder&#x60; call fails.
-
-    @event advanceCurrentOrderFailed 
-    @param {Error} error The returned Server Error.  
+    @param {String} order A string representing the new state.
   */
 
   /**
     Triggered whenever the Current Order reached it&#x27;s &quot;Complete&quot; State.
 
     @event currentOrderDidComplete
-    @param {DS.Model} order The Current Order.
+    @param {String} order A string representing the new state.
   */
 
   /**
@@ -147,18 +109,15 @@ export default Ember.Mixin.create({
     &#x60;Checkouts&#x60; mixin is applied to the Spree service, to initialize functionality
     in this mixin.
 
-    @method _initCheckouts
-    @private
+    @method initCheckouts
     @param {Ember.Application} application A reference to the initializing Application.
     @return {Boolean} Always resolves to &#x60;true&#x60;.
   */
-  _initCheckouts: function(application, stateMachineParams) {
-    this.setProperties(stateMachineParams);
-    
-    this.restore();
-    var orderId = this.get(&#x27;orderId&#x27;);
-    
+  initCheckouts: function(application) {
     var _this = this;
+    this.restore();
+
+    var orderId = this.get(&#x27;orderId&#x27;);
     if (orderId) {
       application.deferReadiness();
       this.store.find(&#x27;order&#x27;, orderId).then(
@@ -179,6 +138,373 @@ export default Ember.Mixin.create({
       );
     }
     return true;
+  },
+
+  /**
+    A reference to the Current Order.  It is only set twice in this code,
+    once on Application initialization (in the case it was persisted), and once
+    when a new order is created through the internal method &#x60;_createNewOrder&#x60;.
+
+    @property currentOrder
+    @type DS.Model
+    @default true
+  */
+  shipToBilling: true,
+
+  /**
+    A reference to the Current Order.  It is only set twice in this code,
+    once on Application initialization (in the case it was persisted), and once
+    when a new order is created through the internal method &#x60;_createNewOrder&#x60;.
+
+    @property currentOrder
+    @type DS.Model
+    @default null
+  */
+  currentOrder: null,
+
+  /**
+    Adds state machine functionality to the Spree service.
+
+    @method _setupStateMachineForOrder
+    @private
+    @param {Ember.Object} order A reference to the Current Order
+    @return {StateMachine} Returns the newly instantiated StateMachine instance.
+  */
+  _setupStateMachineForOrder: function(order) {
+    return StateMachine.create({
+      initial:   order.get(&#x27;state&#x27;),
+      events:    this.get(&#x27;eventsForOrderStateMachine&#x27;),
+      callbacks: this.get(&#x27;callbacksForOrderStateMachine&#x27;),
+    }, this);
+  },
+
+  /**
+    An overrideable Array representing the possible states of the order, and it&#x27;s
+    possible transitions.  This should be informed by the Spree backend. The default
+    values will work with Spree&#x27;s default checkout steps.
+
+    @property eventsForOrderStateMachine
+    @type Array
+    @default Array
+  */
+  eventsForOrderStateMachine: [
+    { name: &#x27;transitionToCart&#x27;,     from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;cart&#x27; },
+    { name: &#x27;transitionToAddress&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;address&#x27; },
+    { name: &#x27;transitionToDelivery&#x27;, from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;delivery&#x27; },
+    { name: &#x27;transitionToPayment&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;payment&#x27; },
+    { name: &#x27;transitionToConfirm&#x27;,  from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;confirm&#x27; },
+    { name: &#x27;transitionToComplete&#x27;, from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;], to: &#x27;complete&#x27; }
+  ],
+
+  /**
+    An overrideable Object for binding callbacks to state changes in the Current
+    Spree Order.  &#x60;this&#x60; in these callbacks represents the Current Order object.
+
+    @property callbacksForOrderStateMachine
+    @type Object
+    @default Object
+  */
+  callbacksForOrderStateMachine: {
+    onenterstate: function() {
+      this.trigger(&#x27;checkoutStateDidChange&#x27;, this.current);
+    },
+    onleavestate: function(transitionEvent, fromState, toState) {
+      var _this          = this;
+      var currentOrder   = this.get(&#x27;currentOrder&#x27;);
+      var allStates      = currentOrder.get(&#x27;checkoutSteps&#x27;);
+      var previousState  = allStates.indexOf(this.current) &gt; allStates.indexOf(toState);
+
+      /*
+        If the State Machine is starting up, or the checkout user is trying to
+        transition to a previous state, we can simply allow the transition without
+        attempting to contact the server. (ie &quot;payment&quot; -&gt; &quot;address&quot;)
+      */
+      if (transitionEvent !== &quot;startup&quot; &amp;&amp; !previousState) {
+        // if (transitionEvent === &quot;transitionToCompletex&quot;) {
+        //   this._advanceOrderState().then(
+        //     function(response) {
+        //       Ember.run.once(_this, _this._handlePendingTransition, {
+        //         response: response,
+        //         toState: toState
+        //       });
+        //     },
+        //     function(error) {
+        //       _this.transition.cancel();
+        //       return error
+        //     }
+        //   )
+        // } else {
+        this._updateOrderData().then(
+          function(response) {
+            Ember.run.once(_this, _this._handlePendingTransition, {
+              response: response,
+              toState: toState
+            });
+          },
+          function(error) {
+            _this.transition.cancel();
+            return error;
+          }
+        );
+        return StateMachine.ASYNC;
+      }
+    },
+    onleavecart: function() {},
+    onenteraddress: function() {
+      var billAddress = this.get(&#x27;currentOrder.billAddress&#x27;);
+      if (!billAddress) {
+        var newBillAddress = this.store.createRecord(&#x27;address&#x27;);
+        this.set(&#x27;currentOrder.billAddress&#x27;, newBillAddress);
+      }
+    },
+    onleaveaddress: function() {
+      var shipAddress = this.get(&#x27;currentOrder.shipAddress&#x27;);
+      var billAddress = this.get(&#x27;currentOrder.billAddress&#x27;);
+      if (!shipAddress) {
+        this.set(&#x27;currentOrder.shipAddress&#x27;, billAddress);
+      }
+    },
+    onenterdelivery: function() {},
+    onleavedelivery: function() {},
+    onenterpayment: function() {
+      var payments = this.get(&#x27;currentOrder.payments&#x27;);
+      if (Ember.empty(payments)) {
+        var payment = this.store.createRecord(&#x27;payment&#x27;);
+        var source  = this.store.createRecord(&#x27;source&#x27;);
+        payment.set(&#x27;paymentMethod&#x27;, this.get(&#x27;currentOrder.availablePaymentMethods.firstObject&#x27;));
+        payment.set(&#x27;source&#x27;, source);
+        payments.pushObject(payment);
+      }
+    },
+    onleavepayment: function() {},
+    onenterconfirm: function() {},
+    onleaveconfirm: function() {},
+    onentercomplete: function() {
+      this.trigger(&#x27;currentOrderDidComplete&#x27;, this.get(&#x27;currentOrder&#x27;));
+    },
+    onleavecomplete: function() {}
+  },
+
+  _handlePendingTransition: function(args) {
+    var response       = args.response;
+    var toState        = args.toState;
+
+    if (response.errors) {
+      /*
+        Response returned with errors, so we have to cancel the transition,
+        most likely this is due to a validation error.  The _updateOrderData
+        call will trigger the serverError event, so we don&#x27;t have to handle
+        it here.
+      */
+      this.transition.cancel();
+    } else {
+      if (response.get(&#x27;state&#x27;) === toState) {
+        /*
+          Response returned successfully and has the State we&#x27;re attempting to
+          transition to, so all is good.
+        */
+        this.transition();
+      } else if (response.get(&#x27;state&#x27;) === this.current) {
+        /*
+          State returned successfull but was the same as the initial state, so we
+          attempt to force the order state to advance so we get an explicit error
+          to show the user.
+        */
+        var _this = this;
+        this._advanceOrderState().then(
+          function(response) {
+            if (response.errors) {
+              /*
+                The _advanceOrderState will handle triggering the serverError
+                event, so here we just cancel the transition.
+              */
+              _this.transition.cancel();
+            } else {
+              /*
+                This should theoretically never call, but in the case
+                that /next.json doesn&#x27;t return an errors payload, we can
+                assume the order did change state, and continue with the
+                transition.
+              */
+              _this.transition();
+            }
+          },
+          function() {
+            /*
+              This will only ever call if the AJAX request from _advanceOrderState
+              fails.  It&#x27;s error will be handled there, so we just cancel the
+              transition here.
+            */
+            _this.transition.cancel();
+          }
+        );
+      } else {
+        /*
+          The response&#x27;s state is not the attempted state, nor is it the same
+          state the as the State Machine currently.  We therefore check if the
+          state we&#x27;re attempting to get it has already been completed by the
+          server (ie, we&#x27;re going from &quot;address&quot; -&gt; &quot;delivery&quot; but the order is
+          in &quot;payment&quot;).
+
+          If this is not the case, we can assume that:
+          - The response is not in the attempted state.
+          - The response is not in the same state.
+          - The attempted State is not completed by the order
+
+          This means the response is in a state that is either:
+          - A previously completed state that has become incomplete and needs to
+          be redone, or
+          - A new state entirely that has been inserted by the server.  Spree does this
+          by inserting a confirmation step when Spree::Order.confirmation_required?
+          is false, but the Spree Gateway supports payment profiles.
+
+          Regardless, in this case we need to cancel the transition, and retrigger
+          it dynamically.
+        */
+
+        var currentOrder   = response;
+        var allStates      = currentOrder.get(&#x27;checkoutSteps&#x27;);
+        var completedState = allStates.indexOf(currentOrder.get(&#x27;state&#x27;)) &gt; allStates.indexOf(toState);
+
+        if (completedState) {
+          this.transition();
+        } else {
+          this.transition.cancel();
+          this.transitionCheckoutState();
+        }
+      }
+    }
+  },
+
+
+  /**
+    If a state name is passed to this method, the state machine will attempt to
+    transition directly to that state.  If not, we will attempt to transition
+    to the next state in the checkout flow.
+
+    @method transitionCheckoutState
+    @param {String} stateName Optional, a state to attempt transition to.
+    @return {Function} A dynamically created IIFE corresponding to a State
+    Machine event name.  See &#x60;eventsForOrderStateMachine&#x60;.
+  */
+  transitionCheckoutState: function(stateName) {
+    var nextStateName;
+
+    if (stateName) {
+      nextStateName = stateName;
+    } else {
+      var allStates = this.get(&#x27;currentOrder.checkoutSteps&#x27;);
+      if (this.current === &quot;cart&quot;) {
+        nextStateName = allStates[0];
+      } else if (this.current === &quot;complete&quot;) {
+        throw new Error(&quot;Spree Ember: Can&#x27;t transition order past &#x27;Complete&#x27; state.&quot;);
+      } else {
+        nextStateName = allStates[allStates.indexOf(this.current) + 1];
+      }
+    }
+
+    return new Function(
+      &quot;return this.transitionTo&quot;+Ember.String.capitalize(nextStateName)+&quot;();&quot;
+    ).apply(this);
+  },
+
+  /**
+    This method will send data to Spree&#x27;s Checkouts API in the format it expects.
+    It will also automatically transition the order to a certain state if it has
+    enough information to satisfy Spree&#x27;s Order State Machine.
+
+    @method _updateOrderData
+    @private
+    @return {Ember.RSVP.Promise} A promise that resolves to either a successful
+    server response (that may contain errors in the payload), or an AJAX error.
+  */
+  _updateOrderData: function() {
+    var _this             = this;
+    var order             = this.get(&#x27;currentOrder&#x27;);
+    var orderId           = order.get(&#x27;id&#x27;);
+    var adapter           = this.get(&#x27;container&#x27;).lookup(&#x27;adapter:-spree&#x27;);
+    var url               = adapter.buildURL(&#x27;checkout&#x27;, orderId);
+    var data              = this._dataObjectForOrderUpdate(order, adapter, this.current);
+
+    return adapter.ajax(url, &#x27;PUT&#x27;, { data: data }).then(
+      function(orderPayload) {
+        _this.store.pushPayload(&#x27;order&#x27;, orderPayload);
+        return _this.store.find(&#x27;order&#x27;, orderPayload.order.id);
+      },
+      function(error) {
+        _this.trigger(&#x27;serverError&#x27;, error);
+        return error;
+      }
+    );
+  },
+
+  _dataObjectForOrderUpdate: function(order, adapter, currentState) {
+    var data = {
+      order: adapter.serialize(order),
+      state: currentState
+    };
+
+    switch(currentState) {
+      case &quot;address&quot;:
+        var billAddress = order.get(&#x27;billAddress&#x27;);
+        if (billAddress) {
+          data.order[&#x27;bill_address_attributes&#x27;] = adapter.serialize(billAddress);
+        }
+        var shipAddress = order.get(&#x27;shipAddress&#x27;);
+        if (shipAddress) {
+          data.order[&#x27;ship_address_attributes&#x27;] = adapter.serialize(shipAddress);
+        }
+        break;
+      case &quot;delivery&quot;:
+        var shipments = order.get(&#x27;shipments&#x27;);
+        if (shipments) {
+          data.order[&#x27;shipments_attributes&#x27;] = {};
+          shipments.forEach(function(shipment, index) {
+            data.order.shipments_attributes[index] = adapter.serialize(shipment);
+          });
+        }
+        break;
+      case &quot;payment&quot;:
+        var payment = order.get(&#x27;payments.firstObject&#x27;);
+        if (payment &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
+          data[&#x27;payment_source&#x27;] = {};
+          data.order[&#x27;payments_attributes&#x27;] = [{payment_method_id: payment.get(&#x27;paymentMethod.id&#x27;)}];
+          data.payment_source[payment.get(&#x27;paymentMethod.id&#x27;)] = adapter.serialize(payment.get(&#x27;source&#x27;));
+        }
+        break;
+    }
+
+    return data;
+  },
+
+  /**
+    This method will attempt to force the Order&#x27;s state to the next State.  It&#x27;s
+    necessary for the &quot;confirm&quot; -&gt; &quot;complete&quot; transition for Spree, and also useful
+    for triggering validation errors, when it&#x27;s not clear why an order won&#x27;t advance
+    to the next state.
+
+    @method _advanceOrderState
+    @private
+    @return {Ember.RSVP.Promise} A promise that resolves to either a successful
+    server response (that may contain errors in the payload), or an AJAX error.
+  */
+  _advanceOrderState: function() {
+    var _this   = this;
+    var order   = this.get(&#x27;currentOrder&#x27;);
+    var orderId = order.get(&#x27;id&#x27;);
+    var adapter = this.get(&#x27;container&#x27;).lookup(&#x27;adapter:-spree&#x27;);
+    var url     = adapter.buildURL(&#x27;checkout&#x27;, orderId)+&quot;/next.json&quot;;
+
+    return adapter.ajax(url, &#x27;PUT&#x27;).then(
+      function(orderPayload) {
+        _this.store.pushPayload(&#x27;order&#x27;, orderPayload);
+        return _this.store.find(&#x27;order&#x27;, orderPayload.order.id);
+      },
+      function(error) {
+        _this.trigger(&#x27;serverError&#x27;, error);
+        return error;
+      }
+    );
   },
 
   /**
@@ -204,127 +530,19 @@ export default Ember.Mixin.create({
     @default null
   */
   orderId: null,
-  
-  /**
-    A reference to the Current Order.  It is only set twice in this code,
-    once on Application initialization (in the case it was persisted), and once
-    when a new order is created through the internal method &#x60;_createNewOrder&#x60;.
-
-    @property currentOrder
-    @type DS.Model
-    @default null
-  */
-  currentOrder: null,
 
   /**
-    Adds state machine functionality to the Spree service.
+    A computed property that returns all of the countries (and states) set up in
+    Spree&#x27;s backend.
 
-    @method _setupStateMachineForOrder
-    @private
-    @param {Ember.Object} order A reference to the Current Order
-    @return {StateMachine} Returns the newly instantiated StateMachine instance.
+    @method countries
+    @type Computed
+    @return {Ember.RSVP.Promise} Returns a promise that resolves to all of the
+    countries saved in the Spree backend.
   */
-  _setupStateMachineForOrder: function(order) {
-    return StateMachine.create({
-      initial:   order.get(&#x27;state&#x27;),
-      events:    this.get(&#x27;orderStateEvents&#x27;),
-      callbacks: this.get(&#x27;orderStateCallbacks&#x27;),
-    }, this);
-  },
-
-  /**
-    If a state name is passed to this method, the state machine will attempt to
-    transition directly to that state.  If not, we will attempt to transition
-    to the next state in the checkout flow.
-
-    @method transitionCheckoutState
-    @param {String} stateName Optional, a state to attempt transition to.
-    @return {Function} A function that calls the State Machine&#x27;s transition, and
-    then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)
-  */
-  transitionCheckoutState: function(stateName) {
-    var nextStateName;
-    if (stateName) {
-      nextStateName = stateName;
-    } else {
-      var allStates = this.get(&#x27;currentOrder.checkoutSteps&#x27;);
-      if (this.current === &quot;cart&quot;) {
-        nextStateName = allStates[0];
-      } else if (this.current === &quot;complete&quot;) {
-        throw new Error(&quot;Spree Ember: Can&#x27;t transition order past &#x27;Complete&#x27; state.&quot;);
-      } else {
-        nextStateName = allStates[allStates.indexOf(this.current) + 1];
-      }
-    }
-    var stateAction = &quot;transitionTo&quot; + Ember.String.capitalize(nextStateName);
-    return this[stateAction]();
-  },
-
-  /**
-    Saves the Current Order via the Spree API &#x60;checkouts&#x60; endpoint.  This method
-    first serializes the order in a format that the endpoint expects, and hits
-    that endpoint.
-
-    If the server determines that the Order can transition to another state, it
-    will.  Therefore, we only use this method inside of the State Machine
-    callback, so we can handle the Client Side state machine appropriately.
-
-    @method _saveCurrentOrder
-    @private
-    @return {Ember.RSVP.Promise} A promise that resolves to either a successful
-    server response (that may contain errors in the payload), or an AJAX error.
-  */
-  _saveCurrentOrder: function() {
-    var _this    = this;
-    var order    = this.get(&#x27;currentOrder&#x27;);
-    var orderId  = order.get(&#x27;id&#x27;);
-    var adapter  = this.get(&#x27;container&#x27;).lookup(&#x27;adapter:-spree&#x27;);
-    var url      = adapter.buildURL(&#x27;checkout&#x27;, orderId);
-    var data     = order.serialize();
-
-    return adapter.ajax(url, &#x27;PUT&#x27;, { data: data }).then(
-      function(orderPayload) {
-        _this.store.pushPayload(&#x27;order&#x27;, orderPayload);
-        return _this.store.find(&#x27;order&#x27;, orderPayload.order.id);
-      },
-      function(error) {
-        _this.trigger(&#x27;serverError&#x27;, error);
-        return error;
-      }
-    );
-  },
-
-  /**
-    This method will attempt to force the Order&#x27;s state to the next State.  It&#x27;s
-    useful for triggering server validation errors, when it&#x27;s not clear why an 
-    order won&#x27;t advance to the next state.
-
-    @method _advanceCurrentOrder 
-    @private
-    @return {Ember.RSVP.Promise} A promise that resolves to either a successful
-    server response (that may contain errors in the payload), or an AJAX error.
-  */
-  _advanceCurrentOrder: function() {
-    var _this   = this;
-    var order   = this.get(&#x27;currentOrder&#x27;);
-    var orderId = order.get(&#x27;id&#x27;);
-    var adapter = this.get(&#x27;container&#x27;).lookup(&#x27;adapter:-spree&#x27;);
-    var url     = adapter.buildURL(&#x27;checkout&#x27;, orderId)+&quot;/next.json&quot;;
-
-    return adapter.ajax(url, &#x27;PUT&#x27;).then(
-      function(orderPayload) {
-        _this.store.pushPayload(&#x27;order&#x27;, orderPayload);
-        var currentOrderPromise = _this.store.find(&#x27;order&#x27;, orderPayload.order.id);
-        _this.trigger(&#x27;didAdvanceCurrentOrder&#x27;, currentOrderPromise);
-        return currentOrderPromise;
-      },
-      function(error) {
-        _this.trigger(&#x27;serverError&#x27;, error);
-        _this.trigger(&#x27;advanceCurrentOrderFailed&#x27;, error);
-        return error;
-      }
-    );
-  },
+  countries: Ember.computed(function() {
+    return this.store.find(&#x27;country&#x27;);
+  }),
 
   /**
     Adds a lineItem to the currentOrder. If there is no Current Order,
@@ -332,14 +550,13 @@ export default Ember.Mixin.create({
     Current Order on the Spree service.
 
     @method addToCart
-    @param {DS.Model} variant A class of the variant model
+    @param {Ember.Object} variant A class of the variant model
     @param {Integer} quantity A quantity for the Line Item.
     @return {Ember.RSVP.Promise} A promise that resolves to the newly saved Line Item.
   */
   addToCart: function(variant, quantity) {
     var _this        = this;
     var currentOrder = this.get(&#x27;currentOrder&#x27;);
-    quantity = quantity || 1;
 
     if (currentOrder) {
       return _this._saveLineItem(variant, quantity, currentOrder);
@@ -349,7 +566,7 @@ export default Ember.Mixin.create({
           return _this._saveLineItem(variant, quantity, currentOrder);
         },
         function(error) {
-          
+          _this.trigger(&#x27;serverError&#x27;, error);
           return error;
         }
       );
@@ -419,7 +636,6 @@ export default Ember.Mixin.create({
         return newOrder;
       },
       function(error) {
-        _this.trigger(&#x27;newOrderCreateFailed&#x27;, error);
         _this.trigger(&#x27;serverError&#x27;, error);
         return error;
       }
@@ -438,9 +654,31 @@ export default Ember.Mixin.create({
       orderId: null
     });
     this.set(&#x27;currentOrder&#x27;, null);
-    this.trigger(&#x27;didClearCurrentOrder&#x27;);
     return true;
+  },
+
+  /**
+    A place for overridable checkout redirect logic.
+
+    @method _createNewOrder
+    @private
+    @return {Ember.RSVP.Promise} A promise that resolves to the newly created
+    Spree Order.
+  */
+  redirect: function(route) {
+    var currentOrder = this.get(&#x27;currentOrder&#x27;);
+    if (currentOrder) {
+      var state = currentOrder.get(&#x27;state&#x27;);
+      if (state === &quot;cart&quot;) {
+        this.transitionCheckoutState();
+      } else {
+        route.transitionTo(&quot;spree.checkout.&quot;+state);
+      }
+    } else {
+      route.transitionTo(&#x27;spree.products.index&#x27;);
+    }
   }
+
 });
 
 </code>

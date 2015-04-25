@@ -45,14 +45,13 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
-    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
+    <li><a href="../classes/Spree Ember.Checkouts.html">Spree Ember.Checkouts</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
   <div class="page-header">
-    <h3>CheckoutsMixin <small>Class</small></h3>
+    <h3>Spree Ember.Checkouts <small>Class</small></h3>
   </div>
 
   <div class="well well-small">
@@ -62,11 +61,12 @@
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/addon_mixins_checkouts.js.html#l3"><code>addon&#x2F;mixins&#x2F;checkouts.js:3</code></a></p>
+        <p>Defined in: <a href="../files/addon_mixins_checkouts.js.html#l5"><code>addon&#x2F;mixins&#x2F;checkouts.js:5</code></a></p>
       </div>
 
 
 <!--
+            Module: <a href="../modules/spree-ember-core_mixins_checkouts.html">spree-ember-core/mixins/checkouts</a>
  -->
 
 
@@ -74,11 +74,7 @@
 
 
   <div class="well well-small">
-    <p>Provides Current Order and Checkout Functionality to the Spree service.  This
-mixin is applied to the Spree service when spree-ember-checkouts initializes,
-therefore all functionality described here is available like so:</p>
-<pre class="code prettyprint"><code class="language-javascript">this.spree.addToCart(variantModel, 5);
-</code></pre>
+    <p>Provides Current Order and Checkout Functionality to the Spree service.</p>
 
   </div>
 
@@ -102,8 +98,8 @@ therefore all functionality described here is available like so:</p>
           <h6>Show Private Methods</h2>
         </div>
 
-<div id="method__advanceCurrentOrder" class="method panel item private">
-  <h3 class="name"><code>_advanceCurrentOrder</code></h3>
+<div id="method__advanceOrderState" class="method panel item private">
+  <h3 class="name"><code>_advanceOrderState</code></h3>
 
 
 
@@ -124,7 +120,7 @@ therefore all functionality described here is available like so:</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l238"><code>addon&#x2F;mixins&#x2F;checkouts.js:238</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l422"><code>addon&#x2F;mixins&#x2F;checkouts.js:422</code></a>
     </p>
 
 
@@ -133,8 +129,9 @@ therefore all functionality described here is available like so:</p>
 
   <div class="description">
     <p>This method will attempt to force the Order's state to the next State.  It's
-useful for triggering server validation errors, when it's not clear why an
-order won't advance to the next state.</p>
+necessary for the "confirm" -&gt; "complete" transition for Spree, and also useful
+for triggering validation errors, when it's not clear why an order won't advance
+to the next state.</p>
 
   </div>
 
@@ -174,7 +171,55 @@ server response (that may contain errors in the payload), or an AJAX error.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l339"><code>addon&#x2F;mixins&#x2F;checkouts.js:339</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l602"><code>addon&#x2F;mixins&#x2F;checkouts.js:602</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>A place for overridable checkout redirect logic.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>A promise that resolves to the newly created
+Spree Order.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method__createNewOrder" class="method panel item private">
+  <h3 class="name"><code>_createNewOrder</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l557"><code>addon&#x2F;mixins&#x2F;checkouts.js:557</code></a>
     </p>
 
 
@@ -198,132 +243,6 @@ refreshes.  It will also initiate the state machine for the current order.</p>
                       <span class="type">Ember.RSVP.Promise</span>:
                   <p>A promise that resolves to the newly created
 Spree Order.</p>
-
-          </div>
-      </div>
-</div>
-<div id="method__initCheckouts" class="method panel item private">
-  <h3 class="name"><code>_initCheckouts</code></h3>
-
-    <div class="args">
-      <span class="paren">(</span><ul class="args-list inline commas">
-        <li class="arg">
-            <code>application</code>
-        </li>
-      </ul><span class="paren">)</span>
-    </div>
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Boolean</span>
-    </p>
- -->
-
-
-
-    <span class="flag private">private</span>
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l86"><code>addon&#x2F;mixins&#x2F;checkouts.js:86</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>A method called in the <code>spree-ember-checkouts</code> initializer after the
-<code>Checkouts</code> mixin is applied to the Spree service, to initialize functionality
-in this mixin.</p>
-
-  </div>
-
-
-    <div class="params">
-      <h4>Parameters:</h4>
-
-      <ul class="params-list">
-        <li class="param">
-            <code class="param-name">application</code>
-            <span class="type">Ember.Application</span>
-
-
-          <div class="param-description">
-            <p>A reference to the initializing Application.</p>
-
-          </div>
-
-              </li>
-          </ul>
-      </div>
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Boolean</span>:
-                  <p>Always resolves to <code>true</code>.</p>
-
-          </div>
-      </div>
-</div>
-<div id="method__saveCurrentOrder" class="method panel item private">
-  <h3 class="name"><code>_saveCurrentOrder</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-    <span class="flag private">private</span>
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l204"><code>addon&#x2F;mixins&#x2F;checkouts.js:204</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Saves the Current Order via the Spree API <code>checkouts</code> endpoint.  This method
-first serializes the order in a format that the endpoint expects, and hits
-that endpoint.</p>
-<p>If the server determines that the Order can transition to another state, it
-will.  Therefore, we only use this method inside of the State Machine
-callback, so we can handle the Client Side state machine appropriately.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to either a successful
-server response (that may contain errors in the payload), or an AJAX error.</p>
 
           </div>
       </div>
@@ -363,7 +282,7 @@ server response (that may contain errors in the payload), or an AJAX error.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l300"><code>addon&#x2F;mixins&#x2F;checkouts.js:300</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l518"><code>addon&#x2F;mixins&#x2F;checkouts.js:518</code></a>
     </p>
 
 
@@ -459,7 +378,7 @@ updated <code>lineItem</code> object.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l160"><code>addon&#x2F;mixins&#x2F;checkouts.js:160</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l107"><code>addon&#x2F;mixins&#x2F;checkouts.js:107</code></a>
     </p>
 
 
@@ -501,6 +420,56 @@ updated <code>lineItem</code> object.</p>
           </div>
       </div>
 </div>
+<div id="method__updateOrderData" class="method panel item private">
+  <h3 class="name"><code>_updateOrderData</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l353"><code>addon&#x2F;mixins&#x2F;checkouts.js:353</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>This method will send data to Spree's Checkouts API in the format it expects.
+It will also automatically transition the order to a certain state if it has
+enough information to satisfy Spree's Order State Machine.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>A promise that resolves to either a successful
+server response (that may contain errors in the payload), or an AJAX error.</p>
+
+          </div>
+      </div>
+</div>
 <div id="method_addToCart" class="method panel item">
   <h3 class="name"><code>addToCart</code></h3>
 
@@ -532,7 +501,7 @@ updated <code>lineItem</code> object.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l270"><code>addon&#x2F;mixins&#x2F;checkouts.js:270</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l489"><code>addon&#x2F;mixins&#x2F;checkouts.js:489</code></a>
     </p>
 
 
@@ -553,7 +522,7 @@ Current Order on the Spree service.</p>
       <ul class="params-list">
         <li class="param">
             <code class="param-name">variant</code>
-            <span class="type">DS.Model</span>
+            <span class="type">Ember.Object</span>
 
 
           <div class="param-description">
@@ -608,7 +577,7 @@ Current Order on the Spree service.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l370"><code>addon&#x2F;mixins&#x2F;checkouts.js:370</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l587"><code>addon&#x2F;mixins&#x2F;checkouts.js:587</code></a>
     </p>
 
 
@@ -629,6 +598,126 @@ Current Order on the Spree service.</p>
           <div class="returns-description">
                       <span class="type">Boolean</span>:
                   <p>Always returns <code>true</code>.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method_countries" class="method panel item">
+  <h3 class="name"><code>countries</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l476"><code>addon&#x2F;mixins&#x2F;checkouts.js:476</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>A computed property that returns all of the countries (and states) set up in
+Spree's backend.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>Returns a promise that resolves to all of the
+countries saved in the Spree backend.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method_initCheckouts" class="method panel item">
+  <h3 class="name"><code>initCheckouts</code></h3>
+
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>application</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Boolean</span>
+    </p>
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_checkouts.js.html#l49"><code>addon&#x2F;mixins&#x2F;checkouts.js:49</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>A method called in the <code>spree-ember-checkouts</code> initializer after the
+<code>Checkouts</code> mixin is applied to the Spree service, to initialize functionality
+in this mixin.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">application</code>
+            <span class="type">Ember.Application</span>
+
+
+          <div class="param-description">
+            <p>A reference to the initializing Application.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Boolean</span>:
+                  <p>Always resolves to <code>true</code>.</p>
 
           </div>
       </div>
@@ -661,7 +750,7 @@ Current Order on the Spree service.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l176"><code>addon&#x2F;mixins&#x2F;checkouts.js:176</code></a>
+    <a href="../files/addon_mixins_checkouts.js.html#l322"><code>addon&#x2F;mixins&#x2F;checkouts.js:322</code></a>
     </p>
 
 
@@ -700,8 +789,8 @@ to the next state in the checkout flow.</p>
 
           <div class="returns-description">
                       <span class="type">Function</span>:
-                  <p>A function that calls the State Machine's transition, and
-then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
+                  <p>A dynamically created IIFE corresponding to a State
+Machine event name.  See <code>eventsForOrderStateMachine</code>.</p>
 
           </div>
       </div>
@@ -717,6 +806,35 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           <h6>Show Private Properties</h2>
         </div>
 
+          <div id="property_callbacksForOrderStateMachine" class="property panel item">
+              <h3 class="name"><code>callbacksForOrderStateMachine</code></h3>
+              <span class="type">Object</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_checkouts.js.html#l141"><code>addon&#x2F;mixins&#x2F;checkouts.js:141</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>An overrideable Object for binding callbacks to state changes in the Current
+          Spree Order.  <code>this</code> in these callbacks represents the Current Order object.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <p><strong>Default: </strong><code>Object</code></p>
+          
+          
+          </div>
           <div id="property_currentOrder" class="property panel item">
               <h3 class="name"><code>currentOrder</code></h3>
               <span class="type">DS.Model</span>
@@ -728,7 +846,37 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l149"><code>addon&#x2F;mixins&#x2F;checkouts.js:149</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l85"><code>addon&#x2F;mixins&#x2F;checkouts.js:85</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>A reference to the Current Order.  It is only set twice in this code,
+          once on Application initialization (in the case it was persisted), and once
+          when a new order is created through the internal method <code>_createNewOrder</code>.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <p><strong>Default: </strong><code>true</code></p>
+          
+          
+          </div>
+          <div id="property_currentOrder" class="property panel item">
+              <h3 class="name"><code>currentOrder</code></h3>
+              <span class="type">DS.Model</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_checkouts.js.html#l96"><code>addon&#x2F;mixins&#x2F;checkouts.js:96</code></a>
                   </p>
           
           
@@ -747,6 +895,36 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           
           
           </div>
+          <div id="property_eventsForOrderStateMachine" class="property panel item">
+              <h3 class="name"><code>eventsForOrderStateMachine</code></h3>
+              <span class="type">Array</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_checkouts.js.html#l123"><code>addon&#x2F;mixins&#x2F;checkouts.js:123</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>An overrideable Array representing the possible states of the order, and it's
+          possible transitions.  This should be informed by the Spree backend. The default
+          values will work with Spree's default checkout steps.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <p><strong>Default: </strong><code>Array</code></p>
+          
+          
+          </div>
           <div id="property_guestToken" class="property panel item">
               <h3 class="name"><code>guestToken</code></h3>
               <span class="type">String</span>
@@ -758,7 +936,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l125"><code>addon&#x2F;mixins&#x2F;checkouts.js:125</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l452"><code>addon&#x2F;mixins&#x2F;checkouts.js:452</code></a>
                   </p>
           
           
@@ -788,7 +966,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l137"><code>addon&#x2F;mixins&#x2F;checkouts.js:137</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l464"><code>addon&#x2F;mixins&#x2F;checkouts.js:464</code></a>
                   </p>
           
           
@@ -819,94 +997,6 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           <h6>Show Private Events</h2>
         </div>
 
-          <div id="event_addToCartFailed" class="events panel item">
-              <h3 class="name"><code>addToCartFailed</code></h3>
-              <span class="type"></span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l30"><code>addon&#x2F;mixins&#x2F;checkouts.js:30</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>Triggered whenever a Line Item is created or updated.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <div class="params">
-                      <h6>Event Payload</h6>
-          
-                      <ul class="params-list">
-                          <li class="param">
-                                  <code class="param-name">error</code>
-                                  <span class="type">Error</span>
-          
-          
-                              <div class="param-description">
-                                  <p>The returned Server Error.</p>
-          
-                              </div>
-          
-                          </li>
-                      </ul>
-                  </div>
-          
-          
-          </div>
-          <div id="event_advanceCurrentOrderFailed" class="events panel item">
-              <h3 class="name"><code>advanceCurrentOrderFailed</code></h3>
-              <span class="type"></span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l72"><code>addon&#x2F;mixins&#x2F;checkouts.js:72</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>Triggered when the <code>advanceCurrentOrder</code> call fails.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <div class="params">
-                      <h6>Event Payload</h6>
-          
-                      <ul class="params-list">
-                          <li class="param">
-                                  <code class="param-name">error</code>
-                                  <span class="type">Error</span>
-          
-          
-                              <div class="param-description">
-                                  <p>The returned Server Error.</p>
-          
-                              </div>
-          
-                          </li>
-                      </ul>
-                  </div>
-          
-          
-          </div>
           <div id="event_checkoutStateDidChange" class="events panel item">
               <h3 class="name"><code>checkoutStateDidChange</code></h3>
               <span class="type"></span>
@@ -918,7 +1008,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l57"><code>addon&#x2F;mixins&#x2F;checkouts.js:57</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l35"><code>addon&#x2F;mixins&#x2F;checkouts.js:35</code></a>
                   </p>
           
           
@@ -937,11 +1027,11 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
                       <ul class="params-list">
                           <li class="param">
                                   <code class="param-name">order</code>
-                                  <span class="type">DS.Model</span>
+                                  <span class="type">String</span>
           
           
                               <div class="param-description">
-                                  <p>The Current Order.</p>
+                                  <p>A string representing the new state.</p>
           
                               </div>
           
@@ -962,7 +1052,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l79"><code>addon&#x2F;mixins&#x2F;checkouts.js:79</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l42"><code>addon&#x2F;mixins&#x2F;checkouts.js:42</code></a>
                   </p>
           
           
@@ -981,11 +1071,11 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
                       <ul class="params-list">
                           <li class="param">
                                   <code class="param-name">order</code>
-                                  <span class="type">DS.Model</span>
+                                  <span class="type">String</span>
           
           
                               <div class="param-description">
-                                  <p>The Current Order.</p>
+                                  <p>A string representing the new state.</p>
           
                               </div>
           
@@ -1006,7 +1096,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l23"><code>addon&#x2F;mixins&#x2F;checkouts.js:23</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l21"><code>addon&#x2F;mixins&#x2F;checkouts.js:21</code></a>
                   </p>
           
           
@@ -1025,7 +1115,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
                       <ul class="params-list">
                           <li class="param">
                                   <code class="param-name">lineItem</code>
-                                  <span class="type">DS.Model</span>
+                                  <span class="type">Object</span>
           
           
                               <div class="param-description">
@@ -1036,78 +1126,6 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
                           </li>
                       </ul>
                   </div>
-          
-          
-          </div>
-          <div id="event_didAdvanceCurrentOrder" class="events panel item">
-              <h3 class="name"><code>didAdvanceCurrentOrder</code></h3>
-              <span class="type"></span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l64"><code>addon&#x2F;mixins&#x2F;checkouts.js:64</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>Triggered when the <code>advanceCurrentOrder</code> call succeeds.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <div class="params">
-                      <h6>Event Payload</h6>
-          
-                      <ul class="params-list">
-                          <li class="param">
-                                  <code class="param-name">currentOrderPromise</code>
-                                  <span class="type">Ember.RSVP.Promise</span>
-          
-          
-                              <div class="param-description">
-                                  <p>A promise that resolves to
-          the Current Order</p>
-          
-                              </div>
-          
-                          </li>
-                      </ul>
-                  </div>
-          
-          
-          </div>
-          <div id="event_didClearCurrentOrder" class="events panel item">
-              <h3 class="name"><code>didClearCurrentOrder</code></h3>
-              <span class="type"></span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l51"><code>addon&#x2F;mixins&#x2F;checkouts.js:51</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>Triggered whenever a new Order is created for the checkout user.</p>
-          
-              </div>
-          
-              <hr>
-          
           
           
           </div>
@@ -1122,7 +1140,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l37"><code>addon&#x2F;mixins&#x2F;checkouts.js:37</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l28"><code>addon&#x2F;mixins&#x2F;checkouts.js:28</code></a>
                   </p>
           
           
@@ -1141,55 +1159,11 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
                       <ul class="params-list">
                           <li class="param">
                                   <code class="param-name">order</code>
-                                  <span class="type">DS.Model</span>
-          
-          
-                              <div class="param-description">
-                                  <p>The newly created order object</p>
-          
-                              </div>
-          
-                          </li>
-                      </ul>
-                  </div>
-          
-          
-          </div>
-          <div id="event_newOrderCreateFailed" class="events panel item">
-              <h3 class="name"><code>newOrderCreateFailed</code></h3>
-              <span class="type"></span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l44"><code>addon&#x2F;mixins&#x2F;checkouts.js:44</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>Triggered whenever a new Order is created for the checkout user.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <div class="params">
-                      <h6>Event Payload</h6>
-          
-                      <ul class="params-list">
-                          <li class="param">
-                                  <code class="param-name">error</code>
                                   <span class="type">Object</span>
           
           
                               <div class="param-description">
-                                  <p>The returned Server Error.</p>
+                                  <p>The newly created order object</p>
           
                               </div>
           
@@ -1210,14 +1184,14 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l16"><code>addon&#x2F;mixins&#x2F;checkouts.js:16</code></a>
+                  <a href="../files/addon_mixins_checkouts.js.html#l14"><code>addon&#x2F;mixins&#x2F;checkouts.js:14</code></a>
                   </p>
           
           
               </div>
           
               <div class="description">
-                  <p>A generic event triggered whenever a Spree Server request fails.</p>
+                  <p>Triggered whenever a Spree Server request fails.</p>
           
               </div>
           
