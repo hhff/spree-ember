@@ -3,7 +3,7 @@
         "name": "spree-ember-core",
         "shortName": "core",
         "description": "Core data infrastructure for a Spree Ember Application.",
-        "version": "0.0.0.0ab97b67"
+        "version": "0.0.0.908cce28"
     },
     "files": {
         "addon/adapters/spree.js": {
@@ -486,19 +486,19 @@
         {
             "file": "addon/stores/spree.js",
             "line": 48,
-            "description": "Always returns the Spree Serializer.",
+            "description": "Attempts to find a registered serializer for the type, but in the case it doesn't\nfind one, it will return the default Spree serializer.",
             "itemtype": "method",
             "name": "serializerFor",
             "return": {
-                "description": "The Spree Ember Serializer.",
-                "type": "SpreeEmber.Serializer"
+                "description": "A serializer.",
+                "type": "Serializer"
             },
             "class": "SpreeEmber.Store",
             "module": "spree-ember-core/stores/spree"
         },
         {
             "file": "addon/stores/spree.js",
-            "line": 58,
+            "line": 63,
             "description": "Find a model by it's `slug` attribute.",
             "example": [
                 "\n```javascript\n// Products Show Route\nimport Ember from 'ember';\n\nexport default Ember.Route.extend({\n  model: function(params) {\n    return this.spree.store.findBySlug('product', params.slug);\n  }\n});\n```"
@@ -538,6 +538,20 @@
         {
             "file": "app/services/spree.js",
             "line": 29,
+            "description": "A computed property that returns all of the countries (and states) set up in\nSpree's backend.",
+            "itemtype": "property",
+            "name": "countries",
+            "type": "Computed",
+            "return": {
+                "description": "Returns a promise that resolves to all of the\ncountries saved in the Spree backend.",
+                "type": "Ember.RSVP.Promise"
+            },
+            "class": "SpreeEmber.Spree",
+            "module": "spree-ember-core/services/spree"
+        },
+        {
+            "file": "app/services/spree.js",
+            "line": 42,
             "description": "A copy of the \"spree\" entry in the Host Application environment config.",
             "itemtype": "property",
             "name": "config",
@@ -548,7 +562,7 @@
         },
         {
             "file": "app/services/spree.js",
-            "line": 38,
+            "line": 51,
             "description": "A copy of the Host Application's current environment name.",
             "itemtype": "property",
             "name": "environment",

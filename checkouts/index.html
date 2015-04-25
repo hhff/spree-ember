@@ -45,7 +45,8 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="./classes/Spree Ember.Checkouts.html">Spree Ember.Checkouts</a></li>
+    <li><a href="./classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="./classes/OrderSerializer.html">OrderSerializer</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -56,6 +57,8 @@ service.  By providing a standard interface to trigger Spree order transitions,
 an API driven checkout process is greatly simplified. </p>
 <p>This interface is designed to work out the box with the <a href="http://github.com/spree/spree">Spree</a> 
 rails engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<p><strong>Note:</strong> This Package is included with <code>spree-ember-storefront</code>.  If you&#39;re
+using that, there&#39;s no need to install this seperately.</p>
 <p>It uses:</p>
 <ul>
 <li><a href="http://www.spree-ember.com/core/index.html">Spree Ember Core</a></li>
@@ -66,31 +69,60 @@ rails engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
 </code></pre>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
-<h2 id="current-order-management-transitions">Current Order Management &amp; Transitions</h2>
-<pre><code class="lang-javascript">this.spree.get(&#39;currentOrder.state&#39;);
-// &quot;cart&quot;
+<h2 id="order-management">Order Management</h2>
+<p>The <code>addToCart</code> function will create an order if one doesn&#39;t currently exist,
+and then add a variant to cart.  You can optionally pass in a quantity, too!</p>
+<pre><code class="lang-javascript">this.spree.get(&#39;currentOrder&#39;);
+// null
 
+var _this = this;
+this.spree.addToCart(variantModel).then(function() {
+  _this.spree.get(&#39;currentOrder.state&#39;);
+  // &quot;cart&quot;
+});
+</code></pre>
+<h2 id="advancing-an-order-through-the-checkout">Advancing an Order through the Checkout</h2>
+<p>You can transition an order through the checkout flow by using the 
+<code>transitionCheckoutState</code> function.  Under the hood, it triggers state
+transitions on a State Machine, to ensure the frontend state stays in sync with
+Spree&#39;s Order State Machine.</p>
+<pre><code class="lang-javascript">var _this = this;
 this.spree.transitionCheckoutState().then(
   function(currentOrder) {
     currentOrder.get(&#39;state&#39;);
     // &quot;delivery&quot;
+
+    _this.spree.transitionCheckoutState(&quot;complete&quot;).catch(function(spreeError){
+      alert(&quot;Could not transition&quot;);
+      return spreeError;
+    });
   }
 );
+</code></pre>
+<h2 id="subscribing-to-checkout-events">Subscribing to Checkout Events</h2>
+<p>The Spree Checkouts package also supports a event bus / callback style 
+architecture.  This is useful for binding events to Google Analytics, and such.</p>
+<pre><code class="lang-javascript">this.spree.on(&#39;didAddToCart&#39;, function(lineItem) {
+  alert(lineItem.get(&#39;variant.name&#39;) + &quot; added to cart!&quot;);
+});
 
-this.spree.transitionCheckoutState(&quot;complete&quot;).catch(function(spreeError){
-  alert(&quot;Could not transition&quot;);
-  return spreeError;
+this.spree.on(&#39;checkoutStateDidChange&#39;, function(currentOrder) {
+  alert(&quot;Transitioned to &quot; + currentOrder.get(&#39;state&#39;));
 });
 </code></pre>
-<h3 id="customizing-the-frontend-state-machine">Customizing the Frontend State Machine</h3>
+<h2 id="customizing-the-frontend-state-machine">Customizing the Frontend State Machine</h2>
 <p>The <code>spree-ember-checkouts</code> addon provides a single file where it defines the
-checkout state machine events and callbacks.</p>
+checkout state machine events and callbacks.  You&#39;ll want to modify this file if
+you&#39;ve modified Spree&#39;s default Checkout flow.</p>
 <p>Copy it into your host application:</p>
 <pre><code class="lang-bash">ember generate spree-ember-checkouts-flow
 </code></pre>
-<p>This will install a file at <code>your-app/app/spree/checkouts-flow.js</code></p>
+<p>This will install a file at <code>your-app/app/checkouts/spree.js</code></p>
 <p>Modify this file to work with any customizations you&#39;ve made to your Spree
 backend.</p>
+<p><strong>Note:</strong> If you&#39;re using <code>spree-ember-storefront</code>, this blueprint won&#39;t be
+found, as Ember CLI doesn&#39;t currently have official support for nested addons.
+You can simply copy the file from this repo to your application manually.</p>
       </div>
     </div>
   </div>
