@@ -5,7 +5,9 @@
     {{else}}
       <legend>Sign In</legend>
     {{/if}}
-    {{input placeholder="Email" value=identification}}
+    {{spree-input value=identification
+                  errors=errors
+                  attributeName="Email"}}
     {{input placeholder="Password" type="Password" value=password}}
     {{#if isSignup}}
       {{input placeholder="Password Confirmation" type="Password" value=passwordConfirmation}}

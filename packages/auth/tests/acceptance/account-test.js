@@ -24,7 +24,7 @@ test('can change password correctly', function(assert) {
   var newSeed  = (new Date()).valueOf().toString();
   var newEmail = 'spree-ember-'+seed+'@example.com';
 
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');

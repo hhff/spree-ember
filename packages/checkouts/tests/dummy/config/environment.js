@@ -38,7 +38,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
 
-    ENV['spreeEmber'] = {
+    ENV['spree'] = {
       apiHost: 'http://testing.spree-ember.com'
     }
   }

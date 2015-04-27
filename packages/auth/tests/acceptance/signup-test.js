@@ -22,7 +22,7 @@ test('can signup successfully', function(assert) {
   var seed = (new Date()).valueOf().toString();
   var email = 'spree-ember-'+seed+'@example.com';
 
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');
@@ -46,7 +46,7 @@ test('can signup successfully', function(assert) {
 test('can not signup with an invalid email', function(assert) {
   var seed = (new Date()).valueOf().toString();
 
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');
@@ -70,7 +70,7 @@ test('can not signup with an invalid email', function(assert) {
 test('can not signup without a password', function(assert) {
   var seed = (new Date()).valueOf().toString();
 
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');
@@ -93,7 +93,7 @@ test('can not signup without a password', function(assert) {
 test('can signup without a password confirmation', function(assert) {
   var seed = (new Date()).valueOf().toString();
 
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');

@@ -6,7 +6,9 @@ import {
 
 moduleForComponent('spree-auth', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: [
+    'component:spree-input'
+  ]
 });
 
 test('it renders', function(assert) {

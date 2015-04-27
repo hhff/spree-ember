@@ -1,26 +1,29 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('currentCheckoutState', this.spree.current);
-  },
+  redirect: function(model) {
+    var currentOrder = this.spree.get('currentOrder');
 
-  activate: function() {
-    this._super.apply(this, arguments);
-    this.spree.on('checkoutStateDidChange', this, function(state) {
-      this.transitionTo("checkout."+state);
-      this.set('controller.currentCheckoutState', state);
-    });
-  },
-
-  deactivate: function() {
-    this.spree.off('checkoutStateDidChange');
+    if (currentOrder) {
+      switch(currentOrder.get('state')) {
+        case 'cart':
+          this.transitionTo('spree.cart');
+          break;
+        case 'complete':
+          this.transitionTo('spree.orders.show', currentOrder);
+          break;
+      }
+    } else {
+      this.transitionTo('spree.products.index');
+    }
   },
 
   actions: {
     transitionCheckoutState: function(state) {
-      this.spree.transitionCheckoutState(state);
-      return false;
+      var _this = this;
+      this.spree.get('checkouts').transition(state).finally(function() {
+        _this.redirect();
+      });
     }
   }
 });

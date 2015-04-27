@@ -7,6 +7,8 @@ import {
 moduleFor('serializer:order', {
   // Specify the other units that are required for this test.
   needs: [
+    'service:checkouts',
+    'service:spree',
     'store:spree',
     'serializer:spree',
     'model:order',
@@ -29,7 +31,6 @@ moduleFor('serializer:order', {
   ]
 });
 
-// Replace this with your real tests.
 test('it exists', function(assert) {
   var serializer = this.subject();
   assert.ok(serializer);
@@ -40,9 +41,14 @@ test('it serializes correctly on the address state', function(assert) {
   assert.ok(serializer);
   
   var spreeStore = this.container.lookup('store:spree');
+  var checkouts  = this.container.lookup('service:checkouts');
+
+  checkouts.set('currentState', 'address');
+  
   Ember.run(function() {
+
     var order = spreeStore.createRecord('order', {
-      state: 'address'
+      _useCheckoutsEndpoint: true
     });
 
     var USA = spreeStore.createRecord('country', {
@@ -68,9 +74,9 @@ test('it serializes correctly on the address state', function(assert) {
     order.set('shipAddress', shipAddress);
     order.set('billAddress', shipAddress);
     assert.ok(order);
- 
-    var payload = order.serialize();
 
+    var payload = order.serialize();
+    
     assert.ok(payload.order.ship_address_attributes);
     assert.ok(payload.order.bill_address_attributes);
     assert.equal(payload.order.ship_address_attributes.city, 'New York City');
@@ -82,9 +88,13 @@ test('it serializes correctly based on order state', function(assert) {
   assert.ok(serializer);
   
   var spreeStore = this.container.lookup('store:spree');
+  var checkouts  = this.container.lookup('service:checkouts');
+
   Ember.run(function() {
+
+    checkouts.set('currentState', 'address');
     var order = spreeStore.createRecord('order', {
-      state: 'address'
+      _useCheckoutsEndpoint: true
     });
 
     var USA = spreeStore.createRecord('country', {
@@ -117,7 +127,7 @@ test('it serializes correctly based on order state', function(assert) {
     assert.ok(payload.order.bill_address_attributes);
     assert.equal(payload.order.ship_address_attributes.city, 'New York City');
 
-    order.set('state', 'delivery');
+    checkouts.set('currentState', 'delivery');
 
     payload = order.serialize();
 
@@ -126,7 +136,7 @@ test('it serializes correctly based on order state', function(assert) {
     assert.throws(payload.order.ship_address_attributes);
     assert.throws(payload.order.bill_address_attributes);
 
-    order.set('state', 'payment');
+    checkouts.set('currentState', 'payment');
     
     var paymentMethod = spreeStore.createRecord('paymentMethod', {
       id: 1

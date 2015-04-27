@@ -1,17 +1,12 @@
-import Checkouts from 'spree-ember-checkouts/mixins/checkouts';
-import { 
-  orderStateEvents, 
-  orderStateCallbacks,
-  resolvePendingTransition
-} from '../checkouts/spree';
+import CurrentOrderSupport from 'spree-ember-checkouts/mixins/current-order-support';
 
 export function initialize(container, application) {
   var SpreeService = container.lookup('service:spree');
-  Checkouts.apply(SpreeService);
-  SpreeService._initCheckouts(application, {
-    orderStateEvents:         orderStateEvents,
-    orderStateCallbacks:      orderStateCallbacks,
-    resolvePendingTransition: resolvePendingTransition
+  CurrentOrderSupport.apply(SpreeService);
+
+  application.deferReadiness();
+  SpreeService._restoreCurrentOrder().finally(function() {
+    application.advanceReadiness();
   });
 }
 

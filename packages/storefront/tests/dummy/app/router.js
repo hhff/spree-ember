@@ -7,10 +7,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  spreeRouter(this, {
-    mountPath: '/',
-    productsPath: '/items'
-  });
+  spreeRouter(this, config);
 });
 
 export default Router;

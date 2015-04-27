@@ -17,11 +17,11 @@ export default Ember.Component.extend({
       var stepIndex         = checkoutSteps.indexOf(stepName);
 
       if (stepIndex > currentStateIndex) {
-        stepObject.set('className', 'unavailable');
-      }
-
-      if (stepName === checkoutState) {
-        stepObject.set('className', 'current');
+        stepObject.set('status', 'unavailable');
+      } else if (stepName === checkoutState) {
+        stepObject.set('status', 'current');
+      } else {
+        stepObject.set('status', 'completed');
       }
 
       stepObjects.pushObject(stepObject);
@@ -30,8 +30,10 @@ export default Ember.Component.extend({
   }),
 
   actions:  {
-    clickedCrumb: function(stepName) {
-      this.sendAction('action', stepName);
+    clickedCrumb: function(step) {
+      if (step.get('status') === "completed") {
+        this.sendAction('action', step.get('name'));
+      }
     }
   }
 });

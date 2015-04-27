@@ -1,14 +1,24 @@
 <form {{action 'submit' on='submit'}}>
   <fieldset>
+    <legend>{{if isSignup 'Sign Up' 'Sign In'}}</legend>
+
+    {{spree-input value=identification
+                  errors=errors.email
+                  attributeName="Email"
+                  placeholder="Email"}}
+
+    {{spree-input value=password
+                  errors=errors.password
+                  type="password"
+                  attributeName="Password"
+                  placeholder="Password"}}
+                  
     {{#if isSignup}}
-      <legend>Sign Up</legend>
-    {{else}}
-      <legend>Sign In</legend>
-    {{/if}}
-    {{input placeholder="Email" value=identification}}
-    {{input placeholder="Password" type="Password" value=password}}
-    {{#if isSignup}}
-      {{input placeholder="Password Confirmation" type="Password" value=passwordConfirmation}}
+      {{spree-input value=passwordConfirmation
+                    errors=errors.passwordConfirmation
+                    type="password"
+                    attributeName="Password Confirmation"
+                    placeholder="Password Confirmation"}}
     {{/if}}
     <button type="submit" class="expand">Continue</button>
     {{#if isSignup}}

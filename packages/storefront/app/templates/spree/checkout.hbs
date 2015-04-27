@@ -3,17 +3,17 @@
     <h1>Checkout</h1>
   </div>
 
-  {{#unless spree.currentOrder.isComplete}}
-    <div class="small-12 columns">
-      {{spree-breadcrumbs checkoutState=currentCheckoutState checkoutSteps=spree.currentOrder.checkoutSteps}}
+  <div class="small-12 columns">
+    {{spree-breadcrumbs checkoutState=spree.checkouts.currentState checkoutSteps=spree.currentOrder.checkoutSteps}}
+  </div>
+
+  {{#unless spree.checkouts.isInConfirm}}
+    <div class="small-12 large-4 columns right">
+      {{spree-details order=spree.currentOrder}}
     </div>
   {{/unless}}
 
-  <div class="small-12 large-4 columns right">
-    {{spree-details order=spree.currentOrder}}
-  </div>
-
-  <div class="small-12 large-8 columns">
-    {{outlet}}
+  <div {{bind-attr class=":small-12 spree.checkouts.isInConfirm:large-12:large-8 :columns"}}>
+    {{spree-checkout}}
   </div>
 </div>

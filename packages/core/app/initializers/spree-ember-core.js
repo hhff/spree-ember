@@ -21,7 +21,7 @@ export function initialize(container, application) {
   /* Copy Environment and Spree Configuration to Spree Service */
   var SpreeService = container.lookup('service:spree');
   SpreeService.set('environment', ENV.environment);
-  SpreeService.set('config', ENV['spreeEmber'] || {});
+  SpreeService.set('config', ENV['spree'] || {});
 }
 
 export default {

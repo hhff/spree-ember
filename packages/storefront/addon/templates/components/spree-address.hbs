@@ -1,30 +1,49 @@
-<label>First Name</label>
-{{input value=address.firstname}}
+{{spree-input value=address.firstname 
+              errors=address.errors.firstname
+              attributeName="First Name"}}
 
-<label>Last Name</label>
-{{input value=address.lastname}}
+{{spree-input value=address.lastname
+              errors=address.errors.lastname
+              attributeName="Last Name"}}
 
-<label>Address</label>
-{{input value=address.address1}}
+{{spree-input value=address.address1
+              errors=address.errors.address1
+              attributeName="Street Address"}}
+              
+{{spree-input value=address.address2 
+              errors=address.errors.address2
+              attributeName="Address (cont.)"}}
 
-<label>Address 2</label>
-{{input value=address.address2}}
+{{spree-input value=address.city
+              errors=address.errors.city
+              attributeName="City"}}
+              
+{{spree-input value=address.zipcode 
+              errors=address.errors.zipcode
+              attributeName="Zipcode"}}
+              
+{{spree-select content=countries 
+               optionLabelPath="content.name" 
+               selection=address.country 
+               prompt="Select a Country"
+               errors=address.errors.country
+               attributeName="Country"}}
 
-<label>City</label>
-{{input value=address.city}}
-
-<label>Zip</label>
-{{input value=address.zipcode}}
-
-<label>Country</label>
-{{view "select" content=countries optionLabelPath="content.name" selection=address.country prompt="Select a Country"}}
-
-<label>State</label>
 {{#if address.country.states.length}}
-  {{view "select" content=address.country.states optionLabelPath="content.name" selection=address.state prompt="Select a State"}}
+  {{spree-select content=address.country.states
+                optionLabelPath="content.name" 
+                selection=address.state
+                prompt="Select a State"
+                errors=address.errors.state
+                attributeName="State"}}
 {{else}}
-  {{input value=address.stateName}}
+  {{#if address.country.statesRequired}}
+    {{spree-input value=address.stateName
+                  errors=address.errors.stateName
+                  attributeName="State"}}
+  {{/if}}
 {{/if}}
 
-<label>Phone</label>
-{{input value=address.phone}}
+{{spree-input value=address.phone
+              errors=address.errors.phone
+              attributeName="Phone"}}

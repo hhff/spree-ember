@@ -6,10 +6,7 @@ import DS from 'ember-data';
   assumes your server has the `spree_ams` gem installed.
 
   @class Adapter
-  @namespace SpreeEmber
-  @module spree-ember-core/adapters/spree
   @extends DS.ActiveModelAdapter
-  @uses SpreeEmber.Serializer
 */
 
 export default DS.ActiveModelAdapter.extend({
@@ -87,5 +84,21 @@ export default DS.ActiveModelAdapter.extend({
     } else {
       return { };
     }
-  })
+  }),
+
+  /**
+    Overrides the default buildURL call to check for the `_useCheckoutsEndpoint`
+    on the snapshot, (applied to `order` models in the `CanCheckout` mixin). If
+    so, the resulting URL will be `{hostname}/{namespace}/checkouts/{record_id}`.
+    If the flag isn't present, `_super` is called and the record URL is built
+    normally.
+
+    @method buildURL
+  */
+  buildURL: function(record, suffix, snapshot) {
+    if (record === "order" && snapshot.attr('_useCheckoutsEndpoint')) {
+      record = "checkout";
+    }
+    return this._super.apply(this, [record, suffix, snapshot]);
+  },
 });
