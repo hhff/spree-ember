@@ -1,0 +1,12 @@
+<div class="row">
+  {{#each product in model}}
+    {{#link-to 'spree.products.show' product}}
+      <div class="small-6 medium-4 large-3 columns text-center">
+        <img style="height:100px" {{bind-attr src=product.images.firstObject.largeUrl}}>
+        <h6>{{product.name}}</h6>
+        <hr>
+        <h6>{{product.displayPrice}}</h6>
+      </div>
+    {{/link-to}}
+  {{/each}}
+</div>
