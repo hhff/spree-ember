@@ -148,12 +148,12 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
       }
     },
     toAddress: {
-      after: &#x27;ensureShipAddressExists&#x27;,
+      after: &#x27;_ensureShipAddressExists&#x27;,
       transitions: [
         {
           from: [&#x27;cart&#x27;],
           to: &#x27;address&#x27;,
-          willEnter: &#x27;validateOrder&#x27;
+          willEnter: &#x27;_validateOrder&#x27;
         },
         {
           from: [&#x27;$initial&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
@@ -166,7 +166,7 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
         {
           from: [&#x27;address&#x27;],
           to: &#x27;delivery&#x27;,
-          willEnter: &#x27;validateOrder&#x27;
+          willEnter: &#x27;_validateOrder&#x27;
         },
         {
           from: [&#x27;$initial&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
@@ -175,12 +175,12 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
       ]
     },
     toPayment: {
-      after: &#x27;ensurePaymentExists&#x27;,
+      after: &#x27;_ensurePaymentExists&#x27;,
       transitions: [
         {
           from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;],
           to: &#x27;payment&#x27;,
-          willEnter: &#x27;validateOrder&#x27;
+          willEnter: &#x27;_validateOrder&#x27;
         },
         {
           from: [&#x27;$initial&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
@@ -193,7 +193,7 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
         {
           from: [&#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;],
           to: &#x27;confirm&#x27;,
-          willEnter: &#x27;validateOrder&#x27;
+          willEnter: &#x27;_validateOrder&#x27;
         },
         {
           from: [&#x27;$initial&#x27;, &#x27;failed&#x27;],
@@ -205,7 +205,7 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
       transition: {
         from: [&#x27;$initial&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;],
         to: &#x27;complete&#x27;,
-        willEnter: &#x27;validateOrder&#x27;,
+        willEnter: &#x27;_validateOrder&#x27;,
       }
     },
     toIdle: {
@@ -216,54 +216,6 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     error: {
       after: &#x27;_resetStateMachine&#x27;,
       transition: { $all: &#x27;failed&#x27; }
-    }
-  },
-  /**
-    Called whenever the State Machine enters &quot;Address&quot;.  Ensures that an address
-    object exists for the order&#x27;s &#x60;shipAddress&#x60;.
-
-    @method ensureShipAddressExists
-  */
-  ensureShipAddressExists: function() {
-    var shipAddress = this.get(&#x27;currentOrder.shipAddress&#x27;);
-    if (!shipAddress) {
-      var newShipAddress = this.get(&#x27;spree&#x27;).store.createRecord(&#x27;address&#x27;);
-      this.set(&#x27;currentOrder.shipAddress&#x27;, newShipAddress);
-    }
-  },
-  /**
-    Called whenever the State Machine enters &quot;Payment&quot;.  Ensures that a payment
-    and source object exists for the &#x60;currentOrder&#x60;.
-
-    @method ensurePaymentExists
-  */
-  ensurePaymentExists: function() {
-    var spree    = this.get(&#x27;spree&#x27;);
-    var payments = this.get(&#x27;currentOrder.payments&#x27;);
-    if (Ember.isEmpty(payments)) {
-      var payment = spree.store.createRecord(&#x27;payment&#x27;);
-      var source  = spree.store.createRecord(&#x27;source&#x27;);
-      payment.set(&#x27;paymentMethod&#x27;, this.get(&#x27;currentOrder.availablePaymentMethods.firstObject&#x27;));
-      payment.set(&#x27;source&#x27;, source);
-      payments.pushObject(payment);
-    }
-  },
-  /**
-    When &#x60;validateOrder&#x60; fails, the State Machine will automatically transition
-    to &quot;failed&quot;.  Here, we listen to that transition, and then automatically
-    run this method, to reset the State Machine to the State of the 
-    &#x60;currentOrder&#x60;.
-
-    Note: Because Ember QUnit relies on returned promise for Unit tests, we 
-    disable this method in &#x60;test&#x60;, and manually reset the State Machine when
-    testing failed transitions.
-
-    @method _resetStateMachine 
-    @private
-  */
-  _resetStateMachine: function() {
-    if (this.get(&#x27;spree.environment&#x27;) !== &quot;test&quot;) {
-      this.transition();
     }
   },
   /**
@@ -295,15 +247,66 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     return this.sendStateEvent(stateAction);
   },
   /**
+    Called whenever the State Machine enters &quot;Address&quot;.  Ensures that an address
+    object exists for the order&#x27;s &#x60;shipAddress&#x60;.
+
+    @method _ensureShipAddressExists
+    @private
+  */
+  _ensureShipAddressExists: function() {
+    var shipAddress = this.get(&#x27;currentOrder.shipAddress&#x27;);
+    if (!shipAddress) {
+      var newShipAddress = this.get(&#x27;spree&#x27;).store.createRecord(&#x27;address&#x27;);
+      this.set(&#x27;currentOrder.shipAddress&#x27;, newShipAddress);
+    }
+  },
+  /**
+    Called whenever the State Machine enters &quot;Payment&quot;.  Ensures that a payment
+    and source object exists for the &#x60;currentOrder&#x60;.
+
+    @method _ensurePaymentExists
+    @private
+  */
+  _ensurePaymentExists: function() {
+    var spree    = this.get(&#x27;spree&#x27;);
+    var payments = this.get(&#x27;currentOrder.payments&#x27;);
+    if (Ember.isEmpty(payments)) {
+      var payment = spree.store.createRecord(&#x27;payment&#x27;);
+      var source  = spree.store.createRecord(&#x27;source&#x27;);
+      payment.set(&#x27;paymentMethod&#x27;, this.get(&#x27;currentOrder.availablePaymentMethods.firstObject&#x27;));
+      payment.set(&#x27;source&#x27;, source);
+      payments.pushObject(payment);
+    }
+  },
+  /**
+    When &#x60;validateOrder&#x60; fails, the State Machine will automatically transition
+    to &quot;failed&quot;.  Here, we listen to that transition, and then automatically
+    run this method, to reset the State Machine to the State of the 
+    &#x60;currentOrder&#x60;.
+
+    Note: Because Ember QUnit relies on returned promise for Unit tests, we 
+    disable this method in &#x60;test&#x60;, and manually reset the State Machine when
+    testing failed transitions.
+
+    @method _resetStateMachine 
+    @private
+  */
+  _resetStateMachine: function() {
+    if (this.get(&#x27;spree.environment&#x27;) !== &quot;test&quot;) {
+      this.transition();
+    }
+  },
+  /**
     Used to save changes to the &#x60;currentOrder&#x60; to Spree&#x27;s Checkouts API.  Is only
     called by the state machine when advancing to a later state in the flow.
 
-    @method validateOrder 
+    @method _validateOrder 
+    @private
     @param {Transition} transition The current state machine transition.
     @return {Ember.RSVP.Promise} A promise that resolves when the server
     response returns.
   */
-  validateOrder: function(transition) {
+  _validateOrder: function(transition) {
     var _this = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {

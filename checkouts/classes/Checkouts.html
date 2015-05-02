@@ -134,6 +134,76 @@ checkouts.transition().then(function() {
           <h6>Show Private Methods</h2>
         </div>
 
+<div id="method__ensurePaymentExists" class="method panel item private">
+  <h3 class="name"><code>_ensurePaymentExists</code></h3>
+
+
+
+<!--
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/app_services_checkouts.js.html#l203"><code>app&#x2F;services&#x2F;checkouts.js:203</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Called whenever the State Machine enters "Payment".  Ensures that a payment
+and source object exists for the <code>currentOrder</code>.</p>
+
+  </div>
+
+
+
+</div>
+<div id="method__ensureShipAddressExists" class="method panel item private">
+  <h3 class="name"><code>_ensureShipAddressExists</code></h3>
+
+
+
+<!--
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/app_services_checkouts.js.html#l189"><code>app&#x2F;services&#x2F;checkouts.js:189</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Called whenever the State Machine enters "Address".  Ensures that an address
+object exists for the order's <code>shipAddress</code>.</p>
+
+  </div>
+
+
+
+</div>
 <div id="method__resetStateMachine" class="method panel item private">
   <h3 class="name"><code>_resetStateMachine</code></h3>
 
@@ -153,7 +223,7 @@ checkouts.transition().then(function() {
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/app_services_checkouts.js.html#l191"><code>app&#x2F;services&#x2F;checkouts.js:191</code></a>
+    <a href="../files/app_services_checkouts.js.html#l221"><code>app&#x2F;services&#x2F;checkouts.js:221</code></a>
     </p>
 
 
@@ -174,16 +244,27 @@ testing failed transitions.</p>
 
 
 </div>
-<div id="method_ensurePaymentExists" class="method panel item">
-  <h3 class="name"><code>ensurePaymentExists</code></h3>
+<div id="method__validateOrder" class="method panel item private">
+  <h3 class="name"><code>_validateOrder</code></h3>
 
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>transition</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
 
 
 <!--
+    <p class="returns-inline">
+      <span class="type">Ember.RSVP.Promise</span>
+    </p>
  -->
 
 
 
+    <span class="flag private">private</span>
 
 
 
@@ -192,7 +273,7 @@ testing failed transitions.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/app_services_checkouts.js.html#l174"><code>app&#x2F;services&#x2F;checkouts.js:174</code></a>
+    <a href="../files/app_services_checkouts.js.html#l239"><code>app&#x2F;services&#x2F;checkouts.js:239</code></a>
     </p>
 
 
@@ -200,47 +281,41 @@ testing failed transitions.</p>
   </div>
 
   <div class="description">
-    <p>Called whenever the State Machine enters "Payment".  Ensures that a payment
-and source object exists for the <code>currentOrder</code>.</p>
+    <p>Used to save changes to the <code>currentOrder</code> to Spree's Checkouts API.  Is only
+called by the state machine when advancing to a later state in the flow.</p>
 
   </div>
 
 
+    <div class="params">
+      <h4>Parameters:</h4>
 
-</div>
-<div id="method_ensureShipAddressExists" class="method panel item">
-  <h3 class="name"><code>ensureShipAddressExists</code></h3>
-
-
-
-<!--
- -->
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">transition</code>
+            <span class="type">Transition</span>
 
 
+          <div class="param-description">
+            <p>The current state machine transition.</p>
 
+          </div>
 
+              </li>
+          </ul>
+      </div>
 
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
 
+          <div class="returns-description">
+                      <span class="type">Ember.RSVP.Promise</span>:
+                  <p>A promise that resolves when the server
+response returns.</p>
 
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/app_services_checkouts.js.html#l161"><code>app&#x2F;services&#x2F;checkouts.js:161</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Called whenever the State Machine enters "Address".  Ensures that an address
-object exists for the order's <code>shipAddress</code>.</p>
-
-  </div>
-
-
-
+          </div>
+      </div>
 </div>
 <div id="method_transition" class="method panel item">
   <h3 class="name"><code>transition</code></h3>
@@ -270,7 +345,7 @@ object exists for the order's <code>shipAddress</code>.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/app_services_checkouts.js.html#l209"><code>app&#x2F;services&#x2F;checkouts.js:209</code></a>
+    <a href="../files/app_services_checkouts.js.html#l161"><code>app&#x2F;services&#x2F;checkouts.js:161</code></a>
     </p>
 
 
@@ -311,78 +386,6 @@ to the next state in the checkout flow.</p>
                       <span class="type">Ember.RSVP.Promise</span>:
                   <p>A promise that resolves when the State Machine
 resolves it's transition.</p>
-
-          </div>
-      </div>
-</div>
-<div id="method_validateOrder" class="method panel item">
-  <h3 class="name"><code>validateOrder</code></h3>
-
-    <div class="args">
-      <span class="paren">(</span><ul class="args-list inline commas">
-        <li class="arg">
-            <code>transition</code>
-        </li>
-      </ul><span class="paren">)</span>
-    </div>
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/app_services_checkouts.js.html#l237"><code>app&#x2F;services&#x2F;checkouts.js:237</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Used to save changes to the <code>currentOrder</code> to Spree's Checkouts API.  Is only
-called by the state machine when advancing to a later state in the flow.</p>
-
-  </div>
-
-
-    <div class="params">
-      <h4>Parameters:</h4>
-
-      <ul class="params-list">
-        <li class="param">
-            <code class="param-name">transition</code>
-            <span class="type">Transition</span>
-
-
-          <div class="param-description">
-            <p>The current state machine transition.</p>
-
-          </div>
-
-              </li>
-          </ul>
-      </div>
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves when the server
-response returns.</p>
 
           </div>
       </div>
