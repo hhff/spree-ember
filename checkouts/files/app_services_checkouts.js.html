@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../assets/vendor/prism/prism.css">
+
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="../assets/vendor/foundation/css/foundation.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="links">
+      <a href="http://www.spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://www.spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="../assets/img/github-120px.png"/> Github</a>
+    </div>
+    <div class="info">
+      <a href="http://www.spree-ember.com">
+        <img class="logo" src="../assets/img/logo.svg"/>
+      </a>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3><a href="http://www.spree-ember.com/checkouts/index.html">spree-ember-checkouts</a></h3>
+    </div>
+    <div class="row" id="docs-content">
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Classes</h3>
+<hr>
+<ul class="side-nav yuidoc-classes">
+    <li><a href="../classes/Checkouts.html">Checkouts</a></li>
+    <li><a href="../classes/CurrentOrderSupportMixin.html">CurrentOrderSupportMixin</a></li>
+    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
+</ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns">
+<div class="page-header">
+    <h3>app/services/checkouts.js <small>File</small></h3>
+</div>
+
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
+/**
+  The checkouts service is a Stateful global for progressing an Order through 
+  the Spree checkout, via the Checkouts endpoint.  It also serves as the 
+  &quot;canonical&quot; state for a Checkout frontend, and should be used to progress
+  forward and backward through an order&#x27;s steps.
+
+  It&#x27;s designed to allow a reactive programming style for the checkout 
+  frontend.  The &#x60;spree-checkout&#x60; component from the Spree Ember Storefronts
+  package is an example of this style.
+
+  &#x60;&#x60;&#x60;javascript
+  var checkouts = this.get(&#x27;spree.checkouts&#x27;);
+
+  checkouts.get(&#x27;currentState&#x27;);
+  // =&gt; &quot;address&quot;
+  
+  checkouts.transition().then(function() {
+    checkouts.get(&#x27;currentOrder.state&#x27;);
+    // =&gt; &quot;delivery&quot;
+    checkouts.get(&#x27;currentState&#x27;);
+    // =&gt; &quot;delivery&quot;
+
+    checkouts.transition(&quot;address&quot;).then(function() {
+
+      // Here, the Checkout and Current Order state has diverged.  This is
+      // expected behaviour, and their states will reconcile when the 
+      // checkout progresses forward again.
+      
+      checkouts.get(&#x27;currentOrder.state&#x27;);
+      // =&gt; &quot;delivery&quot;
+      checkouts.get(&#x27;currentState&#x27;);
+      // =&gt; &quot;address&quot;
+    });
+  });
+  &#x60;&#x60;&#x60;
+
+  @class Checkouts
+  @extends Ember.Service
+  @uses Ember.FSM.Stateful
+*/
+export default Ember.Service.extend(Ember.FSM.Stateful, {
+  /**
+    Provided by Ember FSM, the current state of the checkout.  This will often
+    diverge from the &#x60;currentOrder.get(&#x27;state&#x27;)&#x60;, and will be reconsoidated when
+    the state machine calls &#x60;validateOrder&#x60;.  This is what we use as the 
+    cononical &quot;state&quot; for a frontend&#x27;s Checkout flow.
+
+    @property currentState
+    @type String
+    @default &quot;idle&quot;
+  */
+
+  /**
+    A reference to the Spree Service.
+    
+    @property spree 
+    @type Ember.Service
+  */
+  spree: Ember.inject.service(&#x27;spree&#x27;),
+  /**
+    A reference to the Spree Object&#x27;s &#x60;currentOrder&#x60;.
+
+    @property currentOrder
+    @type DS.Model
+  */
+  currentOrder: Ember.computed.alias(&#x27;spree.currentOrder&#x27;),
+  /**
+    Used by Ember FSM to name the &#x60;initialState&#x60;.
+
+    @property fsmStates
+    @type Object
+  */
+  fsmStates: {
+    initialState: &#x27;idle&#x27;
+  },
+  /**
+    Used by Ember FSM to describe the checkout flow.
+
+    @property fsmEvents 
+    @type Object
+  */
+  fsmEvents: {
+    toCart: {
+      transition: { 
+        from: [&#x27;$initial&#x27;, &#x27;failed&#x27;],
+        to: &#x27;cart&#x27;
+      }
+    },
+    toAddress: {
+      after: &#x27;ensureShipAddressExists&#x27;,
+      transitions: [
+        {
+          from: [&#x27;cart&#x27;],
+          to: &#x27;address&#x27;,
+          willEnter: &#x27;validateOrder&#x27;
+        },
+        {
+          from: [&#x27;$initial&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
+          to: &#x27;address&#x27;
+        }
+      ]
+    },
+    toDelivery: { 
+      transitions: [
+        {
+          from: [&#x27;address&#x27;],
+          to: &#x27;delivery&#x27;,
+          willEnter: &#x27;validateOrder&#x27;
+        },
+        {
+          from: [&#x27;$initial&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
+          to: &#x27;delivery&#x27;
+        }
+      ]
+    },
+    toPayment: {
+      after: &#x27;ensurePaymentExists&#x27;,
+      transitions: [
+        {
+          from: [&#x27;cart&#x27;, &#x27;address&#x27;, &#x27;delivery&#x27;],
+          to: &#x27;payment&#x27;,
+          willEnter: &#x27;validateOrder&#x27;
+        },
+        {
+          from: [&#x27;$initial&#x27;, &#x27;confirm&#x27;, &#x27;failed&#x27;],
+          to: &#x27;payment&#x27;
+        }
+      ]
+    },
+    toConfirm: {
+      transitions: [
+        {
+          from: [&#x27;address&#x27;, &#x27;delivery&#x27;, &#x27;payment&#x27;],
+          to: &#x27;confirm&#x27;,
+          willEnter: &#x27;validateOrder&#x27;
+        },
+        {
+          from: [&#x27;$initial&#x27;, &#x27;failed&#x27;],
+          to: &#x27;confirm&#x27;
+        }
+      ]
+    },
+    toComplete: {
+      transition: {
+        from: [&#x27;$initial&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;],
+        to: &#x27;complete&#x27;,
+        willEnter: &#x27;validateOrder&#x27;,
+      }
+    },
+    toIdle: {
+      transition: { 
+        $all: &#x27;idle&#x27; 
+      }
+    },
+    error: {
+      after: &#x27;_resetStateMachine&#x27;,
+      transition: { $all: &#x27;failed&#x27; }
+    }
+  },
+  /**
+    Called whenever the State Machine enters &quot;Address&quot;.  Ensures that an address
+    object exists for the order&#x27;s &#x60;shipAddress&#x60;.
+
+    @method ensureShipAddressExists
+  */
+  ensureShipAddressExists: function() {
+    var shipAddress = this.get(&#x27;currentOrder.shipAddress&#x27;);
+    if (!shipAddress) {
+      var newShipAddress = this.get(&#x27;spree&#x27;).store.createRecord(&#x27;address&#x27;);
+      this.set(&#x27;currentOrder.shipAddress&#x27;, newShipAddress);
+    }
+  },
+  /**
+    Called whenever the State Machine enters &quot;Payment&quot;.  Ensures that a payment
+    and source object exists for the &#x60;currentOrder&#x60;.
+
+    @method ensurePaymentExists
+  */
+  ensurePaymentExists: function() {
+    var spree    = this.get(&#x27;spree&#x27;);
+    var payments = this.get(&#x27;currentOrder.payments&#x27;);
+    if (Ember.isEmpty(payments)) {
+      var payment = spree.store.createRecord(&#x27;payment&#x27;);
+      var source  = spree.store.createRecord(&#x27;source&#x27;);
+      payment.set(&#x27;paymentMethod&#x27;, this.get(&#x27;currentOrder.availablePaymentMethods.firstObject&#x27;));
+      payment.set(&#x27;source&#x27;, source);
+      payments.pushObject(payment);
+    }
+  },
+  /**
+    When &#x60;validateOrder&#x60; fails, the State Machine will automatically transition
+    to &quot;failed&quot;.  Here, we listen to that transition, and then automatically
+    run this method, to reset the State Machine to the State of the 
+    &#x60;currentOrder&#x60;.
+
+    Note: Because Ember QUnit relies on returned promise for Unit tests, we 
+    disable this method in &#x60;test&#x60;, and manually reset the State Machine when
+    testing failed transitions.
+
+    @method _resetStateMachine 
+    @private
+  */
+  _resetStateMachine: function() {
+    if (this.get(&#x27;spree.environment&#x27;) !== &quot;test&quot;) {
+      this.transition();
+    }
+  },
+  /**
+    If a state name is passed to this method, the state machine will attempt to
+    transition directly to that state.  If not, we will attempt to transition
+    to the next state in the checkout flow.
+
+    @method transition 
+    @param {String} stateName Optional, a state to attempt transition to.
+    @return {Ember.RSVP.Promise} A promise that resolves when the State Machine
+    resolves it&#x27;s transition.
+  */
+  transition: function(stateName) {
+    var nextStateName;
+    var checkoutState = this.get(&#x27;currentState&#x27;);
+
+    if (stateName) {
+      nextStateName = stateName;
+    } else {
+      var allStates = this.get(&#x27;currentOrder.checkoutSteps&#x27;);
+      if (checkoutState === &quot;failed&quot;) {
+        nextStateName = this.get(&quot;currentOrder.state&quot;);
+      } else {
+        nextStateName = allStates[allStates.indexOf(checkoutState) + 1];
+      }
+    }
+    
+    var stateAction = &quot;to&quot; + Ember.String.capitalize(nextStateName);
+    return this.sendStateEvent(stateAction);
+  },
+  /**
+    Used to save changes to the &#x60;currentOrder&#x60; to Spree&#x27;s Checkouts API.  Is only
+    called by the state machine when advancing to a later state in the flow.
+
+    @method validateOrder 
+    @param {Transition} transition The current state machine transition.
+    @return {Ember.RSVP.Promise} A promise that resolves when the server
+    response returns.
+  */
+  validateOrder: function(transition) {
+    var _this = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      _this.get(&#x27;currentOrder&#x27;).saveToCheckouts().then(
+        function(currentOrder) {
+          if (currentOrder.get(&#x27;state&#x27;) === transition.toState) {
+            resolve(currentOrder);
+          } else {
+            reject();
+          }
+        },
+        function() {
+          reject();
+        }
+      );
+    });
+  }
+});
+
+</code>
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr />
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&repo=spree-ember&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
+<script src="../assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="../assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="../assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="../assets/vendor/prism/prism.js"></script>
+
+<script>$(document).foundation();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
+
+</body>
+</html>

@@ -56,43 +56,196 @@
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
-<div class="page-header">
-    <h1>spree-ember-core_transforms_array <small>Module</small></h1>
+<div class="class-definition panel">
+  <div class="page-header">
+    <h3>HandlesNestedServerErrors <small>Class</small></h3>
+  </div>
+
+  <div class="well well-small">
+
+      <div class="extends">
+        <p>Extends Ember.Mixin</p>
+      </div>
+
+      <div class="foundat">
+        <p>Defined in: <a href="../files/addon_mixins_handles-nested-server-errors.js.html#l3"><code>addon&#x2F;mixins&#x2F;handles-nested-server-errors.js:3</code></a></p>
+      </div>
+
+
+<!--
+            Module: <a href="../modules/spree-ember-core_serializers_spree.html">spree-ember-core/serializers/spree</a>
+ -->
+
+
+  </div>
+
+
+  <div class="well well-small">
+    <p>Include this mixin into any model that sends nested attributes to the Spree
+server.  Currently this is only for the <code>order</code> model.</p>
+<pre class="code prettyprint"><code class="language-js">errors: {
+  ship_address.firstname: ["can't be blank"]
+  ship_address.country: ["can't be blank"]
+}
+</code></pre>
+<p>Will look for the model named "shipAddress" related to the model, and apply
+errors to it.</p>
+
+  </div>
+
 </div>
 
-<div class="clearfix well well-small">
+<div class="panel">
+  <ul class="tabs" data-tab>
+      <li class="tab-title"><a href="#methods">Methods</a></li>
+  </ul>
+</div>
 
-
-        <div class="foundat">
-            Defined in: <a href="../files/app_transforms_raw.js.html#l2"><code>app&#x2F;transforms&#x2F;raw.js:2</code></a>
+<div class="">
+  <div class="tabs-content">
+      <div class="content" id="methods">
+        <h2>Methods</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-methods" type="checkbox">
+          <label for="show-private-methods"></label>
+          <h6>Show Private Methods</h2>
         </div>
 
+<div id="method__infoForNestedKey" class="method panel item private">
+  <h3 class="name"><code>_infoForNestedKey</code></h3>
+
+
+
+<!--
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_handles-nested-server-errors.js.html#l83"><code>addon&#x2F;mixins&#x2F;handles-nested-server-errors.js:83</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Interprets error keys that contain a dot.</p>
+
+  </div>
+
+
+
 </div>
+<div id="method__transformCreditCardErrors" class="method panel item private">
+  <h3 class="name"><code>_transformCreditCardErrors</code></h3>
 
 
-<div class="moduledesc well well-small">
-    <p>A simple <code>DS</code> transform for accepting raw server output and leaving as is.  Currently
-the only use case is for accepting Spree's Order Checkout Steps as a raw array of
-strings.</p>
+
+<!--
+ -->
+
+
+
+    <span class="flag private">private</span>
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_handles-nested-server-errors.js.html#l57"><code>addon&#x2F;mixins&#x2F;handles-nested-server-errors.js:57</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Massages the strange error response that Spree provides for Credit Card
+errors.</p>
+
+  </div>
+
+
 
 </div>
+<div id="method_adapterDidInvalidate" class="method panel item">
+  <h3 class="name"><code>adapterDidInvalidate</code></h3>
 
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/SpreeEmber.RawTransform.html">
-                        SpreeEmber.RawTransform
-                    </a>
-                </li>
-            </ul>
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>errors</code>
+        </li>
+      </ul><span class="paren">)</span>
     </div>
 
-    <div class="yui3-u-1-2">
-    </div>
+
+<!--
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_handles-nested-server-errors.js.html#l21"><code>addon&#x2F;mixins&#x2F;handles-nested-server-errors.js:21</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Overrides the <code>DS.Model#adapterDidInvalidate</code> call to apply appropriate
+errors to related nested objects.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">errors</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>A normalized error object returned from the
+serializer's <code>extractErrors</code> method.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+</div>
+      </div>
+
+
+
+
+
+  </div>
 </div>
       </div>
     </div>

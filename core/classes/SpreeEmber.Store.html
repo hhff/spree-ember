@@ -45,12 +45,14 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/Adapter.html">Adapter</a></li>
+    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
+    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
     <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
     <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
     <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
     <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Storable.html">Storable</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -121,7 +123,7 @@ don't hit the Spree endpoint.</p>
 
 <!--
     <p class="returns-inline">
-      <span class="type"><a href="../classes/SpreeEmber.Adapter.html" class="crosslink">SpreeEmber.Adapter</a></span>
+      <span class="type">SpreeEmber.Adapter</span>
     </p>
  -->
 
@@ -154,7 +156,7 @@ don't hit the Spree endpoint.</p>
           <h4>Returns:</h4>
 
           <div class="returns-description">
-                      <span class="type"><a href="../classes/SpreeEmber.Adapter.html" class="crosslink">SpreeEmber.Adapter</a></span>:
+                      <span class="type">SpreeEmber.Adapter</span>:
                   <p>The Spree Ember Adapater.</p>
 
           </div>
@@ -177,7 +179,7 @@ don't hit the Spree endpoint.</p>
 
 <!--
     <p class="returns-inline">
-      <span class="type"><a href="../classes/SpreeEmber.Adapter.html" class="crosslink">SpreeEmber.Adapter</a></span>
+      <span class="type">SpreeEmber.Adapter</span>
     </p>
  -->
 
@@ -252,7 +254,7 @@ export default Ember.Route.extend({
           <h4>Returns:</h4>
 
           <div class="returns-description">
-                      <span class="type"><a href="../classes/SpreeEmber.Adapter.html" class="crosslink">SpreeEmber.Adapter</a></span>:
+                      <span class="type">SpreeEmber.Adapter</span>:
                   <p>The Spree Ember Adapater.</p>
 
           </div>
@@ -313,7 +315,7 @@ sending nested models to the server.&lt;/p&gt;</p>
 
 
           <div class="param-description">
-            <p>&lt;p&gt;&lt;p&gt;A model to serialize.&lt;/p&gt;&lt;/p&gt;</p>
+            <p>&lt;p&gt;A model to serialize.&lt;/p&gt;</p>
 
           </div>
 
@@ -327,7 +329,7 @@ sending nested models to the server.&lt;/p&gt;</p>
 
           <div class="returns-description">
                       <span class="type">Object</span>:
-                  <p>&lt;p&gt;&lt;p&gt;A JSON object representing the record.&lt;/p&gt;&lt;/p&gt;</p>
+                  <p>&lt;p&gt;A JSON object representing the record.&lt;/p&gt;</p>
 
           </div>
       </div>
@@ -427,11 +429,8 @@ find one, it will return the default Spree serializer.</p>
           
           
               <div class="meta">
-                      <p>Inherited from
-                      <a href="../classes/SpreeEmber.Adapter.html#property_defaultSerializer">
-                          SpreeEmber.Adapter
-                      </a>
-                      but overwritten in
+                          <p>
+                          Defined in
                   <a href="../files/addon_stores_spree.js.html#l28"><code>addon&#x2F;stores&#x2F;spree.js:28</code></a>
                   </p>
           
@@ -446,97 +445,6 @@ find one, it will return the default Spree serializer.</p>
               <hr>
           
                   <p><strong>Default: </strong><code>&#x27;-spree&#x27;</code></p>
-          
-          
-          </div>
-          <div id="property_headers" class="property panel item inherited">
-              <h3 class="name"><code>headers</code></h3>
-              <span class="type">String</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>Inherited from
-                          <a href="../classes/SpreeEmber.Adapter.html#property_headers">SpreeEmber.Adapter</a>:
-                  <a href="../files/addon_adapters_spree.js.html#l68"><code>addon&#x2F;adapters&#x2F;spree.js:68</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>&lt;p&gt;A computed property for the adapter headers.  We use these headers to authenticate
-          the user against the order we're trying to modify.  The &lt;code&gt;spree_ams&lt;/code&gt; gem will
-          look for these, and do the work here.&lt;/p&gt;</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>{}</code></p>
-          
-          
-          </div>
-          <div id="property_host" class="property panel item inherited">
-              <h3 class="name"><code>host</code></h3>
-              <span class="type">String</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>Inherited from
-                          <a href="../classes/SpreeEmber.Adapter.html#property_host">SpreeEmber.Adapter</a>:
-                  <a href="../files/addon_adapters_spree.js.html#l42"><code>addon&#x2F;adapters&#x2F;spree.js:42</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>&lt;p&gt;A computed property for the server host.  If it's not set in the Host Application's
-          spree configuration by &lt;code&gt;spree.apiHost&lt;/code&gt;, it will default to 'http://localhost:3000'
-          in all environments aside from test, where it will default to &lt;code&gt;null&lt;/code&gt; (to satisfy
-          Pretender).&lt;/p&gt;</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>&#x27;http://localhost:3000&#x27;</code></p>
-          
-          
-          </div>
-          <div id="property_namespace" class="property panel item inherited">
-              <h3 class="name"><code>namespace</code></h3>
-              <span class="type">String</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>Inherited from
-                          <a href="../classes/SpreeEmber.Adapter.html#property_namespace">SpreeEmber.Adapter</a>:
-                  <a href="../files/addon_adapters_spree.js.html#l26"><code>addon&#x2F;adapters&#x2F;spree.js:26</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>&lt;p&gt;A computed property for the server namespace.  If it's not set in the Host
-          Application's spree configuration by &lt;code&gt;spree.apiNamespace&lt;/code&gt;, it will default to
-          &lt;code&gt;api/ams&lt;/code&gt;, to work out of the box with the &lt;code&gt;spree_ams&lt;/code&gt; Gem.&lt;/p&gt;</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>&#x27;api/ams&#x27;</code></p>
           
           
           </div>

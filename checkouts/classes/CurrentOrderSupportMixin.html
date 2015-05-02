@@ -45,14 +45,15 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="../classes/Checkouts.html">Checkouts</a></li>
+    <li><a href="../classes/CurrentOrderSupportMixin.html">CurrentOrderSupportMixin</a></li>
     <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
   <div class="page-header">
-    <h3>CheckoutsMixin <small>Class</small></h3>
+    <h3>CurrentOrderSupportMixin <small>Class</small></h3>
   </div>
 
   <div class="well well-small">
@@ -62,7 +63,7 @@
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/addon_mixins_checkouts.js.html#l3"><code>addon&#x2F;mixins&#x2F;checkouts.js:3</code></a></p>
+        <p>Defined in: <a href="../files/addon_mixins_current-order-support.js.html#l3"><code>addon&#x2F;mixins&#x2F;current-order-support.js:3</code></a></p>
       </div>
 
 
@@ -102,56 +103,6 @@ therefore all functionality described here is available like so:</p>
           <h6>Show Private Methods</h2>
         </div>
 
-<div id="method__advanceCurrentOrder" class="method panel item private">
-  <h3 class="name"><code>_advanceCurrentOrder</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-    <span class="flag private">private</span>
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l238"><code>addon&#x2F;mixins&#x2F;checkouts.js:238</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>This method will attempt to force the Order's state to the next State.  It's
-useful for triggering server validation errors, when it's not clear why an
-order won't advance to the next state.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to either a successful
-server response (that may contain errors in the payload), or an AJAX error.</p>
-
-          </div>
-      </div>
-</div>
 <div id="method__createNewOrder" class="method panel item private">
   <h3 class="name"><code>_createNewOrder</code></h3>
 
@@ -174,7 +125,7 @@ server response (that may contain errors in the payload), or an AJAX error.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l339"><code>addon&#x2F;mixins&#x2F;checkouts.js:339</code></a>
+    <a href="../files/addon_mixins_current-order-support.js.html#l251"><code>addon&#x2F;mixins&#x2F;current-order-support.js:251</code></a>
     </p>
 
 
@@ -202,16 +153,9 @@ Spree Order.</p>
           </div>
       </div>
 </div>
-<div id="method__initCheckouts" class="method panel item private">
-  <h3 class="name"><code>_initCheckouts</code></h3>
+<div id="method__restoreCurrentOrder" class="method panel item private">
+  <h3 class="name"><code>_restoreCurrentOrder</code></h3>
 
-    <div class="args">
-      <span class="paren">(</span><ul class="args-list inline commas">
-        <li class="arg">
-            <code>application</code>
-        </li>
-      </ul><span class="paren">)</span>
-    </div>
 
 
 <!--
@@ -231,7 +175,7 @@ Spree Order.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l86"><code>addon&#x2F;mixins&#x2F;checkouts.js:86</code></a>
+    <a href="../files/addon_mixins_current-order-support.js.html#l101"><code>addon&#x2F;mixins&#x2F;current-order-support.js:101</code></a>
     </p>
 
 
@@ -246,23 +190,6 @@ in this mixin.</p>
   </div>
 
 
-    <div class="params">
-      <h4>Parameters:</h4>
-
-      <ul class="params-list">
-        <li class="param">
-            <code class="param-name">application</code>
-            <span class="type">Ember.Application</span>
-
-
-          <div class="param-description">
-            <p>A reference to the initializing Application.</p>
-
-          </div>
-
-              </li>
-          </ul>
-      </div>
 
       <div class="returns">
           <hr />
@@ -271,59 +198,6 @@ in this mixin.</p>
           <div class="returns-description">
                       <span class="type">Boolean</span>:
                   <p>Always resolves to <code>true</code>.</p>
-
-          </div>
-      </div>
-</div>
-<div id="method__saveCurrentOrder" class="method panel item private">
-  <h3 class="name"><code>_saveCurrentOrder</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-    <span class="flag private">private</span>
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l204"><code>addon&#x2F;mixins&#x2F;checkouts.js:204</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Saves the Current Order via the Spree API <code>checkouts</code> endpoint.  This method
-first serializes the order in a format that the endpoint expects, and hits
-that endpoint.</p>
-<p>If the server determines that the Order can transition to another state, it
-will.  Therefore, we only use this method inside of the State Machine
-callback, so we can handle the Client Side state machine appropriately.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to either a successful
-server response (that may contain errors in the payload), or an AJAX error.</p>
 
           </div>
       </div>
@@ -363,7 +237,7 @@ server response (that may contain errors in the payload), or an AJAX error.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l300"><code>addon&#x2F;mixins&#x2F;checkouts.js:300</code></a>
+    <a href="../files/addon_mixins_current-order-support.js.html#l212"><code>addon&#x2F;mixins&#x2F;current-order-support.js:212</code></a>
     </p>
 
 
@@ -430,77 +304,6 @@ updated <code>lineItem</code> object.</p>
           </div>
       </div>
 </div>
-<div id="method__setupStateMachineForOrder" class="method panel item private">
-  <h3 class="name"><code>_setupStateMachineForOrder</code></h3>
-
-    <div class="args">
-      <span class="paren">(</span><ul class="args-list inline commas">
-        <li class="arg">
-            <code>order</code>
-        </li>
-      </ul><span class="paren">)</span>
-    </div>
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">StateMachine</span>
-    </p>
- -->
-
-
-
-    <span class="flag private">private</span>
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l160"><code>addon&#x2F;mixins&#x2F;checkouts.js:160</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Adds state machine functionality to the Spree service.</p>
-
-  </div>
-
-
-    <div class="params">
-      <h4>Parameters:</h4>
-
-      <ul class="params-list">
-        <li class="param">
-            <code class="param-name">order</code>
-            <span class="type">Ember.Object</span>
-
-
-          <div class="param-description">
-            <p>A reference to the Current Order</p>
-
-          </div>
-
-              </li>
-          </ul>
-      </div>
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">StateMachine</span>:
-                  <p>Returns the newly instantiated StateMachine instance.</p>
-
-          </div>
-      </div>
-</div>
 <div id="method_addToCart" class="method panel item">
   <h3 class="name"><code>addToCart</code></h3>
 
@@ -532,7 +335,7 @@ updated <code>lineItem</code> object.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l270"><code>addon&#x2F;mixins&#x2F;checkouts.js:270</code></a>
+    <a href="../files/addon_mixins_current-order-support.js.html#l183"><code>addon&#x2F;mixins&#x2F;current-order-support.js:183</code></a>
     </p>
 
 
@@ -568,7 +371,7 @@ Current Order on the Spree service.</p>
 
 
           <div class="param-description">
-            <p>A quantity for the Line Item.</p>
+            <p>Optional, A quantity for the Line Item.</p>
 
           </div>
 
@@ -608,7 +411,7 @@ Current Order on the Spree service.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l370"><code>addon&#x2F;mixins&#x2F;checkouts.js:370</code></a>
+    <a href="../files/addon_mixins_current-order-support.js.html#l282"><code>addon&#x2F;mixins&#x2F;current-order-support.js:282</code></a>
     </p>
 
 
@@ -633,79 +436,6 @@ Current Order on the Spree service.</p>
           </div>
       </div>
 </div>
-<div id="method_transitionCheckoutState" class="method panel item">
-  <h3 class="name"><code>transitionCheckoutState</code></h3>
-
-    <div class="args">
-      <span class="paren">(</span><ul class="args-list inline commas">
-        <li class="arg">
-            <code>stateName</code>
-        </li>
-      </ul><span class="paren">)</span>
-    </div>
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Function</span>
-    </p>
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_checkouts.js.html#l176"><code>addon&#x2F;mixins&#x2F;checkouts.js:176</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>If a state name is passed to this method, the state machine will attempt to
-transition directly to that state.  If not, we will attempt to transition
-to the next state in the checkout flow.</p>
-
-  </div>
-
-
-    <div class="params">
-      <h4>Parameters:</h4>
-
-      <ul class="params-list">
-        <li class="param">
-            <code class="param-name">stateName</code>
-            <span class="type">String</span>
-
-
-          <div class="param-description">
-            <p>Optional, a state to attempt transition to.</p>
-
-          </div>
-
-              </li>
-          </ul>
-      </div>
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Function</span>:
-                  <p>A function that calls the State Machine's transition, and
-then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
-
-          </div>
-      </div>
-</div>
       </div>
 
 
@@ -717,6 +447,33 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           <h6>Show Private Properties</h2>
         </div>
 
+          <div id="property_checkouts" class="property panel item">
+              <h3 class="name"><code>checkouts</code></h3>
+              <span class="type">Ember.Service</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_current-order-support.js.html#l175"><code>addon&#x2F;mixins&#x2F;current-order-support.js:175</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>A reference to the Stateful Checkouts service.</p>
+          
+              </div>
+          
+              <hr>
+          
+          
+          
+          </div>
           <div id="property_currentOrder" class="property panel item">
               <h3 class="name"><code>currentOrder</code></h3>
               <span class="type">DS.Model</span>
@@ -728,7 +485,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l149"><code>addon&#x2F;mixins&#x2F;checkouts.js:149</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l164"><code>addon&#x2F;mixins&#x2F;current-order-support.js:164</code></a>
                   </p>
           
           
@@ -758,7 +515,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l125"><code>addon&#x2F;mixins&#x2F;checkouts.js:125</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l140"><code>addon&#x2F;mixins&#x2F;current-order-support.js:140</code></a>
                   </p>
           
           
@@ -788,7 +545,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l137"><code>addon&#x2F;mixins&#x2F;checkouts.js:137</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l152"><code>addon&#x2F;mixins&#x2F;current-order-support.js:152</code></a>
                   </p>
           
           
@@ -830,7 +587,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l30"><code>addon&#x2F;mixins&#x2F;checkouts.js:30</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l30"><code>addon&#x2F;mixins&#x2F;current-order-support.js:30</code></a>
                   </p>
           
           
@@ -874,7 +631,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l72"><code>addon&#x2F;mixins&#x2F;checkouts.js:72</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l87"><code>addon&#x2F;mixins&#x2F;current-order-support.js:87</code></a>
                   </p>
           
           
@@ -918,7 +675,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l57"><code>addon&#x2F;mixins&#x2F;checkouts.js:57</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l57"><code>addon&#x2F;mixins&#x2F;current-order-support.js:57</code></a>
                   </p>
           
           
@@ -962,7 +719,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l79"><code>addon&#x2F;mixins&#x2F;checkouts.js:79</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l94"><code>addon&#x2F;mixins&#x2F;current-order-support.js:94</code></a>
                   </p>
           
           
@@ -1006,7 +763,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l23"><code>addon&#x2F;mixins&#x2F;checkouts.js:23</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l23"><code>addon&#x2F;mixins&#x2F;current-order-support.js:23</code></a>
                   </p>
           
           
@@ -1050,7 +807,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l64"><code>addon&#x2F;mixins&#x2F;checkouts.js:64</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l79"><code>addon&#x2F;mixins&#x2F;current-order-support.js:79</code></a>
                   </p>
           
           
@@ -1095,7 +852,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l51"><code>addon&#x2F;mixins&#x2F;checkouts.js:51</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l51"><code>addon&#x2F;mixins&#x2F;current-order-support.js:51</code></a>
                   </p>
           
           
@@ -1122,7 +879,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l37"><code>addon&#x2F;mixins&#x2F;checkouts.js:37</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l37"><code>addon&#x2F;mixins&#x2F;current-order-support.js:37</code></a>
                   </p>
           
           
@@ -1155,6 +912,51 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           
           
           </div>
+          <div id="event_didSaveCurrentOrder" class="events panel item">
+              <h3 class="name"><code>didSaveCurrentOrder</code></h3>
+              <span class="type"></span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_current-order-support.js.html#l64"><code>addon&#x2F;mixins&#x2F;current-order-support.js:64</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>Triggered when the <code>_saveCurrentOrder</code> call succeeds.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <div class="params">
+                      <h6>Event Payload</h6>
+          
+                      <ul class="params-list">
+                          <li class="param">
+                                  <code class="param-name">currentOrderPromise</code>
+                                  <span class="type">Ember.RSVP.Promise</span>
+          
+          
+                              <div class="param-description">
+                                  <p>A promise that resolves to
+          the Current Order</p>
+          
+                              </div>
+          
+                          </li>
+                      </ul>
+                  </div>
+          
+          
+          </div>
           <div id="event_newOrderCreateFailed" class="events panel item">
               <h3 class="name"><code>newOrderCreateFailed</code></h3>
               <span class="type"></span>
@@ -1166,7 +968,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l44"><code>addon&#x2F;mixins&#x2F;checkouts.js:44</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l44"><code>addon&#x2F;mixins&#x2F;current-order-support.js:44</code></a>
                   </p>
           
           
@@ -1199,6 +1001,50 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
           
           
           </div>
+          <div id="event_saveCurrentOrderFailed" class="events panel item">
+              <h3 class="name"><code>saveCurrentOrderFailed</code></h3>
+              <span class="type"></span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_mixins_current-order-support.js.html#l72"><code>addon&#x2F;mixins&#x2F;current-order-support.js:72</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>Triggered when the <code>_saveCurrentOrder</code> call fails.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <div class="params">
+                      <h6>Event Payload</h6>
+          
+                      <ul class="params-list">
+                          <li class="param">
+                                  <code class="param-name">error</code>
+                                  <span class="type">Error</span>
+          
+          
+                              <div class="param-description">
+                                  <p>The returned Server Error.</p>
+          
+                              </div>
+          
+                          </li>
+                      </ul>
+                  </div>
+          
+          
+          </div>
           <div id="event_serverError" class="events panel item">
               <h3 class="name"><code>serverError</code></h3>
               <span class="type"></span>
@@ -1210,7 +1056,7 @@ then resolves to StateMachine.ASYNC (see app/checkouts/spree.js)</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_mixins_checkouts.js.html#l16"><code>addon&#x2F;mixins&#x2F;checkouts.js:16</code></a>
+                  <a href="../files/addon_mixins_current-order-support.js.html#l16"><code>addon&#x2F;mixins&#x2F;current-order-support.js:16</code></a>
                   </p>
           
           

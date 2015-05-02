@@ -45,51 +45,64 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/Adapter.html">Adapter</a></li>
+    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
+    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
     <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
     <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
     <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
     <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Storable.html">Storable</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
-    <h1>spree-ember-core_mixins_storable <small>Module</small></h1>
+    <h3>addon/mixins/can-checkout.js <small>File</small></h3>
 </div>
 
-<div class="clearfix well well-small">
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
 
+/**
+  This mixin is used with the order model, to provide it with a
+  &#x60;saveToCheckouts&#x60; method, for using the Spree Checkouts API Endpoint.
 
-        <div class="foundat">
-            Defined in: <a href="../files/addon_mixins_storable.js.html#l3"><code>addon&#x2F;mixins&#x2F;storable.js:3</code></a>
-        </div>
+  @class CanCheckout
+  @extends Ember.Mixin
+*/
+export default Ember.Mixin.create({
+  /**
+    A flag for telling &#x60;save&#x60; internals downstream to use Spree&#x27;s Checkouts API
+    endpoint, rather than the &#x60;orders&#x60; endpoint.
 
-</div>
+    @property _useCheckoutsEndpoint
+    @private
+    @type DS.attr(&#x27;boolean&#x27;)
+    @default false
+  */
+  _useCheckoutsEndpoint: DS.attr(&#x27;boolean&#x27;),
+  /**
+    Simply wraps the &#x60;DS.Model#save&#x60; method to set the boolean flag 
+    &#x60;_useCheckoutsEndpoint&#x60; for the duration of that promise.  Downstream
+    Serializers and Adapters can call &#x60;snapshot.attr(&#x27;_useCheckoutsEndpoint&#x27;)&#x60; 
+    and react accordingly.
 
+    @method saveToCheckouts
+    @return {Ember.RSVP.Promise} Returns the promise from &#x60;save&#x60;.
+  */
+  saveToCheckouts: function() {
+    this.set(&#x27;_useCheckoutsEndpoint&#x27;, true);
+    var _this = this;
+    return this.save().finally(function() {
+      _this.set(&#x27;_useCheckoutsEndpoint&#x27;, false);
+    });
+  }
+});
 
-<div class="moduledesc well well-small">
-    <p>Storable bolts onto an Ember Object and provides functionality for persisting
-key value pairs to Local Storage.</p>
-
-</div>
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/SpreeEmber.Storable.html">
-                        SpreeEmber.Storable
-                    </a>
-                </li>
-            </ul>
-    </div>
-
-    <div class="yui3-u-1-2">
-    </div>
+</code>
+</pre>
 </div>
       </div>
     </div>

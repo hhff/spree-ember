@@ -45,12 +45,14 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/Adapter.html">Adapter</a></li>
+    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
+    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
     <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
     <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
     <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
     <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Storable.html">Storable</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -69,10 +71,7 @@ import DS from &#x27;ember-data&#x27;;
   assumes your server has the &#x60;spree_ams&#x60; gem installed.
 
   @class Adapter
-  @namespace SpreeEmber
-  @module spree-ember-core/adapters/spree
   @extends DS.ActiveModelAdapter
-  @uses SpreeEmber.Serializer
 */
 
 export default DS.ActiveModelAdapter.extend({
@@ -150,7 +149,23 @@ export default DS.ActiveModelAdapter.extend({
     } else {
       return { };
     }
-  })
+  }),
+
+  /**
+    Overrides the default buildURL call to check for the &#x60;_useCheckoutsEndpoint&#x60;
+    on the snapshot, (applied to &#x60;order&#x60; models in the &#x60;CanCheckout&#x60; mixin). If
+    so, the resulting URL will be &#x60;{hostname}/{namespace}/checkouts/{record_id}&#x60;.
+    If the flag isn&#x27;t present, &#x60;_super&#x60; is called and the record URL is built
+    normally.
+
+    @method buildURL
+  */
+  buildURL: function(record, suffix, snapshot) {
+    if (record === &quot;order&quot; &amp;&amp; snapshot.attr(&#x27;_useCheckoutsEndpoint&#x27;)) {
+      record = &quot;checkout&quot;;
+    }
+    return this._super.apply(this, [record, suffix, snapshot]);
+  },
 });
 
 </code>

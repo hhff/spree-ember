@@ -45,7 +45,8 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="../classes/Checkouts.html">Checkouts</a></li>
+    <li><a href="../classes/CurrentOrderSupportMixin.html">CurrentOrderSupportMixin</a></li>
     <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
 </ul>
       </div>
@@ -57,6 +58,7 @@
 <div class="file">
 <pre class="language-javascript">
 <code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
 import SpreeSerializer from &#x27;spree-ember-core/serializers/spree&#x27;;
 /**
   The Order Serializer converts the Order model into a JSON payload as dictated 
@@ -68,28 +70,72 @@ import SpreeSerializer from &#x27;spree-ember-core/serializers/spree&#x27;;
 */
 export default SpreeSerializer.extend({
   /**
+    By default, Ember&#x27;s Active Model Serializer will merge the JSON payload
+    returned by the &#x60;serialize&#x60; call under the model&#x27;s name.  The Spree
+    Checkouts endpoint expects objects as siblings in the payload, so when we&#x27;re
+    saving the checkouts via &#x60;DS.Order#saveToCheckouts()&#x60; we override this 
+    behaviour.
+
+    @method serializeIntoHash
+    @param {Object} data The payload for the request.
+    @param {subclass of DS.Model} type The model factory.
+    @param {Ember.Object} snapshot The record&#x27;s snapshot.
+    @param {Object} options Options for the request.
+  */
+  serializeIntoHash: function(data, type, snapshot, options) {
+    if (snapshot.attr(&#x27;_useCheckoutsEndpoint&#x27;)) {
+      Ember.merge(data, this.serialize(snapshot, options));
+    } else {
+      this._super.apply(this, arguments);
+    }
+  },
+  /**
     Serializes the Order into a format the Spree Checkouts endpoint expects.
 
     @method serialize
     @param {snapshot} snapshot A snapshot of the order model for serialization.
   */
   serialize: function(snapshot) {
-    var order      = snapshot.record;
-    var orderState = order.get(&#x27;state&#x27;);
+    var json = this._super.apply(this, arguments);
+    if (snapshot.attr(&#x27;_useCheckoutsEndpoint&#x27;)) {
+      json = this._serializeForCheckouts(snapshot, json);
+    }
+    return json;
+  },
+
+  /**
+    A reference to the Stateful Checkouts service.
+
+    @property checkouts
+    @type Ember.Service
+  */
+  checkouts: Ember.inject.service(&#x27;checkouts&#x27;),
+
+  /**
+    Serializes the Order into a format the Spree Checkouts endpoint expects, 
+    dependant on the state of Checkouts service.
+
+    @method _serializeForCheckouts
+    @param {Ember.Object} snapshot A snapshot of the order model for serialization.
+    @param {Object} orderJSON The regular JSON for the Order.
+  */
+  _serializeForCheckouts: function(snapshot, orderJSON) {
+    var order         = snapshot.record;
+    var checkoutState = this.get(&#x27;checkouts.currentState&#x27;);
 
     var data = {
-      order: this._super.apply(this, arguments),
-      state: orderState
+      order: orderJSON,
+      state: checkoutState
     };
 
-    switch(orderState) {
+    switch(checkoutState) {
       case &quot;address&quot;:
         var billAddress = order.get(&#x27;billAddress&#x27;);
-        if (billAddress) {
+        if (billAddress &amp;&amp; billAddress.get(&#x27;isDirty&#x27;)) {
           data.order[&#x27;bill_address_attributes&#x27;] = billAddress.serialize();
         }
         var shipAddress = order.get(&#x27;shipAddress&#x27;);
-        if (shipAddress) {
+        if (shipAddress &amp;&amp; shipAddress.get(&#x27;isDirty&#x27;)) {
           data.order[&#x27;ship_address_attributes&#x27;] = shipAddress.serialize();
         }
         break;
@@ -103,8 +149,8 @@ export default SpreeSerializer.extend({
         }
         break;
       case &quot;payment&quot;:
-        var payment = order.get(&#x27;payments.firstObject&#x27;);
-        if (payment &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
+        var payment = order.get(&#x27;activePayment&#x27;);
+        if (payment &amp;&amp; payment.get(&#x27;isDirty&#x27;)  &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
           data[&#x27;payment_source&#x27;] = {};
           data.order[&#x27;payments_attributes&#x27;] = [{payment_method_id: payment.get(&#x27;paymentMethod.id&#x27;)}];
           data.payment_source[payment.get(&#x27;paymentMethod.id&#x27;)] = payment.get(&#x27;source&#x27;).serialize();
@@ -112,6 +158,29 @@ export default SpreeSerializer.extend({
         break;
     }
     return data;
+  },
+
+  /**
+    Extracts the errors from an Invalid response from the Server.  Overrides the
+    default method to include a Top Level error from the payload as &#x60;base&#x60; in the
+    &#x60;DS.Errors&#x60; collection.
+
+    @method extractErrors
+    @param {subclass of DS.Store} store The ember store used for this request.
+    @param {subclass of DS.Model} type The Order Factory.
+    @param {Object} payload The returned JSON Payload.
+    @param {Integer} id The order&#x27;s ID.
+  */
+  extractErrors: function(store, type, payload) {
+    var base = payload.error;
+    payload  = this._super.apply(this, arguments);
+
+    if (base) {
+      payload[&#x27;base&#x27;] = payload[&#x27;base&#x27;] || [];
+      payload[&#x27;base&#x27;].push(base);
+    }
+
+    return payload;
   }
 });
 

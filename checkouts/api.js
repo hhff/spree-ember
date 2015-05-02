@@ -1,7 +1,8 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "CheckoutsMixin",
+        "Checkouts",
+        "CurrentOrderSupportMixin",
         "OrderSerializer"
     ],
     "modules": [],

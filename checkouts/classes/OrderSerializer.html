@@ -45,7 +45,8 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/CheckoutsMixin.html">CheckoutsMixin</a></li>
+    <li><a href="../classes/Checkouts.html">Checkouts</a></li>
+    <li><a href="../classes/CurrentOrderSupportMixin.html">CurrentOrderSupportMixin</a></li>
     <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
 </ul>
       </div>
@@ -62,7 +63,7 @@
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/addon_serializers_order.js.html#l2"><code>addon&#x2F;serializers&#x2F;order.js:2</code></a></p>
+        <p>Defined in: <a href="../files/addon_serializers_order.js.html#l3"><code>addon&#x2F;serializers&#x2F;order.js:3</code></a></p>
       </div>
 
 
@@ -85,6 +86,7 @@ order.</p>
 <div class="panel">
   <ul class="tabs" data-tab>
       <li class="tab-title"><a href="#methods">Methods</a></li>
+      <li class="tab-title"><a href="#properties">Properties</a></li>
   </ul>
 </div>
 
@@ -98,6 +100,179 @@ order.</p>
           <h6>Show Private Methods</h2>
         </div>
 
+<div id="method__serializeForCheckouts" class="method panel item">
+  <h3 class="name"><code>_serializeForCheckouts</code></h3>
+
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>snapshot</code>
+        </li>
+        <li class="arg">
+            <code>orderJSON</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
+
+
+<!--
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_serializers_order.js.html#l54"><code>addon&#x2F;serializers&#x2F;order.js:54</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Serializes the Order into a format the Spree Checkouts endpoint expects,
+dependant on the state of Checkouts service.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">snapshot</code>
+            <span class="type">Ember.Object</span>
+
+
+          <div class="param-description">
+            <p>A snapshot of the order model for serialization.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">orderJSON</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>The regular JSON for the Order.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+</div>
+<div id="method_extractErrors" class="method panel item">
+  <h3 class="name"><code>extractErrors</code></h3>
+
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>store</code>
+        </li>
+        <li class="arg">
+            <code>type</code>
+        </li>
+        <li class="arg">
+            <code>payload</code>
+        </li>
+        <li class="arg">
+            <code>id</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
+
+
+<!--
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_serializers_order.js.html#l103"><code>addon&#x2F;serializers&#x2F;order.js:103</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>Extracts the errors from an Invalid response from the Server.  Overrides the
+default method to include a Top Level error from the payload as <code>base</code> in the
+<code>DS.Errors</code> collection.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">store</code>
+            <span class="type">subclass of DS.Store</span>
+
+
+          <div class="param-description">
+            <p>The ember store used for this request.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">type</code>
+            <span class="type">subclass of DS.Model</span>
+
+
+          <div class="param-description">
+            <p>The Order Factory.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">payload</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>The returned JSON Payload.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">id</code>
+            <span class="type">Integer</span>
+
+
+          <div class="param-description">
+            <p>The order's ID.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+</div>
 <div id="method_serialize" class="method panel item">
   <h3 class="name"><code>serialize</code></h3>
 
@@ -123,7 +298,7 @@ order.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_serializers_order.js.html#l11"><code>addon&#x2F;serializers&#x2F;order.js:11</code></a>
+    <a href="../files/addon_serializers_order.js.html#l32"><code>addon&#x2F;serializers&#x2F;order.js:32</code></a>
     </p>
 
 
@@ -155,9 +330,148 @@ order.</p>
       </div>
 
 </div>
+<div id="method_serializeIntoHash" class="method panel item">
+  <h3 class="name"><code>serializeIntoHash</code></h3>
+
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>data</code>
+        </li>
+        <li class="arg">
+            <code>type</code>
+        </li>
+        <li class="arg">
+            <code>snapshot</code>
+        </li>
+        <li class="arg">
+            <code>options</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
+
+
+<!--
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_serializers_order.js.html#l12"><code>addon&#x2F;serializers&#x2F;order.js:12</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>By default, Ember's Active Model Serializer will merge the JSON payload
+returned by the <code>serialize</code> call under the model's name.  The Spree
+Checkouts endpoint expects objects as siblings in the payload, so when we're
+saving the checkouts via <code>DS.Order#saveToCheckouts()</code> we override this
+behaviour.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">data</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>The payload for the request.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">type</code>
+            <span class="type">subclass of DS.Model</span>
+
+
+          <div class="param-description">
+            <p>The model factory.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">snapshot</code>
+            <span class="type">Ember.Object</span>
+
+
+          <div class="param-description">
+            <p>The record's snapshot.</p>
+
+          </div>
+
+              </li>
+        <li class="param">
+            <code class="param-name">options</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>Options for the request.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+</div>
       </div>
 
 
+      <div id="properties" class="content">
+        <h2>Properties</h2>
+        <div class="switch round tiny private-toggle">
+          <input id="show-private-properties" type="checkbox">
+          <label for="show-private-properties"></label>
+          <h6>Show Private Properties</h2>
+        </div>
+
+          <div id="property_checkouts" class="property panel item">
+              <h3 class="name"><code>checkouts</code></h3>
+              <span class="type">Ember.Service</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/addon_serializers_order.js.html#l46"><code>addon&#x2F;serializers&#x2F;order.js:46</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>A reference to the Stateful Checkouts service.</p>
+          
+              </div>
+          
+              <hr>
+          
+          
+          
+          </div>
+      </div>
 
 
 

@@ -1,32 +1,22 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "SpreeEmber.Adapter",
+        "Adapter",
+        "CanCheckout",
+        "HandlesNestedServerErrors",
         "SpreeEmber.RawTransform",
         "SpreeEmber.Serializer",
         "SpreeEmber.Spree",
-        "SpreeEmber.Storable",
-        "SpreeEmber.Store"
+        "SpreeEmber.Store",
+        "Storable"
     ],
     "modules": [
-        "spree-ember-core_adapters_spree",
-        "spree-ember-core_mixins_storable",
         "spree-ember-core_serializers_spree",
         "spree-ember-core_services_spree",
         "spree-ember-core_stores_spree",
         "spree-ember-core_transforms_array"
     ],
     "allModules": [
-        {
-            "displayName": "spree-ember-core/adapters/spree",
-            "name": "spree-ember-core_adapters_spree",
-            "description": "The Spree Adapter is responsible for communicating with your Spree store.  It\nassumes your server has the `spree_ams` gem installed."
-        },
-        {
-            "displayName": "spree-ember-core/mixins/storable",
-            "name": "spree-ember-core_mixins_storable",
-            "description": "Storable bolts onto an Ember Object and provides functionality for persisting\nkey value pairs to Local Storage."
-        },
         {
             "displayName": "spree-ember-core/serializers/spree",
             "name": "spree-ember-core_serializers_spree",

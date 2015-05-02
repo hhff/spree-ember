@@ -45,51 +45,130 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+    <li><a href="../classes/Adapter.html">Adapter</a></li>
+    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
+    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
     <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
     <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
     <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
     <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+    <li><a href="../classes/Storable.html">Storable</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="page-header">
-    <h1>spree-ember-core_adapters_spree <small>Module</small></h1>
+    <h3>addon/mixins/handles-nested-server-errors.js <small>File</small></h3>
 </div>
 
-<div class="clearfix well well-small">
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
 
+/**
+  Include this mixin into any model that sends nested attributes to the Spree 
+  server.  Currently this is only for the &#x60;order&#x60; model.
 
-        <div class="foundat">
-            Defined in: <a href="../files/addon_adapters_spree.js.html#l4"><code>addon&#x2F;adapters&#x2F;spree.js:4</code></a>
-        </div>
+  &#x60;&#x60;&#x60;js
+  errors: {
+    ship_address.firstname: [&quot;can&#x27;t be blank&quot;]
+    ship_address.country: [&quot;can&#x27;t be blank&quot;]
+  }
+  &#x60;&#x60;&#x60;
 
-</div>
+  Will look for the model named &quot;shipAddress&quot; related to the model, and apply
+  errors to it.
 
+  @class HandlesNestedServerErrors
+  @extends Ember.Mixin
+*/
+export default Ember.Mixin.create({
+  /**
+    Overrides the &#x60;DS.Model#adapterDidInvalidate&#x60; call to apply appropriate
+    errors to related nested objects.
 
-<div class="moduledesc well well-small">
-    <p>The Spree Adapter is responsible for communicating with your Spree store.  It
-assumes your server has the <code>spree_ams</code> gem installed.</p>
+    @method adapterDidInvalidate
+    @param {Object} errors A normalized error object returned from the
+    serializer&#x27;s &#x60;extractErrors&#x60; method.
+  */
+  adapterDidInvalidate: function(errors) {
+    var recordErrors = Ember.get(this, &#x27;errors&#x27;);
+    var nestedRecordErrors = {};
 
-</div>
+    for (var key in errors) {
+      if (!errors.hasOwnProperty(key)) {
+        continue;
+      }
+      if (key === &quot;payments.Credit Card&quot;) {
+        var creditCardErrors = this._transformCreditCardErrors(errors[key]);
+        nestedRecordErrors[&quot;activePayment.source&quot;] = creditCardErrors;
+      } else if (key.indexOf(&quot;.&quot;) &gt; -1) {
+        var info = this._infoForNestedErrorKey(key);
+        nestedRecordErrors[info.path] = nestedRecordErrors[info.path] || {};
+        nestedRecordErrors[info.path][info.attribute] = errors[key];
+      } else {
+        recordErrors.add(key, errors[key]);
+      }
+    }
+    for (var key in nestedRecordErrors) {
+      var nested = this.get(key);
+      if (nested) {
+        nested.adapterDidInvalidate(nestedRecordErrors[key]);
+      }
+    }
+    this._saveWasRejected();
+  },
 
+  /**
+    Massages the strange error response that Spree provides for Credit Card
+    errors.
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-            <p>This module provides the following classes:</p>
+    @method _transformCreditCardErrors
+    @private
+  */
+  _transformCreditCardErrors: function(errorArray) {
+    var errors = {};
 
-            <ul class="module-classes">
-                <li class="module-class">
-                    <a href="../classes/SpreeEmber.Adapter.html">
-                        SpreeEmber.Adapter
-                    </a>
-                </li>
-            </ul>
-    </div>
+    for (var i = 0; i &lt; errorArray.length; i++) {
+      var attribute, error;
+      var string = errorArray[i];
+      var splat  = string.split(&quot; &quot;);
 
-    <div class="yui3-u-1-2">
-    </div>
+      if (/^Verification Value/.test(string)) {
+        attribute = Ember.String.camelize((splat.shift() + &quot; &quot; + splat.shift()).toLowerCase());
+      } else {
+        attribute = splat.shift().toLowerCase();
+      }
+      error = [splat.join(&quot; &quot;)];
+      errors[attribute] = error;
+    }
+    return errors;
+  },
+
+  /**
+    Interprets error keys that contain a dot.
+
+    @method _infoForNestedKey
+    @private
+  */
+  _infoForNestedErrorKey: function(key) {
+    var path      = new String;
+    var splat     = key.split(&#x27;.&#x27;);
+    var attribute = splat.pop();
+
+    for (var i = 0; i &lt; splat.length; i++) {
+      path += Ember.String.camelize(splat[i]);
+    }
+
+    return {
+      path: path, 
+      attribute: attribute
+    };
+  }
+});
+
+</code>
+</pre>
 </div>
       </div>
     </div>
