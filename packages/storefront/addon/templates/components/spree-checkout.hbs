@@ -1,0 +1,55 @@
+<!-- 
+Please Note: The checkout is intentially built naively.  While it works reliably
+It's unlikely that this is going to be your final checkout template.  
+
+It's structured like this to demonstrate the style of reactive programming that 
+the Stateful Checkout service is designed for.  It's also here to show the 
+apprpriate hooks and data sets available on the Checkouts service.
+-->
+<form {{bind-attr class="spree.checkouts.currentState"}}>
+  <fieldset>
+    <legend style="text-transform:capitalize;">{{spree.checkouts.currentState}}</legend>
+    {{#each spree.currentOrder.errors.base as |error|}}
+      <div class='alert-box warning'>{{error.message}}</div>
+    {{/each}}
+    
+    <!-- Address -->
+    {{#if spree.checkouts.isInAddress}}
+      {{spree-input value=spree.currentOrder.email 
+                    errors=spree.currentOrder.errors.email
+                    attributeName="Email"}}
+      {{spree-address address=spree.currentOrder.shipAddress countries=spree.countries}}
+    {{/if}}
+
+    <!-- Delivery --> 
+    {{#if spree.checkouts.isInDelivery}}
+      {{#each shipment in spree.currentOrder.shipments}}
+        {{spree-shipment shipment=shipment}}
+      {{/each}}
+    {{/if}}
+
+    <!-- Payment -->
+    {{#if spree.checkouts.isInPayment}}
+      {{spree-select content=spree.currentOrder.availablePaymentMethods
+                    optionLabelPath="content.description" 
+                    selection=spree.currentOrder.activePayment.paymentMethod
+                    attributeName="Payment Method"}}
+
+      {{#if spree.currentOrder.activePayment.paymentMethod.isCheck}}
+        <h6>Please mail in a check.</h6>
+      {{else}}
+        {{spree-source source=spree.currentOrder.activePayment.source}}
+      {{/if}}
+    {{/if}}
+
+    <!-- Confirm -->
+    {{#if spree.checkouts.isInConfirm}}
+      {{spree-order order=spree.currentOrder isConfirmationPage=true}}
+    {{/if}}
+
+  </fieldset>
+  <button 
+    {{bind-attr class=":expand spree.checkouts.isLoading:disabled"}}
+    {{action 'transitionCheckoutState'}}>{{if spree.checkouts.isLoading "Loading" "Continue"}}</button>
+</form>
+

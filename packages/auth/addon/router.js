@@ -41,15 +41,13 @@
 
   @class Router
 */
-export default function(router, options) {
+export default function(router, ENV) {
 
-  options = options || {};
+  var mountPath   = ENV["spree"]["mount"];
+  var signinPath  = ENV["spree"]["signinPath"];
+  var signupPath  = ENV["spree"]["signupPath"];
+  var accountPath = ENV["spree"]["accountPath"];
   
-  var mountPath   = options['mountPath']   || '/spree';
-  var signinPath  = options['signinPath']  || 'signin';
-  var signupPath  = options['signupPath']  || 'signup';
-  var accountPath = options['accountPath'] || 'account';
-
   router.resource('spree', { path: mountPath }, function() {
     this.route('signin', { path: signinPath });
     this.route('signup', { path: signupPath });

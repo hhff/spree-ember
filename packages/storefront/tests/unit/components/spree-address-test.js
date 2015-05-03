@@ -5,7 +5,10 @@ import {
 
 moduleForComponent('spree-address', {
   // specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: [
+    'component:spree-input',
+    'component:spree-select'
+  ]
 });
 
 test('it renders', function(assert) {

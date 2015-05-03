@@ -5,7 +5,9 @@
       <th class="text-center" width="100">Price</th>
       <th class="text-center" width="100">Quantity</th>
       <th class="text-center" width="100">Total</th>
-      <th class="text-center" width="100"></th>
+      {{#if canRemoveItems}}
+        <th class="text-center" width="100"></th>
+      {{/if}}  
     </tr>
   </thead>
   <tbody>
@@ -20,9 +22,11 @@
         <td class="text-center">{{lineItem.singleDisplayAmount}}</td>
         <td class="text-center">{{lineItem.quantity}}</td>
         <td class="text-center">{{lineItem.displayAmount}}</td>
-        <td class="text-center">
-          <a {{action 'deleteLineItem' lineItem}}>Remove</a>
-        </td>
+        {{#if canRemoveItems}}
+          <td class="text-center">
+            <a {{action 'deleteLineItem' lineItem}}>Remove</a>
+          </td>
+        {{/if}}
       </tr>
     {{/each}}
   </tbody>

@@ -19,7 +19,7 @@ module('Acceptance: Signin', {
 });
 
 test('cant get to account unless authenticated', function(assert) {
-  visit('spree/account');
+  visit('/account');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');
@@ -35,7 +35,7 @@ test('cant get to account unless authenticated', function(assert) {
 
 
 test('once authenticated, cant get to auth routes', function(assert) {
-  visit('spree/signin');
+  visit('/signin');
 
   andThen(function() {
     assert.equal(currentPath(), 'spree.signin');
@@ -49,7 +49,7 @@ test('once authenticated, cant get to auth routes', function(assert) {
   });
 
   andThen(function() {
-    visit('spree/signin');
+    visit('/signin');
   });
 
   andThen(function() {
@@ -57,7 +57,7 @@ test('once authenticated, cant get to auth routes', function(assert) {
   });
   
   andThen(function() {
-    visit('spree/signup');
+    visit('/signup');
   });
 
   andThen(function() {

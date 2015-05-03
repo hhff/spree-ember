@@ -4,10 +4,6 @@
 module.exports = {
   name: 'spree-ember-storefront',
 
-  isDevelopingAddon: function() {
-    return true;
-  },
-
   included: function(app) {
     this._super.included(app);
     // Nested Addons don't contribute to the Host Application filestructure.

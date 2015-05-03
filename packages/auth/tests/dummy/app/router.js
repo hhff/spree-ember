@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  spreeAuthRouter(this);
+  spreeAuthRouter(this, config);
 });
 
 export default Router;

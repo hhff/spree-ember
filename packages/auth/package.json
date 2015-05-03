@@ -40,7 +40,8 @@
     "ember-cli-babel": "^4.0.0",
     "ember-cli-htmlbars": "0.7.6",
     "spree-ember-core": "*",
-    "ember-cli-simple-auth": "0.8.0-beta.1"
+    "ember-cli-simple-auth": "0.8.0-beta.1",
+    "spree-ember-storefront": "*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

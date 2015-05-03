@@ -1,38 +1,28 @@
-export default function(router, options) {
+export default function(router, ENV) {
 
-  options = options || {};
-
-  var mountPath    = options['mountPath']    || '/spree';
-  var cartPath     = options['cartPath']     || 'cart';
-  var productsPath = options['productsPath'] || 'products';
-  var taxonomiesPath = options['taxonomiesPath'] || 'taxonomies';
-  var taxonsPath = options['taxonsPath'] || 'taxons';
-  var checkoutPath = options['checkoutPath'] || 'checkout';
+  var mountPath      = ENV["spree"]["mount"];
+  var cartPath       = ENV["spree"]["cartPath"];
+  var checkoutPath   = ENV["spree"]["checkoutPath"];
+  var productsPath   = ENV["spree"]["productsPath"];
+  var ordersPath     = ENV["spree"]["ordersPath"];
+  var taxonsPath     = ENV["spree"]["taxonsPath"];
   
-  var checkoutRoutes = options['checkoutRoutes'] || ['address', 'delivery', 'payment', 'confirm', 'complete'];
-
   router.resource('spree', { path: mountPath }, function() {
     router.route('spree.cart', { path: mountPath + '/' + cartPath });
+    router.route('spree.checkout', { path: mountPath + '/' + checkoutPath });
 
-    router.resource('spree.products', { path: mountPath + '/' + productsPath },function() {
+    router.route('spree.products', { path: mountPath + '/' + productsPath },function() {
       this.route('index', { path: '/' });
       this.route('show', { path: '/:slug' });
     });
-
-    router.resource('spree.taxonomies', { path: mountPath + '/' + taxonomiesPath },function() {
-      this.route('index', { path: '/' });
-    });
-
-    router.resource('spree.taxons', { path: mountPath + '/' + taxonsPath },function() {
+    
+    router.route('spree.taxons', { path: mountPath + '/' + taxonsPath },function() {
       this.route('index', { path: '/*taxon_id' });
     });
 
-    router.resource('spree.checkout', { path: mountPath + '/' + checkoutPath },function() {
-      var _this = this;
-      checkoutRoutes.forEach(function(routeName) {
-        _this.route(routeName);
-      });
+    router.route('spree.orders', { path: mountPath + '/' + ordersPath },function() {
+      this.route('index', { path: '/' });
+      this.route('show', { path: '/:id' });
     });
   });
-
 }

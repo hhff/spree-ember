@@ -21,17 +21,18 @@ system "ember install"
 system "npm link"
 Dir.chdir spree_ember
 
-# Setup Auth Dependencies
-Dir.chdir "./packages/auth"
-system "npm link spree-ember-core"
-system "ember install"
-system "npm link"
-Dir.chdir spree_ember
-
 # Setup Main Package Dependencies
 Dir.chdir "./packages/storefront"
 system "npm link spree-ember-core"
 system "npm link spree-ember-checkouts"
+system "ember install"
+system "npm link"
+Dir.chdir spree_ember
+
+# Setup Auth Dependencies
+Dir.chdir "./packages/auth"
+system "npm link spree-ember-core"
+system "npm link spree-ember-storefront"
 system "ember install"
 system "npm link"
 Dir.chdir spree_ember

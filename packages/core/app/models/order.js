@@ -1,6 +1,8 @@
 import DS from 'ember-data';
+import HandlesNestedServerErrors from 'spree-ember-core/mixins/handles-nested-server-errors';
+import CanCheckout from 'spree-ember-core/mixins/can-checkout';
 
-export default DS.Model.extend({
+export default DS.Model.extend(HandlesNestedServerErrors, CanCheckout, {
   // Attribues
   additionalTaxTotal:    DS.attr('number'),
   adjustmentTotal:       DS.attr('number'),
