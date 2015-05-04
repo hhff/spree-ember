@@ -10,14 +10,14 @@ spree_ember = Dir.pwd
 
 # Setup Core Dependencies
 Dir.chdir "./packages/core"
-system "ember install"
+system "npm install && bower install"
 system "npm link"
 Dir.chdir spree_ember
 
 # Setup Checkouts Dependencies
 Dir.chdir "./packages/checkouts"
 system "npm link spree-ember-core"
-system "ember install"
+system "npm install && bower install"
 system "npm link"
 Dir.chdir spree_ember
 
@@ -25,7 +25,7 @@ Dir.chdir spree_ember
 Dir.chdir "./packages/storefront"
 system "npm link spree-ember-core"
 system "npm link spree-ember-checkouts"
-system "ember install"
+system "npm install && bower install"
 system "npm link"
 Dir.chdir spree_ember
 
@@ -33,7 +33,7 @@ Dir.chdir spree_ember
 Dir.chdir "./packages/auth"
 system "npm link spree-ember-core"
 system "npm link spree-ember-storefront"
-system "ember install"
+system "npm install && bower install"
 system "npm link"
 Dir.chdir spree_ember
 
