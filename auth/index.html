@@ -79,7 +79,7 @@ with the <a href="http://github.com/spree/spree">Spree</a> rails engine via
 using an application setup that will ignore the generated <code>application.js</code> such
 as the Pod structure, you&#39;ll need to manually import the Ember Simple Auth
 application route mixin, like so:</p>
-<pre><code class="lang-js">import ApplicationRouteMixin from &#39;simple-auth/mixins/application-route-mixin&#39;;
+<pre><code class="lang-javascript">import ApplicationRouteMixin from &#39;simple-auth/mixins/application-route-mixin&#39;;
 
 export default Ember.Route.extend(ApplicationRouteMixin);
 </code></pre>
@@ -108,11 +108,12 @@ export default Router;
 <h3 id="configuration">Configuration</h3>
 <p>All customization is done through the Ember CLI Environment.  Here&#39;s the
 defaults:</p>
-<pre><code class="lang-js">&quot;spree&quot;: {
+<pre><code class="lang-javascript">&quot;spree&quot;: {
   signinPath: &#39;signin&#39;,
   signupPath: &#39;signup&#39;,
   accountPath: &#39;account&#39;
 },
+
 &quot;simple-auth&quot;: {
   localStorageKey: &#39;spree-ember:session&#39;,
   authorizer: &#39;simple-auth-authorizer:spree&#39;,
