@@ -203,7 +203,7 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     },
     toComplete: {
       transition: {
-        from: [&#x27;$initial&#x27;, &#x27;payment&#x27;, &#x27;confirm&#x27;],
+        from: [&#x27;payment&#x27;, &#x27;confirm&#x27;],
         to: &#x27;complete&#x27;,
         willEnter: &#x27;_validateOrder&#x27;,
       }
@@ -215,7 +215,9 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     },
     error: {
       after: &#x27;_resetStateMachine&#x27;,
-      transition: { $all: &#x27;failed&#x27; }
+      transition: { 
+        $all: &#x27;failed&#x27; 
+      }
     }
   },
   /**
@@ -232,15 +234,19 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     var nextStateName;
     var checkoutState = this.get(&#x27;currentState&#x27;);
 
-    if (stateName) {
-      nextStateName = stateName;
-    } else {
-      var allStates = this.get(&#x27;currentOrder.checkoutSteps&#x27;);
-      if (checkoutState === &quot;failed&quot;) {
-        nextStateName = this.get(&quot;currentOrder.state&quot;);
+    if (this.get(&#x27;currentOrder&#x27;)) {
+      if (stateName) {
+        nextStateName = stateName;
       } else {
-        nextStateName = allStates[allStates.indexOf(checkoutState) + 1];
+        var allStates = this.get(&#x27;currentOrder.checkoutSteps&#x27;);
+        if (checkoutState === &quot;failed&quot;) {
+          nextStateName = this.get(&quot;currentOrder.state&quot;);
+        } else {
+          nextStateName = allStates[allStates.indexOf(checkoutState) + 1];
+        }
       }
+    } else {
+      nextStateName = &#x27;idle&#x27;;
     }
     
     var stateAction = &quot;to&quot; + Ember.String.capitalize(nextStateName);
@@ -292,9 +298,7 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     @private
   */
   _resetStateMachine: function() {
-    if (this.get(&#x27;spree.environment&#x27;) !== &quot;test&quot;) {
-      this.transition();
-    }
+    return this.transition();
   },
   /**
     Used to save changes to the &#x60;currentOrder&#x60; to Spree&#x27;s Checkouts API.  Is only

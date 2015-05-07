@@ -44,7 +44,7 @@
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Guides</h3>
 <hr>
-<ul class="side-nav yuidoc-classes"><li><a href="./1-overview.html">overview</a></li><li><a href="./2-getting-started.html">getting started</a></li><li><a href="./3-configuring-spree.html">configuring spree</a></li><li><a href="./4-development.html">development</a></li><li><a href="./5-customization.html">customization</a></li><li><a href="./6-checkouts.html">checkouts</a></li><li><a href="./7-users.html">users</a></li><li><a href="./8-deployment.html">deployment</a></li></ul>
+<ul class="side-nav yuidoc-classes"><li><a href="./1-overview.html">overview</a></li><li><a href="./2-configuring-spree.html">configuring spree</a></li><li><a href="./3-getting-started.html">getting started</a></li><li><a href="./4-customization.html">customization</a></li></ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns"><h1 id="configuring-spree">Configuring Spree</h1>
 <p>There&#39;s a few steps you&#39;ll need to take to ensure your Spree server plays nice 
@@ -56,31 +56,35 @@ with your Spree Ember application.</p>
 that <a href="https://github.com/spree/spree/tree/3-0-stable">branch on Spree&#39;s Github</a> 
 and follow the installation steps.</p>
 <p><strong>Answer &#39;yes&#39; to all of the prompts to install all Seed and Sample data</strong>.</p>
-<h3 id="configure-spree">Configure Spree</h3>
-<hr>
-<p>By default, Spree out-of-the-box is not cofigured to allow a complete checkout.
-To be able to complete a full checkout flow, you&#39;ll also need to make some 
-changes in Spree&#39;s backend.  Boot up the Spree server:</p>
-<pre><code class="lang-bash">rails server
-</code></pre>
-<p>Then navigate to <code>localhost:3000/admin</code> and login as the newly created admin 
-user (defaults: <code>spree@example.com</code>, <code>spree123</code>).</p>
-<p>TODO:</p>
-<ul>
-<li>Changes</li>
-<li>Other changes</li>
-<li>Changes TBD</li>
-</ul>
-<p>Now, Spree is in a state that will allow a full checkout.</p>
 <h3 id="add-spree_ams-to-the-gemfile">Add spree_ams to the Gemfile</h3>
 <hr>
 <p><a href="https://github.com/hhff/spree_ams">Spree AMS</a> is a Spree Extension that adds a 
 namespace to Spree&#39;s default API routes, that respond as per the 
 <a href="https://github.com/rails-api/active_model_serializers/tree/0-8-stable">Active Model Serializers</a> gem.</p>
 <p><strong>Note:</strong> This is the key to standardising the way Spree communicates with Ember.</p>
-<p>Install the version that corresponds to your Spree version, and follow the
-instructions to get it up and running.</p>
-<h4 id="-nice-now-you-re-ready-to-start-developing-your-spree-ember-store-4-development-html-"><strong>Nice!  Now you&#39;re ready to start <a href="./4-development.html">developing your Spree Ember store</a>!</strong></h4>
+<p>Follow the instructions on the Spree AMS Readme to install it into your Spree
+application.</p>
+<h3 id="start-your-rails-server">Start your Rails Server</h3>
+<hr>
+<p>Let&#39;s start the Rails Server, and leave it running:</p>
+<pre><code class="lang-bash">spring rails server
+</code></pre>
+<p><strong>Note:</strong> By default, Spree Ember expects the Rails Server running at
+<code>http://localhost:3000</code>.  You can change this later.</p>
+<h3 id="gotchas">Gotchas</h3>
+<hr>
+<ul>
+<li>Unless you&#39;re using Spree in <code>RAILS_ENV=development</code>, the Rails server will
+attempt to send a confirmation message when the order state transitions from
+<code>confirm</code> to <code>complete</code>.  You&#39;ll see something like: <code>{exception: &quot;connect(2)
+connection refused&quot;}</code> in your server response.  Just configure SMTP for your
+production environment in the standard Rails way, and you&#39;re good.</li>
+</ul>
+<p><strong>Note:</strong> If you&#39;re having trouble getting started, check out the
+<a href="https://github.com/hhff/spree-ember-testing">spree-ember-testing</a> Rails example.
+This is the Spree application we run at <code>http://testing.spree-ember.com</code> for live 
+Ember acceptance tests.</p>
+<h4 id="-nice-now-you-re-ready-to-get-started-with-spree-ember-3-getting-started-html-"><strong>Nice!  Now you&#39;re ready to <a href="./3-getting-started.html">get started with Spree Ember.</a></strong></h4>
 </div>
     </div>
   

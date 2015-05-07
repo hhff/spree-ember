@@ -57,15 +57,19 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-core">Spree Ember Core</h1>
+<p><a href="https://travis-ci.org/hhff/spree-ember"><img src="https://travis-ci.org/hhff/spree-ember.svg?branch=master" alt="Build Status"></a>
+<a href="https://gitter.im/hhff/spree-ember?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/hhff/spree-ember"></a></p>
 <p>Spree Ember Core is the core dependency of all other Spree Ember addons.  It
 provides the <code>spree</code> service, which has a seperate <code>store</code> to the host
 application.</p>
 <p>This store uses a custom <code>serializer</code> and <code>adapter</code> that are
 designed to work tightly with the <a href="http://github.com/spree/spree">Spree</a> rails 
 engine, via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
+<pre><code class="lang-js">this.spree.store.find(&quot;product&quot;);
+</code></pre>
 <p><strong>Note:</strong> This Package is included with <code>spree-ember-storefront</code>.  If you&#39;re
 using that, there&#39;s no need to install this seperately.</p>
-<p>This addon also adds the following models:</p>
+<p>This addon also adds the following models to the global namespace:</p>
 <ul>
 <li>Address</li>
 <li>Address</li>
@@ -98,9 +102,9 @@ storage. </p>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
 <h2 id="spree-ember">Spree Ember</h2>
-<p>If you&#39;re just getting started, it&#39;s recommended that you checkout the Spree
-Ember Storefront addon.  It&#39;s the quickest way to get up and running with Spree
-Ember.</p>
+<p>If you&#39;re just getting started, it&#39;s recommended that you checkout the
+<code>spree-ember-storefront</code> addon instead.  It&#39;s the quickest way to get up and 
+running with Spree Ember.</p>
       </div>
     </div>
   </div>

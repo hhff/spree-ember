@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spree Ember - An Ember Ecosystem for Spree Commerce</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="./assets/vendor/prism/prism.css">
+
+  <link rel="stylesheet" href="./assets/vendor/foundation/css/normalize.css">
+  <link rel="stylesheet" href="./assets/vendor/foundation/css/foundation.min.css">
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400" rel="stylesheet" type="text/css">
+
+  <link href="http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic" rel="stylesheet" type="text/css">
+
+  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./assets/css/spree-ember.css">
+
+  <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="links">
+      <a href="http://www.spree-ember.com/1-overview.html" id="guides-link">Guides</a> -
+      <a href="http://www.spree-ember.com/packages.html">API</a> -
+      <a href="https://github.com/hhff/spree-ember"><img src="./assets/img/github-120px.png"> Github</a>
+    </div>
+    <div class="info">
+      <a href="http://www.spree-ember.com">
+        <img class="logo" src="./assets/img/logo.svg">
+      </a>
+      <h5>An Ember Ecosystem</h5>
+      <h5>For Spree Commerce</h5>
+    </div>
+  </header>
+
+  <section class="container" id="main">
+    <div class="text-center" id="main-package-name">
+      <h3>Guides</h3>
+    </div>
+    <div class="row" id="docs-content">
+      <div id="sidebar-content" class="small-12 large-3 columns panel">
+<h3>Guides</h3>
+<hr>
+<ul class="side-nav yuidoc-classes"><li><a href="./1-overview.html">overview</a></li><li><a href="./2-configuring-spree.html">configuring spree</a></li><li><a href="./3-getting-started.html">getting started</a></li><li><a href="./4-customization.html">customization</a></li></ul>
+      </div>
+      <div id="main-content" class="small-12 large-9 columns"><h1 id="customization">Customization</h1>
+<p>The Spree Ember frontend has been built carefully to provide stability, but not 
+limit the developer.</p>
+<h3 id="defaults">Defaults</h3>
+<hr>
+<p>All Spree Ember configuration is done through the Ember CLI environment.  Here&#39;s
+the defaults for the <code>spree-ember-storefronts</code> package:</p>
+<pre><code class="lang-javascript">&quot;spree&quot;: {
+  apiHost: &quot;http://localhost:3000&quot;,
+  namespace: &quot;api/ams&quot;,
+  mount: &quot;/&quot;,
+  productsPath: &quot;products&quot;,
+  cartPath: &quot;cart&quot;,
+  checkoutPath: &quot;checkout&quot;,
+  ordersPath: &quot;orders&quot;,
+  taxonsPath: &quot;t&quot;
+}
+</code></pre>
+<h3 id="zurb-foundation">Zurb Foundation</h3>
+<hr>
+<p>You may have noticed that Zurb Foundation was installed in your host application 
+with <code>spree-ember-storefront</code>.  We chose Zurb Foundation because it allowed us 
+to build a fully responsive frontend without writing a line of custom CSS.</p>
+<p>This means it&#39;s super easy to remove.</p>
+<pre><code class="lang-bash">ember uninstall ember-cli-foundation-sass
+</code></pre>
+<p>Then just remove <code>your-app/app/styles/app.scss</code>.</p>
+<h1 id="generators">Generators</h1>
+<p>Generators allow you to copy files from an Ember Addon into your Ember host 
+application.  This way they will override the Addon versions of themselves, and
+allow the developer to deeply customize the way an Addon behaves.</p>
+<h3 id="templates">Templates</h3>
+<hr>
+<p>When you installed <code>spree-ember-storefront</code>, every frontend template file from
+the addon was copied to your host application.  If you need to re-install them,
+you can re-run the default generator:</p>
+<pre><code class="lang-bash">ember generate spree-ember-storefront
+</code></pre>
+<p><strong>Note:</strong> This will also attempt to re-install <code>ember-cli-foundation-sass</code>, and
+overwrite any template changes you&#39;ve made since the initial installation.</p>
+<h3 id="components">Components</h3>
+<hr>
+<p>Sometimes, you&#39;ll want to deeply customize the way a component behaves.  You can
+copy the <code>spree-ember-storefront</code> component javascript files to your host
+application with this generator: </p>
+<pre><code class="lang-bash">ember generate spree-ember-storefront-components
+</code></pre>
+<p>You can now extend the default components, or overwrite them completely.</p>
+<h3 id="routes">Routes</h3>
+<hr>
+<p>If you need to add actions to routes, or specify custom route behaviour, you&#39;ll
+want to copy the <code>spree-ember-storefront</code> route javascript files to your host
+application.  Simply run this generator:</p>
+<pre><code class="lang-bash">ember generate spree-ember-storefront-routes
+</code></pre>
+<p>You&#39;ll now have the routes availble to your application, ready for
+customization.</p>
+<h3 id="customizing-the-checkout-flow">Customizing the Checkout Flow</h3>
+<hr>
+<p>The <code>spree-ember-storefront</code> addon uses <code>spree-ember-checkouts</code> as a dependency.
+It provides a stateful checkout abstraction as a service to allow the developer
+to build a single page checkout in a reactive style of programming.</p>
+<p>Spree allows the developer to customize the backend Order State Machine.  Spree
+Ember provides the same utility through the <a href="https://github.com/heycarsten/ember-fsm">Ember FSM</a>
+library.</p>
+<h4 id="-for-more-information-please-see-the-spree-ember-checkouts-api-documentation-http-www-spree-ember-com-checkouts-index-html-"><strong>For more information, please see the <a href="http://www.spree-ember.com/checkouts/index.html">spree-ember-checkouts API Documentation.</a></strong></h4>
+<h3 id="adding-user-accounts-and-management">Adding User Accounts and Management</h3>
+<hr>
+<p>Spree also provides User models.  If you&#39;d like to add user accounts and user
+management to your Spree Ember application, you can do so with a single line
+install:</p>
+<pre><code class="lang-bash">ember install spree-ember-auth
+</code></pre>
+<p>Like <code>spree-ember-storefront</code>, you&#39;ll want to add the <code>spree-ember-auth</code> router
+to your application.</p>
+<p>In <code>router.js</code>:</p>
+<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
+import config from &#39;./config/environment&#39;;
+import spreeRouter from &#39;spree-ember-storefront/router&#39;;
+import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
+Router.map(function() {
+  spreeRouter(this, config);
+  spreeAuthRouter(this, config);
+});
+
+export default Router;
+</code></pre>
+<p>The <code>spree-ember-auth</code> package is a wrapper for the 
+<a href="https://github.com/simplabs/ember-simple-auth">Ember Simple Auth</a> package, and 
+provides some default customization variables to the <code>spree</code> environment object.</p>
+<h4 id="-for-more-information-please-see-the-spree-ember-auth-api-documentation-http-www-spree-ember-com-auth-index-html-"><strong>For more information, please see the <a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth API Documentation.</a></strong></h4>
+</div>
+    </div>
+  
+
+  <footer class="row collapse">
+    <div class="small-12 columns text-center">
+      <hr>
+      <h6>Spree Ember is Open Source under the MIT License.</h6>
+      <iframe src="https://ghbtns.com/github-btn.html?user=hhff&amp;repo=spree-ember&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+  </footer>
+
+<script src="./assets/vendor/foundation/js/vendor/fastclick.js"></script>
+<script src="./assets/vendor/foundation/js/vendor/jquery.js"></script>
+<script src="./assets/vendor/foundation/js/vendor/jquery.cookie.js"></script>
+<script src="./assets/vendor/foundation/js/vendor/modernizr.js"></script>
+<script src="./assets/vendor/foundation/js/vendor/placeholder.js"></script>
+
+<script src="./assets/vendor/foundation/js/foundation.min.js"></script>
+<script src="./assets/vendor/prism/prism.js"></script>
+
+<script>$(document).foundation();</script>
+
+<script>
+  $('.private-toggle').on('click', function() {
+    var $this = $(this);
+    var checked = $this.find('input').first().is(':checked');
+    if (checked) {
+      $this.siblings('.private').css({
+        display: 'block'
+      })
+    } else {
+      $this.siblings('.private').css({
+        display: 'none'
+      })
+    }
+
+  })
+</script>
+
+
+</section></body>
+</html>

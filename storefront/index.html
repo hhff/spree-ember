@@ -49,6 +49,8 @@
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <h1 id="spree-ember-storefront">Spree Ember Storefront</h1>
+<p><a href="https://travis-ci.org/hhff/spree-ember"><img src="https://travis-ci.org/hhff/spree-ember.svg?branch=master" alt="Build Status"></a>
+<a href="https://gitter.im/hhff/spree-ember?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/hhff/spree-ember"></a></p>
 <p>The Spree Ember Storefront is a collection of routes, templates and components
 that work out of the box with the <a href="http://github.com/spree/spree">Spree</a> rails 
 engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
@@ -74,12 +76,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  spreeRouter(this, {
-    mountPath:    &#39;/spree&#39;,
-    cartPath:     &#39;cart&#39;,
-    productsPath: &#39;products&#39;,
-    checkoutPath: &#39;checkout&#39;
-  });
+  spreeRouter(this, config);
 });
 
 export default Router;

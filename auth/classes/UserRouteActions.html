@@ -139,7 +139,7 @@ the <a href="http://ember-simple-auth.com/ember-simple-auth-api-docs.html">Simpl
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_user-route-actions.js.html#l57"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:57</code></a>
+    <a href="../files/addon_mixins_user-route-actions.js.html#l77"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:77</code></a>
     </p>
 
 
@@ -212,7 +212,7 @@ successful authentication.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_user-route-actions.js.html#l70"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:70</code></a>
+    <a href="../files/addon_mixins_user-route-actions.js.html#l95"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:95</code></a>
     </p>
 
 
@@ -278,7 +278,7 @@ successful create then authenticate.</p>
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_user-route-actions.js.html#l100"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:100</code></a>
+    <a href="../files/addon_mixins_user-route-actions.js.html#l128"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:128</code></a>
     </p>
 
 
@@ -302,6 +302,77 @@ in place, and doesn't take any arguments.</p>
                       <span class="type">Ember.RSVP.Promise</span>:
                   <p>A promise that resolves to the <code>currentUser</code>
 when successful.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method_extractAuthErrors" class="method panel item">
+  <h3 class="name"><code>extractAuthErrors</code></h3>
+
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>serverError</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Object</span>
+    </p>
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_user-route-actions.js.html#l56"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:56</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>The <code>authenticateUser</code> call simply wraps the <code>session#authenticate</code> method
+provided by Ember Simple Auth.</p>
+
+  </div>
+
+
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">serverError</code>
+            <span class="type">Object</span>
+
+
+          <div class="param-description">
+            <p>A JSON Payload containing server errors.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Object</span>:
+                  <p>A normalized errors object.</p>
 
           </div>
       </div>

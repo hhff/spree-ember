@@ -3,7 +3,7 @@
         "name": "spree-ember-core",
         "shortName": "core",
         "description": "Core data infrastructure for a Spree Ember Application.",
-        "version": "0.0.0.d40b6b5e"
+        "version": "0.0.1-beta.1.2eb92416"
     },
     "files": {
         "addon/adapters/spree.js": {
@@ -184,7 +184,7 @@
             "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
             "file": "addon/mixins/can-checkout.js",
-            "line": 3,
+            "line": 4,
             "description": "This mixin is used with the order model, to provide it with a\n`saveToCheckouts` method, for using the Spree Checkouts API Endpoint.",
             "extends": "Ember.Mixin"
         },
@@ -346,7 +346,7 @@
         },
         {
             "file": "addon/mixins/can-checkout.js",
-            "line": 11,
+            "line": 12,
             "description": "A flag for telling `save` internals downstream to use Spree's Checkouts API\nendpoint, rather than the `orders` endpoint.",
             "itemtype": "property",
             "name": "_useCheckoutsEndpoint",
@@ -358,7 +358,7 @@
         },
         {
             "file": "addon/mixins/can-checkout.js",
-            "line": 21,
+            "line": 22,
             "description": "Simply wraps the `DS.Model#save` method to set the boolean flag \n`_useCheckoutsEndpoint` for the duration of that promise.  Downstream\nSerializers and Adapters can call `snapshot.attr('_useCheckoutsEndpoint')` \nand react accordingly.",
             "itemtype": "method",
             "name": "saveToCheckouts",

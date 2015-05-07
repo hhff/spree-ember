@@ -90,6 +90,14 @@ export default Ember.Component.extend({
   */
   isSignup: false,
   /**
+    An array of server errors.
+
+    @property errors 
+    @type Object
+    @default {} 
+  */
+  errors: {},
+  /**
     The action that is sent when &#x60;isSignup&#x60; is &#x60;false&#x60;.  This is caught by the action
     defined in the &#x60;spree-auth-user-route-mixin&#x60;.
     
@@ -123,9 +131,18 @@ export default Ember.Component.extend({
         identification: identification,
         password: password,
         passwordConfirmation: passwordConfirmation
-      });
+      }, this);
     }
-  }
+  },
+  identificationDidChange: Ember.observer(&#x27;identification&#x27;, function() {
+    this.set(&#x27;errors.email&#x27;, null);
+  }),
+  passwordDidChange: Ember.observer(&#x27;password&#x27;, function() {
+    this.set(&#x27;errors.password&#x27;, null);
+  }),
+  passwordConfirmationDidChange: Ember.observer(&#x27;passwordConfirmation&#x27;, function() {
+    this.set(&#x27;errors.passwordConfirmation&#x27;, null);
+  })
 });
 
 </code>

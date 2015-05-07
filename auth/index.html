@@ -56,9 +56,10 @@
 <h1 id="spree-ember-auth">Spree Ember Auth</h1>
 <p><a href="https://travis-ci.org/hhff/spree-ember"><img src="https://travis-ci.org/hhff/spree-ember.svg?branch=master" alt="Build Status"></a>
 <a href="https://gitter.im/hhff/spree-ember?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/hhff/spree-ember"></a></p>
-<p>The Spree Ember Auth is a wrapper on <a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>,
-that provides a custom Spree <code>Authorizer</code> and <code>Authenticator</code> that work out of 
-the box with the <a href="http://github.com/spree/spree">Spree</a> rails engine via 
+<p>The Spree Ember Auth package is a wrapper on 
+<a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>, that 
+provides a custom Spree <code>Authorizer</code> and <code>Authenticator</code> that work out of the box 
+with the <a href="http://github.com/spree/spree">Spree</a> rails engine via 
 <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
 <p>It uses:</p>
 <ul>
@@ -99,44 +100,29 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  spreeRouter(this);
-  spreeAuthRouter(this);
+  spreeRouter(this, config);
+  spreeAuthRouter(this, config);
 });
 
 export default Router;
 </code></pre>
-<p>You can also have finer control over the route names in the same way as
-<code>spree-ember-storefront</code>:</p>
-<pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
-import config from &#39;./config/environment&#39;;
-
-import spreeRouter from &#39;spree-ember-storefront/router&#39;;
-import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
-
-var Router = Ember.Router.extend({
-  location: config.locationType
-});
-
-Router.map(function() {
-  spreeRouter(this, {
-    mountPath:    &#39;/spree&#39;,
-    cartPath:     &#39;basket&#39;,
-    productsPath: &#39;items&#39;,
-    checkoutPath: &#39;pay&#39;
-  });
-
-  spreeAuthRouter(this, {
-    mountPath:   &#39;/spree&#39;,
-    signinPath:  &#39;login&#39;,
-    signupPath:  &#39;new-user&#39;,
-    accountPath: &#39;profile&#39;
-  });
-});
-
-export default Router;
+<h3 id="configuration">Configuration</h3>
+<p>All customization is done through the Ember CLI Environment.  Here&#39;s the
+defaults:</p>
+<pre><code class="lang-js">&quot;spree&quot;: {
+  signinPath: &#39;signin&#39;,
+  signupPath: &#39;signup&#39;,
+  accountPath: &#39;account&#39;
+},
+&quot;simple-auth&quot;: {
+  localStorageKey: &#39;spree-ember:session&#39;,
+  authorizer: &#39;simple-auth-authorizer:spree&#39;,
+  crossOriginWhitelist: [&#39;http://localhost:3000&#39;],
+  authenticationRoute: &#39;spree.signin&#39;,
+  routeAfterAuthentication: &quot;spree.account&quot;,
+  routeIfAlreadyAuthenticated: &quot;spree.account&quot;
+}
 </code></pre>
-<p><strong>Please Note</strong>: Your <code>mountPath</code> must match your <code>spree-ember-storefront</code>
-<code>mountPath</code>.</p>
 <h3 id="overriding-the-signin-signup-component">Overriding the Signin / Signup Component</h3>
 <p>You can override the appearance and behaviour of the <code>{{spree-auth}}</code> component
 by running the generator:</p>
@@ -144,6 +130,7 @@ by running the generator:</p>
 </code></pre>
 <p>This will install a template file at <code>app/templates/components/spree-auth</code> and a
 component file at <code>app/components/spree-auth</code>.</p>
+<h4 id="-for-more-information-please-see-the-spree-ember-auth-api-documentation-http-www-spree-ember-com-auth-index-html-"><strong>For more information, please see the <a href="http://www.spree-ember.com/auth/index.html">spree-ember-auth API Documentation.</a></strong></h4>
       </div>
     </div>
   </div>

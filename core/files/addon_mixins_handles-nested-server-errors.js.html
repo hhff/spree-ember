@@ -110,10 +110,10 @@ export default Ember.Mixin.create({
         recordErrors.add(key, errors[key]);
       }
     }
-    for (var key in nestedRecordErrors) {
-      var nested = this.get(key);
+    for (var errorKey in nestedRecordErrors) {
+      var nested = this.get(errorKey);
       if (nested) {
-        nested.adapterDidInvalidate(nestedRecordErrors[key]);
+        nested.adapterDidInvalidate(nestedRecordErrors[errorKey]);
       }
     }
     this._saveWasRejected();
@@ -152,7 +152,7 @@ export default Ember.Mixin.create({
     @private
   */
   _infoForNestedErrorKey: function(key) {
-    var path      = new String;
+    var path      = &quot;&quot;;
     var splat     = key.split(&#x27;.&#x27;);
     var attribute = splat.pop();
 

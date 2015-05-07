@@ -3,7 +3,7 @@
         "name": "spree-ember-auth",
         "shortName": "auth",
         "description": "The default blueprint for ember-cli addons.",
-        "version": "0.0.0.d40b6b5e"
+        "version": "0.0.1-beta.1.2eb92416"
     },
     "files": {
         "addon/authenticators/spree.js": {
@@ -202,6 +202,16 @@
         {
             "file": "addon/components/spree-auth.js",
             "line": 30,
+            "description": "An array of server errors.",
+            "itemtype": "property",
+            "name": "errors",
+            "type": "Object",
+            "default": "{}",
+            "class": "SpreeAuth"
+        },
+        {
+            "file": "addon/components/spree-auth.js",
+            "line": 38,
             "description": "The action that is sent when `isSignup` is `false`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "authAction",
@@ -211,7 +221,7 @@
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 39,
+            "line": 47,
             "description": "The action that is sent when `isSignup` is `true`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "createAction",
@@ -281,7 +291,26 @@
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 57,
+            "line": 56,
+            "description": "The `authenticateUser` call simply wraps the `session#authenticate` method\nprovided by Ember Simple Auth.",
+            "itemtype": "method",
+            "name": "extractAuthErrors",
+            "params": [
+                {
+                    "name": "serverError",
+                    "description": "A JSON Payload containing server errors.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "A normalized errors object.",
+                "type": "Object"
+            },
+            "class": "UserRouteActions"
+        },
+        {
+            "file": "addon/mixins/user-route-actions.js",
+            "line": 77,
             "description": "The `authenticateUser` call simply wraps the `session#authenticate` method\nprovided by Ember Simple Auth.",
             "itemtype": "method",
             "name": "authenticateUser",
@@ -300,7 +329,7 @@
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 70,
+            "line": 95,
             "description": "The `createAndAuthenticateUser` method attempts to create a new Spree User,\nand when successful, triggers the `authenticateUser` action.",
             "itemtype": "method",
             "name": "createAndAuthenticateUser",
@@ -319,7 +348,7 @@
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 100,
+            "line": 128,
             "description": "The `updateCurrentUser` method attempts to save/update the current Spree user.\nIt expects that changes to the `session.currentUser` model have been made\nin place, and doesn't take any arguments.",
             "itemtype": "method",
             "name": "createAndAuthenticateUser",

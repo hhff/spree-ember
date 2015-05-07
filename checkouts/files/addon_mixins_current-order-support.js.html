@@ -345,12 +345,16 @@ export default Ember.Mixin.create({
     @method clearCurrentOrder
     @return {Boolean} Always returns &#x60;true&#x60;.
   */
-  clearCurrentOrder: function() {
+  clearCurrentOrder: function(didComplete) {
+    if (didComplete) {
+      this.trigger(&#x27;currentOrderDidComplete&#x27;, this.get(&#x27;currentOrder&#x27;));
+    }
     this.persist({
       guestToken: null,
       orderId: null
     });
     this.set(&#x27;currentOrder&#x27;, null);
+    this.get(&#x27;checkouts&#x27;).transition();
     this.trigger(&#x27;didClearCurrentOrder&#x27;);
     return true;
   }

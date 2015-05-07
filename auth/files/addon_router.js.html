@@ -103,15 +103,13 @@
 
   @class Router
 */
-export default function(router, options) {
+export default function(router, ENV) {
 
-  options = options || {};
+  var mountPath   = ENV[&quot;spree&quot;][&quot;mount&quot;];
+  var signinPath  = ENV[&quot;spree&quot;][&quot;signinPath&quot;];
+  var signupPath  = ENV[&quot;spree&quot;][&quot;signupPath&quot;];
+  var accountPath = ENV[&quot;spree&quot;][&quot;accountPath&quot;];
   
-  var mountPath   = options[&#x27;mountPath&#x27;]   || &#x27;/spree&#x27;;
-  var signinPath  = options[&#x27;signinPath&#x27;]  || &#x27;signin&#x27;;
-  var signupPath  = options[&#x27;signupPath&#x27;]  || &#x27;signup&#x27;;
-  var accountPath = options[&#x27;accountPath&#x27;] || &#x27;account&#x27;;
-
   router.resource(&#x27;spree&#x27;, { path: mountPath }, function() {
     this.route(&#x27;signin&#x27;, { path: signinPath });
     this.route(&#x27;signup&#x27;, { path: signupPath });

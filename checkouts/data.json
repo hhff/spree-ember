@@ -3,7 +3,7 @@
         "name": "spree-ember-checkouts",
         "shortName": "checkouts",
         "description": "Checkout functionality for a Spree Ember Application.",
-        "version": "0.0.0.d40b6b5e"
+        "version": "0.0.1-beta.1.2eb92416"
     },
     "files": {
         "addon/mixins/current-order-support.js": {
@@ -541,7 +541,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 161,
+            "line": 163,
             "description": "If a state name is passed to this method, the state machine will attempt to\ntransition directly to that state.  If not, we will attempt to transition\nto the next state in the checkout flow.",
             "itemtype": "method",
             "name": "transition",
@@ -560,7 +560,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 189,
+            "line": 195,
             "description": "Called whenever the State Machine enters \"Address\".  Ensures that an address\nobject exists for the order's `shipAddress`.",
             "itemtype": "method",
             "name": "_ensureShipAddressExists",
@@ -570,7 +570,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 203,
+            "line": 209,
             "description": "Called whenever the State Machine enters \"Payment\".  Ensures that a payment\nand source object exists for the `currentOrder`.",
             "itemtype": "method",
             "name": "_ensurePaymentExists",
@@ -580,7 +580,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 221,
+            "line": 227,
             "description": "When `validateOrder` fails, the State Machine will automatically transition\nto \"failed\".  Here, we listen to that transition, and then automatically\nrun this method, to reset the State Machine to the State of the \n`currentOrder`.\n\nNote: Because Ember QUnit relies on returned promise for Unit tests, we \ndisable this method in `test`, and manually reset the State Machine when\ntesting failed transitions.",
             "itemtype": "method",
             "name": "_resetStateMachine",
@@ -590,7 +590,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 239,
+            "line": 243,
             "description": "Used to save changes to the `currentOrder` to Spree's Checkouts API.  Is only\ncalled by the state machine when advancing to a later state in the flow.",
             "itemtype": "method",
             "name": "_validateOrder",

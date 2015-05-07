@@ -44,85 +44,65 @@
       <div id="sidebar-content" class="small-12 large-3 columns panel">
 <h3>Guides</h3>
 <hr>
-<ul class="side-nav yuidoc-classes"><li><a href="./1-overview.html">overview</a></li><li><a href="./2-getting-started.html">getting started</a></li><li><a href="./3-configuring-spree.html">configuring spree</a></li><li><a href="./4-development.html">development</a></li><li><a href="./5-customization.html">customization</a></li><li><a href="./6-checkouts.html">checkouts</a></li><li><a href="./7-users.html">users</a></li><li><a href="./8-deployment.html">deployment</a></li></ul>
+<ul class="side-nav yuidoc-classes"><li><a href="./1-overview.html">overview</a></li><li><a href="./2-configuring-spree.html">configuring spree</a></li><li><a href="./3-getting-started.html">getting started</a></li><li><a href="./4-customization.html">customization</a></li></ul>
       </div>
-      <div id="main-content" class="small-12 large-9 columns"><h1 id="users">Users</h1>
-<p>Often online stores can make do with out needing to track users, relying only on
-order IDs and tokens, however in the case that your online store does require
-user accounts and associated behaviour, you can simply add this addon to you
-application:</p>
-<pre><code class="lang-bash">ember install spree-ember-auth
+      <div id="main-content" class="small-12 large-9 columns"><h1 id="getting-started">Getting Started</h1>
+<p>The quickest way to get starting using Spree Ember is to install the
+<code>spree-ember-storefront</code> addon into a new Ember CLI application.</p>
+<p>Under the hood, the <code>spree-ember-storefront</code> addon uses:</p>
+<ul>
+<li><code>spree-ember-core</code></li>
+<li><code>spree-ember-checkouts</code></li>
+<li><code>ember-cli-foundation-sass</code></li>
+</ul>
+<h3 id="ember-cli">Ember CLI</h3>
+<hr>
+<p>First - you&#39;ll need the Ember CLI.  Head over to 
+<a href="http://www.ember-cli.com/#getting-started">Getting Started with Ember CLI</a> for 
+instructions.</p>
+<p>Once installed, you&#39;ll want to spin up a new Ember application.</p>
+<pre><code class="lang-bash">ember new frontend
+cd frontend
+ember server
 </code></pre>
-<p>This will install Ember Simple Auth into your Spree Ember application, and add
-some useful files to your application.</p>
-<h3 id="setup">Setup</h3>
-<p>Now you&#39;ll need to tell your router about the new Spree Auth routes:</p>
+<p>Now open up your browser, and navigate to <code>localhost:4200</code>, and you you should 
+see the default Ember welcome page!</p>
+<p>// TODO Welcome Page</p>
+<h3 id="installing-spree-ember">Installing Spree Ember</h3>
+<hr>
+<p>The <code>spree-ember-storefront</code> package installs it&#39;s dependencies automatically,
+so you can simply use the one line installer:</p>
+<pre><code class="lang-bash">ember install spree-ember-storefront
+</code></pre>
+<p>This command will add <code>ember-cli-foundation-sass</code> to your host application (for
+easy removal down the track), and will copy all of the storefront route &amp;
+component templates to your application, for easy customization.</p>
+<h3 id="importing-the-spree-storefront-router">Importing the Spree Storefront Router</h3>
+<hr>
+<p>Now, you&#39;ll need to tell Ember where to put the Spree routes.</p>
+<p>In <code>router.js</code>:</p>
 <pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
 import config from &#39;./config/environment&#39;;
-
-// This line imports the Spree Router.
 import spreeRouter from &#39;spree-ember-storefront/router&#39;;
-
-// This line import the Spree Auth Router.
-import spreeAuthRouter from &#39;spree-ember-auth/router&#39;;
 
 var Router = Ember.Router.extend({
   location: config.locationType
 });
 
 Router.map(function() {
-  spreeRouter(this, {
-    mountPath:    &#39;/spree&#39;,
-    cartPath:     &#39;cart&#39;,
-    productsPath: &#39;products&#39;,
-    checkoutPath: &#39;checkout&#39;
-  });
-
-  // You&#39;ll get an error if your Mount Path is different to your Spree Router,
-  // these need to match.
-  spreeAuthRouter(this, {
-    mountPath:   &#39;/spree&#39;,
-    signinPath:  &#39;login&#39;,
-    signupPath:  &#39;new&#39;,
-    accountPath: &#39;profile&#39;
-  });
+  spreeRouter(this, config);
 });
 
 export default Router;
 </code></pre>
-<h3 id="creating-authenticating-users">Creating &amp; Authenticating Users</h3>
+<h3 id="fire-it-up-">Fire it up!</h3>
 <hr>
-<p>The <code>spree-ember-auth</code> package adds an <a href="https://github.com/simplabs/ember-cli-simple-auth">Ember Simple Auth</a>
-Authenticator and Authorizer to the host application&#39;s registry.  It then sets 
-these up to work nicely with local storage.  Finally, it adds some useful 
-methods, routes and templates for managing Spree users and their sessions on the 
-frontend.</p>
-<pre><code class="lang-javascript">// A contrived example.
-
-var email    = &quot;me@hughfrancis.me&quot;;
-var password = &quot;SpreeEmber123&quot;;
-
-var newCustomer = this.spree.store.createRecord(&quot;user&quot;, {
-  email:    email, 
-  password: password,
-  passwordConfirmation: password
-});
-
-var _this = this;
-
-newCustomer.save().then(
-  function(newCustomer) {
-    // You probably don&#39;t want to nest callbacks...
-    _this.session.authenticate(email, password).then(
-      function() {
-        // Now, all requests will contain an Authorization Header for Spree.
-        alert(&quot;Session Authenticated and Persisted to Local Storage!&quot;);
-      }
-    )
-  }
-);
-</code></pre>
-<h4 id="-ready-to-deploy-checkout-the-deployment-section-8-deployment-html-"><strong>Ready to deploy? Checkout the <a href="./8-deployment.html">deployment section</a>.</strong></h4>
+<p>Now start up the <code>ember server</code> again, and you should now see the Spree Ember 
+welcome page at <code>http://localhost:4200</code>!</p>
+<p>TODO: Welcome Page</p>
+<p><strong>Note:</strong> If you&#39;re not seeing any products or data, double check your Spree
+server is running on <code>http://localhost:3000</code>.</p>
+<h4 id="-next-you-ll-probably-want-to-customize-spree-ember-4-customization-html-"><strong>Next, you&#39;ll probably want to <a href="./4-customization.html">customize Spree Ember.</a></strong></h4>
 </div>
     </div>
   

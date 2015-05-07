@@ -115,6 +115,26 @@ export default Ember.Mixin.create({
     @event currentUserUpdateFailed 
     @param {Error} error The server error. 
   */
+  /**
+    The &#x60;authenticateUser&#x60; call simply wraps the &#x60;session#authenticate&#x60; method
+    provided by Ember Simple Auth.
+
+    @method extractAuthErrors 
+    @param {Object} serverError A JSON Payload containing server errors.
+    @return {Object} A normalized errors object.
+  */
+  extractAuthErrors: function(serverError) {
+    serverError.errors = serverError.errors || {};
+
+    var errors = {};
+    for (var key in serverError.errors) {
+      errors[key] = [{
+        attribute: Ember.String.camelize(key),
+        message: serverError.errors[key]
+      }];
+    }
+    return errors;
+  },
   actions: {
     /**
       The &#x60;authenticateUser&#x60; call simply wraps the &#x60;session#authenticate&#x60; method
@@ -126,8 +146,13 @@ export default Ember.Mixin.create({
       @return {Ember.RSVP.Promise} A promise that resolves successfully on a
       successful authentication.
     */
-    authenticateUser: function(params) {
-      return this.get(&#x27;session&#x27;).authenticate(&#x27;simple-auth-authenticator:spree&#x27;, params);
+    authenticateUser: function(params, authComponent) {
+      var _this = this;
+
+      authComponent.set(&#x27;errors&#x27;, null);
+      return this.get(&#x27;session&#x27;).authenticate(&#x27;simple-auth-authenticator:spree&#x27;, params).catch(function(serverError) {
+        authComponent.set(&#x27;errors&#x27;, _this.extractAuthErrors(serverError));
+      });
     },
     /**
       The &#x60;createAndAuthenticateUser&#x60; method attempts to create a new Spree User,
@@ -139,8 +164,10 @@ export default Ember.Mixin.create({
       @return {Ember.RSVP.Promise} A promise that resolves successfully on a
       successful create then authenticate.
     */
-    createAndAuthenticateUser: function(params) {
+    createAndAuthenticateUser: function(params, authComponent) {
       var _this   = this;
+      
+      authComponent.set(&#x27;errors&#x27;, null);
       var newUser = this.spree.store.createRecord(&#x27;user&#x27;, { 
         email: params.identification,
         password: params.password,
@@ -150,12 +177,13 @@ export default Ember.Mixin.create({
       return newUser.save().then(
         function(newUser) {
           _this.spree.trigger(&#x27;didCreateUser&#x27;, newUser);
-          return _this.send(&#x27;authenticateUser&#x27;, params);
+          return _this.send(&#x27;authenticateUser&#x27;, params, authComponent);
         },
-        function(error) {
-          _this.spree.trigger(&#x27;userCreateFailed&#x27;, error);
-          _this.spree.trigger(&#x27;serverError&#x27;, error);
-          return error;
+        function(serverError) {
+          _this.spree.trigger(&#x27;userCreateFailed&#x27;, serverError);
+          _this.spree.trigger(&#x27;serverError&#x27;, serverError);
+          authComponent.set(&#x27;errors&#x27;, _this.extractAuthErrors(serverError));
+          return serverError;
         }
       );
     },
