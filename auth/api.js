@@ -4,8 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Authenticator.Spree",
         "Authorizer.Spree",
         "Component.SpreeAuth",
-        "Mixin.UserRouteActions",
-        "Router.SpreeAuth"
+        "Mixin.UserRouteActions"
     ],
     "modules": [],
     "allModules": []

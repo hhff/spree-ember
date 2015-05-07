@@ -49,17 +49,6 @@
             "namespaces": {
                 "Mixin": 1
             }
-        },
-        "addon/router.js": {
-            "name": "addon/router.js",
-            "modules": {},
-            "classes": {
-                "Router.SpreeAuth": 1
-            },
-            "fors": {},
-            "namespaces": {
-                "Router": 1
-            }
         }
     },
     "modules": {},
@@ -119,19 +108,6 @@
             "line": 2,
             "description": "A mixin for providing utility methods to routes associated with User behaviour.\nThese are grouped together in the case the ambitious developers want to glob this\nbehaviour together into a single route, for a highly interactive experience.\n\n**Important:** The `spree-ember-auth` install generator will attempt to overwrite your application\nroute.  If you opt out of this, or you're defining it in a pod instead, you'll\nneed to ensure that you're mixing Simple Auth's Application Route Mixin into your\napplication route.\n\n```bash\nimport ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';\n```\n\nThis is essentially a thin wrapper on Ember Simple Auth.  If you'd like to\nmodify behaviour or catch events relating to Authentication, please refer to\nthe [Simple Auth Documentnation](http://ember-simple-auth.com/ember-simple-auth-api-docs.html)",
             "extends": "Ember.Mixin"
-        },
-        "Router.SpreeAuth": {
-            "name": "Router.SpreeAuth",
-            "shortname": "Router.SpreeAuth",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "namespace": "Router",
-            "file": "addon/router.js",
-            "line": 1,
-            "description": "The Spree Auth router is designed to be imported by a host application's Router\nto setup the default routes required for Spree Auth.\n\n**Note:** If you're setting a Mount Point, it must be the same as the \nMount Point set for the `spree-ember-storefront` router.\n\nIn `router.js`:\n\n```javascript\nimport Ember from 'ember';\nimport config from './config/environment';\n\nimport spreeRouter from 'spree-ember-storefront/router';\nimport spreeAuthRouter from 'spree-ember-auth/router';\n\nvar Router = Ember.Router.extend({\n  location: config.locationType\n});\n\nRouter.map(function() {\n  spreeRouter(this, {\n    mountPath:    '/spree',\n    cartPath:     'cart',\n    productsPath: 'products',\n    checkoutPath: 'checkout'\n  });\n\n  // You'll get an error if your Mount Path is different to your Spree Router,\n  // these need to match.\n  spreeAuthRouter(this, {\n    mountPath:   '/spree',\n    signinPath:  'login',\n    signupPath:  'new',\n    accountPath: 'profile'\n  });\n});\n\nexport default Router;\n```"
         }
     },
     "classitems": [
