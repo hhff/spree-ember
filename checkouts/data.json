@@ -10,70 +10,78 @@
             "name": "addon/mixins/current-order-support.js",
             "modules": {},
             "classes": {
-                "CurrentOrderSupportMixin": 1
+                "Mixin.CurrentOrderSupport": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Mixin": 1
+            }
         },
         "addon/serializers/order.js": {
             "name": "addon/serializers/order.js",
             "modules": {},
             "classes": {
-                "OrderSerializer": 1
+                "Serializer.Order": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Serializer": 1
+            }
         },
         "app/services/checkouts.js": {
             "name": "app/services/checkouts.js",
             "modules": {},
             "classes": {
-                "Checkouts": 1
+                "Service.Checkouts": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Service": 1
+            }
         }
     },
     "modules": {},
     "classes": {
-        "CurrentOrderSupportMixin": {
-            "name": "CurrentOrderSupportMixin",
-            "shortname": "CurrentOrderSupportMixin",
+        "Mixin.CurrentOrderSupport": {
+            "name": "Mixin.CurrentOrderSupport",
+            "shortname": "Mixin.CurrentOrderSupport",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Mixin",
             "file": "addon/mixins/current-order-support.js",
             "line": 3,
             "description": "Provides Current Order and Checkout Functionality to the Spree service.  This\nmixin is applied to the Spree service when spree-ember-checkouts initializes,\ntherefore all functionality described here is available like so:\n\n```javascript\nthis.spree.addToCart(variantModel, 5);\n```",
             "extends": "Ember.Mixin"
         },
-        "OrderSerializer": {
-            "name": "OrderSerializer",
-            "shortname": "OrderSerializer",
+        "Serializer.Order": {
+            "name": "Serializer.Order",
+            "shortname": "Serializer.Order",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Serializer",
             "file": "addon/serializers/order.js",
             "line": 3,
             "description": "The Order Serializer converts the Order model into a JSON payload as dictated \nby Spree's \"Checkouts\" endpoint.  The payload is dependant on the state of the \norder.",
             "extends": "SpreeSerializer"
         },
-        "Checkouts": {
-            "name": "Checkouts",
-            "shortname": "Checkouts",
+        "Service.Checkouts": {
+            "name": "Service.Checkouts",
+            "shortname": "Service.Checkouts",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Service",
             "file": "app/services/checkouts.js",
             "line": 2,
             "description": "The checkouts service is a Stateful global for progressing an Order through \nthe Spree checkout, via the Checkouts endpoint.  It also serves as the \n\"canonical\" state for a Checkout frontend, and should be used to progress\nforward and backward through an order's steps.\n\nIt's designed to allow a reactive programming style for the checkout \nfrontend.  The `spree-checkout` component from the Spree Ember Storefronts\npackage is an example of this style.\n\n```javascript\nvar checkouts = this.get('spree.checkouts');\n\ncheckouts.get('currentState');\n// => \"address\"\n\ncheckouts.transition().then(function() {\n  checkouts.get('currentOrder.state');\n  // => \"delivery\"\n  checkouts.get('currentState');\n  // => \"delivery\"\n\n  checkouts.transition(\"address\").then(function() {\n\n    // Here, the Checkout and Current Order state has diverged.  This is\n    // expected behaviour, and their states will reconcile when the \n    // checkout progresses forward again.\n    \n    checkouts.get('currentOrder.state');\n    // => \"delivery\"\n    checkouts.get('currentState');\n    // => \"address\"\n  });\n});\n```",
-            "extends": "Ember.Service",
             "uses": [
                 "Ember.FSM.Stateful"
             ]
@@ -82,7 +90,7 @@
     "classitems": [
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 16,
+            "line": 17,
             "description": "A generic event triggered whenever a Spree Server request fails.",
             "itemtype": "event",
             "name": "serverError",
@@ -93,11 +101,12 @@
                     "type": "Object"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 23,
+            "line": 24,
             "description": "Triggered whenever a Line Item is created or updated.",
             "itemtype": "event",
             "name": "didAddToCart",
@@ -108,11 +117,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 30,
+            "line": 31,
             "description": "Triggered whenever a Line Item is created or updated.",
             "itemtype": "event",
             "name": "addToCartFailed",
@@ -123,11 +133,12 @@
                     "type": "Error"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 37,
+            "line": 38,
             "description": "Triggered whenever a new Order is created for the checkout user.",
             "itemtype": "event",
             "name": "didCreateNewOrder",
@@ -138,11 +149,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 44,
+            "line": 45,
             "description": "Triggered whenever a new Order is created for the checkout user.",
             "itemtype": "event",
             "name": "newOrderCreateFailed",
@@ -153,19 +165,21 @@
                     "type": "Object"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 51,
+            "line": 52,
             "description": "Triggered whenever a new Order is created for the checkout user.",
             "itemtype": "event",
             "name": "didClearCurrentOrder",
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 57,
+            "line": 58,
             "description": "Triggered whenever the Current Order changes State.",
             "itemtype": "event",
             "name": "checkoutStateDidChange",
@@ -176,11 +190,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 64,
+            "line": 65,
             "description": "Triggered when the `_saveCurrentOrder` call succeeds.",
             "itemtype": "event",
             "name": "didSaveCurrentOrder",
@@ -191,11 +206,12 @@
                     "type": "Ember.RSVP.Promise"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 72,
+            "line": 73,
             "description": "Triggered when the `_saveCurrentOrder` call fails.",
             "itemtype": "event",
             "name": "saveCurrentOrderFailed",
@@ -206,11 +222,12 @@
                     "type": "Error"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 79,
+            "line": 80,
             "description": "Triggered when the `advanceCurrentOrder` call succeeds.",
             "itemtype": "event",
             "name": "didAdvanceCurrentOrder",
@@ -221,11 +238,12 @@
                     "type": "Ember.RSVP.Promise"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 87,
+            "line": 88,
             "description": "Triggered when the `advanceCurrentOrder` call fails.",
             "itemtype": "event",
             "name": "advanceCurrentOrderFailed",
@@ -236,11 +254,12 @@
                     "type": "Error"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 94,
+            "line": 95,
             "description": "Triggered whenever the Current Order reached it's \"Complete\" State.",
             "itemtype": "event",
             "name": "currentOrderDidComplete",
@@ -251,11 +270,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 101,
+            "line": 102,
             "description": "A method called in the `spree-ember-checkouts` initializer after the\n`Checkouts` mixin is applied to the Spree service, to initialize functionality\nin this mixin.",
             "itemtype": "method",
             "name": "_restoreCurrentOrder",
@@ -265,52 +285,57 @@
                 "description": "Always resolves to `true`.",
                 "type": "Boolean"
             },
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 140,
+            "line": 141,
             "description": "The token used to Authenticate the current user against the current order.  Persisted\nto local storage via `spree-ember-core/mixins/storable`.  This property is\nsent to the Spree server via the header `X-Spree-Order-Token`.",
             "itemtype": "property",
             "name": "guestToken",
             "type": "String",
             "readonly": "",
             "default": "null",
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 152,
+            "line": 153,
             "description": "The user's Current Order number, persisted to local storage via\n`spree-ember-core/mixins/storable`.  This property is sent to the Spree\nserver via the header `X-Spree-Order-Id`.",
             "itemtype": "property",
             "name": "orderId",
             "type": "String",
             "readonly": "",
             "default": "null",
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 164,
+            "line": 165,
             "description": "A reference to the Current Order.  It is only set twice in this code,\nonce on Application initialization (in the case it was persisted), and once\nwhen a new order is created through the internal method `_createNewOrder`.",
             "itemtype": "property",
             "name": "currentOrder",
             "type": "DS.Model",
             "default": "null",
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 175,
+            "line": 176,
             "description": "A reference to the Stateful Checkouts service.",
             "itemtype": "property",
             "name": "checkouts",
             "type": "Ember.Service",
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 183,
+            "line": 184,
             "description": "Adds a lineItem to the currentOrder. If there is no Current Order,\nSpree Ember will request a new order from the server, and set it as the\nCurrent Order on the Spree service.",
             "itemtype": "method",
             "name": "addToCart",
@@ -330,11 +355,12 @@
                 "description": "A promise that resolves to the newly saved Line Item.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 212,
+            "line": 213,
             "description": "An internal method for saving Line Items.  If it is called for a variant that\nis already in the current order, it will add to the corresponding Line Item's\nquantity, otherwise it will create a new Line Item for that variant.",
             "itemtype": "method",
             "name": "_saveLineItem",
@@ -361,11 +387,12 @@
                 "description": "A promise that resolves to the newly created or\nupdated `lineItem` object.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 251,
+            "line": 252,
             "description": "Will attempt to create a new Order for the checkout user, and save the `orderId`\nand `guestToken` to the Spree service, so that it will persist across page\nrefreshes.  It will also initiate the state machine for the current order.",
             "itemtype": "method",
             "name": "_createNewOrder",
@@ -375,11 +402,12 @@
                 "description": "A promise that resolves to the newly created\nSpree Order.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/current-order-support.js",
-            "line": 282,
+            "line": 283,
             "description": "Clears the current order and any reference to it.",
             "itemtype": "method",
             "name": "clearCurrentOrder",
@@ -387,11 +415,12 @@
                 "description": "Always returns `true`.",
                 "type": "Boolean"
             },
-            "class": "CurrentOrderSupportMixin"
+            "class": "Mixin.CurrentOrderSupport",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 12,
+            "line": 13,
             "description": "By default, Ember's Active Model Serializer will merge the JSON payload\nreturned by the `serialize` call under the model's name.  The Spree\nCheckouts endpoint expects objects as siblings in the payload, so when we're\nsaving the checkouts via `DS.Order#saveToCheckouts()` we override this \nbehaviour.",
             "itemtype": "method",
             "name": "serializeIntoHash",
@@ -417,11 +446,12 @@
                     "type": "Object"
                 }
             ],
-            "class": "OrderSerializer"
+            "class": "Serializer.Order",
+            "namespace": "Serializer"
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 32,
+            "line": 33,
             "description": "Serializes the Order into a format the Spree Checkouts endpoint expects.",
             "itemtype": "method",
             "name": "serialize",
@@ -432,20 +462,22 @@
                     "type": "Snapshot"
                 }
             ],
-            "class": "OrderSerializer"
+            "class": "Serializer.Order",
+            "namespace": "Serializer"
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 46,
+            "line": 47,
             "description": "A reference to the Stateful Checkouts service.",
             "itemtype": "property",
             "name": "checkouts",
             "type": "Ember.Service",
-            "class": "OrderSerializer"
+            "class": "Serializer.Order",
+            "namespace": "Serializer"
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 54,
+            "line": 55,
             "description": "Serializes the Order into a format the Spree Checkouts endpoint expects, \ndependant on the state of Checkouts service.",
             "itemtype": "method",
             "name": "_serializeForCheckouts",
@@ -461,11 +493,12 @@
                     "type": "Object"
                 }
             ],
-            "class": "OrderSerializer"
+            "class": "Serializer.Order",
+            "namespace": "Serializer"
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 103,
+            "line": 104,
             "description": "Extracts the errors from an Invalid response from the Server.  Overrides the\ndefault method to include a Top Level error from the payload as `base` in the\n`DS.Errors` collection.",
             "itemtype": "method",
             "name": "extractErrors",
@@ -491,7 +524,8 @@
                     "type": "Integer"
                 }
             ],
-            "class": "OrderSerializer"
+            "class": "Serializer.Order",
+            "namespace": "Serializer"
         },
         {
             "file": "app/services/checkouts.js",
@@ -501,7 +535,8 @@
             "name": "currentState",
             "type": "String",
             "default": "\"idle\"",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -510,7 +545,8 @@
             "itemtype": "property",
             "name": "spree",
             "type": "Ember.Service",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -519,7 +555,8 @@
             "itemtype": "property",
             "name": "currentOrder",
             "type": "DS.Model",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -528,7 +565,8 @@
             "itemtype": "property",
             "name": "fsmStates",
             "type": "Object",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -537,7 +575,8 @@
             "itemtype": "property",
             "name": "fsmEvents",
             "type": "Object",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -556,7 +595,8 @@
                 "description": "A promise that resolves when the State Machine\nresolves it's transition.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -566,7 +606,8 @@
             "name": "_ensureShipAddressExists",
             "access": "private",
             "tagname": "",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -576,7 +617,8 @@
             "name": "_ensurePaymentExists",
             "access": "private",
             "tagname": "",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -586,7 +628,8 @@
             "name": "_resetStateMachine",
             "access": "private",
             "tagname": "",
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         },
         {
             "file": "app/services/checkouts.js",
@@ -607,7 +650,8 @@
                 "description": "A promise that resolves when the server\nresponse returns.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "Checkouts"
+            "class": "Service.Checkouts",
+            "namespace": "Service"
         }
     ],
     "warnings": []

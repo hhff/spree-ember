@@ -45,9 +45,9 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Checkouts.html">Checkouts</a></li>
-    <li><a href="../classes/CurrentOrderSupportMixin.html">CurrentOrderSupportMixin</a></li>
-    <li><a href="../classes/OrderSerializer.html">OrderSerializer</a></li>
+    <li><a href="../classes/Mixin.CurrentOrderSupport.html">Mixin.CurrentOrderSupport</a></li>
+    <li><a href="../classes/Serializer.Order.html">Serializer.Order</a></li>
+    <li><a href="../classes/Service.Checkouts.html">Service.Checkouts</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -69,7 +69,8 @@ import Ember from &#x27;ember&#x27;;
   this.spree.addToCart(variantModel, 5);
   &#x60;&#x60;&#x60;
 
-  @class CurrentOrderSupportMixin
+  @class CurrentOrderSupport
+  @namespace Mixin
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({
