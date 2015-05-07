@@ -45,11 +45,11 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Authenticator.html">Authenticator</a></li>
-    <li><a href="../classes/Authorizer.html">Authorizer</a></li>
-    <li><a href="../classes/Router.html">Router</a></li>
-    <li><a href="../classes/SpreeAuth.html">SpreeAuth</a></li>
-    <li><a href="../classes/UserRouteActions.html">UserRouteActions</a></li>
+    <li><a href="../classes/Authenticator.Spree.html">Authenticator.Spree</a></li>
+    <li><a href="../classes/Authorizer.Spree.html">Authorizer.Spree</a></li>
+    <li><a href="../classes/Component.SpreeAuth.html">Component.SpreeAuth</a></li>
+    <li><a href="../classes/Mixin.UserRouteActions.html">Mixin.UserRouteActions</a></li>
+    <li><a href="../classes/Router.SpreeAuth.html">Router.SpreeAuth</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -67,7 +67,8 @@ import Ember from &#x27;ember&#x27;;
   contains the &#x60;X-Spree-Token&#x60; Header.  This loads the &#x60;@current_api_user&#x60; 
   attribute in Spree, so that the User can successfully interact with the API.
 
-  @class Authorizer
+  @class Spree 
+  @namespace Authorizer
   @extends SimpleAuthDevise.Authorizer
 */
 export default DeviseAuthorizer.extend({

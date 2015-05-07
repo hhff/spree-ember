@@ -10,110 +10,125 @@
             "name": "addon/authenticators/spree.js",
             "modules": {},
             "classes": {
-                "Authenticator": 1
+                "Authenticator.Spree": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Authenticator": 1
+            }
         },
         "addon/authorizers/spree.js": {
             "name": "addon/authorizers/spree.js",
             "modules": {},
             "classes": {
-                "Authorizer": 1
+                "Authorizer.Spree": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Authorizer": 1
+            }
         },
         "addon/components/spree-auth.js": {
             "name": "addon/components/spree-auth.js",
             "modules": {},
             "classes": {
-                "SpreeAuth": 1
+                "Component.SpreeAuth": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Component": 1
+            }
         },
         "addon/mixins/user-route-actions.js": {
             "name": "addon/mixins/user-route-actions.js",
             "modules": {},
             "classes": {
-                "UserRouteActions": 1
+                "Mixin.UserRouteActions": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Mixin": 1
+            }
         },
         "addon/router.js": {
             "name": "addon/router.js",
             "modules": {},
             "classes": {
-                "Router": 1
+                "Router.SpreeAuth": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Router": 1
+            }
         }
     },
     "modules": {},
     "classes": {
-        "Authenticator": {
-            "name": "Authenticator",
-            "shortname": "Authenticator",
+        "Authenticator.Spree": {
+            "name": "Authenticator.Spree",
+            "shortname": "Authenticator.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Authenticator",
             "file": "addon/authenticators/spree.js",
             "line": 2,
             "description": "The Spree Authenticator is responsible for Authenticating users against  your \nSpree store.  It assumes your server has the `spree_ams` gem installed.  The Spree\nAuth initializer with dynamically create and set the Server Token Endpoint from\nthe Spree Core Adapter.",
             "extends": "SimpleAuthDevise.Authenticator"
         },
-        "Authorizer": {
-            "name": "Authorizer",
-            "shortname": "Authorizer",
+        "Authorizer.Spree": {
+            "name": "Authorizer.Spree",
+            "shortname": "Authorizer.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Authorizer",
             "file": "addon/authorizers/spree.js",
             "line": 3,
             "description": "The Authorizer is responsible for ensuring that each Authorized clientside request\ncontains the `X-Spree-Token` Header.  This loads the `@current_api_user` \nattribute in Spree, so that the User can successfully interact with the API.",
             "extends": "SimpleAuthDevise.Authorizer"
         },
-        "SpreeAuth": {
-            "name": "SpreeAuth",
-            "shortname": "SpreeAuth",
+        "Component.SpreeAuth": {
+            "name": "Component.SpreeAuth",
+            "shortname": "Component.SpreeAuth",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Component",
             "file": "addon/components/spree-auth.js",
             "line": 3,
             "description": "A simple Fieldset that doubles as a Signin & Signup form.  Sends action:\n`authenticateUser` or `createAndAuthenticateUser` depending on whether\n`isSignup` is set to `true` or `false`.\n\n**To Override:** You'll need to run the generator:\n\n```bash\nember g spree-ember-auth-component\n```\n\nThis will install a layout file at: `app/templates/components/spree-auth`, and\na component file at `app/components/spree-auth`, ready to be extended.",
             "extends": "Ember.Component"
         },
-        "UserRouteActions": {
-            "name": "UserRouteActions",
-            "shortname": "UserRouteActions",
+        "Mixin.UserRouteActions": {
+            "name": "Mixin.UserRouteActions",
+            "shortname": "Mixin.UserRouteActions",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Mixin",
             "file": "addon/mixins/user-route-actions.js",
             "line": 2,
             "description": "A mixin for providing utility methods to routes associated with User behaviour.\nThese are grouped together in the case the ambitious developers want to glob this\nbehaviour together into a single route, for a highly interactive experience.\n\n**Important:** The `spree-ember-auth` install generator will attempt to overwrite your application\nroute.  If you opt out of this, or you're defining it in a pod instead, you'll\nneed to ensure that you're mixing Simple Auth's Application Route Mixin into your\napplication route.\n\n```bash\nimport ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';\n```\n\nThis is essentially a thin wrapper on Ember Simple Auth.  If you'd like to\nmodify behaviour or catch events relating to Authentication, please refer to\nthe [Simple Auth Documentnation](http://ember-simple-auth.com/ember-simple-auth-api-docs.html)",
             "extends": "Ember.Mixin"
         },
-        "Router": {
-            "name": "Router",
-            "shortname": "Router",
+        "Router.SpreeAuth": {
+            "name": "Router.SpreeAuth",
+            "shortname": "Router.SpreeAuth",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "Router",
             "file": "addon/router.js",
             "line": 1,
             "description": "The Spree Auth router is designed to be imported by a host application's Router\nto setup the default routes required for Spree Auth.\n\n**Note:** If you're setting a Mount Point, it must be the same as the \nMount Point set for the `spree-ember-storefront` router.\n\nIn `router.js`:\n\n```javascript\nimport Ember from 'ember';\nimport config from './config/environment';\n\nimport spreeRouter from 'spree-ember-storefront/router';\nimport spreeAuthRouter from 'spree-ember-auth/router';\n\nvar Router = Ember.Router.extend({\n  location: config.locationType\n});\n\nRouter.map(function() {\n  spreeRouter(this, {\n    mountPath:    '/spree',\n    cartPath:     'cart',\n    productsPath: 'products',\n    checkoutPath: 'checkout'\n  });\n\n  // You'll get an error if your Mount Path is different to your Spree Router,\n  // these need to match.\n  spreeAuthRouter(this, {\n    mountPath:   '/spree',\n    signinPath:  'login',\n    signupPath:  'new',\n    accountPath: 'profile'\n  });\n});\n\nexport default Router;\n```"
@@ -122,61 +137,66 @@
     "classitems": [
         {
             "file": "addon/authenticators/spree.js",
-            "line": 12,
+            "line": 13,
             "description": "The endpoint where the Authenticator will attempt to Authenticate Users.  This\nis set dynamically by the `spree-ember-auth` initializer, by building a URL\nfrom the `spree-ember-core` adapter.",
             "itemtype": "property",
             "name": "serverTokenEndpoint",
             "type": "String",
             "readonly": "",
             "default": "'http://localhost:3000/api/ams/users/token'",
-            "class": "Authenticator"
+            "class": "Authenticator.Spree",
+            "namespace": "Authenticator"
         },
         {
             "file": "addon/authenticators/spree.js",
-            "line": 23,
+            "line": 24,
             "description": "The Rails Resource that we're authenticating.  When using Spree's \n`spree-auth-devise`, this is simply `user`.",
             "itemtype": "property",
             "name": "resourceName",
             "type": "String",
             "readonly": "",
             "default": "'user'",
-            "class": "Authenticator"
+            "class": "Authenticator.Spree",
+            "namespace": "Authenticator"
         },
         {
             "file": "addon/authenticators/spree.js",
-            "line": 33,
+            "line": 34,
             "description": "The name of the unique key returned by the server on a successful authentication.",
             "itemtype": "property",
             "name": "tokenAttributeName",
             "type": "String",
             "readonly": "",
             "default": "'token'",
-            "class": "Authenticator"
+            "class": "Authenticator.Spree",
+            "namespace": "Authenticator"
         },
         {
             "file": "addon/authenticators/spree.js",
-            "line": 42,
+            "line": 43,
             "description": "The name of the identification attribute of the user.  By default in Spree, \nthis is email.",
             "itemtype": "property",
             "name": "indentificationAttributeName",
             "type": "String",
             "readonly": "",
             "default": "'email'",
-            "class": "Authenticator"
+            "class": "Authenticator.Spree",
+            "namespace": "Authenticator"
         },
         {
             "file": "addon/authorizers/spree.js",
-            "line": 12,
+            "line": 13,
             "description": "The token attribute name.  The Spree AMS Gem uses `token`.",
             "itemtype": "property",
             "name": "tokenAttributeName",
             "type": "String",
             "default": "'token'",
-            "class": "Authorizer"
+            "class": "Authorizer.Spree",
+            "namespace": "Authorizer"
         },
         {
             "file": "addon/authorizers/spree.js",
-            "line": 20,
+            "line": 21,
             "description": "Authorizes an XHR request by sending the `X-Spree-Token` header when the \n`session` is Authenticated.",
             "itemtype": "method",
             "name": "authorize",
@@ -187,51 +207,56 @@
                     "type": "JqXHR"
                 }
             ],
-            "class": "Authorizer"
+            "class": "Authorizer.Spree",
+            "namespace": "Authorizer"
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 22,
+            "line": 23,
             "description": "The mode of the component.",
             "itemtype": "property",
             "name": "isSignup",
             "type": "Boolean",
             "default": "false",
-            "class": "SpreeAuth"
+            "class": "Component.SpreeAuth",
+            "namespace": "Component"
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 30,
+            "line": 31,
             "description": "An array of server errors.",
             "itemtype": "property",
             "name": "errors",
             "type": "Object",
             "default": "{}",
-            "class": "SpreeAuth"
+            "class": "Component.SpreeAuth",
+            "namespace": "Component"
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 38,
+            "line": 39,
             "description": "The action that is sent when `isSignup` is `false`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "authAction",
             "type": "String",
             "default": "'authenticateUser'",
-            "class": "SpreeAuth"
+            "class": "Component.SpreeAuth",
+            "namespace": "Component"
         },
         {
             "file": "addon/components/spree-auth.js",
-            "line": 47,
+            "line": 48,
             "description": "The action that is sent when `isSignup` is `true`.  This is caught by the action\ndefined in the `spree-auth-user-route-mixin`.",
             "itemtype": "property",
             "name": "createAction",
             "type": "String",
             "default": "'createAndAuthenticateUser'",
-            "class": "SpreeAuth"
+            "class": "Component.SpreeAuth",
+            "namespace": "Component"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 25,
+            "line": 26,
             "description": "Triggered on the `spree` service whenever a user is successfully created \nthrough the `createAndAuthenticateUser` call.",
             "itemtype": "event",
             "name": "didCreateUser",
@@ -242,11 +267,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 33,
+            "line": 34,
             "description": "Triggered on the `spree` service whenever the `createAndAuthenticateUser`\ncall fails to create a new user.",
             "itemtype": "event",
             "name": "userCreateFailed",
@@ -257,11 +283,12 @@
                     "type": "Error"
                 }
             ],
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 41,
+            "line": 42,
             "description": "Triggered on the `spree` service whenever the `updateCurrentUser`\ncall updates the current user successfully.",
             "itemtype": "event",
             "name": "didUpdateCurrentUser",
@@ -272,11 +299,12 @@
                     "type": "DS.Model"
                 }
             ],
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 49,
+            "line": 50,
             "description": "Triggered on the `spree` service whenever the `updateCurrentUser`\ncall updates the current user successfully.",
             "itemtype": "event",
             "name": "currentUserUpdateFailed",
@@ -287,11 +315,12 @@
                     "type": "Error"
                 }
             ],
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 56,
+            "line": 57,
             "description": "The `authenticateUser` call simply wraps the `session#authenticate` method\nprovided by Ember Simple Auth.",
             "itemtype": "method",
             "name": "extractAuthErrors",
@@ -306,11 +335,12 @@
                 "description": "A normalized errors object.",
                 "type": "Object"
             },
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 77,
+            "line": 78,
             "description": "The `authenticateUser` call simply wraps the `session#authenticate` method\nprovided by Ember Simple Auth.",
             "itemtype": "method",
             "name": "authenticateUser",
@@ -325,11 +355,12 @@
                 "description": "A promise that resolves successfully on a\nsuccessful authentication.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 95,
+            "line": 96,
             "description": "The `createAndAuthenticateUser` method attempts to create a new Spree User,\nand when successful, triggers the `authenticateUser` action.",
             "itemtype": "method",
             "name": "createAndAuthenticateUser",
@@ -344,11 +375,12 @@
                 "description": "A promise that resolves successfully on a\nsuccessful create then authenticate.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/user-route-actions.js",
-            "line": 128,
+            "line": 129,
             "description": "The `updateCurrentUser` method attempts to save/update the current Spree user.\nIt expects that changes to the `session.currentUser` model have been made\nin place, and doesn't take any arguments.",
             "itemtype": "method",
             "name": "createAndAuthenticateUser",
@@ -356,7 +388,8 @@
                 "description": "A promise that resolves to the `currentUser`\nwhen successful.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "UserRouteActions"
+            "class": "Mixin.UserRouteActions",
+            "namespace": "Mixin"
         }
     ],
     "warnings": []
