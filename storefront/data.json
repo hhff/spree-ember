@@ -5,9 +5,586 @@
         "description": "A fully functional frontend starting point for a Spree Ember storefront.",
         "version": "0.0.1-beta.1.2eb92416"
     },
-    "files": {},
+    "files": {
+        "addon/components/spree-address.js": {
+            "name": "addon/components/spree-address.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeAddress": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-breadcrumbs.js": {
+            "name": "addon/components/spree-breadcrumbs.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeBreadcrumbs": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-checkout.js": {
+            "name": "addon/components/spree-checkout.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeCheckout": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-details.js": {
+            "name": "addon/components/spree-details.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeDetails": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-grid.js": {
+            "name": "addon/components/spree-grid.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeGrid": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-images.js": {
+            "name": "addon/components/spree-images.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeImages": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-input.js": {
+            "name": "addon/components/spree-input.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeInput": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-lineitems.js": {
+            "name": "addon/components/spree-lineitems.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeLineitems": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-navigation.js": {
+            "name": "addon/components/spree-navigation.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeNavigation": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-order.js": {
+            "name": "addon/components/spree-order.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeOrder": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-pdp.js": {
+            "name": "addon/components/spree-pdp.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreePdp": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-properties.js": {
+            "name": "addon/components/spree-properties.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeProperties": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-select.js": {
+            "name": "addon/components/spree-select.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeSelect": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-shipment.js": {
+            "name": "addon/components/spree-shipment.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeShipment": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-source.js": {
+            "name": "addon/components/spree-source.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeSource": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-taxonomies.js": {
+            "name": "addon/components/spree-taxonomies.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeTaxonomies": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "addon/components/spree-taxonomy.js": {
+            "name": "addon/components/spree-taxonomy.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeTaxonomy": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/routes/spree/orders/show.js": {
+            "name": "app/routes/spree/orders/show.js",
+            "modules": {},
+            "classes": {
+                "Route.OrdersShow": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        },
+        "app/routes/spree/products/index.js": {
+            "name": "app/routes/spree/products/index.js",
+            "modules": {},
+            "classes": {
+                "Route.ProductsIndex": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        },
+        "app/routes/spree/products/show.js": {
+            "name": "app/routes/spree/products/show.js",
+            "modules": {},
+            "classes": {
+                "Route.ProductsShow": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        },
+        "app/routes/spree/taxons/index.js": {
+            "name": "app/routes/spree/taxons/index.js",
+            "modules": {},
+            "classes": {
+                "Route.TaxonsIndex": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        },
+        "app/routes/spree/cart.js": {
+            "name": "app/routes/spree/cart.js",
+            "modules": {},
+            "classes": {
+                "Route.Cart": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        },
+        "app/routes/spree/checkout.js": {
+            "name": "app/routes/spree/checkout.js",
+            "modules": {},
+            "classes": {
+                "Route.Checkout": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Route": 1
+            }
+        }
+    },
     "modules": {},
-    "classes": {},
+    "classes": {
+        "Component.SpreeAddress": {
+            "name": "Component.SpreeAddress",
+            "shortname": "Component.SpreeAddress",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-address.js",
+            "line": 3,
+            "description": "Controls data entry for an order's Ship or Bill Address.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeBreadcrumbs": {
+            "name": "Component.SpreeBreadcrumbs",
+            "shortname": "Component.SpreeBreadcrumbs",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-breadcrumbs.js",
+            "line": 3,
+            "description": "Allows Breadcrumb style interaction for the Checkout Route.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeCheckout": {
+            "name": "Component.SpreeCheckout",
+            "shortname": "Component.SpreeCheckout",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-checkout.js",
+            "line": 3,
+            "description": "A single page checkout that reactively responds to changes in the \n`spree.checkouts` service.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeDetails": {
+            "name": "Component.SpreeDetails",
+            "shortname": "Component.SpreeDetails",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-details.js",
+            "line": 3,
+            "description": "A mini \"details\" panel for the Spree Checkout Route.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeGrid": {
+            "name": "Component.SpreeGrid",
+            "shortname": "Component.SpreeGrid",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-grid.js",
+            "line": 3,
+            "description": "A Product Grid for the Products Index and Taxons Show routes.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeImages": {
+            "name": "Component.SpreeImages",
+            "shortname": "Component.SpreeImages",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-images.js",
+            "line": 3,
+            "description": "A variant aware image browser for the Spree PDP.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeInput": {
+            "name": "Component.SpreeInput",
+            "shortname": "Component.SpreeInput",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-input.js",
+            "line": 3,
+            "description": "An input with Label, Placeholder and outlet for Validation Errors.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeLineitems": {
+            "name": "Component.SpreeLineitems",
+            "shortname": "Component.SpreeLineitems",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-lineitems.js",
+            "line": 3,
+            "description": "A table for listing the Line Items in an order.  Used on the Cart, Checkouts\nconfirmation, and Orders show routes.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeNavigation": {
+            "name": "Component.SpreeNavigation",
+            "shortname": "Component.SpreeNavigation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-navigation.js",
+            "line": 3,
+            "description": "A simple nav bar with cart state, links, and login/account links (if\n`spree-ember-auth` is present).\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeOrder": {
+            "name": "Component.SpreeOrder",
+            "shortname": "Component.SpreeOrder",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-order.js",
+            "line": 3,
+            "description": "An order detail page.  Used on the confirmation checkout step, and the Orders\nshow page.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreePdp": {
+            "name": "Component.SpreePdp",
+            "shortname": "Component.SpreePdp",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-pdp.js",
+            "line": 3,
+            "description": "The Spree Product Display Page.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeProperties": {
+            "name": "Component.SpreeProperties",
+            "shortname": "Component.SpreeProperties",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-properties.js",
+            "line": 3,
+            "description": "An outlet for Product Properties.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeSelect": {
+            "name": "Component.SpreeSelect",
+            "shortname": "Component.SpreeSelect",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-select.js",
+            "line": 3,
+            "description": "A select component with Label and outlet for validation errors.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeShipment": {
+            "name": "Component.SpreeShipment",
+            "shortname": "Component.SpreeShipment",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-shipment.js",
+            "line": 3,
+            "description": "A display component for a Spree Order's shipments.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeSource": {
+            "name": "Component.SpreeSource",
+            "shortname": "Component.SpreeSource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-source.js",
+            "line": 3,
+            "description": "An input panel for Credit Card details (\"source\").\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeTaxonomies": {
+            "name": "Component.SpreeTaxonomies",
+            "shortname": "Component.SpreeTaxonomies",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-taxonomies.js",
+            "line": 3,
+            "description": "A sidebar style panel for Spree's top-level taxonomy tree.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Component.SpreeTaxonomy": {
+            "name": "Component.SpreeTaxonomy",
+            "shortname": "Component.SpreeTaxonomy",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Component",
+            "file": "addon/components/spree-taxonomy.js",
+            "line": 3,
+            "description": "An item from the Spree Taxonomies side bar component.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.OrdersShow": {
+            "name": "Route.OrdersShow",
+            "shortname": "Route.OrdersShow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/orders/show.js",
+            "line": 2,
+            "description": "The Orders Show Route.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.ProductsIndex": {
+            "name": "Route.ProductsIndex",
+            "shortname": "Route.ProductsIndex",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/products/index.js",
+            "line": 2,
+            "description": "The Products Index Page.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.ProductsShow": {
+            "name": "Route.ProductsShow",
+            "shortname": "Route.ProductsShow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/products/show.js",
+            "line": 2,
+            "description": "The Product PDP (show) route.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.TaxonsIndex": {
+            "name": "Route.TaxonsIndex",
+            "shortname": "Route.TaxonsIndex",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/taxons/index.js",
+            "line": 2,
+            "description": "The Taxons Index route.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.Cart": {
+            "name": "Route.Cart",
+            "shortname": "Route.Cart",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/cart.js",
+            "line": 2,
+            "description": "The cart route.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        },
+        "Route.Checkout": {
+            "name": "Route.Checkout",
+            "shortname": "Route.Checkout",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Route",
+            "file": "app/routes/spree/checkout.js",
+            "line": 2,
+            "description": "The checkout route.\n\n**To Override:** You'll need to run the routes generator:\n\n```bash\nember g spree-ember-storefront-routes\n```\n\nThis will install all of the Spree Ember Storefront route files into your\nhost application at `app/routes/spree/*.js`, ready to be extended or\noverriden.",
+            "extends": "Ember.Component"
+        }
+    },
     "classitems": [],
     "warnings": []
 }
