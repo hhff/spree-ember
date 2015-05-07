@@ -45,14 +45,14 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Adapter.html">Adapter</a></li>
-    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
-    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
-    <li><a href="../classes/Storable.html">Storable</a></li>
+    <li><a href="../classes/Adapter.Spree.html">Adapter.Spree</a></li>
+    <li><a href="../classes/Mixin.CanCheckout.html">Mixin.CanCheckout</a></li>
+    <li><a href="../classes/Mixin.HandlesNestedServerErrors.html">Mixin.HandlesNestedServerErrors</a></li>
+    <li><a href="../classes/Mixin.Storable.html">Mixin.Storable</a></li>
+    <li><a href="../classes/Serializer.Spree.html">Serializer.Spree</a></li>
+    <li><a href="../classes/Service.Spree.html">Service.Spree</a></li>
+    <li><a href="../classes/Store.Spree.html">Store.Spree</a></li>
+    <li><a href="../classes/Transform.Raw.html">Transform.Raw</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
@@ -69,8 +69,8 @@ import DS from &#x27;ember-data&#x27;;
   the only use case is for accepting Spree&#x27;s Order Checkout Steps as a raw array of
   strings.
 
-  @class RawTransform
-  @namespace SpreeEmber
+  @class Raw 
+  @namespace Transform
   @module spree-ember-core/transforms/array
   @extends DS.Transform
 */
@@ -92,6 +92,7 @@ export default DS.Transform.extend({
     return deserialized;
   }
 });
+
 </code>
 </pre>
 </div>

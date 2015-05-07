@@ -10,37 +10,45 @@
             "name": "addon/adapters/spree.js",
             "modules": {},
             "classes": {
-                "Adapter": 1
+                "Adapter.Spree": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Adapter": 1
+            }
         },
         "addon/mixins/can-checkout.js": {
             "name": "addon/mixins/can-checkout.js",
             "modules": {},
             "classes": {
-                "CanCheckout": 1
+                "Mixin.CanCheckout": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Mixin": 1
+            }
         },
         "addon/mixins/handles-nested-server-errors.js": {
             "name": "addon/mixins/handles-nested-server-errors.js",
             "modules": {},
             "classes": {
-                "HandlesNestedServerErrors": 1
+                "Mixin.HandlesNestedServerErrors": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Mixin": 1
+            }
         },
         "addon/mixins/storable.js": {
             "name": "addon/mixins/storable.js",
             "modules": {},
             "classes": {
-                "Storable": 1
+                "Mixin.Storable": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "Mixin": 1
+            }
         },
         "addon/serializers/spree.js": {
             "name": "addon/serializers/spree.js",
@@ -48,11 +56,11 @@
                 "spree-ember-core/serializers/spree": 1
             },
             "classes": {
-                "SpreeEmber.Serializer": 1
+                "Serializer.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Serializer": 1
             }
         },
         "addon/stores/spree.js": {
@@ -61,11 +69,11 @@
                 "spree-ember-core/stores/spree": 1
             },
             "classes": {
-                "SpreeEmber.Store": 1
+                "Store.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Store": 1
             }
         },
         "app/services/spree.js": {
@@ -74,11 +82,11 @@
                 "spree-ember-core/services/spree": 1
             },
             "classes": {
-                "SpreeEmber.Spree": 1
+                "Service.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Service": 1
             }
         },
         "app/transforms/raw.js": {
@@ -87,11 +95,11 @@
                 "spree-ember-core/transforms/array": 1
             },
             "classes": {
-                "SpreeEmber.RawTransform": 1
+                "Transform.Raw": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Transform": 1
             }
         }
     },
@@ -100,15 +108,15 @@
             "name": "spree-ember-core/serializers/spree",
             "submodules": {},
             "classes": {
-                "Adapter": 1,
-                "CanCheckout": 1,
-                "HandlesNestedServerErrors": 1,
-                "Storable": 1,
-                "SpreeEmber.Serializer": 1
+                "Adapter.Spree": 1,
+                "Mixin.CanCheckout": 1,
+                "Mixin.HandlesNestedServerErrors": 1,
+                "Mixin.Storable": 1,
+                "Serializer.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Store": 1
             },
             "tag": "module",
             "file": "addon/serializers/spree.js",
@@ -119,11 +127,11 @@
             "name": "spree-ember-core/stores/spree",
             "submodules": {},
             "classes": {
-                "SpreeEmber.Store": 1
+                "Store.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Service": 1
             },
             "tag": "module",
             "file": "addon/stores/spree.js",
@@ -134,11 +142,11 @@
             "name": "spree-ember-core/services/spree",
             "submodules": {},
             "classes": {
-                "SpreeEmber.Spree": 1
+                "Service.Spree": 1
             },
             "fors": {},
             "namespaces": {
-                "SpreeEmber": 1
+                "Transform": 1
             },
             "tag": "module",
             "file": "app/services/spree.js",
@@ -149,7 +157,7 @@
             "name": "spree-ember-core/transforms/array",
             "submodules": {},
             "classes": {
-                "SpreeEmber.RawTransform": 1
+                "Transform.Raw": 1
             },
             "fors": {},
             "namespaces": {},
@@ -160,91 +168,91 @@
         }
     },
     "classes": {
-        "Adapter": {
-            "name": "Adapter",
-            "shortname": "Adapter",
+        "Adapter.Spree": {
+            "name": "Adapter.Spree",
+            "shortname": "Adapter.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
+            "namespace": "Adapter",
             "file": "addon/adapters/spree.js",
             "line": 4,
             "description": "The Spree Adapter is responsible for communicating with your Spree store.  It\nassumes your server has the `spree_ams` gem installed.",
             "extends": "DS.ActiveModelAdapter"
         },
-        "CanCheckout": {
-            "name": "CanCheckout",
-            "shortname": "CanCheckout",
+        "Mixin.CanCheckout": {
+            "name": "Mixin.CanCheckout",
+            "shortname": "Mixin.CanCheckout",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
+            "namespace": "Mixin",
             "file": "addon/mixins/can-checkout.js",
             "line": 4,
             "description": "This mixin is used with the order model, to provide it with a\n`saveToCheckouts` method, for using the Spree Checkouts API Endpoint.",
             "extends": "Ember.Mixin"
         },
-        "HandlesNestedServerErrors": {
-            "name": "HandlesNestedServerErrors",
-            "shortname": "HandlesNestedServerErrors",
+        "Mixin.HandlesNestedServerErrors": {
+            "name": "Mixin.HandlesNestedServerErrors",
+            "shortname": "Mixin.HandlesNestedServerErrors",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
+            "namespace": "Mixin",
             "file": "addon/mixins/handles-nested-server-errors.js",
             "line": 3,
             "description": "Include this mixin into any model that sends nested attributes to the Spree \nserver.  Currently this is only for the `order` model.\n\n```js\nerrors: {\n  ship_address.firstname: [\"can't be blank\"]\n  ship_address.country: [\"can't be blank\"]\n}\n```\n\nWill look for the model named \"shipAddress\" related to the model, and apply\nerrors to it.",
             "extends": "Ember.Mixin"
         },
-        "Storable": {
-            "name": "Storable",
-            "shortname": "Storable",
+        "Mixin.Storable": {
+            "name": "Mixin.Storable",
+            "shortname": "Mixin.Storable",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
+            "namespace": "Mixin",
             "file": "addon/mixins/storable.js",
             "line": 3,
             "description": "Storable bolts onto an Ember Object and provides functionality for persisting\nkey value pairs to Local Storage.",
             "extends": "Ember.Mixin"
         },
-        "SpreeEmber.Serializer": {
-            "name": "SpreeEmber.Serializer",
-            "shortname": "SpreeEmber.Serializer",
+        "Serializer.Spree": {
+            "name": "Serializer.Spree",
+            "shortname": "Serializer.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [
-                "SpreeEmber.Store"
-            ],
+            "extension_for": [],
             "module": "spree-ember-core/serializers/spree",
-            "namespace": "SpreeEmber",
+            "namespace": "Serializer",
             "file": "addon/serializers/spree.js",
             "line": 4,
             "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.",
             "extends": "DS.ActiveModelSerializer"
         },
-        "SpreeEmber.Store": {
-            "name": "SpreeEmber.Store",
-            "shortname": "SpreeEmber.Store",
+        "Store.Spree": {
+            "name": "Store.Spree",
+            "shortname": "Store.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [
-                "SpreeEmber.Spree"
-            ],
+            "extension_for": [],
             "module": "spree-ember-core/stores/spree",
-            "namespace": "SpreeEmber",
+            "namespace": "Store",
             "file": "addon/stores/spree.js",
             "line": 4,
             "description": "The Spree Store is what connects the Spree Serializer & Adapter.  It's injected\nin the `spree` service, so that we can effectively isolate Spree Ember's data from\nthe Host Application's regular Store, Adapter & Serializer.  This is useful\nfor Rails Applications that have Spree added, but have regular endpoints that\ndon't hit the Spree endpoint.",
@@ -255,16 +263,16 @@
             ],
             "extends": "DS.Store"
         },
-        "SpreeEmber.Spree": {
-            "name": "SpreeEmber.Spree",
-            "shortname": "SpreeEmber.Spree",
+        "Service.Spree": {
+            "name": "Service.Spree",
+            "shortname": "Service.Spree",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/services/spree",
-            "namespace": "SpreeEmber",
+            "namespace": "Service",
             "file": "app/services/spree.js",
             "line": 4,
             "description": "The Spree service is the central place a Spree Ember developer will interact\nwith Spree, via Spree Ember.  The core object is injected into the host application's\nroutes & controllers, and is responsible for persisting data to Local Storage,\ncommunicating with your Spree backend, Acting as a Registry for other Spree Ember\npackages, and Acting as an Event Bus for your application Frontend, and providing\na seperate Store.",
@@ -275,16 +283,16 @@
                 "SpreeEmber.Store"
             ]
         },
-        "SpreeEmber.RawTransform": {
-            "name": "SpreeEmber.RawTransform",
-            "shortname": "SpreeEmber.RawTransform",
+        "Transform.Raw": {
+            "name": "Transform.Raw",
+            "shortname": "Transform.Raw",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "spree-ember-core/transforms/array",
-            "namespace": "SpreeEmber",
+            "namespace": "Transform",
             "file": "app/transforms/raw.js",
             "line": 2,
             "description": "A simple `DS` transform for accepting raw server output and leaving as is.  Currently\nthe only use case is for accepting Spree's Order Checkout Steps as a raw array of\nstrings.",
@@ -294,59 +302,64 @@
     "classitems": [
         {
             "file": "addon/adapters/spree.js",
-            "line": 13,
+            "line": 14,
             "description": "The container lookup name for the default Spree serializer.",
             "itemtype": "property",
             "name": "defaultSerializer",
             "type": "String",
             "readonly": "",
             "default": "'-spree'",
-            "class": "Adapter"
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 23,
+            "line": 24,
             "description": "A computed property for the server namespace.  If it's not set in the Host\nApplication's spree configuration by `spree.apiNamespace`, it will default to\n`api/ams`, to work out of the box with the `spree_ams` Gem.",
             "itemtype": "property",
             "name": "namespace",
             "type": "String",
             "readonly": "",
             "default": "'api/ams'",
-            "class": "Adapter"
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 39,
+            "line": 40,
             "description": "A computed property for the server host.  If it's not set in the Host Application's\nspree configuration by `spree.apiHost`, it will default to 'http://localhost:3000'\nin all environments aside from test, where it will default to `null` (to satisfy\nPretender).",
             "itemtype": "property",
             "name": "host",
             "type": "String",
             "readonly": "",
             "default": "'http://localhost:3000'",
-            "class": "Adapter"
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 65,
+            "line": 66,
             "description": "A computed property for the adapter headers.  We use these headers to authenticate\nthe user against the order we're trying to modify.  The `spree_ams` gem will\nlook for these, and do the work here.",
             "itemtype": "property",
             "name": "headers",
             "type": "String",
             "readonly": "",
             "default": "{}",
-            "class": "Adapter"
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 89,
+            "line": 90,
             "description": "Overrides the default buildURL call to check for the `_useCheckoutsEndpoint`\non the snapshot, (applied to `order` models in the `CanCheckout` mixin). If\nso, the resulting URL will be `{hostname}/{namespace}/checkouts/{record_id}`.\nIf the flag isn't present, `_super` is called and the record URL is built\nnormally.",
             "itemtype": "method",
             "name": "buildURL",
-            "class": "Adapter"
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
         },
         {
             "file": "addon/mixins/can-checkout.js",
-            "line": 12,
+            "line": 13,
             "description": "A flag for telling `save` internals downstream to use Spree's Checkouts API\nendpoint, rather than the `orders` endpoint.",
             "itemtype": "property",
             "name": "_useCheckoutsEndpoint",
@@ -354,11 +367,12 @@
             "tagname": "",
             "type": "DS.attr('boolean')",
             "default": "false",
-            "class": "CanCheckout"
+            "class": "Mixin.CanCheckout",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/can-checkout.js",
-            "line": 22,
+            "line": 23,
             "description": "Simply wraps the `DS.Model#save` method to set the boolean flag \n`_useCheckoutsEndpoint` for the duration of that promise.  Downstream\nSerializers and Adapters can call `snapshot.attr('_useCheckoutsEndpoint')` \nand react accordingly.",
             "itemtype": "method",
             "name": "saveToCheckouts",
@@ -366,11 +380,12 @@
                 "description": "Returns the promise from `save`.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "CanCheckout"
+            "class": "Mixin.CanCheckout",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/handles-nested-server-errors.js",
-            "line": 21,
+            "line": 22,
             "description": "Overrides the `DS.Model#adapterDidInvalidate` call to apply appropriate\nerrors to related nested objects.",
             "itemtype": "method",
             "name": "adapterDidInvalidate",
@@ -381,42 +396,46 @@
                     "type": "Object"
                 }
             ],
-            "class": "HandlesNestedServerErrors"
+            "class": "Mixin.HandlesNestedServerErrors",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/handles-nested-server-errors.js",
-            "line": 57,
+            "line": 58,
             "description": "Massages the strange error response that Spree provides for Credit Card\nerrors.",
             "itemtype": "method",
             "name": "_transformCreditCardErrors",
             "access": "private",
             "tagname": "",
-            "class": "HandlesNestedServerErrors"
+            "class": "Mixin.HandlesNestedServerErrors",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/handles-nested-server-errors.js",
-            "line": 83,
+            "line": 84,
             "description": "Interprets error keys that contain a dot.",
             "itemtype": "method",
             "name": "_infoForNestedKey",
             "access": "private",
             "tagname": "",
-            "class": "HandlesNestedServerErrors"
+            "class": "Mixin.HandlesNestedServerErrors",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 12,
+            "line": 13,
             "description": "The Local Storage key we use to Restore and Persist data across browser\nrefreshes.",
             "itemtype": "property",
             "name": "localStorageKey",
             "type": "String",
             "readonly": "",
             "default": "'storable'",
-            "class": "Storable"
+            "class": "Mixin.Storable",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 24,
+            "line": 25,
             "description": "Persists an object to Local Storage.",
             "example": [
                 "\n```javascript\nthis.spree.persist({\n  \"favoriteColor\": \"red\"\n});\n```"
@@ -434,11 +453,12 @@
                 "description": "Will always resolve to `true`.",
                 "type": "Boolean"
             },
-            "class": "Storable"
+            "class": "Mixin.Storable",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 47,
+            "line": 48,
             "description": "Sets key value pairs on the Host object from Local Storage.  Usually called\nin intitalizers for Spree Ember addons.",
             "example": [
                 "\n```javascript\nthis.spree.restore()\n```"
@@ -449,11 +469,12 @@
                 "description": "Will always resolve to `true`.",
                 "type": "Boolean"
             },
-            "class": "Storable"
+            "class": "Mixin.Storable",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 63,
+            "line": 64,
             "description": "Sets key value pairs on the Host object.",
             "itemtype": "method",
             "name": "_setOnHost",
@@ -470,11 +491,12 @@
                 "description": "Will always resolve to `true`.",
                 "type": "Boolean"
             },
-            "class": "Storable"
+            "class": "Mixin.Storable",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 78,
+            "line": 79,
             "description": "Returns a Parsed Object from the Local Storage Key.",
             "itemtype": "method",
             "name": "_fetchLocalStorageData",
@@ -484,7 +506,8 @@
                 "description": "An object of Key Value pairs from local storage.",
                 "type": "Object"
             },
-            "class": "Storable"
+            "class": "Mixin.Storable",
+            "namespace": "Mixin"
         },
         {
             "file": "addon/serializers/spree.js",
@@ -503,7 +526,7 @@
                 "description": "A JSON object representing the record.",
                 "type": "Object"
             },
-            "class": "SpreeEmber.Serializer",
+            "class": "Serializer.Spree",
             "module": "spree-ember-core/serializers/spree"
         },
         {
@@ -515,7 +538,7 @@
             "type": "String",
             "readonly": "",
             "default": "'-spree'",
-            "class": "SpreeEmber.Store",
+            "class": "Store.Spree",
             "module": "spree-ember-core/stores/spree"
         },
         {
@@ -527,7 +550,7 @@
             "type": "String",
             "readonly": "",
             "default": "'-spree'",
-            "class": "SpreeEmber.Store",
+            "class": "Store.Spree",
             "module": "spree-ember-core/stores/spree"
         },
         {
@@ -540,7 +563,7 @@
                 "description": "The Spree Ember Adapater.",
                 "type": "SpreeEmber.Adapter"
             },
-            "class": "SpreeEmber.Store",
+            "class": "Store.Spree",
             "module": "spree-ember-core/stores/spree"
         },
         {
@@ -553,7 +576,7 @@
                 "description": "A serializer.",
                 "type": "Serializer"
             },
-            "class": "SpreeEmber.Store",
+            "class": "Store.Spree",
             "module": "spree-ember-core/stores/spree"
         },
         {
@@ -581,7 +604,7 @@
                 "description": "The Spree Ember Adapater.",
                 "type": "SpreeEmber.Adapter"
             },
-            "class": "SpreeEmber.Store",
+            "class": "Store.Spree",
             "module": "spree-ember-core/stores/spree"
         },
         {
@@ -592,7 +615,7 @@
             "name": "localStorageKey",
             "type": "String",
             "default": "\"spree-ember\"",
-            "class": "SpreeEmber.Spree",
+            "class": "Service.Spree",
             "module": "spree-ember-core/services/spree"
         },
         {
@@ -606,7 +629,7 @@
                 "description": "Returns a promise that resolves to all of the\ncountries saved in the Spree backend.",
                 "type": "Ember.RSVP.Promise"
             },
-            "class": "SpreeEmber.Spree",
+            "class": "Service.Spree",
             "module": "spree-ember-core/services/spree"
         },
         {
@@ -617,7 +640,7 @@
             "name": "config",
             "type": "Object",
             "default": "{}",
-            "class": "SpreeEmber.Spree",
+            "class": "Service.Spree",
             "module": "spree-ember-core/services/spree"
         },
         {
@@ -628,7 +651,7 @@
             "name": "environment",
             "type": "Object",
             "default": "'development'",
-            "class": "SpreeEmber.Spree",
+            "class": "Service.Spree",
             "module": "spree-ember-core/services/spree"
         },
         {
@@ -637,7 +660,7 @@
             "description": "Return raw output.",
             "itemtype": "method",
             "name": "deserialize",
-            "class": "SpreeEmber.RawTransform",
+            "class": "Transform.Raw",
             "module": "spree-ember-core/transforms/array"
         },
         {
@@ -646,7 +669,7 @@
             "description": "Don't serialize raw input.",
             "itemtype": "method",
             "name": "serialize",
-            "class": "SpreeEmber.RawTransform",
+            "class": "Transform.Raw",
             "module": "spree-ember-core/transforms/array"
         }
     ],

@@ -45,43 +45,43 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Adapter.html">Adapter</a></li>
-    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
-    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
-    <li><a href="../classes/Storable.html">Storable</a></li>
+    <li><a href="../classes/Adapter.Spree.html">Adapter.Spree</a></li>
+    <li><a href="../classes/Mixin.CanCheckout.html">Mixin.CanCheckout</a></li>
+    <li><a href="../classes/Mixin.HandlesNestedServerErrors.html">Mixin.HandlesNestedServerErrors</a></li>
+    <li><a href="../classes/Mixin.Storable.html">Mixin.Storable</a></li>
+    <li><a href="../classes/Serializer.Spree.html">Serializer.Spree</a></li>
+    <li><a href="../classes/Service.Spree.html">Service.Spree</a></li>
+    <li><a href="../classes/Store.Spree.html">Store.Spree</a></li>
+    <li><a href="../classes/Transform.Raw.html">Transform.Raw</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
   <div class="page-header">
-    <h3>SpreeEmber.Spree <small>Class</small></h3>
+    <h3>Store.Spree <small>Class</small></h3>
   </div>
 
   <div class="well well-small">
       <div class="uses">
         Uses
         <ul class="inline commas">
+            <li><a href="SpreeEmber.Adapter.html">SpreeEmber.Adapter</a></li>
+            <li><a href="SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
             <li><a href="Ember.Evented.html">Ember.Evented</a></li>
-            <li><a href="SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
-            <li><a href="SpreeEmber.Store.html">SpreeEmber.Store</a></li>
         </ul>
       </div>
 
       <div class="extends">
-        <p>Extends Ember.Object</p>
+        <p>Extends DS.Store</p>
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/app_services_spree.js.html#l4"><code>app&#x2F;services&#x2F;spree.js:4</code></a></p>
+        <p>Defined in: <a href="../files/addon_stores_spree.js.html#l4"><code>addon&#x2F;stores&#x2F;spree.js:4</code></a></p>
       </div>
 
 
 <!--
-            Module: <a href="../modules/spree-ember-core_services_spree.html">spree-ember-core/services/spree</a>
+            Module: <a href="../modules/spree-ember-core_stores_spree.html">spree-ember-core/stores/spree</a>
  -->
 
 
@@ -89,12 +89,11 @@
 
 
   <div class="well well-small">
-    <p>The Spree service is the central place a Spree Ember developer will interact
-with Spree, via Spree Ember.  The core object is injected into the host application's
-routes &amp; controllers, and is responsible for persisting data to Local Storage,
-communicating with your Spree backend, Acting as a Registry for other Spree Ember
-packages, and Acting as an Event Bus for your application Frontend, and providing
-a seperate Store.</p>
+    <p>The Spree Store is what connects the Spree Serializer &amp; Adapter.  It's injected
+in the <code>spree</code> service, so that we can effectively isolate Spree Ember's data from
+the Host Application's regular Store, Adapter &amp; Serializer.  This is useful
+for Rails Applications that have Spree added, but have regular endpoints that
+don't hit the Spree endpoint.</p>
 
   </div>
 
@@ -117,7 +116,7 @@ a seperate Store.</p>
           <h6>Show Private Methods</h2>
         </div>
 
-<div id="method_adapterFor" class="method panel item inherited">
+<div id="method_adapterFor" class="method panel item">
   <h3 class="name"><code>adapterFor</code></h3>
 
 
@@ -136,8 +135,8 @@ a seperate Store.</p>
 
 
   <div class="meta">
-        <p>Inherited from
-        <a href="../classes/SpreeEmber.Store.html#method_adapterFor">SpreeEmber.Store</a>:
+        <p>
+            Defined in
     <a href="../files/addon_stores_spree.js.html#l38"><code>addon&#x2F;stores&#x2F;spree.js:38</code></a>
     </p>
 
@@ -146,7 +145,7 @@ a seperate Store.</p>
   </div>
 
   <div class="description">
-    <p>&lt;p&gt;Always returns the Spree Adapter.&lt;/p&gt;</p>
+    <p>Always returns the Spree Adapter.</p>
 
   </div>
 
@@ -158,12 +157,12 @@ a seperate Store.</p>
 
           <div class="returns-description">
                       <span class="type">SpreeEmber.Adapter</span>:
-                  <p>&lt;p&gt;The Spree Ember Adapater.&lt;/p&gt;</p>
+                  <p>The Spree Ember Adapater.</p>
 
           </div>
       </div>
 </div>
-<div id="method_findBySlug" class="method panel item inherited">
+<div id="method_findBySlug" class="method panel item">
   <h3 class="name"><code>findBySlug</code></h3>
 
     <div class="args">
@@ -192,8 +191,8 @@ a seperate Store.</p>
 
 
   <div class="meta">
-        <p>Inherited from
-        <a href="../classes/SpreeEmber.Store.html#method_findBySlug">SpreeEmber.Store</a>:
+        <p>
+            Defined in
     <a href="../files/addon_stores_spree.js.html#l63"><code>addon&#x2F;stores&#x2F;spree.js:63</code></a>
     </p>
 
@@ -202,20 +201,21 @@ a seperate Store.</p>
   </div>
 
   <div class="description">
-    <p>&lt;p&gt;Find a model by it's &lt;code&gt;slug&lt;/code&gt; attribute.&lt;/p&gt;</p>
+    <p>Find a model by it's <code>slug</code> attribute.</p>
 
   </div>
 
     <div class="example">
       <div class="example-content">
-        <p>&lt;p&gt;&lt;pre class="code prettyprint"&gt;&lt;code class="language-javascript"&gt;// Products Show Route
-import Ember from 'ember';&lt;/p&gt;
-&lt;p&gt;export default Ember.Route.extend({
-model: function(params) {
-return this.spree.store.findBySlug('product', params.slug);
-}
+        <pre class="code prettyprint"><code class="language-javascript">// Products Show Route
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model: function(params) {
+    return this.spree.store.findBySlug('product', params.slug);
+  }
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;</p>
+</code></pre>
 
       </div>
     </div>
@@ -230,7 +230,7 @@ return this.spree.store.findBySlug('product', params.slug);
 
 
           <div class="param-description">
-            <p>&lt;p&gt;A model type&lt;/p&gt;</p>
+            <p>A model type</p>
 
           </div>
 
@@ -241,7 +241,7 @@ return this.spree.store.findBySlug('product', params.slug);
 
 
           <div class="param-description">
-            <p>&lt;p&gt;The model's slug&lt;/p&gt;</p>
+            <p>The model's slug</p>
 
           </div>
 
@@ -255,12 +255,12 @@ return this.spree.store.findBySlug('product', params.slug);
 
           <div class="returns-description">
                       <span class="type">SpreeEmber.Adapter</span>:
-                  <p>&lt;p&gt;The Spree Ember Adapater.&lt;/p&gt;</p>
+                  <p>The Spree Ember Adapater.</p>
 
           </div>
       </div>
 </div>
-<div id="method_serializerFor" class="method panel item inherited">
+<div id="method_serializerFor" class="method panel item">
   <h3 class="name"><code>serializerFor</code></h3>
 
 
@@ -279,8 +279,8 @@ return this.spree.store.findBySlug('product', params.slug);
 
 
   <div class="meta">
-        <p>Inherited from
-        <a href="../classes/SpreeEmber.Store.html#method_serializerFor">SpreeEmber.Store</a>:
+        <p>
+            Defined in
     <a href="../files/addon_stores_spree.js.html#l48"><code>addon&#x2F;stores&#x2F;spree.js:48</code></a>
     </p>
 
@@ -289,8 +289,8 @@ return this.spree.store.findBySlug('product', params.slug);
   </div>
 
   <div class="description">
-    <p>&lt;p&gt;Attempts to find a registered serializer for the type, but in the case it doesn't
-find one, it will return the default Spree serializer.&lt;/p&gt;</p>
+    <p>Attempts to find a registered serializer for the type, but in the case it doesn't
+find one, it will return the default Spree serializer.</p>
 
   </div>
 
@@ -302,7 +302,7 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
 
           <div class="returns-description">
                       <span class="type">Serializer</span>:
-                  <p>&lt;p&gt;A serializer.&lt;/p&gt;</p>
+                  <p>A serializer.</p>
 
           </div>
       </div>
@@ -318,7 +318,7 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
           <h6>Show Private Properties</h2>
         </div>
 
-          <div id="property_adapter" class="property panel item inherited">
+          <div id="property_adapter" class="property panel item">
               <h3 class="name"><code>adapter</code></h3>
               <span class="type">String</span>
           
@@ -327,8 +327,8 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
           
           
               <div class="meta">
-                          <p>Inherited from
-                          <a href="../classes/SpreeEmber.Store.html#property_adapter">SpreeEmber.Store</a>:
+                          <p>
+                          Defined in
                   <a href="../files/addon_stores_spree.js.html#l18"><code>addon&#x2F;stores&#x2F;spree.js:18</code></a>
                   </p>
           
@@ -336,7 +336,7 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
               </div>
           
               <div class="description">
-                  <p>&lt;p&gt;The container lookup name for the Spree adapter.&lt;/p&gt;</p>
+                  <p>The container lookup name for the Spree adapter.</p>
           
               </div>
           
@@ -346,63 +346,7 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
           
           
           </div>
-          <div id="property_config" class="property panel item">
-              <h3 class="name"><code>config</code></h3>
-              <span class="type">Object</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/app_services_spree.js.html#l42"><code>app&#x2F;services&#x2F;spree.js:42</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>A copy of the "spree" entry in the Host Application environment config.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>{}</code></p>
-          
-          
-          </div>
-          <div id="property_countries" class="property panel item">
-              <h3 class="name"><code>countries</code></h3>
-              <span class="type">Computed</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/app_services_spree.js.html#l29"><code>app&#x2F;services&#x2F;spree.js:29</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>A computed property that returns all of the countries (and states) set up in
-          Spree's backend.</p>
-          
-              </div>
-          
-              <hr>
-          
-          
-          
-          </div>
-          <div id="property_defaultSerializer" class="property panel item inherited">
+          <div id="property_defaultSerializer" class="property panel item">
               <h3 class="name"><code>defaultSerializer</code></h3>
               <span class="type">String</span>
           
@@ -411,8 +355,8 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
           
           
               <div class="meta">
-                          <p>Inherited from
-                          <a href="../classes/SpreeEmber.Store.html#property_defaultSerializer">SpreeEmber.Store</a>:
+                          <p>
+                          Defined in
                   <a href="../files/addon_stores_spree.js.html#l28"><code>addon&#x2F;stores&#x2F;spree.js:28</code></a>
                   </p>
           
@@ -420,69 +364,13 @@ find one, it will return the default Spree serializer.&lt;/p&gt;</p>
               </div>
           
               <div class="description">
-                  <p>&lt;p&gt;The container lookup name for the default Spree serializer.&lt;/p&gt;</p>
+                  <p>The container lookup name for the default Spree serializer.</p>
           
               </div>
           
               <hr>
           
                   <p><strong>Default: </strong><code>&#x27;-spree&#x27;</code></p>
-          
-          
-          </div>
-          <div id="property_environment" class="property panel item">
-              <h3 class="name"><code>environment</code></h3>
-              <span class="type">Object</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/app_services_spree.js.html#l51"><code>app&#x2F;services&#x2F;spree.js:51</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>A copy of the Host Application's current environment name.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>&#x27;development&#x27;</code></p>
-          
-          
-          </div>
-          <div id="property_localStorageKey" class="property panel item">
-              <h3 class="name"><code>localStorageKey</code></h3>
-              <span class="type">String</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/app_services_spree.js.html#l20"><code>app&#x2F;services&#x2F;spree.js:20</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>The Local Storage key we use to Restore and Persist data across browser refreshes.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>&quot;spree-ember&quot;</code></p>
           
           
           </div>

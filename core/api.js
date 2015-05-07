@@ -1,14 +1,14 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "Adapter",
-        "CanCheckout",
-        "HandlesNestedServerErrors",
-        "SpreeEmber.RawTransform",
-        "SpreeEmber.Serializer",
-        "SpreeEmber.Spree",
-        "SpreeEmber.Store",
-        "Storable"
+        "Adapter.Spree",
+        "Mixin.CanCheckout",
+        "Mixin.HandlesNestedServerErrors",
+        "Mixin.Storable",
+        "Serializer.Spree",
+        "Service.Spree",
+        "Store.Spree",
+        "Transform.Raw"
     ],
     "modules": [
         "spree-ember-core_serializers_spree",

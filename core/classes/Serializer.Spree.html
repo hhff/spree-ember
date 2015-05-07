@@ -45,30 +45,30 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Adapter.html">Adapter</a></li>
-    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
-    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
-    <li><a href="../classes/Storable.html">Storable</a></li>
+    <li><a href="../classes/Adapter.Spree.html">Adapter.Spree</a></li>
+    <li><a href="../classes/Mixin.CanCheckout.html">Mixin.CanCheckout</a></li>
+    <li><a href="../classes/Mixin.HandlesNestedServerErrors.html">Mixin.HandlesNestedServerErrors</a></li>
+    <li><a href="../classes/Mixin.Storable.html">Mixin.Storable</a></li>
+    <li><a href="../classes/Serializer.Spree.html">Serializer.Spree</a></li>
+    <li><a href="../classes/Service.Spree.html">Service.Spree</a></li>
+    <li><a href="../classes/Store.Spree.html">Store.Spree</a></li>
+    <li><a href="../classes/Transform.Raw.html">Transform.Raw</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
   <div class="page-header">
-    <h3>CanCheckout <small>Class</small></h3>
+    <h3>Serializer.Spree <small>Class</small></h3>
   </div>
 
   <div class="well well-small">
 
       <div class="extends">
-        <p>Extends Ember.Mixin</p>
+        <p>Extends DS.ActiveModelSerializer</p>
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/addon_mixins_can-checkout.js.html#l4"><code>addon&#x2F;mixins&#x2F;can-checkout.js:4</code></a></p>
+        <p>Defined in: <a href="../files/addon_serializers_spree.js.html#l4"><code>addon&#x2F;serializers&#x2F;spree.js:4</code></a></p>
       </div>
 
 
@@ -81,8 +81,8 @@
 
 
   <div class="well well-small">
-    <p>This mixin is used with the order model, to provide it with a
-<code>saveToCheckouts</code> method, for using the Spree Checkouts API Endpoint.</p>
+    <p>The Spree Serializer is based on the <code>DS.ActiveModelSerializer</code>, but implements
+a stricter <code>serialize</code> method.</p>
 
   </div>
 
@@ -91,7 +91,6 @@
 <div class="panel">
   <ul class="tabs" data-tab>
       <li class="tab-title"><a href="#methods">Methods</a></li>
-      <li class="tab-title"><a href="#properties">Properties</a></li>
   </ul>
 </div>
 
@@ -105,14 +104,21 @@
           <h6>Show Private Methods</h2>
         </div>
 
-<div id="method_saveToCheckouts" class="method panel item">
-  <h3 class="name"><code>saveToCheckouts</code></h3>
+<div id="method_serialize" class="method panel item">
+  <h3 class="name"><code>serialize</code></h3>
 
+    <div class="args">
+      <span class="paren">(</span><ul class="args-list inline commas">
+        <li class="arg">
+            <code>record</code>
+        </li>
+      </ul><span class="paren">)</span>
+    </div>
 
 
 <!--
     <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
+      <span class="type">Object</span>
     </p>
  -->
 
@@ -126,7 +132,7 @@
   <div class="meta">
         <p>
             Defined in
-    <a href="../files/addon_mixins_can-checkout.js.html#l22"><code>addon&#x2F;mixins&#x2F;can-checkout.js:22</code></a>
+    <a href="../files/addon_serializers_spree.js.html#l14"><code>addon&#x2F;serializers&#x2F;spree.js:14</code></a>
     </p>
 
 
@@ -134,22 +140,40 @@
   </div>
 
   <div class="description">
-    <p>Simply wraps the <code>DS.Model#save</code> method to set the boolean flag
-<code>_useCheckoutsEndpoint</code> for the duration of that promise.  Downstream
-Serializers and Adapters can call <code>snapshot.attr('_useCheckoutsEndpoint')</code>
-and react accordingly.</p>
+    <p>Serializes a record for sending to the Spree server.  Here, we extend the
+default behaviour of <code>DS.ActiveModelSerializer#serialize</code> to ensure that we
+only persist attributes &amp; relationships that have <code>persistToServer: true</code> in
+the model definition.  We also add the <code>id</code> to the payload, as we're often
+sending nested models to the server.</p>
 
   </div>
 
 
+    <div class="params">
+      <h4>Parameters:</h4>
+
+      <ul class="params-list">
+        <li class="param">
+            <code class="param-name">record</code>
+            <span class="type">DS.Model</span>
+
+
+          <div class="param-description">
+            <p>A model to serialize.</p>
+
+          </div>
+
+              </li>
+          </ul>
+      </div>
 
       <div class="returns">
           <hr />
           <h4>Returns:</h4>
 
           <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>Returns the promise from <code>save</code>.</p>
+                      <span class="type">Object</span>:
+                  <p>A JSON object representing the record.</p>
 
           </div>
       </div>
@@ -157,45 +181,6 @@ and react accordingly.</p>
       </div>
 
 
-      <div id="properties" class="content">
-        <h2>Properties</h2>
-        <div class="switch round tiny private-toggle">
-          <input id="show-private-properties" type="checkbox">
-          <label for="show-private-properties"></label>
-          <h6>Show Private Properties</h2>
-        </div>
-
-          <div id="property__useCheckoutsEndpoint" class="property panel item private">
-              <h3 class="name"><code>_useCheckoutsEndpoint</code></h3>
-              <span class="type">DS.attr('boolean')</span>
-          
-          
-                  <span class="flag private">private</span>
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_mixins_can-checkout.js.html#l12"><code>addon&#x2F;mixins&#x2F;can-checkout.js:12</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>A flag for telling <code>save</code> internals downstream to use Spree's Checkouts API
-          endpoint, rather than the <code>orders</code> endpoint.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>false</code></p>
-          
-          
-          </div>
-      </div>
 
 
 

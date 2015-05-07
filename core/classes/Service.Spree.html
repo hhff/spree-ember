@@ -45,35 +45,43 @@
 <h3>Classes</h3>
 <hr>
 <ul class="side-nav yuidoc-classes">
-    <li><a href="../classes/Adapter.html">Adapter</a></li>
-    <li><a href="../classes/CanCheckout.html">CanCheckout</a></li>
-    <li><a href="../classes/HandlesNestedServerErrors.html">HandlesNestedServerErrors</a></li>
-    <li><a href="../classes/SpreeEmber.RawTransform.html">SpreeEmber.RawTransform</a></li>
-    <li><a href="../classes/SpreeEmber.Serializer.html">SpreeEmber.Serializer</a></li>
-    <li><a href="../classes/SpreeEmber.Spree.html">SpreeEmber.Spree</a></li>
-    <li><a href="../classes/SpreeEmber.Store.html">SpreeEmber.Store</a></li>
-    <li><a href="../classes/Storable.html">Storable</a></li>
+    <li><a href="../classes/Adapter.Spree.html">Adapter.Spree</a></li>
+    <li><a href="../classes/Mixin.CanCheckout.html">Mixin.CanCheckout</a></li>
+    <li><a href="../classes/Mixin.HandlesNestedServerErrors.html">Mixin.HandlesNestedServerErrors</a></li>
+    <li><a href="../classes/Mixin.Storable.html">Mixin.Storable</a></li>
+    <li><a href="../classes/Serializer.Spree.html">Serializer.Spree</a></li>
+    <li><a href="../classes/Service.Spree.html">Service.Spree</a></li>
+    <li><a href="../classes/Store.Spree.html">Store.Spree</a></li>
+    <li><a href="../classes/Transform.Raw.html">Transform.Raw</a></li>
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
 <div class="class-definition panel">
   <div class="page-header">
-    <h3>Adapter <small>Class</small></h3>
+    <h3>Service.Spree <small>Class</small></h3>
   </div>
 
   <div class="well well-small">
+      <div class="uses">
+        Uses
+        <ul class="inline commas">
+            <li><a href="Ember.Evented.html">Ember.Evented</a></li>
+            <li><a href="SpreeEmber.Storable.html">SpreeEmber.Storable</a></li>
+            <li><a href="SpreeEmber.Store.html">SpreeEmber.Store</a></li>
+        </ul>
+      </div>
 
       <div class="extends">
-        <p>Extends DS.ActiveModelAdapter</p>
+        <p>Extends Ember.Object</p>
       </div>
 
       <div class="foundat">
-        <p>Defined in: <a href="../files/addon_adapters_spree.js.html#l4"><code>addon&#x2F;adapters&#x2F;spree.js:4</code></a></p>
+        <p>Defined in: <a href="../files/app_services_spree.js.html#l4"><code>app&#x2F;services&#x2F;spree.js:4</code></a></p>
       </div>
 
 
 <!--
-            Module: <a href="../modules/spree-ember-core_serializers_spree.html">spree-ember-core/serializers/spree</a>
+            Module: <a href="../modules/spree-ember-core_services_spree.html">spree-ember-core/services/spree</a>
  -->
 
 
@@ -81,8 +89,12 @@
 
 
   <div class="well well-small">
-    <p>The Spree Adapter is responsible for communicating with your Spree store.  It
-assumes your server has the <code>spree_ams</code> gem installed.</p>
+    <p>The Spree service is the central place a Spree Ember developer will interact
+with Spree, via Spree Ember.  The core object is injected into the host application's
+routes &amp; controllers, and is responsible for persisting data to Local Storage,
+communicating with your Spree backend, Acting as a Registry for other Spree Ember
+packages, and Acting as an Event Bus for your application Frontend, and providing
+a seperate Store.</p>
 
   </div>
 
@@ -90,59 +102,12 @@ assumes your server has the <code>spree_ams</code> gem installed.</p>
 
 <div class="panel">
   <ul class="tabs" data-tab>
-      <li class="tab-title"><a href="#methods">Methods</a></li>
       <li class="tab-title"><a href="#properties">Properties</a></li>
   </ul>
 </div>
 
 <div class="">
   <div class="tabs-content">
-      <div class="content" id="methods">
-        <h2>Methods</h2>
-        <div class="switch round tiny private-toggle">
-          <input id="show-private-methods" type="checkbox">
-          <label for="show-private-methods"></label>
-          <h6>Show Private Methods</h2>
-        </div>
-
-<div id="method_buildURL" class="method panel item">
-  <h3 class="name"><code>buildURL</code></h3>
-
-
-
-<!--
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_adapters_spree.js.html#l89"><code>addon&#x2F;adapters&#x2F;spree.js:89</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>Overrides the default buildURL call to check for the <code>_useCheckoutsEndpoint</code>
-on the snapshot, (applied to <code>order</code> models in the <code>CanCheckout</code> mixin). If
-so, the resulting URL will be <code>{hostname}/{namespace}/checkouts/{record_id}</code>.
-If the flag isn't present, <code>_super</code> is called and the record URL is built
-normally.</p>
-
-  </div>
-
-
-
-</div>
-      </div>
 
 
       <div id="properties" class="content">
@@ -153,9 +118,9 @@ normally.</p>
           <h6>Show Private Properties</h2>
         </div>
 
-          <div id="property_defaultSerializer" class="property panel item">
-              <h3 class="name"><code>defaultSerializer</code></h3>
-              <span class="type">String</span>
+          <div id="property_config" class="property panel item">
+              <h3 class="name"><code>config</code></h3>
+              <span class="type">Object</span>
           
           
           
@@ -164,44 +129,14 @@ normally.</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_adapters_spree.js.html#l13"><code>addon&#x2F;adapters&#x2F;spree.js:13</code></a>
+                  <a href="../files/app_services_spree.js.html#l42"><code>app&#x2F;services&#x2F;spree.js:42</code></a>
                   </p>
           
           
               </div>
           
               <div class="description">
-                  <p>The container lookup name for the default Spree serializer.</p>
-          
-              </div>
-          
-              <hr>
-          
-                  <p><strong>Default: </strong><code>&#x27;-spree&#x27;</code></p>
-          
-          
-          </div>
-          <div id="property_headers" class="property panel item">
-              <h3 class="name"><code>headers</code></h3>
-              <span class="type">String</span>
-          
-          
-          
-          
-          
-              <div class="meta">
-                          <p>
-                          Defined in
-                  <a href="../files/addon_adapters_spree.js.html#l65"><code>addon&#x2F;adapters&#x2F;spree.js:65</code></a>
-                  </p>
-          
-          
-              </div>
-          
-              <div class="description">
-                  <p>A computed property for the adapter headers.  We use these headers to authenticate
-          the user against the order we're trying to modify.  The <code>spree_ams</code> gem will
-          look for these, and do the work here.</p>
+                  <p>A copy of the "spree" entry in the Host Application environment config.</p>
           
               </div>
           
@@ -211,9 +146,9 @@ normally.</p>
           
           
           </div>
-          <div id="property_host" class="property panel item">
-              <h3 class="name"><code>host</code></h3>
-              <span class="type">String</span>
+          <div id="property_countries" class="property panel item">
+              <h3 class="name"><code>countries</code></h3>
+              <span class="type">Computed</span>
           
           
           
@@ -222,28 +157,53 @@ normally.</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_adapters_spree.js.html#l39"><code>addon&#x2F;adapters&#x2F;spree.js:39</code></a>
+                  <a href="../files/app_services_spree.js.html#l29"><code>app&#x2F;services&#x2F;spree.js:29</code></a>
                   </p>
           
           
               </div>
           
               <div class="description">
-                  <p>A computed property for the server host.  If it's not set in the Host Application's
-          spree configuration by <code>spree.apiHost</code>, it will default to 'http://localhost:3000'
-          in all environments aside from test, where it will default to <code>null</code> (to satisfy
-          Pretender).</p>
+                  <p>A computed property that returns all of the countries (and states) set up in
+          Spree's backend.</p>
           
               </div>
           
               <hr>
           
-                  <p><strong>Default: </strong><code>&#x27;http://localhost:3000&#x27;</code></p>
           
           
           </div>
-          <div id="property_namespace" class="property panel item">
-              <h3 class="name"><code>namespace</code></h3>
+          <div id="property_environment" class="property panel item">
+              <h3 class="name"><code>environment</code></h3>
+              <span class="type">Object</span>
+          
+          
+          
+          
+          
+              <div class="meta">
+                          <p>
+                          Defined in
+                  <a href="../files/app_services_spree.js.html#l51"><code>app&#x2F;services&#x2F;spree.js:51</code></a>
+                  </p>
+          
+          
+              </div>
+          
+              <div class="description">
+                  <p>A copy of the Host Application's current environment name.</p>
+          
+              </div>
+          
+              <hr>
+          
+                  <p><strong>Default: </strong><code>&#x27;development&#x27;</code></p>
+          
+          
+          </div>
+          <div id="property_localStorageKey" class="property panel item">
+              <h3 class="name"><code>localStorageKey</code></h3>
               <span class="type">String</span>
           
           
@@ -253,22 +213,20 @@ normally.</p>
               <div class="meta">
                           <p>
                           Defined in
-                  <a href="../files/addon_adapters_spree.js.html#l23"><code>addon&#x2F;adapters&#x2F;spree.js:23</code></a>
+                  <a href="../files/app_services_spree.js.html#l20"><code>app&#x2F;services&#x2F;spree.js:20</code></a>
                   </p>
           
           
               </div>
           
               <div class="description">
-                  <p>A computed property for the server namespace.  If it's not set in the Host
-          Application's spree configuration by <code>spree.apiNamespace</code>, it will default to
-          <code>api/ams</code>, to work out of the box with the <code>spree_ams</code> Gem.</p>
+                  <p>The Local Storage key we use to Restore and Persist data across browser refreshes.</p>
           
               </div>
           
               <hr>
           
-                  <p><strong>Default: </strong><code>&#x27;api/ams&#x27;</code></p>
+                  <p><strong>Default: </strong><code>&quot;spree-ember&quot;</code></p>
           
           
           </div>
