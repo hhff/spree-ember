@@ -1,0 +1,10 @@
+<label>
+  {{if label label attributeName}}
+  {{view "select" content=content 
+                  optionLabelPath=optionLabelPath 
+                  selection=selection
+                  prompt=prompt
+                  classBinding="errors.length:error"}}
+              
+</label>
+{{#if errors.length}}<small class="error">{{displayErrors}}</small>{{/if}}

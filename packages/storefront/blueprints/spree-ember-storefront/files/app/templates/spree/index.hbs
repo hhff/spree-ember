@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="small-12 columns text-center">
+    <div class='panel callout'>
+      <h1>Welcome to Spree Ember</h1>
+      <hr />
+      <h6><strong>Note:</strong> You can delete the "Welcome to Ember.js"
+        message in your <code>application.hbs</code> file.</h6>
+      <h6>You can replace it with the <code>spree-navigation</code> component.</h6>
+    </div>
+
+    <div class="panel text-left">
+      <h4>Spree Ember Core</h4>
+      <hr />
+      <h6><strong>Spree API Host:</strong> {{spree.config.apiHost}}</h6>
+      <h6><strong>Spree API Namespace:</strong> {{spree.config.namespace}}</h6>
+    </div>
+
+    <div class="panel text-left">
+      <h4>Spree Ember Checkouts</h4>
+      <hr />
+      <h6><strong>Checkouts Current State:</strong> {{spree.checkouts.currentState}}</h6>
+      <h6><strong>Current Order:</strong> {{if spree.currentOrder spree.currentOrder 'null'}}</h6>
+    </div>
+
+    <div class="panel text-left">
+      <h4>Spree Ember Storefront</h4>
+      <hr />
+      <h6><strong>Spree Ember Mount Path:</strong> {{spree.config.mount}}</h6>
+      <h6><strong>Products Path:</strong> {{spree.config.productsPath}}</h6>
+      <h6><strong>Orders Path:</strong> {{spree.config.ordersPath}}</h6>
+      <h6><strong>Taxons Path:</strong> {{spree.config.taxonsPath}}</h6>
+      <h6><strong>Cart Path:</strong> {{spree.config.cartPath}}</h6>
+      <h6><strong>Checkout Path:</strong> {{spree.config.checkoutPath}}</h6>
+    </div>
+
+    <div class="panel text-left">
+      <h4>Spree Ember Auth</h4>
+      <hr />
+      {{#if session}}
+        <h6><strong>Current User:</strong> {{if session.currentUser session.currentUser 'null'}}</h6>
+        <h6><strong>Signin Path:</strong> {{spree.config.signinPath}}</h6>
+        <h6><strong>Signup Path:</strong> {{spree.config.signupPath}}</h6>
+        <h6><strong>Account Path:</strong> {{spree.config.accountPath}}</h6>
+      {{else}}
+        <h6>Install this package with <code>ember install spree-ember-auth</code></h6>
+      {{/if}}
+    </div>
+
+    {{#link-to 'spree.products.index'}}
+      <button class="expand">Products</button>
+    {{/link-to}}
+  </div>
+</div>

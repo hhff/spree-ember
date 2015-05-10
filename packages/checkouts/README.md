@@ -1,19 +1,22 @@
 # Spree Ember Checkouts
 
-The Spree Ember Checkouts uses the [Javascript State Machine](https://github.com/jakesgordon/javascript-state-machine)
-to add Spree Current Order management and State Machine transitions to the Spree
-service.  By providing a standard interface to trigger Spree order transitions,
-an API driven checkout process is greatly simplified. 
+[![Build Status](https://travis-ci.org/hhff/spree-ember.svg?branch=master)](https://travis-ci.org/hhff/spree-ember)
+[![Join the chat at https://gitter.im/hhff/spree-ember](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hhff/spree-ember?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This interface is designed to work out the box with the [Spree](http://github.com/spree/spree) 
-rails engine via [Spree AMS](http://github.com/hhff/spree_ams).
+Spree Ember Checkouts uses [Ember FSM]()
+to define a Stateful Checkouts abstraction as a service for writing reactive
+single page checkout flows.  It exclusively uses the [Spree Checkouts API]()
+with an Order Serializer to transiton an order to completion, and populate the
+order's `DS.Errors` attribute when server validation fails.
+
+This addon also adds `currentOrder` session support to the central spree service.
 
 **Note:** This Package is included with `spree-ember-storefront`.  If you're
 using that, there's no need to install this seperately.
 
 It uses:
 * [Spree Ember Core](http://www.spree-ember.com/core/index.html)
-* [Javascript State Machine](https://github.com/jakesgordon/javascript-state-machine)
+* [Ember FSM](https://github.com/heycarsten/ember-fsm)
 
 ## Installation
 
@@ -32,36 +35,58 @@ and then add a variant to cart.  You can optionally pass in a quantity, too!
 
 ```javascript
 this.spree.get('currentOrder');
-// null
+// => null
 
 var _this = this;
 this.spree.addToCart(variantModel).then(function() {
   _this.spree.get('currentOrder.state');
-  // "cart"
+  // => "cart"
+
+  _this.spree.clearCurrentOrder();
+  _this.spree.get('currentOrder');
+  // => null
 });
 ```
 
 ## Advancing an Order through the Checkout
 
-You can transition an order through the checkout flow by using the 
-`transitionCheckoutState` function.  Under the hood, it triggers state
-transitions on a State Machine, to ensure the frontend state stays in sync with
-Spree's Order State Machine.
+All order state manipulation is done exclusively through the `transition` 
+function.  Under the hood, it triggers state transitions on the checkouts Finite 
+State Machine, to ensure the frontend state stays in sync with Spree's Order 
+State Machine.
+
+The Checkouts service is designed to allow a reactive style of programming for
+the checkout flow, allowing the developer to focus on the User experience, and
+trust that the internals of the State Machine will clear up and reconsolidate
+user edge cases.
 
 ```javascript
-var _this = this;
-this.spree.transitionCheckoutState().then(
-  function(currentOrder) {
-    currentOrder.get('state');
-    // "delivery"
+var checkouts = this.spree.get('checkouts');
+
+checkouts.transition().then(
+  function() {
+    checkouts.get('currentState');
+    // => "delivery"
+    checkouts.get('currentOrder.state');
+    // => "delivery"
     
-    _this.spree.transitionCheckoutState("complete").catch(function(spreeError){
-      alert("Could not transition");
-      return spreeError;
+    checkouts.transition("address").finally(function() {
+      checkouts.get('currentState');
+      // => "address"
+      checkouts.get('currentOrder.state');
+      // => "delivery"
     });
   }
 );
 ```
+
+In the above example, the Checkouts `currentState` diverges from the
+`currentOrder` state when moving backward.  This is expected behaviour - the
+states will reconsolidate when the order advances forward again.
+
+**Note:** This is an example of why it's important to use the Checkouts service
+as the canoncial state to represent in the UI, and not the `currentOrder`
+directly.
 
 ## Subscribing to Checkout Events
 
@@ -72,29 +97,6 @@ architecture.  This is useful for binding events to Google Analytics, and such.
 this.spree.on('didAddToCart', function(lineItem) {
   alert(lineItem.get('variant.name') + " added to cart!");
 });
-
-this.spree.on('checkoutStateDidChange', function(currentOrder) {
-  alert("Transitioned to " + currentOrder.get('state'));
-});
 ```
 
-## Customizing the Frontend State Machine
-
-The `spree-ember-checkouts` addon provides a single file where it defines the
-checkout state machine events and callbacks.  You'll want to modify this file if
-you've modified Spree's default Checkout flow.
-
-Copy it into your host application:
-
-```bash
-ember generate spree-ember-checkouts-flow
-```
-
-This will install a file at `your-app/app/checkouts/spree.js`
-
-Modify this file to work with any customizations you've made to your Spree
-backend.
-
-**Note:** If you're using `spree-ember-storefront`, this blueprint won't be
-found, as Ember CLI doesn't currently have official support for nested addons.
-You can simply copy the file from this repo to your application manually.
+#### **For more information, please see the [spree-ember-checkouts API Documentation.](http://www.spree-ember.com/checkouts/index.html)**

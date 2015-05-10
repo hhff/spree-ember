@@ -1,6 +1,6 @@
 {
   "name": "spree-ember-checkouts",
-  "version": "0.0.0",
+  "version": "0.0.1-beta.1",
   "description": "Checkout functionality for a Spree Ember Application.",
   "directories": {
     "doc": "doc",
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "https://github.com/hhff/spree-ember.git",
+  "repository": "https://github.com/hhff/spree-ember/tree/master/packages/checkouts",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^4.0.0",
-    "spree-ember-core": "*"
+    "spree-ember-core": "0.0.1-beta.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

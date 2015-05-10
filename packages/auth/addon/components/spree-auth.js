@@ -15,6 +15,7 @@ import layout from '../templates/components/spree-auth';
   a component file at `app/components/spree-auth`, ready to be extended.
 
   @class SpreeAuth
+  @namespace Component
   @extends Ember.Component
 */
 export default Ember.Component.extend({

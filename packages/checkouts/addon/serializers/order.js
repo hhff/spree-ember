@@ -5,7 +5,8 @@ import SpreeSerializer from 'spree-ember-core/serializers/spree';
   by Spree's "Checkouts" endpoint.  The payload is dependant on the state of the 
   order.
 
-  @class OrderSerializer
+  @class Order
+  @namespace Serializer
   @extends SpreeSerializer
 */
 export default SpreeSerializer.extend({
@@ -56,6 +57,7 @@ export default SpreeSerializer.extend({
     dependant on the state of Checkouts service.
 
     @method _serializeForCheckouts
+    @private
     @param {Ember.Object} snapshot A snapshot of the order model for serialization.
     @param {Object} orderJSON The regular JSON for the Order.
   */

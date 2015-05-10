@@ -10,24 +10,31 @@ eCommerce problems, and build on each other's work to provide stability.
 ### Why?
 ***
 
-As the web surges forward, so do the requirements of each project.  Often, these 
-requirements mean that a standard server rendered application is not
-appropriate. Instead, we reach out for a user interface framework, and adopt an 
-API driven approach.
+With the explosion of single page application tools, no industry has more
+potential to benefit than the world of eCommerce.  As the web surges forward, so
+does the potential of Customer experience.  Compelling interactive experience is 
+fast becoming a new path to increased conversions.
 
 Those who have gone down that path with Spree will understand just how complex 
-that becomes.  This project aims to mitigate this complexity by providing 
-standard solutions for:
+the single page approach becomes.  This project aims to mitigate this complexity 
+by providing shared solutions for:
 
 - Data Retrieval and Server Communication
 - Browser UI State Persistence
 - User Authentication
-- Current Order & Checkout Flow State Management
-- Internationalization (coming soon)
-- Client Side Validation (coming soon)
-- Flexible SEO (coming soon)
+- Current Order Management
+- Stateful Checkout Flow
+- Serverside Error Handling
+- Reactive Single Page Checkout
 
-### Ok, but why [Spree](http://github.com/spree/spree)?
+Additionally, Spree Ember makes it easy by:
+- Using it's own `store`, `adapter` and `serializer`, allowing it to work side
+by side with your existing Ember infrastructure
+- Providing responsive layouts out of the box
+- Implementing flexible architecture through Ember CLI Environment configs
+- Seperating application concerns into a plugin style ecosystem
+
+### Ok, but why [Spree?](http://github.com/spree/spree)
 ***
 
 Spree's first commit was in 2008, making it three years older than Node 1.0 
@@ -45,5 +52,5 @@ Please help!  There's tons to do.  To get a dev environment going, see
 [CONTRIBUTING.md](https://github.com/hhff/spree-ember/blob/master/CONTRIBUTING.md) 
 on Github.
 
-#### **Get started with Spree Ember [over here](./2-getting-started.html).**
+#### **To get started, first you'll need to [configure Spree.](./2-configuring-spree.html)**
 

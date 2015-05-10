@@ -5,7 +5,8 @@ import DeviseAuthenticator from 'simple-auth-devise/authenticators/devise';
   Auth initializer with dynamically create and set the Server Token Endpoint from
   the Spree Core Adapter.
 
-  @class Authenticator
+  @class Spree
+  @namespace Authenticator
   @extends SimpleAuthDevise.Authenticator
 */
 export default DeviseAuthenticator.extend({
