@@ -73,6 +73,24 @@
 <div class="moduledesc well well-small">
     <p>The Spree Serializer is based on the <code>DS.ActiveModelSerializer</code>, but implements
 a stricter <code>serialize</code> method.</p>
+<pre class="code prettyprint"><code class="language-javascript">var model = DS.Model.extend({
+  firstName: DS.attr("string", { persistToServer: true }),
+  lastName: DS.attr("string")
+})
+
+var hugh =  model.create()
+
+hugh.setProperties({
+  firstName: "Hugh",
+  lastName: "Francis"
+})
+
+spreeSerializer.serialize(hugh);
+// =&gt; Results in payload:
+user: {
+  first_name: "Hugh"
+}
+</code></pre>
 
 </div>
 

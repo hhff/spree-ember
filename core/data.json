@@ -121,7 +121,7 @@
             "tag": "module",
             "file": "addon/serializers/spree.js",
             "line": 4,
-            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method."
+            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.\n\n```javascript\nvar model = DS.Model.extend({\n  firstName: DS.attr(\"string\", { persistToServer: true }),\n  lastName: DS.attr(\"string\")\n})\n\nvar hugh =  model.create()\n\nhugh.setProperties({\n  firstName: \"Hugh\",\n  lastName: \"Francis\"\n})\n\nspreeSerializer.serialize(hugh);\n// => Results in payload:\nuser: {\n  first_name: \"Hugh\"\n}\n```"
         },
         "spree-ember-core/stores/spree": {
             "name": "spree-ember-core/stores/spree",
@@ -240,7 +240,7 @@
             "namespace": "Serializer",
             "file": "addon/serializers/spree.js",
             "line": 4,
-            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.",
+            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.\n\n```javascript\nvar model = DS.Model.extend({\n  firstName: DS.attr(\"string\", { persistToServer: true }),\n  lastName: DS.attr(\"string\")\n})\n\nvar hugh =  model.create()\n\nhugh.setProperties({\n  firstName: \"Hugh\",\n  lastName: \"Francis\"\n})\n\nspreeSerializer.serialize(hugh);\n// => Results in payload:\nuser: {\n  first_name: \"Hugh\"\n}\n```",
             "extends": "DS.ActiveModelSerializer"
         },
         "Store.Spree": {
@@ -511,7 +511,7 @@
         },
         {
             "file": "addon/serializers/spree.js",
-            "line": 14,
+            "line": 34,
             "description": "Serializes a record for sending to the Spree server.  Here, we extend the\ndefault behaviour of `DS.ActiveModelSerializer#serialize` to ensure that we\nonly persist attributes & relationships that have `persistToServer: true` in\nthe model definition.  We also add the `id` to the payload, as we're often\nsending nested models to the server.",
             "itemtype": "method",
             "name": "serialize",

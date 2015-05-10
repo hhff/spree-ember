@@ -70,6 +70,26 @@ import DS from &#x27;ember-data&#x27;;
   The Spree Serializer is based on the &#x60;DS.ActiveModelSerializer&#x60;, but implements
   a stricter &#x60;serialize&#x60; method.
 
+  &#x60;&#x60;&#x60;javascript
+  var model = DS.Model.extend({
+    firstName: DS.attr(&quot;string&quot;, { persistToServer: true }),
+    lastName: DS.attr(&quot;string&quot;)
+  })
+
+  var hugh =  model.create()
+  
+  hugh.setProperties({
+    firstName: &quot;Hugh&quot;,
+    lastName: &quot;Francis&quot;
+  })
+
+  spreeSerializer.serialize(hugh);
+  // =&gt; Results in payload:
+  user: {
+    first_name: &quot;Hugh&quot;
+  }
+  &#x60;&#x60;&#x60;
+
   @class Spree 
   @namespace Serializer 
   @module spree-ember-core/serializers/spree
