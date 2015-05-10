@@ -481,6 +481,8 @@
             "description": "Serializes the Order into a format the Spree Checkouts endpoint expects, \ndependant on the state of Checkouts service.",
             "itemtype": "method",
             "name": "_serializeForCheckouts",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "snapshot",
@@ -498,7 +500,7 @@
         },
         {
             "file": "addon/serializers/order.js",
-            "line": 104,
+            "line": 105,
             "description": "Extracts the errors from an Invalid response from the Server.  Overrides the\ndefault method to include a Top Level error from the payload as `base` in the\n`DS.Errors` collection.",
             "itemtype": "method",
             "name": "extractErrors",
