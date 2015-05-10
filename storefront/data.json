@@ -9,9 +9,7 @@
         "addon/components/spree-address.js": {
             "name": "addon/components/spree-address.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeAddress": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -20,9 +18,7 @@
         "addon/components/spree-breadcrumbs.js": {
             "name": "addon/components/spree-breadcrumbs.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeBreadcrumbs": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -31,9 +27,7 @@
         "addon/components/spree-checkout.js": {
             "name": "addon/components/spree-checkout.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeCheckout": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -42,9 +36,7 @@
         "addon/components/spree-details.js": {
             "name": "addon/components/spree-details.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeDetails": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -53,9 +45,7 @@
         "addon/components/spree-grid.js": {
             "name": "addon/components/spree-grid.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeGrid": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -64,9 +54,7 @@
         "addon/components/spree-images.js": {
             "name": "addon/components/spree-images.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeImages": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -75,9 +63,7 @@
         "addon/components/spree-input.js": {
             "name": "addon/components/spree-input.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeInput": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -86,9 +72,7 @@
         "addon/components/spree-lineitems.js": {
             "name": "addon/components/spree-lineitems.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeLineitems": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -97,9 +81,7 @@
         "addon/components/spree-navigation.js": {
             "name": "addon/components/spree-navigation.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeNavigation": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -108,9 +90,7 @@
         "addon/components/spree-order.js": {
             "name": "addon/components/spree-order.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeOrder": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -119,9 +99,7 @@
         "addon/components/spree-pdp.js": {
             "name": "addon/components/spree-pdp.js",
             "modules": {},
-            "classes": {
-                "Component.SpreePdp": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -130,9 +108,7 @@
         "addon/components/spree-properties.js": {
             "name": "addon/components/spree-properties.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeProperties": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -141,9 +117,7 @@
         "addon/components/spree-select.js": {
             "name": "addon/components/spree-select.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeSelect": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -152,9 +126,7 @@
         "addon/components/spree-shipment.js": {
             "name": "addon/components/spree-shipment.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeShipment": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -163,9 +135,7 @@
         "addon/components/spree-source.js": {
             "name": "addon/components/spree-source.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeSource": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -174,9 +144,7 @@
         "addon/components/spree-taxonomies.js": {
             "name": "addon/components/spree-taxonomies.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeTaxonomies": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -185,9 +153,7 @@
         "addon/components/spree-taxonomy.js": {
             "name": "addon/components/spree-taxonomy.js",
             "modules": {},
-            "classes": {
-                "Component.SpreeTaxonomy": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {
                 "Component": 1
@@ -258,6 +224,193 @@
             "namespaces": {
                 "Route": 1
             }
+        },
+        "app/templates/components/spree-address.js": {
+            "name": "app/templates/components/spree-address.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeAddress": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-breadcrumbs.js": {
+            "name": "app/templates/components/spree-breadcrumbs.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeBreadcrumbs": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-checkout.js": {
+            "name": "app/templates/components/spree-checkout.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeCheckout": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-details.js": {
+            "name": "app/templates/components/spree-details.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeDetails": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-grid.js": {
+            "name": "app/templates/components/spree-grid.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeGrid": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-images.js": {
+            "name": "app/templates/components/spree-images.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeImages": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-input.js": {
+            "name": "app/templates/components/spree-input.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeInput": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-lineitems.js": {
+            "name": "app/templates/components/spree-lineitems.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeLineitems": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-navigation.js": {
+            "name": "app/templates/components/spree-navigation.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeNavigation": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-order.js": {
+            "name": "app/templates/components/spree-order.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeOrder": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-pdp.js": {
+            "name": "app/templates/components/spree-pdp.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreePdp": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-properties.js": {
+            "name": "app/templates/components/spree-properties.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeProperties": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-select.js": {
+            "name": "app/templates/components/spree-select.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeSelect": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-shipment.js": {
+            "name": "app/templates/components/spree-shipment.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeShipment": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-source.js": {
+            "name": "app/templates/components/spree-source.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeSource": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-taxonomies.js": {
+            "name": "app/templates/components/spree-taxonomies.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeTaxonomies": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
+        },
+        "app/templates/components/spree-taxonomy.js": {
+            "name": "app/templates/components/spree-taxonomy.js",
+            "modules": {},
+            "classes": {
+                "Component.SpreeTaxonomy": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Component": 1
+            }
         }
     },
     "modules": {},
@@ -271,7 +424,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-address.js",
+            "file": "app/templates/components/spree-address.js",
             "line": 3,
             "description": "Controls data entry for an order's Ship or Bill Address.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -285,7 +438,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-breadcrumbs.js",
+            "file": "app/templates/components/spree-breadcrumbs.js",
             "line": 3,
             "description": "Allows Breadcrumb style interaction for the Checkout Route.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -299,7 +452,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-checkout.js",
+            "file": "app/templates/components/spree-checkout.js",
             "line": 3,
             "description": "A single page checkout that reactively responds to changes in the \n`spree.checkouts` service.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -313,7 +466,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-details.js",
+            "file": "app/templates/components/spree-details.js",
             "line": 3,
             "description": "A mini \"details\" panel for the Spree Checkout Route.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -327,7 +480,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-grid.js",
+            "file": "app/templates/components/spree-grid.js",
             "line": 3,
             "description": "A Product Grid for the Products Index and Taxons Show routes.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -341,7 +494,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-images.js",
+            "file": "app/templates/components/spree-images.js",
             "line": 3,
             "description": "A variant aware image browser for the Spree PDP.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -355,7 +508,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-input.js",
+            "file": "app/templates/components/spree-input.js",
             "line": 3,
             "description": "An input with Label, Placeholder and outlet for Validation Errors.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -369,7 +522,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-lineitems.js",
+            "file": "app/templates/components/spree-lineitems.js",
             "line": 3,
             "description": "A table for listing the Line Items in an order.  Used on the Cart, Checkouts\nconfirmation, and Orders show routes.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -383,7 +536,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-navigation.js",
+            "file": "app/templates/components/spree-navigation.js",
             "line": 3,
             "description": "A simple nav bar with cart state, links, and login/account links (if\n`spree-ember-auth` is present).\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -397,7 +550,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-order.js",
+            "file": "app/templates/components/spree-order.js",
             "line": 3,
             "description": "An order detail page.  Used on the confirmation checkout step, and the Orders\nshow page.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -411,7 +564,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-pdp.js",
+            "file": "app/templates/components/spree-pdp.js",
             "line": 3,
             "description": "The Spree Product Display Page.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -425,7 +578,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-properties.js",
+            "file": "app/templates/components/spree-properties.js",
             "line": 3,
             "description": "An outlet for Product Properties.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -439,7 +592,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-select.js",
+            "file": "app/templates/components/spree-select.js",
             "line": 3,
             "description": "A select component with Label and outlet for validation errors.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -453,7 +606,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-shipment.js",
+            "file": "app/templates/components/spree-shipment.js",
             "line": 3,
             "description": "A display component for a Spree Order's shipments.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -467,7 +620,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-source.js",
+            "file": "app/templates/components/spree-source.js",
             "line": 3,
             "description": "An input panel for Credit Card details (\"source\").\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -481,7 +634,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-taxonomies.js",
+            "file": "app/templates/components/spree-taxonomies.js",
             "line": 3,
             "description": "A sidebar style panel for Spree's top-level taxonomy tree.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"
@@ -495,7 +648,7 @@
             "plugin_for": [],
             "extension_for": [],
             "namespace": "Component",
-            "file": "addon/components/spree-taxonomy.js",
+            "file": "app/templates/components/spree-taxonomy.js",
             "line": 3,
             "description": "An item from the Spree Taxonomies side bar component.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
             "extends": "Ember.Component"

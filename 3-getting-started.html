@@ -101,6 +101,15 @@ welcome page at <code>http://localhost:4200</code>!  Head to <code>/products</co
 application should load products into your Ember app from your Spree server.</p>
 <p><strong>Note:</strong> If you&#39;re not seeing any products or data, double check your Spree
 server is running on <code>http://localhost:3000</code>.</p>
+<h3 id="gotchas">Gotchas</h3>
+<hr>
+<ul>
+<li>Some folks have had trouble with the <code>spree-ember-storefront</code> generator.  This
+is usually because the <code>ember-cli-foundation-sass</code> addon fails to install, or
+hangs.  In this case, the rememdy is to manually add the Zurb Foundation CSS
+to your host application.  The template files will have been copied
+successfully.</li>
+</ul>
 <h4 id="-next-you-ll-probably-want-to-customize-spree-ember-4-customization-html-"><strong>Next, you&#39;ll probably want to <a href="./4-customization.html">customize Spree Ember.</a></strong></h4>
 </div>
     </div>

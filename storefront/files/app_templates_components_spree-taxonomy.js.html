@@ -71,55 +71,46 @@
 </ul>
       </div>
       <div id="main-content" class="small-12 large-9 columns">
-<div class="class-definition panel">
-  <div class="page-header">
-    <h3>Component.SpreeBreadcrumbs <small>Class</small></h3>
-  </div>
-
-  <div class="well well-small">
-
-      <div class="extends">
-        <p>Extends Ember.Component</p>
-      </div>
-
-      <div class="foundat">
-        <p>Defined in: <a href="../files/app_templates_components_spree-breadcrumbs.js.html#l3"><code>app&#x2F;templates&#x2F;components&#x2F;spree-breadcrumbs.js:3</code></a></p>
-      </div>
-
-
-<!--
- -->
-
-
-  </div>
-
-
-  <div class="well well-small">
-    <p>Allows Breadcrumb style interaction for the Checkout Route.</p>
-<p><strong>To Override:</strong> You'll need to run the components generator:</p>
-<pre class="code prettyprint"><code class="language-bash">ember g spree-ember-storefront-components
-</code></pre>
-<p>This will install all of the Spree Ember Storefront component files into your
-host application at <code>app/components/spree-*.js</code>, ready to be extended or
-overriden.</p>
-
-  </div>
-
+<div class="page-header">
+    <h3>app/templates/components/spree-taxonomy.js <small>File</small></h3>
 </div>
 
-<div class="panel">
-  <ul class="tabs" data-tab>
-  </ul>
-</div>
+<div class="file">
+<pre class="language-javascript">
+<code class="language-javascript">
+import Ember from &#x27;ember&#x27;;
+import layout from &#x27;../templates/components/spree-taxonomy&#x27;;
+/**
+  An item from the Spree Taxonomies side bar component.
 
-<div class="">
-  <div class="tabs-content">
+  **To Override:** You&#x27;ll need to run the components generator:
 
+  &#x60;&#x60;&#x60;bash
+  ember g spree-ember-storefront-components
+  &#x60;&#x60;&#x60;
 
+  This will install all of the Spree Ember Storefront component files into your
+  host application at &#x60;app/components/spree-*.js&#x60;, ready to be extended or
+  overriden.
 
+  @class SpreeTaxonomy
+  @namespace Component
+  @extends Ember.Component
+*/
+export default Ember.Component.extend({
+  layout: layout,
+  childTaxons: Ember.computed(&#x27;taxonomy.taxons&#x27;, function(){
+    var taxons = this.get(&#x27;taxonomy.taxons&#x27;);
+    var parentTaxon = taxons.findBy(&#x27;parentId&#x27;, null);
+    var childTaxons = taxons.filter(function(taxon){
+      return taxon.get(&#x27;parentId&#x27;) === parentTaxon.get(&#x27;id&#x27;);
+    });
+    return childTaxons;
+  })
+});
 
-
-  </div>
+</code>
+</pre>
 </div>
       </div>
     </div>
