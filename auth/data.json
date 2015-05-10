@@ -3,7 +3,7 @@
         "name": "spree-ember-auth",
         "shortName": "auth",
         "description": "The default blueprint for ember-cli addons.",
-        "version": "0.0.1-beta.1.2eb92416"
+        "version": "0.0.1-beta.1.d8ee0c43"
     },
     "files": {
         "addon/authenticators/spree.js": {

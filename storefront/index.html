@@ -81,12 +81,12 @@ engine via <a href="http://github.com/hhff/spree_ams">Spree AMS</a>.</p>
 <ul>
 <li><a href="http://www.spree-ember.com/core/index.html">Spree Ember Core</a></li>
 <li><a href="http://www.spree-ember/checkouts/index.html">Spree Ember Checkouts</a></li>
-<li><a href="https://github.com/artificialio/ember-cli-foundation-sass">Ember CLI Foundation Sass</a></li>
 </ul>
 <h2 id="installation">Installation</h2>
 <pre><code class="lang-bash">ember install spree-ember-storefront
 </code></pre>
-<p>Now, you&#39;ll need to tell Ember where to put the standard Spree routes.</p>
+<p>This will install all of the Storefront templates into your host application.</p>
+<p>Now, you&#39;ll need to tell Ember&#39;s router where to put the standard Spree routes.</p>
 <p>In <code>router.js</code>:</p>
 <pre><code class="lang-javascript">import Ember from &#39;ember&#39;;
 import config from &#39;./config/environment&#39;;
@@ -106,6 +106,17 @@ export default Router;
 </code></pre>
 <p>For full Spree Ember documentation, visit <a href="http://www.spree-ember.com">http://www.spree-ember.com/</a>.</p>
 <p>For more information on using ember-cli, visit <a href="http://www.ember-cli.com/">http://www.ember-cli.com/</a>.</p>
+<h2 id="disable-normalize-css-zurb-foundation">Disable Normalize.css &amp; Zurb Foundation</h2>
+<p>Spree Ember Storefront includes Normalize &amp; Zurb Foundation into your CSS tree.
+If you&#39;d like to disable them, you can optionally do so in your application&#39;s
+<code>Brocfile.js</code>.</p>
+<pre><code class="lang-javascript">var app = new EmberApp({
+  &#39;spree-ember-storefront&#39;: {
+    disableNormalize: true,
+    disableFoundation: true
+  }
+});
+</code></pre>
       </div>
     </div>
   </div>

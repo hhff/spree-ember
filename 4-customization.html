@@ -66,13 +66,17 @@ the defaults for the <code>spree-ember-storefronts</code> package:</p>
 </code></pre>
 <h3 id="zurb-foundation">Zurb Foundation</h3>
 <hr>
-<p>You may have noticed that Zurb Foundation was installed in your host application 
-with <code>spree-ember-storefront</code>.  We chose Zurb Foundation because it allowed us 
-to build a fully responsive frontend without writing a line of custom CSS.</p>
-<p>This means it&#39;s super easy to remove.</p>
-<pre><code class="lang-bash">ember uninstall ember-cli-foundation-sass
+<p>We chose Zurb Foundation because it allowed us to build a fully responsive 
+frontend without writing a line of custom CSS.</p>
+<p>It&#39;s super easy to disable.  Simply edit your application&#39;s
+<code>Brocfile.js</code>:</p>
+<pre><code class="lang-javascript">var app = new EmberApp({
+  &#39;spree-ember-storefront&#39;: {
+    disableNormalize: true,
+    disableFoundation: true
+  }
+});
 </code></pre>
-<p>Then just remove <code>your-app/app/styles/app.scss</code>.</p>
 <h1 id="generators">Generators</h1>
 <p>Generators allow you to copy files from an Ember Addon into your Ember host 
 application.  This way they will override the Addon versions of themselves, and
