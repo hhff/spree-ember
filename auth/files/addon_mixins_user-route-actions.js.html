@@ -116,8 +116,8 @@ export default Ember.Mixin.create({
     @param {Error} error The server error. 
   */
   /**
-    The &#x60;authenticateUser&#x60; call simply wraps the &#x60;session#authenticate&#x60; method
-    provided by Ember Simple Auth.
+    Extracts errors from failed Authenticate and Create actions, and sets them
+    so that the UI can surface them.
 
     @method extractAuthErrors 
     @param {Object} serverError A JSON Payload containing server errors.
@@ -192,9 +192,8 @@ export default Ember.Mixin.create({
       It expects that changes to the &#x60;session.currentUser&#x60; model have been made
       in place, and doesn&#x27;t take any arguments.
       
-      @method createAndAuthenticateUser
-      @return {Ember.RSVP.Promise} A promise that resolves to the &#x60;currentUser&#x60;
-      when successful.
+      @method updateCurrentUser 
+      @return {Subclass of DS.Model} The updated &#x60;currentUser&#x60;.
     */
     updateCurrentUser: function() {
       var _this = this;

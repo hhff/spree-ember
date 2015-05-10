@@ -297,7 +297,7 @@
         {
             "file": "addon/mixins/user-route-actions.js",
             "line": 57,
-            "description": "The `authenticateUser` call simply wraps the `session#authenticate` method\nprovided by Ember Simple Auth.",
+            "description": "Extracts errors from failed Authenticate and Create actions, and sets them\nso that the UI can surface them.",
             "itemtype": "method",
             "name": "extractAuthErrors",
             "params": [
@@ -359,10 +359,10 @@
             "line": 129,
             "description": "The `updateCurrentUser` method attempts to save/update the current Spree user.\nIt expects that changes to the `session.currentUser` model have been made\nin place, and doesn't take any arguments.",
             "itemtype": "method",
-            "name": "createAndAuthenticateUser",
+            "name": "updateCurrentUser",
             "return": {
-                "description": "A promise that resolves to the `currentUser`\nwhen successful.",
-                "type": "Ember.RSVP.Promise"
+                "description": "The updated `currentUser`.",
+                "type": "Subclass of DS.Model"
             },
             "class": "Mixin.UserRouteActions",
             "namespace": "Mixin"

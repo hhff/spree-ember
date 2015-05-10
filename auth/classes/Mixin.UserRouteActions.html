@@ -256,55 +256,6 @@ successful create then authenticate.</p>
           </div>
       </div>
 </div>
-<div id="method_createAndAuthenticateUser" class="method panel item">
-  <h3 class="name"><code>createAndAuthenticateUser</code></h3>
-
-
-
-<!--
-    <p class="returns-inline">
-      <span class="type">Ember.RSVP.Promise</span>
-    </p>
- -->
-
-
-
-
-
-
-
-
-  <div class="meta">
-        <p>
-            Defined in
-    <a href="../files/addon_mixins_user-route-actions.js.html#l129"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:129</code></a>
-    </p>
-
-
-
-  </div>
-
-  <div class="description">
-    <p>The <code>updateCurrentUser</code> method attempts to save/update the current Spree user.
-It expects that changes to the <code>session.currentUser</code> model have been made
-in place, and doesn't take any arguments.</p>
-
-  </div>
-
-
-
-      <div class="returns">
-          <hr />
-          <h4>Returns:</h4>
-
-          <div class="returns-description">
-                      <span class="type">Ember.RSVP.Promise</span>:
-                  <p>A promise that resolves to the <code>currentUser</code>
-when successful.</p>
-
-          </div>
-      </div>
-</div>
 <div id="method_extractAuthErrors" class="method panel item">
   <h3 class="name"><code>extractAuthErrors</code></h3>
 
@@ -341,8 +292,8 @@ when successful.</p>
   </div>
 
   <div class="description">
-    <p>The <code>authenticateUser</code> call simply wraps the <code>session#authenticate</code> method
-provided by Ember Simple Auth.</p>
+    <p>Extracts errors from failed Authenticate and Create actions, and sets them
+so that the UI can surface them.</p>
 
   </div>
 
@@ -372,6 +323,54 @@ provided by Ember Simple Auth.</p>
           <div class="returns-description">
                       <span class="type">Object</span>:
                   <p>A normalized errors object.</p>
+
+          </div>
+      </div>
+</div>
+<div id="method_updateCurrentUser" class="method panel item">
+  <h3 class="name"><code>updateCurrentUser</code></h3>
+
+
+
+<!--
+    <p class="returns-inline">
+      <span class="type">Subclass of DS.Model</span>
+    </p>
+ -->
+
+
+
+
+
+
+
+
+  <div class="meta">
+        <p>
+            Defined in
+    <a href="../files/addon_mixins_user-route-actions.js.html#l129"><code>addon&#x2F;mixins&#x2F;user-route-actions.js:129</code></a>
+    </p>
+
+
+
+  </div>
+
+  <div class="description">
+    <p>The <code>updateCurrentUser</code> method attempts to save/update the current Spree user.
+It expects that changes to the <code>session.currentUser</code> model have been made
+in place, and doesn't take any arguments.</p>
+
+  </div>
+
+
+
+      <div class="returns">
+          <hr />
+          <h4>Returns:</h4>
+
+          <div class="returns-description">
+                      <span class="type">Subclass of DS.Model</span>:
+                  <p>The updated <code>currentUser</code>.</p>
 
           </div>
       </div>
