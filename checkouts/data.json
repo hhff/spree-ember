@@ -542,7 +542,18 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 54,
+            "line": 53,
+            "description": "Provided by Ember FSM, returns true when there's an active transition.  Handy\nfor showing customers loading states during the checkout.",
+            "itemtype": "property",
+            "name": "isLoading",
+            "type": "Boolean",
+            "default": "false",
+            "class": "Service.Checkouts",
+            "namespace": "Service"
+        },
+        {
+            "file": "app/services/checkouts.js",
+            "line": 61,
             "description": "A reference to the Spree Service.",
             "itemtype": "property",
             "name": "spree",
@@ -552,7 +563,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 61,
+            "line": 68,
             "description": "A reference to the Spree Object's `currentOrder`.",
             "itemtype": "property",
             "name": "currentOrder",
@@ -562,7 +573,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 68,
+            "line": 75,
             "description": "Used by Ember FSM to name the `initialState`.",
             "itemtype": "property",
             "name": "fsmStates",
@@ -572,7 +583,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 77,
+            "line": 84,
             "description": "Used by Ember FSM to describe the checkout flow.",
             "itemtype": "property",
             "name": "fsmEvents",
@@ -582,7 +593,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 163,
+            "line": 170,
             "description": "If a state name is passed to this method, the state machine will attempt to\ntransition directly to that state.  If not, we will attempt to transition\nto the next state in the checkout flow.",
             "itemtype": "method",
             "name": "transition",
@@ -602,7 +613,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 195,
+            "line": 202,
             "description": "Called whenever the State Machine enters \"Address\".  Ensures that an address\nobject exists for the order's `shipAddress`.",
             "itemtype": "method",
             "name": "_ensureShipAddressExists",
@@ -613,7 +624,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 209,
+            "line": 216,
             "description": "Called whenever the State Machine enters \"Payment\".  Ensures that a payment\nand source object exists for the `currentOrder`.",
             "itemtype": "method",
             "name": "_ensurePaymentExists",
@@ -624,7 +635,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 227,
+            "line": 234,
             "description": "When `validateOrder` fails, the State Machine will automatically transition\nto \"failed\".  Here, we listen to that transition, and then automatically\nrun this method, to reset the State Machine to the State of the \n`currentOrder`.\n\nNote: Because Ember QUnit relies on returned promise for Unit tests, we \ndisable this method in `test`, and manually reset the State Machine when\ntesting failed transitions.",
             "itemtype": "method",
             "name": "_resetStateMachine",
@@ -635,7 +646,7 @@
         },
         {
             "file": "app/services/checkouts.js",
-            "line": 243,
+            "line": 250,
             "description": "Used to save changes to the `currentOrder` to Spree's Checkouts API.  Is only\ncalled by the state machine when advancing to a later state in the flow.",
             "itemtype": "method",
             "name": "_validateOrder",
