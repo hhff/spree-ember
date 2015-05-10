@@ -20,7 +20,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "spree-ember-core/serializers/spree",
             "name": "spree-ember-core_serializers_spree",
-            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.\n\n```javascript\nvar model = DS.Model.extend({\n  firstName: DS.attr(\"string\", { persistToServer: true }),\n  lastName: DS.attr(\"string\")\n})\n\nvar hugh =  model.create()\n\nhugh.setProperties({\n  firstName: \"Hugh\",\n  lastName: \"Francis\"\n})\n\nspreeSerializer.serialize(hugh);\n// => Results in payload:\nuser: {\n  first_name: \"Hugh\"\n}\n```"
+            "description": "The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements\na stricter `serialize` method.\n\n```javascript\nvar model = DS.Model.extend({\n  firstName: DS.attr(\"string\", { persistToServer: true }),\n  lastName: DS.attr(\"string\")\n});\n\nvar hugh = model.create();\n\nhugh.setProperties({\n  firstName: \"Hugh\",\n  lastName: \"Francis\"\n});\n\nspreeSerializer.serialize(hugh);\n// => Results in payload:\nuser: {\n  first_name: \"Hugh\"\n}\n```"
         },
         {
             "displayName": "spree-ember-core/services/spree",

@@ -74,14 +74,14 @@ import DS from &#x27;ember-data&#x27;;
   var model = DS.Model.extend({
     firstName: DS.attr(&quot;string&quot;, { persistToServer: true }),
     lastName: DS.attr(&quot;string&quot;)
-  })
+  });
 
-  var hugh =  model.create()
+  var hugh = model.create();
   
   hugh.setProperties({
     firstName: &quot;Hugh&quot;,
     lastName: &quot;Francis&quot;
-  })
+  });
 
   spreeSerializer.serialize(hugh);
   // =&gt; Results in payload:
