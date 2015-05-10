@@ -3,7 +3,7 @@
         "name": "spree-ember-storefront",
         "shortName": "storefront",
         "description": "A fully functional frontend starting point for a Spree Ember storefront.",
-        "version": "0.0.1-beta.1.d8ee0c43"
+        "version": "0.0.1-beta.1.b0ce01e3"
     },
     "files": {
         "addon/components/spree-address.js": {
