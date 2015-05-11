@@ -8,8 +8,8 @@ import DS from 'ember-data';
   for Rails Applications that have Spree added, but have regular endpoints that
   don't hit the Spree endpoint.
 
-  @class Store
-  @namespace SpreeEmber
+  @class Spree 
+  @namespace Store
   @module spree-ember-core/stores/spree
   @uses SpreeEmber.Adapter, SpreeEmber.Serializer, Ember.Evented
   @extends DS.Store

@@ -1,0 +1,26 @@
+{{spree-input value=source.number
+              errors=source.errors.number
+              attributeName="Card Number"}}
+              
+{{spree-input value=source.name
+              errors=source.errors.name
+              attributeName="Name"}}
+
+<div class='row'>              
+  <div class='small-4 columns'>
+    {{spree-input value=source.month
+                errors=source.errors.month
+                attributeName="Month"}}
+  </div>
+  <div class='small-4 columns'>
+    {{spree-input value=source.year 
+                  errors=source.errors.year
+                  attributeName="Year"}}
+  </div>
+  <div class='small-4 columns'>
+    {{spree-input value=source.verificationValue
+                  errors=source.errors.verificationValue
+                  attributeName="Verification Value"}}
+  </div>            
+</div>
+

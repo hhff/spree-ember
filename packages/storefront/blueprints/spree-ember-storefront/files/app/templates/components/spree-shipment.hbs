@@ -1,0 +1,31 @@
+<div class="panel">
+  <div class="row">
+    <div class="small-12 columns">
+      <h6>Stock Location: {{shipment.stockLocation.name}}, {{shipment.number}}</h6>
+      <hr>
+    </div>
+    {{#each lineItem in shipment.lineItems}}
+      <div class="small-12 columns">
+        <div class="row">
+          <div class="small-2 columns">
+            <img {{bind-attr src=lineItem.variant.images.firstObject.smallUrl}} >
+          </div>
+          <div class="small-6 columns">
+            <h6>{{lineItem.variant.name}}</h6>
+          </div>
+          <div class="small-2 columns">
+            <h6>{{lineItem.quantity}}</h6>
+          </div>
+          <div class="small-2 columns text-right">
+            <h6>{{lineItem.displayAmount}}</h6>
+          </div>
+        </div>
+        <hr>
+      </div>
+    {{/each}}
+    <div class="small-12 columns">
+      <h6>Choose a shipping Rate</h6>
+      {{view "select" content=shipment.shippingRates optionLabelPath="content.name" selection=shipment.selectedShippingRate}}
+    </div>
+  </div>
+</div>

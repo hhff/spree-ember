@@ -5,7 +5,8 @@ import DS from 'ember-data';
   The Spree Adapter is responsible for communicating with your Spree store.  It
   assumes your server has the `spree_ams` gem installed.
 
-  @class Adapter
+  @class Spree
+  @namespace Adapter
   @extends DS.ActiveModelAdapter
 */
 

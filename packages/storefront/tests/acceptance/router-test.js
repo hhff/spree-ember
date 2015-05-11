@@ -17,10 +17,3 @@ module('Acceptance: Router', {
   }
 });
 
-test('visiting /', function(assert) {
-  visit('/');
-
-  andThen(function() {
-    assert.equal(currentPath(), 'spree.index');
-  });
-});

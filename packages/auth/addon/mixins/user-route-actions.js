@@ -18,6 +18,7 @@ import Ember from 'ember';
   the [Simple Auth Documentnation](http://ember-simple-auth.com/ember-simple-auth-api-docs.html)
 
   @class UserRouteActions
+  @namespace Mixin
   @extends Ember.Mixin
 */
 
@@ -54,8 +55,8 @@ export default Ember.Mixin.create({
     @param {Error} error The server error. 
   */
   /**
-    The `authenticateUser` call simply wraps the `session#authenticate` method
-    provided by Ember Simple Auth.
+    Extracts errors from failed Authenticate and Create actions, and sets them
+    so that the UI can surface them.
 
     @method extractAuthErrors 
     @param {Object} serverError A JSON Payload containing server errors.
@@ -130,9 +131,8 @@ export default Ember.Mixin.create({
       It expects that changes to the `session.currentUser` model have been made
       in place, and doesn't take any arguments.
       
-      @method createAndAuthenticateUser
-      @return {Ember.RSVP.Promise} A promise that resolves to the `currentUser`
-      when successful.
+      @method updateCurrentUser 
+      @return {Subclass of DS.Model} The updated `currentUser`.
     */
     updateCurrentUser: function() {
       var _this = this;

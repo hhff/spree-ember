@@ -6,6 +6,7 @@ import DS from 'ember-data';
   `saveToCheckouts` method, for using the Spree Checkouts API Endpoint.
 
   @class CanCheckout
+  @namespace Mixin
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({

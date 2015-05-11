@@ -36,7 +36,7 @@ import Ember from 'ember';
   ```
 
   @class Checkouts
-  @extends Ember.Service
+  @namespace Service
   @uses Ember.FSM.Stateful
 */
 export default Ember.Service.extend(Ember.FSM.Stateful, {
@@ -50,7 +50,14 @@ export default Ember.Service.extend(Ember.FSM.Stateful, {
     @type String
     @default "idle"
   */
+  /**
+    Provided by Ember FSM, returns true when there's an active transition.  Handy
+    for showing customers loading states during the checkout.
 
+    @property isLoading
+    @type Boolean 
+    @default false 
+  */
   /**
     A reference to the Spree Service.
     

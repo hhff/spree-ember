@@ -5,6 +5,7 @@ import Ember from 'ember';
   key value pairs to Local Storage.
 
   @class Storable
+  @namespace Mixin
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({

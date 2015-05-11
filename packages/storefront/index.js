@@ -17,5 +17,15 @@ module.exports = {
     });
 
     app.import('vendor/register-storefront.js');
+
+    var options = app.options['spree-ember-storefront'] || {};
+
+    if (!options.disableNormalize) {
+      app.import('vendor/normalize.css');
+    }
+
+    if (!options.disableFoundation) {
+      app.import('vendor/foundation.min.css');
+    }
   }
 };

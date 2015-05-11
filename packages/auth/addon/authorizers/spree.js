@@ -5,7 +5,8 @@ import Ember from 'ember';
   contains the `X-Spree-Token` Header.  This loads the `@current_api_user` 
   attribute in Spree, so that the User can successfully interact with the API.
 
-  @class Authorizer
+  @class Spree 
+  @namespace Authorizer
   @extends SimpleAuthDevise.Authorizer
 */
 export default DeviseAuthorizer.extend({

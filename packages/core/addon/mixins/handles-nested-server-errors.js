@@ -15,6 +15,7 @@ import Ember from 'ember';
   errors to it.
 
   @class HandlesNestedServerErrors
+  @namespace Mixin
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({

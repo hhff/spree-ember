@@ -4,8 +4,8 @@ import DS from 'ember-data';
   the only use case is for accepting Spree's Order Checkout Steps as a raw array of
   strings.
 
-  @class RawTransform
-  @namespace SpreeEmber
+  @class Raw 
+  @namespace Transform
   @module spree-ember-core/transforms/array
   @extends DS.Transform
 */

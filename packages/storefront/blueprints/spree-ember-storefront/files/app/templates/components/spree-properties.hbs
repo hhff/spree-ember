@@ -1,0 +1,16 @@
+{{#if properties.length}}
+  <div class="row">
+    <div class="small-12 columns">
+      <hr>
+      <h4>Properties</h4>
+      <table>
+        {{#each property in properties}}
+          <tr>
+            <td>{{property.presentation}}</td>
+            <td>{{property.value}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+{{/if}}

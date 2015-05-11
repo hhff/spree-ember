@@ -1,0 +1,30 @@
+<div class='row'>
+  <div class='small-12 medium-4 columns'>
+    <h4>Ship Address {{#if isConfirmationPage}}<a {{action 'transitionCheckoutState' 'address'}}>(Edit)</a>{{/if}}</h4>
+    <hr />
+    <h6>{{order.shipAddress.firstname}} {{order.shipAddress.lastname}}</h6>
+    <h6>{{order.shipAddress.address1}}</h6>
+    <h6>{{order.shipAddress.address2}}</h6>
+    <h6>{{order.shipAddress.city}} {{order.shipAddress.state.abbr}} {{order.shipAddress.zipcode}}</h6>
+    <h6>{{order.shipAddress.country.name}}</h6>
+    <h6>Phone {{order.shipAddress.phone}}</h6>
+  </div>
+  <div class='small-12 medium-4 columns'>
+    <h4>Shipments {{#if isConfirmationPage}}<a {{action 'transitionCheckoutState' 'delivery'}}>(Edit)</a>{{/if}}</h4>
+    <hr />
+    {{#each order.shipments as |shipment|}}
+      <h6>From {{shipment.stockLocation.name}} via {{shipment.selectedShippingRate.name}}</h6>
+    {{/each}}
+  </div>
+  <div class='small-12 medium-4 columns'>
+    <h4>Payment {{#if isConfirmationPage}}<a {{action 'transitionCheckoutState' 'payment'}}>(Edit)</a>{{/if}}</h4>
+    <hr />
+    <h6>Ending in {{order.activePayment.source.lastDigits}}</h6>
+    <h6>{{order.activePayment.source.name}}</h6>
+  </div>
+  <div class='small-12 columns'>
+    <hr />
+    {{spree-lineitems lineItems=order.lineItems}}
+    {{spree-details order=order}}
+  </div>
+</div>

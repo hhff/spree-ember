@@ -16,11 +16,3 @@ module('Acceptance: Walkthrough', {
     Ember.run(application, 'destroy');
   }
 });
-
-test('visiting /', function(assert) {
-  visit('/');
-
-  andThen(function() {
-    assert.equal(currentPath(), 'spree.index');
-  });
-});

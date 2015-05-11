@@ -9,7 +9,8 @@ import Ember from 'ember';
   this.spree.addToCart(variantModel, 5);
   ```
 
-  @class CurrentOrderSupportMixin
+  @class CurrentOrderSupport
+  @namespace Mixin
   @extends Ember.Mixin
 */
 export default Ember.Mixin.create({

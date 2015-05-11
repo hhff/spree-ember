@@ -10,7 +10,7 @@ import Storable from 'spree-ember-core/mixins/storable';
   a seperate Store.
 
   @class Spree
-  @namespace SpreeEmber
+  @namespace Service
   @module spree-ember-core/services/spree
   @extends Ember.Object
   @uses Ember.Evented, SpreeEmber.Storable, SpreeEmber.Store

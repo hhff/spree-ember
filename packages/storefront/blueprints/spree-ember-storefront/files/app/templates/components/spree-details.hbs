@@ -1,0 +1,45 @@
+<form>
+  <fieldset>
+    <legend>Order Details</legend>
+    <div class="row">
+      <div class="small-6 columns">
+        <h6>Item Total:</h6>
+      </div>
+      <div class="small-6 columns text-right">
+        <h6>{{order.itemTotal}}</h6>
+      </div>
+    </div>
+    
+    {{#if order.shipmentTotal}}
+      <div class="row">
+        <div class="small-6 columns">
+          <h6>Shipping:</h6>
+        </div>
+        <div class="small-6 columns text-right">
+          <h6>{{order.shipmentTotal}}</h6>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if order.includedTaxTotal}}
+      <div class="row">
+        <div class="small-6 columns">
+          <h6>Tax:</h6>
+        </div>
+        <div class="small-6 columns text-right">
+          <h6>{{order.includedTaxTotal}}</h6>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="row">
+      <div class="small-6 columns">
+        <h6>Order Total:</h6>
+      </div>
+      <div class="small-6 columns text-right">
+        <h6>{{order.total}}</h6>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
