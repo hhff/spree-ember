@@ -110,7 +110,7 @@ import layout from &#x27;../templates/components/spree-input&#x27;;
 export default Ember.Component.extend({
   layout: layout,
 
-  displayErrors: Ember.computed(&#x27;errors.@each&#x27;, function() {
+  displayErrors: Ember.computed(&#x27;errors.@each&#x27;, &#x27;attributeName&#x27;,  function() {
     var errors = this.get(&#x27;errors&#x27;) || [];
     var attributeName = this.get(&#x27;attributeName&#x27;);
     

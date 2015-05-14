@@ -3,7 +3,7 @@
         "name": "spree-ember-core",
         "shortName": "core",
         "description": "Core data infrastructure for a Spree Ember Application.",
-        "version": "0.0.1-beta.1.38ce49b1"
+        "version": "0.0.1-beta.1.384360e7"
     },
     "files": {
         "addon/adapters/spree.js": {
@@ -179,7 +179,7 @@
             "module": "spree-ember-core/serializers/spree",
             "namespace": "Adapter",
             "file": "addon/adapters/spree.js",
-            "line": 4,
+            "line": 3,
             "description": "The Spree Adapter is responsible for communicating with your Spree store.  It\nassumes your server has the `spree_ams` gem installed.",
             "extends": "DS.ActiveModelAdapter"
         },
@@ -302,7 +302,7 @@
     "classitems": [
         {
             "file": "addon/adapters/spree.js",
-            "line": 14,
+            "line": 13,
             "description": "The container lookup name for the default Spree serializer.",
             "itemtype": "property",
             "name": "defaultSerializer",
@@ -314,7 +314,18 @@
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 24,
+            "line": 22,
+            "description": "A refernce to the Spree Service.",
+            "itemtype": "property",
+            "name": "spree",
+            "type": "Subclass of Ember.Service",
+            "readonly": "",
+            "class": "Adapter.Spree",
+            "namespace": "Adapter"
+        },
+        {
+            "file": "addon/adapters/spree.js",
+            "line": 30,
             "description": "A computed property for the server namespace.  If it's not set in the Host\nApplication's spree configuration by `spree.apiNamespace`, it will default to\n`api/ams`, to work out of the box with the `spree_ams` Gem.",
             "itemtype": "property",
             "name": "namespace",
@@ -326,7 +337,7 @@
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 40,
+            "line": 44,
             "description": "A computed property for the server host.  If it's not set in the Host Application's\nspree configuration by `spree.apiHost`, it will default to 'http://localhost:3000'\nin all environments aside from test, where it will default to `null` (to satisfy\nPretender).",
             "itemtype": "property",
             "name": "host",
@@ -338,7 +349,7 @@
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 66,
+            "line": 70,
             "description": "A computed property for the adapter headers.  We use these headers to authenticate\nthe user against the order we're trying to modify.  The `spree_ams` gem will\nlook for these, and do the work here.",
             "itemtype": "property",
             "name": "headers",
@@ -350,7 +361,7 @@
         },
         {
             "file": "addon/adapters/spree.js",
-            "line": 90,
+            "line": 94,
             "description": "Overrides the default buildURL call to check for the `_useCheckoutsEndpoint`\non the snapshot, (applied to `order` models in the `CanCheckout` mixin). If\nso, the resulting URL will be `{hostname}/{namespace}/checkouts/{record_id}`.\nIf the flag isn't present, `_super` is called and the record URL is built\nnormally.",
             "itemtype": "method",
             "name": "buildURL",
@@ -435,8 +446,8 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 25,
-            "description": "Persists an object to Local Storage.",
+            "line": 23,
+            "description": "Persists an object to Local Storage.  Will overwrite existing values, and\ncan be used to nullify an existing value.",
             "example": [
                 "\n```javascript\nthis.spree.persist({\n  \"favoriteColor\": \"red\"\n});\n```"
             ],
@@ -458,7 +469,7 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 48,
+            "line": 58,
             "description": "Sets key value pairs on the Host object from Local Storage.  Usually called\nin intitalizers for Spree Ember addons.",
             "example": [
                 "\n```javascript\nthis.spree.restore()\n```"
@@ -474,7 +485,7 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 64,
+            "line": 74,
             "description": "Sets key value pairs on the Host object.",
             "itemtype": "method",
             "name": "_setOnHost",
@@ -496,7 +507,7 @@
         },
         {
             "file": "addon/mixins/storable.js",
-            "line": 79,
+            "line": 89,
             "description": "Returns a Parsed Object from the Local Storage Key.",
             "itemtype": "method",
             "name": "_fetchLocalStorageData",
