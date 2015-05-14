@@ -15,7 +15,7 @@ import SpreeInput from 'spree-ember-storefront/components/spree-input';
 
   @class SpreeSelect
   @namespace Component
-  @extends Ember.Component
+  @extends SpreeInput
 */
 export default SpreeInput.extend({
   layout: layout

@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-
 /**
   The Spree Adapter is responsible for communicating with your Spree store.  It
   assumes your server has the `spree_ams` gem installed.
@@ -20,7 +19,14 @@ export default DS.ActiveModelAdapter.extend({
     @default '-spree'
   */
   defaultSerializer: '-spree',
+  /**
+    A refernce to the Spree Service.
 
+    @property spree
+    @type Subclass of Ember.Service
+    @readOnly
+  */
+  spree: Ember.inject.service("spree"),
   /**
     A computed property for the server namespace.  If it's not set in the Host
     Application's spree configuration by `spree.apiNamespace`, it will default to
@@ -35,8 +41,6 @@ export default DS.ActiveModelAdapter.extend({
     var namespace = this.get('spree.config.namespace');
     return namespace || 'api/ams';
   }),
-
-
   /**
     A computed property for the server host.  If it's not set in the Host Application's
     spree configuration by `spree.apiHost`, it will default to 'http://localhost:3000'
@@ -74,8 +78,8 @@ export default DS.ActiveModelAdapter.extend({
     @default {}
   */
   headers: Ember.computed('spree.guestToken', 'spree.orderId', function() {
-    var guestToken = this.spree.get('guestToken');
-    var orderId    = this.spree.get('orderId');
+    var guestToken = this.get('spree.guestToken');
+    var orderId    = this.get('spree.orderId');
 
     if (guestToken && orderId) {
       return {

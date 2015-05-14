@@ -17,6 +17,7 @@ apprpriate hooks and data sets available on the Checkouts service.
     {{#if spree.checkouts.isInAddress}}
       {{spree-input value=spree.currentOrder.email 
                     errors=spree.currentOrder.errors.email
+                    placeholder="Email"
                     attributeName="Email"}}
       {{spree-address address=spree.currentOrder.shipAddress countries=spree.countries}}
     {{/if}}

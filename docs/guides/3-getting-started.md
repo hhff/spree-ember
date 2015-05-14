@@ -6,7 +6,8 @@ The quickest way to get starting using Spree Ember is to install the
 Under the hood, the `spree-ember-storefront` addon uses:
 - `spree-ember-core`
 - `spree-ember-checkouts`
-- `ember-cli-foundation-sass`
+- `Normalize.css`
+- `Zurb Foundation 5.5`
 
 ### Ember CLI
 ***

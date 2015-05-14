@@ -40,6 +40,9 @@ var app = new EmberApp({
 });
 ```
 
+**Note:** This is also useful if you'd like to use a more configurable approach to
+using Zurb, such as [ember-cli-foundation-sass](https://github.com/artificialio/ember-cli-foundation-sass).
+
 # Generators
 
 Generators allow you to copy files from an Ember Addon into your Ember host 
