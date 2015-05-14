@@ -35,6 +35,7 @@ system "npm link spree-ember-core"
 system "npm link spree-ember-storefront"
 system "npm install && bower install"
 system "npm link"
+system "bower link"
 Dir.chdir spree_ember
 
 puts "Spree Ember: Done setting up local packages for development."
