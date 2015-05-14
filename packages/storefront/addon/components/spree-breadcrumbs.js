@@ -28,7 +28,7 @@ export default Ember.Component.extend({
 
     for (var i = 0; i < checkoutSteps.length; i++) {
       var stepName          = checkoutSteps[i];
-      var stepObject        = Ember.Object.create({ name: stepName, link: "checkout."+stepName });
+      var stepObject        = Ember.Object.create({ name: stepName });
       var currentStateIndex = checkoutSteps.indexOf(checkoutState);
       var stepIndex         = checkoutSteps.indexOf(stepName);
 

@@ -20,10 +20,9 @@ export default Ember.Mixin.create({
     @default 'storable'
   */
   localStorageKey: 'storable',
-
-
   /**
-    Persists an object to Local Storage.
+    Persists an object to Local Storage.  Will overwrite existing values, and
+    can be used to nullify an existing value.
 
     @example
     ```javascript
@@ -40,7 +39,18 @@ export default Ember.Mixin.create({
   persist: function(data) {
     var key = this.get('localStorageKey');
     this._setOnHost(data);
-    var stringifiedData = JSON.stringify(data || {});
+    
+    // Get existing data.  Don't set it on the host.
+    var existingData = this._fetchLocalStorageData();
+    var allData = Ember.merge(existingData, data);
+
+    // Remove nullified values to avoid "null" strings.
+    for (var dataKey in allData) {
+      var value = allData[dataKey];
+      if (!value) { delete allData[dataKey]; }
+    }
+
+    var stringifiedData = JSON.stringify(allData || {});
     localStorage.setItem(key, stringifiedData);
     return true;
   },

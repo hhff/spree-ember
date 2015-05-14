@@ -4,9 +4,15 @@ import { module, test } from 'qunit';
 
 module('CanCheckoutMixin');
 
-// Replace this with your real tests.
 test('it works', function(assert) {
   var CanCheckoutObject = Ember.Object.extend(CanCheckoutMixin);
   var subject = CanCheckoutObject.create();
   assert.ok(subject);
+});
+
+test('it has the saveToCheckouts() function', function(assert) {
+  var CanCheckoutObject = Ember.Object.extend(CanCheckoutMixin);
+  var subject = CanCheckoutObject.create();
+  assert.ok(subject);
+  assert.ok(subject["saveToCheckouts"]);
 });
