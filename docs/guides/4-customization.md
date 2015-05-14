@@ -10,7 +10,7 @@ All Spree Ember configuration is done through the Ember CLI environment.  Here's
 the defaults for the `spree-ember-storefronts` package:
 
 ```javascript
-"spree": {
+ENV["spree"] = {
   apiHost: "http://localhost:3000",
   namespace: "api/ams",
   mount: "/",
@@ -39,9 +39,8 @@ var app = new EmberApp({
   }
 });
 ```
-
-**Note:** This is also useful if you'd like to use a more configurable approach to
-using Zurb, such as [ember-cli-foundation-sass](https://github.com/artificialio/ember-cli-foundation-sass).
+**Note:** This is also useful if you'd like to use a more configurable approach
+to Zurb Foundation, such as [ember-cli-foundation-sass](https://github.com/artificialio/ember-cli-foundation-sass).
 
 # Generators
 
