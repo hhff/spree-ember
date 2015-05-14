@@ -17,6 +17,11 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../assets/css/spree-ember.css">
 
+  <meta content="http://www.spree-ember.com/assets/img/header.jpg" property="og:image">
+  <meta content="Spree Ember" property="og:title">
+  <meta content="/" property="og:url">
+  <meta content="An Ember Ecosystem for Spree Commerce." property="og:description">  
+
   <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
 </head>
 
@@ -95,7 +100,7 @@ import SpreeInput from &#x27;spree-ember-storefront/components/spree-input&#x27;
 
   @class SpreeSelect
   @namespace Component
-  @extends SpreeInput
+  @extends Ember.Component
 */
 export default SpreeInput.extend({
   layout: layout

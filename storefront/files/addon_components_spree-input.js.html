@@ -17,6 +17,11 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../assets/css/spree-ember.css">
 
+  <meta content="http://www.spree-ember.com/assets/img/header.jpg" property="og:image">
+  <meta content="Spree Ember" property="og:title">
+  <meta content="/" property="og:url">
+  <meta content="An Ember Ecosystem for Spree Commerce." property="og:description">  
+
   <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
 </head>
 
@@ -100,7 +105,7 @@ import layout from &#x27;../templates/components/spree-input&#x27;;
 export default Ember.Component.extend({
   layout: layout,
 
-  displayErrors: Ember.computed(&#x27;errors.@each&#x27;, &#x27;attributeName&#x27;,  function() {
+  displayErrors: Ember.computed(&#x27;errors.@each&#x27;, function() {
     var errors = this.get(&#x27;errors&#x27;) || [];
     var attributeName = this.get(&#x27;attributeName&#x27;);
     

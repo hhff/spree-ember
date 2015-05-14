@@ -17,6 +17,11 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../assets/css/spree-ember.css">
 
+  <meta content="http://www.spree-ember.com/assets/img/header.jpg" property="og:image">
+  <meta content="Spree Ember" property="og:title">
+  <meta content="/" property="og:url">
+  <meta content="An Ember Ecosystem for Spree Commerce." property="og:description">  
+
   <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
 </head>
 
@@ -85,9 +90,10 @@ export default Ember.Mixin.create({
     @default &#x27;storable&#x27;
   */
   localStorageKey: &#x27;storable&#x27;,
+
+
   /**
-    Persists an object to Local Storage.  Will overwrite existing values, and
-    can be used to nullify an existing value.
+    Persists an object to Local Storage.
 
     @example
     &#x60;&#x60;&#x60;javascript
@@ -104,18 +110,7 @@ export default Ember.Mixin.create({
   persist: function(data) {
     var key = this.get(&#x27;localStorageKey&#x27;);
     this._setOnHost(data);
-    
-    // Get existing data.  Don&#x27;t set it on the host.
-    var existingData = this._fetchLocalStorageData();
-    var allData = Ember.merge(existingData, data);
-
-    // Remove nullified values to avoid &quot;null&quot; strings.
-    for (var dataKey in allData) {
-      var value = allData[dataKey];
-      if (!value) { delete allData[dataKey]; }
-    }
-
-    var stringifiedData = JSON.stringify(allData || {});
+    var stringifiedData = JSON.stringify(data || {});
     localStorage.setItem(key, stringifiedData);
     return true;
   },
