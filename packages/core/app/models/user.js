@@ -20,5 +20,6 @@ export default DS.Model.extend({
   unlockToken:          DS.attr('string'),
   updatedAt:            DS.attr('date'),
   password:             DS.attr('string', { persistToServer: true }),
-  passwordConfirmation: DS.attr('string', { persistToServer: true })
+  passwordConfirmation: DS.attr('string', { persistToServer: true }),
+  orders:               DS.hasMany('order', { inverse: 'user', async: true })
 });

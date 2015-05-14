@@ -8,11 +8,12 @@ import layout from '../templates/components/spree-auth';
   **To Override:** You'll need to run the generator:
 
   ```bash
-  ember g spree-ember-auth-component
+  ember g spree-ember-auth-components
   ```
 
-  This will install a layout file at: `app/templates/components/spree-auth`, and
-  a component file at `app/components/spree-auth`, ready to be extended.
+  This will install all of the Spree Ember Auth component files into your
+  host application at `app/components/spree-*.js`, ready to be extended or
+  overriden.
 
   @class SpreeAuth
   @namespace Component
@@ -21,8 +22,8 @@ import layout from '../templates/components/spree-auth';
 export default Ember.Component.extend({
   layout: layout,
   /**
-    The mode of the component. 
-    
+    The mode of the component.
+
     @property isSignup
     @type Boolean
     @default false
@@ -31,15 +32,15 @@ export default Ember.Component.extend({
   /**
     An array of server errors.
 
-    @property errors 
+    @property errors
     @type Object
-    @default {} 
+    @default {}
   */
   errors: {},
   /**
     The action that is sent when `isSignup` is `false`.  This is caught by the action
     defined in the `spree-auth-user-route-mixin`.
-    
+
     @property authAction
     @type String
     @default 'authenticateUser'
@@ -48,7 +49,7 @@ export default Ember.Component.extend({
   /**
     The action that is sent when `isSignup` is `true`.  This is caught by the action
     defined in the `spree-auth-user-route-mixin`.
-    
+
     @property createAction
     @type String
     @default 'createAndAuthenticateUser'
@@ -65,7 +66,7 @@ export default Ember.Component.extend({
       var passwordConfirmation = this.get('passwordConfirmation');
 
       var action = this.get('isSignup') ? 'createAction' : 'authAction';
-      
+
       this.sendAction(action, {
         identification: identification,
         password: password,

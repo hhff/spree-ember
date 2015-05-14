@@ -101,7 +101,7 @@ export default DS.ActiveModelAdapter.extend({
     @method buildURL
   */
   buildURL: function(record, suffix, snapshot) {
-    if (record === "order" && snapshot.attr('_useCheckoutsEndpoint')) {
+    if (record === "order" && snapshot && snapshot.attr('_useCheckoutsEndpoint')) {
       record = "checkout";
     }
     return this._super.apply(this, [record, suffix, snapshot]);
