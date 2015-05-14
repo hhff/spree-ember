@@ -3,7 +3,7 @@
         "name": "spree-ember-storefront",
         "shortName": "storefront",
         "description": "A fully functional frontend starting point for a Spree Ember storefront.",
-        "version": "0.0.1-beta.1.b0ce01e3"
+        "version": "0.0.1-beta.1.2e653f64"
     },
     "files": {
         "addon/components/spree-address.js": {
@@ -442,7 +442,7 @@
             "file": "addon/components/spree-select.js",
             "line": 3,
             "description": "A select component with Label and outlet for validation errors.\n\n**To Override:** You'll need to run the components generator:\n\n```bash\nember g spree-ember-storefront-components\n```\n\nThis will install all of the Spree Ember Storefront component files into your\nhost application at `app/components/spree-*.js`, ready to be extended or\noverriden.",
-            "extends": "Ember.Component"
+            "extends": "SpreeInput"
         },
         "Component.SpreeShipment": {
             "name": "Component.SpreeShipment",

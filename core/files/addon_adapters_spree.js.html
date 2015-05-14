@@ -65,7 +65,6 @@
 <code class="language-javascript">
 import Ember from &#x27;ember&#x27;;
 import DS from &#x27;ember-data&#x27;;
-
 /**
   The Spree Adapter is responsible for communicating with your Spree store.  It
   assumes your server has the &#x60;spree_ams&#x60; gem installed.
@@ -85,7 +84,14 @@ export default DS.ActiveModelAdapter.extend({
     @default &#x27;-spree&#x27;
   */
   defaultSerializer: &#x27;-spree&#x27;,
+  /**
+    A refernce to the Spree Service.
 
+    @property spree
+    @type Subclass of Ember.Service
+    @readOnly
+  */
+  spree: Ember.inject.service(&quot;spree&quot;),
   /**
     A computed property for the server namespace.  If it&#x27;s not set in the Host
     Application&#x27;s spree configuration by &#x60;spree.apiNamespace&#x60;, it will default to
@@ -100,8 +106,6 @@ export default DS.ActiveModelAdapter.extend({
     var namespace = this.get(&#x27;spree.config.namespace&#x27;);
     return namespace || &#x27;api/ams&#x27;;
   }),
-
-
   /**
     A computed property for the server host.  If it&#x27;s not set in the Host Application&#x27;s
     spree configuration by &#x60;spree.apiHost&#x60;, it will default to &#x27;http://localhost:3000&#x27;
@@ -139,8 +143,8 @@ export default DS.ActiveModelAdapter.extend({
     @default {}
   */
   headers: Ember.computed(&#x27;spree.guestToken&#x27;, &#x27;spree.orderId&#x27;, function() {
-    var guestToken = this.spree.get(&#x27;guestToken&#x27;);
-    var orderId    = this.spree.get(&#x27;orderId&#x27;);
+    var guestToken = this.get(&#x27;spree.guestToken&#x27;);
+    var orderId    = this.get(&#x27;spree.orderId&#x27;);
 
     if (guestToken &amp;&amp; orderId) {
       return {
