@@ -16,6 +16,12 @@ First - you'll need the Ember CLI.  Head over to
 [Getting Started with Ember CLI](http://www.ember-cli.com/#getting-started) for 
 instructions.
 
+**TL;DR**
+
+```bash
+npm install -g ember-cli
+```
+
 Once installed, you'll want to spin up a new Ember application.
 
 ```bash
@@ -39,6 +45,12 @@ ember install spree-ember-storefront
 
 This command will copy all of the storefront route & component templates to your 
 application, for easy customization.
+
+If you have linked the spree-ember(http://github.com/hhff/spree-ember) repo with ```bootstrap.rb``` first run this command. 
+```bash
+npm link spree-ember-storefront
+```
+Then add ```"spree-ember-storefront": "*"``` to your package.json
 
 ### Importing the Spree Storefront Router
 ***

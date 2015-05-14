@@ -12,6 +12,15 @@ Currently, we're only supporting the `3-0-stable` branch of Spree.  Head over to
 that [branch on Spree's Github](https://github.com/spree/spree/tree/3-0-stable) 
 and follow the installation steps.
 
+**TL;DR**
+
+```bash
+gem install rails -v 4.2.1
+gem install spree
+rails _4.2.1_ new my_store_backend -B
+spree install my_store_backend --branch "3-0-stable"
+```
+
 **Answer 'yes' to all of the prompts to install all Seed and Sample data**.
 
 ### Add spree_ams to the Gemfile
@@ -25,6 +34,21 @@ namespace to Spree's default API routes, that respond as per the
 
 Follow the instructions on the Spree AMS Readme to install it into your Spree
 application.
+
+**TL;DR**
+
+
+```bash
+cd my_store_backend
+echo "\ngem 'spree_ams', :github => 'hhff/spree_ams', :branch => '3-0-alpha'" >> Gemfile
+bundle
+rails g spree:api:ams:install
+```
+
+In ```config/environments/development.rb``` add:
+```
+config.action_controller.asset_host = 'http://localhost:3000'
+```
 
 ### Start your Rails Server
 ***
