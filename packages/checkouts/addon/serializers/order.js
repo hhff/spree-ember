@@ -92,7 +92,7 @@ export default SpreeSerializer.extend({
         break;
       case "payment":
         var payment = order.get('activePayment');
-        if (payment && payment.get('isDirty')  && payment.get('source.isDirty')) {
+        if (payment && (payment.get('isDirty') || payment.get('source.isDirty'))) {
           data['payment_source'] = {};
           data.order['payments_attributes'] = [{payment_method_id: payment.get('paymentMethod.id')}];
           data.payment_source[payment.get('paymentMethod.id')] = payment.get('source').serialize();
