@@ -33,7 +33,32 @@ export default Ember.Mixin.create({
     this.set('_useCheckoutsEndpoint', true);
     var _this = this;
     return this.save().finally(function() {
-      _this.set('_useCheckoutsEndpoint', false);
+      _this._afterCheckoutsSave();
     });
+  },
+
+  /**
+    A method for automatically removing the `_useCheckoutsFlag` and cleaning up 
+    any hanging payment objects after a `saveToCheckouts` call.
+
+    @method _afterCheckoutsSave
+    @private
+  */
+  _afterCheckoutsSave: function() {
+    this.set('_useCheckoutsEndpoint', false);
+    
+    // This is a hack because Ember Data doesn't coalesce the new record when the
+    // server returns a saved payment.  There's probably something I'm missing
+    // here, but basically this checks if there's a payment with an ID, and if
+    // so invokes "deleteRecord" on the null ID payment objects.
+
+    // I would be super happy if someone decided to fix this so that the initial
+    // payment object gets cleaned up when the server responds in a more "Ember
+    // Data-ey" way.
+    var payments = this.get('payments');
+    var savedPaymentExists = !Ember.isEmpty(payments.mapBy('id').without(null));
+    if (savedPaymentExists) {
+      payments.filterBy('id', null).invoke('deleteRecord');
+    }
   }
 });

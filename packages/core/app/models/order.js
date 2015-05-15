@@ -65,25 +65,8 @@ export default DS.Model.extend(HandlesNestedServerErrors, CanCheckout, {
   }),
 
   activePayment: Ember.computed('payments.@each.state', function() {
-    var payments = this.get('payments');
-
-    // This is a hack because Ember Data doesn't coalesce the new null ID record when the
-    // server returns a saved payment.  There's probably something I'm missing
-    // here, but basically this checks if there's a payment with an ID, and in
-    // that case, returns the last payment that has an ID and is not invalid or
-    // void.  Otherwise, it just returns the last payment record, which is most
-    // likely the only newly created record.
-
-    // I would be super happy if someone decided to fix this so that the initial
-    // payment object gets cleaned up when the server responds.
-    var savedPaymentExists = !Ember.isEmpty(payments.mapBy('id').without(null));
-
-    if (savedPaymentExists) {
-      return payments.reject(function(payment) {
-        return (!payment.get('id') || payment.get('state') === ("invalid" || "void"));
-      }).get('lastObject');
-    } else {
-      return payments.get('lastObject');
-    }
+    return this.get('payments').reject(function(payment) {
+      return payment.get('state') === ("invalid" || "void");
+    }).get('lastObject');
   })
 });
