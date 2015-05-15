@@ -3,7 +3,7 @@
         "name": "spree-ember-core",
         "shortName": "core",
         "description": "Core data infrastructure for a Spree Ember Application.",
-        "version": "0.0.1-beta.1.384360e7"
+        "version": "0.0.1-beta.1.7169353b"
     },
     "files": {
         "addon/adapters/spree.js": {
@@ -391,6 +391,17 @@
                 "description": "Returns the promise from `save`.",
                 "type": "Ember.RSVP.Promise"
             },
+            "class": "Mixin.CanCheckout",
+            "namespace": "Mixin"
+        },
+        {
+            "file": "addon/mixins/can-checkout.js",
+            "line": 40,
+            "description": "A method for automatically removing the `_useCheckoutsFlag` and cleaning up \nany hanging payment objects after a `saveToCheckouts` call.",
+            "itemtype": "method",
+            "name": "_afterCheckoutsSave",
+            "access": "private",
+            "tagname": "",
             "class": "Mixin.CanCheckout",
             "namespace": "Mixin"
         },

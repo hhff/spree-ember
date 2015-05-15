@@ -162,7 +162,7 @@ export default SpreeSerializer.extend({
         break;
       case &quot;payment&quot;:
         var payment = order.get(&#x27;activePayment&#x27;);
-        if (payment &amp;&amp; payment.get(&#x27;isDirty&#x27;)  &amp;&amp; payment.get(&#x27;source.isDirty&#x27;)) {
+        if (payment &amp;&amp; (payment.get(&#x27;isDirty&#x27;) || payment.get(&#x27;source.isDirty&#x27;))) {
           data[&#x27;payment_source&#x27;] = {};
           data.order[&#x27;payments_attributes&#x27;] = [{payment_method_id: payment.get(&#x27;paymentMethod.id&#x27;)}];
           data.payment_source[payment.get(&#x27;paymentMethod.id&#x27;)] = payment.get(&#x27;source&#x27;).serialize();
