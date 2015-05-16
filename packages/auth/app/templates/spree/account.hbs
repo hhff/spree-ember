@@ -10,4 +10,32 @@
     </form>
   </div>
 </div>
-{{spree-auth-orders orders=session.currentUser.orders}}
+<div class="row">
+  <h3>My Orders</h3>
+  <table class="small-12 columns">
+    <thead class="active">
+      <tr>
+        <th class="order-number">Number</th>
+        <th class="order-date">Date</th>
+        <th class="order-status">Status</th>
+        <th class="order-payment-state">Payment State</th>
+        <th class="order-shipment-state">Shipment State</th>
+        <th class="order-total">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each order in session.currentUser.orders}}
+        {{#if order.isComplete}}
+          <tr>
+            <td class="order-number">{{#link-to 'spree.orders.show' order.number}}{{order.number}}{{/link-to}}</td>
+            <td class="order-date">{{order.createdAt}}</td>
+            <td class="order-status">{{order.state}}</td>
+            <td class="order-payment-state">{{order.paymentState}}</td>
+            <td class="order-shipment-state">{{order.shipmentState}}</td>
+            <td class="lead text-primary order-total">{{order.total}}</td>
+          </tr>
+        {{/if}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>

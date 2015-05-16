@@ -8,7 +8,7 @@ import layout from '../templates/components/spree-auth';
   **To Override:** You'll need to run the generator:
 
   ```bash
-  ember g spree-ember-auth-components
+  ember g spree-ember-auth-component
   ```
 
   This will install all of the Spree Ember Auth component files into your
