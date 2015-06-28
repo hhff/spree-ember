@@ -2,6 +2,7 @@
 "use strict";
 var ownPropertiesOf = _dereq_("./utils").ownPropertiesOf;
 var toArray = _dereq_("./utils").toArray;
+var contains = _dereq_("./utils").contains;
 var $ = window.Ember.$;
 
 exports["default"] = Definition;
@@ -336,7 +337,7 @@ Definition.prototype = {
 
     this.isExplicit = true;
 
-    if (!this._statesDef.initialState && !states.contains(this.initialState)) {
+    if (!this._statesDef.initialState && !contains(states, this.initialState)) {
       throw new Error('an explicit list of known states was defined but it ' +
       'does not contain the default initial state "' + this.initialState +
       '", either change initialState or include "' + this.initialState + '" ' +
@@ -495,7 +496,7 @@ Definition.prototype = {
 
     implicitStates = ownPropertiesOf(set);
 
-    if (!implicitStates.contains(this.initialState)) {
+    if (!contains(implicitStates, this.initialState)) {
       throw new Error('initial state "' + this.initialState + '" is not ' +
       'specified in any transitions');
     }
@@ -507,7 +508,7 @@ Definition.prototype = {
     for (i = 0; i < this.stateNames.length; i++) {
       explicitState = this.stateNames[i];
 
-      if (!implicitStates.contains(explicitState)) {
+      if (!contains(implicitStates, explicitState)) {
         throw new Error('' + explicitState + ' state is not used in any ' +
         'transitions; it is explicitly defined to be used');
       }
@@ -545,7 +546,7 @@ Definition.prototype = {
         woundTransition   = woundTransitions[j];
         fromStates        = woundTransition.fromStates;
 
-        if (fromStates.contains(ALL_MACRO) || fromStates.contains(SAME_MACRO)) {
+        if (contains(fromStates, ALL_MACRO) || contains(fromStates, SAME_MACRO)) {
           fromStates = this.stateNames;
         }
 
@@ -629,6 +630,7 @@ var typeOf = window.Ember.typeOf;
 var inspect = window.Ember.inspect;
 var on = window.Ember.on;
 var capitalCamelize = _dereq_("./utils").capitalCamelize;
+var contains = _dereq_("./utils").contains;
 var Transition = _dereq_("./transition")["default"] || _dereq_("./transition");
 var Definition = _dereq_("./definition")["default"] || _dereq_("./definition");
 
@@ -672,7 +674,7 @@ exports["default"] = Ember.Object.extend({
     var promise;
     var sameState;
 
-    if (!this.get('eventNames').contains(event)) {
+    if (!contains(this.get('eventNames'), event)) {
       throw new Ember.Error(
         'unknown state event "' + event + '" try one of [' +
         this.get('eventNames').join(', ') + ']'
@@ -711,7 +713,7 @@ exports["default"] = Ember.Object.extend({
   },
 
   hasActiveTransition: function(transition) {
-    return this.get('activeTransitions').contains(transition);
+    return contains(this.get('activeTransitions'), transition);
   },
 
   abortActiveTransitions: function() {
@@ -826,7 +828,7 @@ exports["default"] = Ember.Object.extend({
     var currentState = this.definition.lookupState(this.get('currentState'));
     var states       = this.definition.lookupStates(stateOrPrefix);
 
-    return states.contains(currentState);
+    return contains(states, currentState);
   },
 
   canEnterState: function(state) {
@@ -1271,7 +1273,11 @@ exports.getFirst = getFirst;function bind(target, fn) {
   };
 }
 
-exports.bind = bind;
+exports.bind = bind;function contains(array, item) {
+  return array.indexOf(item) >= 0;
+}
+
+exports.contains = contains;
 },{}]},{},[2])
 (2)
 });

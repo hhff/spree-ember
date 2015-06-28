@@ -71,7 +71,7 @@ test('checkout walkthough', function(assert) {
     
     fillIn('input[Placeholder="Card Number"]', 4111111111111111);
     fillIn('input[Placeholder="Name"]', 'Hugh Francis');
-    fillIn('input[Placeholder="MM"]', 02);
+    fillIn('input[Placeholder="MM"]', "02");
     fillIn('input[Placeholder="YYYY"]', 2019);
     fillIn('input[Placeholder="Verification Value"]', 123);
     click('button');
