@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/hhff/spree-ember.svg?branch=master)](https://travis-ci.org/hhff/spree-ember)
 [![Join the chat at https://gitter.im/hhff/spree-ember](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hhff/spree-ember?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Climate](https://codeclimate.com/github/hhff/spree-ember.png)](https://codeclimate.com/github/hhff/spree-ember)
+[![Inline docs](http://inch-ci.org/github/hhff/spree-ember.png)](http://inch-ci.org/github/hhff/spree-ember)
 
 The Spree Ember Storefront is a collection of routes, templates and components
 that work out of the box with the [Spree](http://github.com/spree/spree) rails 
