@@ -1,0 +1,10 @@
+{
+  "files": {
+    "included": [
+      "packages/**/*.js"
+    ],
+    "excluded": [
+      "!regexp:/vendor/"
+    ]
+  }
+}
