@@ -1,0 +1,8 @@
+languages:
+  JavaScript: true
+exclude_paths:
+  - "docs/**/*"
+  - "packages/core/vendor/**/*"
+  - "packages/checkouts/vendor/**/*"
+  - "packages/storefront/vendor/**/*"
+  - "packages/auth/vendor/**/*"
