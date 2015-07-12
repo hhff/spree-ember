@@ -13,7 +13,7 @@
     </div>
   {{/unless}}
 
-  <div {{bind-attr class=":small-12 spree.checkouts.isInConfirm:large-12:large-8 :columns"}}>
+  <div class="small-12 columns {{if spree.checkouts.isInConfirm 'large-12' 'large-8'}}">
     {{spree-checkout}}
   </div>
 </div>

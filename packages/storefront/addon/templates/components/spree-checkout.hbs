@@ -6,7 +6,7 @@ It's structured like this to demonstrate the style of reactive programming that
 the Stateful Checkout service is designed for.  It's also here to show the 
 apprpriate hooks and data sets available on the Checkouts service.
 -->
-<form {{bind-attr class="spree.checkouts.currentState"}}>
+<form class="{{spree.checkouts.currentState}}">
   <fieldset>
     <legend style="text-transform:capitalize;">{{spree.checkouts.currentState}}</legend>
     {{#each spree.currentOrder.errors.base as |error|}}
@@ -24,7 +24,7 @@ apprpriate hooks and data sets available on the Checkouts service.
 
     <!-- Delivery --> 
     {{#if spree.checkouts.isInDelivery}}
-      {{#each shipment in spree.currentOrder.shipments}}
+      {{#each spree.currentOrder.shipments as |shipment|}}
         {{spree-shipment shipment=shipment}}
       {{/each}}
     {{/if}}
@@ -50,7 +50,7 @@ apprpriate hooks and data sets available on the Checkouts service.
 
   </fieldset>
   <button 
-    {{bind-attr class=":expand spree.checkouts.isLoading:disabled"}}
+    class="expand {{if spree.checkouts.isLoading 'disabled' ''}}"
     {{action 'transitionCheckoutState'}}>{{if spree.checkouts.isLoading "Loading" "Continue"}}</button>
 </form>
 
