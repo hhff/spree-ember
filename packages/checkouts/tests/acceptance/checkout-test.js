@@ -95,7 +95,7 @@ test('can advance order state', function(assert) {
       assert.equal(currentOrder.get('state'), 'cart');
       assert.equal(checkouts.get('currentState'), 'cart');
 
-      return checkouts.transition().then(function(order){
+      return checkouts.transition().then(function(/*order*/){
         assert.equal(currentOrder.get('state'), 'address');
         assert.equal(checkouts.get('currentState'), 'address');
         assert.ok(currentOrder.get('shipAddress'));

@@ -655,7 +655,9 @@ exports["default"] = Ember.Object.extend({
       events.error = { transition: { $all: 'failed' } };
     }
 
-    this.set('activeTransitions', []);
+    //TODO: Local fix used until this is closed:
+    //https://github.com/heycarsten/ember-fsm/issues/16
+    this.set('activeTransitions', Ember.A());
 
     this.definition = new Definition({
       states: states,
