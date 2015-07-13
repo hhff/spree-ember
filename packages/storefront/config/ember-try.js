@@ -11,15 +11,16 @@ module.exports = {
       }
     },
     {
-      name: 'ember-1.12.0',
+      name: 'ember-1.13.0',
       dependencies: {
-        'ember': '1.12.0'
+        'ember': '1.13.0',
       }
     },
     {
-      name: 'ember-1.13.0',
+      name: 'ember-ember-data-1.13.0',
       dependencies: {
-        'ember': '1.13.0'
+        'ember': '1.13.0',
+        'ember-data': '1.13.0'
       }
     },
     {

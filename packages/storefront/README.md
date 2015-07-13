@@ -70,7 +70,7 @@ bower install
 # current Ember version
 ember test
 # all supported Ember versions
-ember test
+npm test
 ```
 
 ## Contributing 
