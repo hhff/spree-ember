@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('order', 'Order', {
+moduleForModel('order', 'Unit | Model | Order', {
   // Specify the other units that are required for this test.
   needs: [
     'model:user',

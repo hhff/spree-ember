@@ -5,7 +5,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('order', 'Order', {
+moduleForModel('order', 'Unit | Mixin | Order', {
   needs: [
     'model:user',
     'model:address',

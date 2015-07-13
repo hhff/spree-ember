@@ -1,4 +1,3 @@
-import ENV from '../config/environment';
 import SpreeSerializer from 'spree-ember-core/serializers/spree';
 import SpreeAdapter from 'spree-ember-core/adapters/spree';
 
@@ -14,11 +13,6 @@ export function initialize(container, application) {
   application.inject('route', 'spree', 'service:spree');
   application.inject('controller', 'spree', 'service:spree');
   application.inject('component', 'spree', 'service:spree');
-
-  /* Copy Environment and Spree Configuration to Spree Service */
-  var SpreeService = container.lookup('service:spree');
-  SpreeService.set('environment', ENV.environment);
-  SpreeService.set('config', ENV['spree'] || {});
 }
 
 export default {

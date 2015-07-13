@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import { ActiveModelSerializer } from 'active-model-adapter';
 
 /**
   The Spree Serializer is based on the `DS.ActiveModelSerializer`, but implements
@@ -30,7 +30,7 @@ import DS from 'ember-data';
   @module spree-ember-core/serializers/spree
   @extends DS.ActiveModelSerializer
 */
-export default DS.ActiveModelSerializer.extend({
+export default ActiveModelSerializer.extend({
   /**
     Serializes a record for sending to the Spree server.  Here, we extend the
     default behaviour of `DS.ActiveModelSerializer#serialize` to ensure that we
@@ -43,6 +43,8 @@ export default DS.ActiveModelSerializer.extend({
     @return {Object} A JSON object representing the record.
   */
   serialize: function(record) {
+    //TODO: receive a Snapshot instead of a record
+    //see: https://github.com/emberjs/data/issues/2893#issuecomment-82517432
     var payload = this._super.apply(this, arguments);
     record.eachAttribute(function(name, meta) {
       if (!meta.options.persistToServer) {

@@ -16,7 +16,7 @@ import Storable from 'spree-ember-core/mixins/storable';
   @uses Ember.Evented, SpreeEmber.Storable, SpreeEmber.Store
 */
 
-export default Ember.Object.extend(Ember.Evented, Storable, {
+export default Ember.Service.extend(Ember.Evented, Storable, {
   /**
     The Local Storage key we use to Restore and Persist data across browser refreshes.
 

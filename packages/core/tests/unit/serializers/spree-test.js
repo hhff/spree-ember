@@ -5,7 +5,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('serializer:spree', 'SpreeSerializer', {
+moduleFor('serializer:spree', 'Unit | Serializer | SpreeSerializer', {
   needs: ['store:spree']
 });
 

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -6,11 +7,11 @@ export default DS.Model.extend({
   prettyName: DS.attr('string'),
   taxons: DS.hasMany('taxon'),
 
-  root: function() {
+  root: Ember.computed('taxons', function() {
     return this.get('taxons').findBy('parentId', undefined);
-  }.property('taxons'),
+  }),
 
-  taxonsExcludingRoot: function() {
+  taxonsExcludingRoot: Ember.computed('taxons', function() {
     return this.get('taxons').filterBy('parentId');
-  }.property('taxons')
+  })
 });
