@@ -1,3 +1,4 @@
+import ENV from '../config/environment';
 import SpreeSerializer from 'spree-ember-core/serializers/spree';
 import SpreeAdapter from 'spree-ember-core/adapters/spree';
 
