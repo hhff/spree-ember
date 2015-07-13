@@ -6,6 +6,57 @@ This guide was largely ripped from [Ember
 CLI](https://github.com/ember-cli/ember-cli/blob/master/CONTRIBUTING.md), but hopefully we can make it our own
 over time.
 
+## Quickstart
+
+Spree Ember uses four different Ember CLI addons operating together to allow
+developers to plug-and-play functionality and only use what they require.
+
+In order to setup the Spree Ember ecosystem, you have to symlink the addons to
+each other, so that changes you make in one will be consumed by another locally.
+
+#### Installation
+
+```
+git clone https://github.com/hhff/spree-ember.git
+cd spree-ember
+ruby bootstrap.rb
+```
+
+The Demo Application of the `storefront` package has the storefront installed, however
+if you'd like to develop against a seperate Ember app, you'll want to link Spree Ember
+to a host Application.
+
+#### Linking local Spree Ember to a Host Application
+
+```
+ember new my-store
+cd my-store
+npm link spree-ember-storefront
+```
+
+Then make sure you add `"spree-ember-storefront":"*"` to your host application's
+`package.json`.
+
+You're now at the same step that `ember install spree-ember-storefront@0.0.1-beta-1`
+would get you to, except your host application is linking to your local `spree-ember`
+files, instead of NPM's version.
+
+Be sure to follow the [Getting Started](http://www.spree-ember.com/3-getting-started.html)
+guides to finish the setup.
+
+#### Testing
+
+Simply `cd` into each package and run tests with `ember test` or 
+`ember test --server`.
+
+### Known issues with this workflow:
+
+- At the time of writing, nested addons are not officially supported by Ember CLI.
+  In our case, they generally "just work", however anything that requires file 
+  watching or linting on a nested package (like `core` or `checkouts`) will break.
+  You'll need to restart your server when changing `core` or `checkouts`.
+
+*Please see "Pull Requests" below for more information.*
 
 ## Questions
 
