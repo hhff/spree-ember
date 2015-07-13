@@ -61,27 +61,3 @@ var app = new EmberApp({
   }
 });
 ```
-
-## Testing 
-
-```bash
-npm install
-bower install
-# current Ember version
-ember test
-# all supported Ember versions
-npm test
-```
-
-## Contributing 
-
-In the addon folder
-```bash
-npm link
-```
-
-In your project folder
-```bash
-npm link spree-ember-storefront
-ember generate spree-ember-storefront
-```

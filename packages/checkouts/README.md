@@ -102,34 +102,3 @@ this.spree.on('didAddToCart', function(lineItem) {
 ```
 
 #### **For more information, please see the [spree-ember-checkouts API Documentation.](http://www.spree-ember.com/checkouts/index.html)**
-
-## Testing 
-
-```bash
-npm install
-bower install
-# current Ember version
-ember test
-# all supported Ember versions
-npm test
-```
-
-Note, if you serve the app to open the tests URL in a browser,
-don't forget to use the test environment.
-
-```bash
-ember serve --environment=test
-```
-
-## Contributing 
-
-In the addon folder
-```bash
-npm link
-```
-
-In your project folder
-```bash
-npm link spree-ember-storefront
-ember generate spree-ember-storefront
-```
