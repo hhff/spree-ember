@@ -44,8 +44,6 @@ test('can signup successfully', function(assert) {
 });
 
 test('can not signup with an invalid email', function(assert) {
-  var seed = (new Date()).valueOf().toString();
-
   visit('/account');
 
   andThen(function() {

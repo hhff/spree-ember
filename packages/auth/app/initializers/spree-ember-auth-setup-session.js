@@ -1,4 +1,5 @@
-export function initialize(container, application) {
+export function initialize(registry, application) {
+  var container = application.__container__; //TODO: remove deprecation
   var SpreeAdapter = container.lookup('adapter:-spree');
   var Session      = container.lookup('simple-auth-session:main');
 

@@ -4,7 +4,12 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('spree-auth', {
+// fails if ember-qunit = 0.4.X 
+// Cannot read property 'recognizer' of undefined
+// fixed in the beta channel (but won't be back ported to 1.13 most likely)
+// https://github.com/switchfly/ember-test-helpers/issues/41
+
+moduleForComponent('spree-auth', 'Unit | Component | spree-auth', {
   // specify the other units that are required for this test
   needs: [
     'component:spree-input'
