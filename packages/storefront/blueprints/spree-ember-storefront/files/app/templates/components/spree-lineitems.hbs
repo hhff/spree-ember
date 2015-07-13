@@ -11,9 +11,9 @@
     </tr>
   </thead>
   <tbody>
-    {{#each lineItem in lineItems}}
+    {{#each lineItems as |lineItem|}}
       <tr>
-        <td width="120"><img {{bind-attr src=lineItem.variant.images.firstObject.smallUrl}}></td>
+        <td width="120"><img src="{{lineItem.variant.images.firstObject.smallUrl}}"></td>
         <td>
           <h5>{{lineItem.variant.name}}</h5>
           <p>{{lineItem.variant.optionsText}}</p>
