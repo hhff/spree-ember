@@ -61,4 +61,3 @@ var app = new EmberApp({
   }
 });
 ```
-

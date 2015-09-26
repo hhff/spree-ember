@@ -1,5 +1,5 @@
 <h4 class="taxonomy-root">{{taxonomy.prettyName}}</h4>
-{{#each taxon in childTaxons}}
+{{#each childTaxons as |taxon|}}
   <li>
     {{#link-to 'spree.taxons' taxon.permalink class='list-group-item'}}{{taxon.name}}{{/link-to}}
   </li>

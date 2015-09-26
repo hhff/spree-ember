@@ -1,25 +1,31 @@
 {{spree-input value=address.firstname 
               errors=address.errors.firstname
+              placeholder="First Name"
               attributeName="First Name"}}
 
 {{spree-input value=address.lastname
               errors=address.errors.lastname
+              placeholder="Last Name"
               attributeName="Last Name"}}
 
 {{spree-input value=address.address1
               errors=address.errors.address1
+              placeholder="Address"
               attributeName="Street Address"}}
               
 {{spree-input value=address.address2 
               errors=address.errors.address2
+              placeholder="Address (cont.)"
               attributeName="Address (cont.)"}}
 
 {{spree-input value=address.city
               errors=address.errors.city
+              placeholder="City"
               attributeName="City"}}
               
 {{spree-input value=address.zipcode 
               errors=address.errors.zipcode
+              placeholder="Zipcode"
               attributeName="Zipcode"}}
               
 {{spree-select content=countries 
@@ -40,10 +46,12 @@
   {{#if address.country.statesRequired}}
     {{spree-input value=address.stateName
                   errors=address.errors.stateName
+                  placeholder="State"
                   attributeName="State"}}
   {{/if}}
 {{/if}}
 
 {{spree-input value=address.phone
               errors=address.errors.phone
+              placeholder="Phone"
               attributeName="Phone"}}

@@ -17,7 +17,7 @@
       {{#if product.variants.length}}
         <div class="small-12 medium-6 columns left">
           <h3>Variants</h3>
-          {{view "select" content=product.variants optionLabelPath="content.optionsText" selection=selectedVariant}}
+          {{view 'select' content=product.variants optionLabelPath="content.optionsText" selection=selectedVariant}}
         </div>
       {{/if}}
       <div class="small-12 medium-6  columns left">

@@ -21,7 +21,6 @@ module('Acceptance: Account', {
 test('can change password correctly', function(assert) {
   var seed = (new Date()).valueOf().toString();
   var email = 'spree-ember-'+seed+'@example.com';
-  var newSeed  = (new Date()).valueOf().toString();
   var newEmail = 'spree-ember-'+seed+'@example.com';
 
   visit('/account');

@@ -1,13 +1,13 @@
 <div class="row">
   <div class="small-12 columns">
-    <img {{bind-attr src=selectedImage.largeUrl}}>
+    <img src="{{selectedImage.largeUrl}}">
     <hr>
   </div>
   <div class="small-12 columns">
     <div class="row">
-      {{#each image in images}}
+      {{#each images as |image|}}
         <div class="small-3 columns left" {{action 'selectImage' image}}>
-          <img {{bind-attr src=image.largeUrl}}>
+          <img src="{{image.largeUrl}}">
         </div>
       {{/each}}
     </div>

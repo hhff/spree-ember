@@ -1,6 +1,6 @@
 <nav id="taxonomies" class="sidebar-item">
   <ul class="side-nav">
-    {{#each taxonomy in taxonomies}}
+    {{#each taxonomies as |taxonomy|}}
       {{spree-taxonomy taxonomy=taxonomy}}
     {{/each}}
   </ul>

@@ -3,7 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('spree-breadcrumbs');
+moduleForComponent('spree-breadcrumbs', {
+  unit: true
+});
 
 test('it renders', function(assert) {
   assert.expect(2);

@@ -1,15 +1,15 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import ActiveModelAdapter from 'active-model-adapter';
 /**
   The Spree Adapter is responsible for communicating with your Spree store.  It
   assumes your server has the `spree_ams` gem installed.
 
   @class Spree
   @namespace Adapter
-  @extends DS.ActiveModelAdapter
+  @extends ActiveModelAdapter
 */
 
-export default DS.ActiveModelAdapter.extend({
+export default ActiveModelAdapter.extend({
   /**
     The container lookup name for the default Spree serializer.
 

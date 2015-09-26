@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('taxonomy', 'Taxonomy', {
+moduleForModel('taxonomy', 'Unit | Model | taxonomy', {
   // Specify the other units that are required for this test.
   needs: [
     'model:taxon'
